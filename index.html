@@ -25,6 +25,20 @@
   .word-item.wrong .en, .word-item.wrong .num { color: #e74c3c; }
   .word-item .hint { font-size: 0.8rem; color: #888; min-width: 60px; }
   .word-item.show-answer .hint { color: #27ae60; font-weight: 600; }
+
+  /* 语法练习 */
+  .gram-grid { display: flex; flex-direction: column; gap: 12px; }
+  .gram-item { background: #f8f9fa; border-radius: 10px; padding: 14px 16px; }
+  .gram-item .sentence { font-size: 1.05rem; font-weight: 600; color: #2c3e50; margin-bottom: 10px; }
+  .gram-item .options { display: flex; gap: 8px; flex-wrap: wrap; }
+  .gram-item .opt-btn { padding: 6px 16px; border: 1.5px solid #ccc; border-radius: 20px; background: #fff; cursor: pointer; font-size: 0.95rem; transition: all 0.15s; }
+  .gram-item .opt-btn:hover { border-color: #2c3e50; }
+  .gram-item .opt-btn.selected { border-color: #2c3e50; background: #2c3e50; color: #fff; }
+  .gram-item .opt-btn.correct { border-color: #27ae60; background: #27ae60; color: #fff; }
+  .gram-item .opt-btn.wrong { border-color: #e74c3c; background: #e74c3c; color: #fff; }
+  .gram-item .opt-btn.show-correct { border-color: #27ae60; background: #d4edda; color: #27ae60; }
+  .gram-item .result-icon { font-size: 1.1rem; margin-left: 8px; vertical-align: middle; }
+  .gram-item.done { opacity: 0.85; }
   main { max-width: 700px; margin: 24px auto; padding: 0 16px; }
   .section { display: none; }
   .section.active { display: block; }
@@ -118,6 +132,7 @@
   <button class="active" onclick="show('math')">口算练习</button>
   <button onclick="show('flash')">闪卡背词</button>
   <button onclick="show('vocab')">背单词</button>
+  <button onclick="show('gram')">语法练习</button>
   <button onclick="show('ielts')">IELTS 资料</button>
 </nav>
 
@@ -172,6 +187,19 @@
         <button class="btn" onclick="genVocab()">换一批</button>
         <button class="btn" onclick="checkVocab()" style="background:#27ae60;">批改</button>
         <span id="vocabResult"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 语法练习 -->
+  <div id="gram" class="section">
+    <div class="card">
+      <h2>小学二年级英文语法 · 选词填空</h2>
+      <div class="gram-grid" id="gramGrid"></div>
+      <div style="margin-top:16px; text-align:center; display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;">
+        <button class="btn" onclick="genGrammar()">换一批</button>
+        <button class="btn" onclick="checkGrammar()" style="background:#27ae60;">提交答案</button>
+        <span id="gramResult" style="font-weight:600;"></span>
       </div>
     </div>
   </div>
@@ -410,6 +438,101 @@ function checkVocab() {
   bar.style.cssText = 'font-weight:600;margin-left:12px;' + (pct >= 90 ? 'color:#27ae60' : 'color:#e74c3c');
 }
 
+// ── 语法练习 ─────────────────────────────────────
+const GRAMMAR_BANK = [
+  { q: 'I ___ a student.', opts: ['am', 'is', 'are'], ans: 'am' },
+  { q: 'She ___ a girl.', opts: ['am', 'is', 'are'], ans: 'is' },
+  { q: 'He ___ a boy.', opts: ['am', 'is', 'are'], ans: 'is' },
+  { q: 'They ___ friends.', opts: ['am', 'is', 'are'], ans: 'are' },
+  { q: 'We ___ in the classroom.', opts: ['am', 'is', 'are'], ans: 'are' },
+  { q: 'It ___ a cat.', opts: ['am', 'is', 'are'], ans: 'is' },
+  { q: 'You ___ my friend.', opts: ['am', 'is', 'are'], ans: 'are' },
+  { q: '___ is my book.', opts: ['This', 'These', 'Those'], ans: 'This' },
+  { q: '___ are my pencils.', opts: ['This', 'These', 'Those'], ans: 'These' },
+  { q: '___ is far away.', opts: ['That', 'These', 'Those'], ans: 'That' },
+  { q: '___ are near here.', opts: ['This', 'Those', 'That'], ans: 'Those' },
+  { q: 'I have ___ apple.', opts: ['a', 'an'], ans: 'an' },
+  { q: 'She is ___ nice girl.', opts: ['a', 'an'], ans: 'a' },
+  { q: 'He is ___ honest boy.', opts: ['a', 'an'], ans: 'an' },
+  { q: 'It is ___ big bag.', opts: ['a', 'an'], ans: 'a' },
+  { q: '___ is my mother. She is a teacher.', opts: ['He', 'She', 'It'], ans: 'She' },
+  { q: '___ is my father. He is tall.', opts: ['He', 'She', 'It'], ans: 'He' },
+  { q: 'The bird ___ in the sky.', opts: ['sit', 'sits', 'sat'], ans: 'sits' },
+  { q: '___ a book on the desk.', opts: ['There is', 'There are'], ans: 'There is' },
+  { q: '___ many books on the desk.', opts: ['There is', 'There are'], ans: 'There are' },
+  { q: '___ you happy today?', opts: ['Is', 'Are', 'Am'], ans: 'Are' },
+  { q: '___ it a dog?', opts: ['Is', 'Are', 'Do'], ans: 'Is' },
+  { q: 'I ___ eat breakfast every morning.', opts: ['eats', 'eat', 'ate'], ans: 'eat' },
+  { q: 'She ___ to school by bus.', opts: ['go', 'goes', 'went'], ans: 'goes' },
+  { q: 'The sky is ___.', opts: ['blue', 'run', 'eat'], ans: 'blue' },
+  { q: 'I have ___ fingers.', opts: ['two', 'first', 'one'], ans: 'two' },
+  { q: 'My name ___ Tom.', opts: ['is', 'are', 'am'], ans: 'is' },
+  { q: 'These ___ my shoes.', opts: ['is', 'are', 'am'], ans: 'are' },
+  { q: '___ is the first day of the week.', opts: ['Monday', 'Saturday', 'Friday'], ans: 'Monday' },
+  { q: 'There ___ a pen and two books.', opts: ['is', 'are', 'am'], ans: 'is' },
+];
+
+let gramQuiz = [];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function genGrammar() {
+  gramQuiz = shuffle(GRAMMAR_BANK).slice(0, 10);
+  const grid = document.getElementById('gramGrid');
+  grid.innerHTML = '';
+  document.getElementById('gramResult').textContent = '';
+  gramQuiz.forEach((item, idx) => {
+    const div = document.createElement('div');
+    div.className = 'gram-item';
+    div.id = 'gi' + idx;
+    const shuffledOpts = shuffle(item.opts);
+    div.innerHTML = `
+      <div class="sentence">${idx + 1}. ${item.q}</div>
+      <div class="options">
+        ${shuffledOpts.map(opt => `<button class="opt-btn" onclick="selectOpt(${idx}, this, '${opt}')">${opt}</button>`).join('')}
+      </div>`;
+    grid.appendChild(div);
+  });
+}
+
+function selectOpt(idx, btn, val) {
+  const item = document.getElementById('gi' + idx);
+  if (item.classList.contains('done')) return;
+  item.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  btn.dataset.selected = val;
+}
+
+function checkGrammar() {
+  let correct = 0;
+  gramQuiz.forEach((item, idx) => {
+    const itemEl = document.getElementById('gi' + idx);
+    const selected = itemEl.querySelector('.opt-btn.selected');
+    itemEl.classList.add('done');
+    itemEl.querySelectorAll('.opt-btn').forEach(btn => {
+      btn.disabled = true;
+      if (btn.textContent.trim() === item.ans) {
+        btn.classList.add(btn === selected ? 'correct' : 'show-correct');
+      } else if (btn === selected) {
+        btn.classList.add('wrong');
+      }
+    });
+    if (selected && selected.textContent.trim() === item.ans) correct++;
+  });
+  const total = gramQuiz.length;
+  const pct = Math.round(correct / total * 100);
+  const bar = document.getElementById('gramResult');
+  bar.textContent = `${correct} / ${total} 正确（${pct}%）`;
+  bar.style.color = pct >= 90 ? '#27ae60' : pct >= 70 ? '#e67e22' : '#e74c3c';
+}
+
 // ── 导航 ──────────────────────────────────────────
 function show(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -422,6 +545,7 @@ function show(id) {
 genQuestions();
 renderCard();
 genVocab();
+genGrammar();
 </script>
 </body>
 </html>
