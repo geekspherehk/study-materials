@@ -12,6 +12,19 @@
   nav { display: flex; justify-content: center; gap: 4px; background: #34495e; padding: 8px; flex-wrap: wrap; }
   nav button { background: transparent; border: 1px solid #555; color: #ccc; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
   nav button:hover, nav button.active { background: #2c3e50; border-color: #2c3e50; color: #fff; }
+
+  /* 背单词 */
+  .word-grid { display: flex; flex-direction: column; gap: 8px; max-height: 520px; overflow-y: auto; padding-right: 4px; }
+  .word-item { display: grid; grid-template-columns: 40px 1fr auto; gap: 10px; align-items: center; background: #f8f9fa; border-radius: 8px; padding: 10px 12px; }
+  .word-item .num { font-weight: 700; color: #888; font-size: 0.85rem; }
+  .word-item .en { font-weight: 600; font-size: 1.05rem; color: #2c3e50; }
+  .word-item input { border: 1px solid #ccc; border-radius: 4px; padding: 5px 8px; font-size: 0.95rem; width: 120px; }
+  .word-item.correct input { border-color: #27ae60; background: #eafaf1; }
+  .word-item.wrong input { border-color: #e74c3c; background: #fdecea; }
+  .word-item.correct .en, .word-item.correct .num { color: #27ae60; }
+  .word-item.wrong .en, .word-item.wrong .num { color: #e74c3c; }
+  .word-item .hint { font-size: 0.8rem; color: #888; min-width: 60px; }
+  .word-item.show-answer .hint { color: #27ae60; font-weight: 600; }
   main { max-width: 700px; margin: 24px auto; padding: 0 16px; }
   .section { display: none; }
   .section.active { display: block; }
@@ -65,6 +78,7 @@
 <nav>
   <button class="active" onclick="show('math')">口算练习</button>
   <button onclick="show('flash')">闪卡背词</button>
+  <button onclick="show('vocab')">背单词</button>
   <button onclick="show('ielts')">IELTS 资料</button>
 </nav>
 
@@ -97,6 +111,19 @@
         <button onclick="prevCard()">← 上一张</button>
         <span id="fcCount">1 / 20</span>
         <button onclick="nextCard()">下一张 →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 背单词 -->
+  <div id="vocab" class="section">
+    <div class="card">
+      <h2>小学二年级英文 · 看英文写中文（50题）</h2>
+      <div class="word-grid" id="wordGrid"></div>
+      <div style="margin-top:16px; text-align:center;">
+        <button class="btn" onclick="genVocab()">换一批</button>
+        <button class="btn" onclick="checkVocab()" style="background:#27ae60;">批改</button>
+        <span id="vocabResult"></span>
       </div>
     </div>
   </div>
@@ -224,6 +251,95 @@ function nextCard() {
   renderCard();
 }
 
+// ── 背单词 ───────────────────────────────────────
+const WORD_BANK = [
+  ["apple","苹果"],["banana","香蕉"],["orange","橙子"],["cat","猫"],["dog","狗"],
+  ["bird","鸟"],["fish","鱼"],["book","书"],["pen","笔"],["pencil","铅笔"],
+  ["bag","书包"],["chair","椅子"],["desk","书桌"],["bed","床"],["door","门"],
+  ["window","窗户"],["box","盒子"],["ball","球"],["cake","蛋糕"],["bread","面包"],
+  ["milk","牛奶"],["water","水"],["egg","鸡蛋"],["rice","米饭"],["hand","手"],
+  ["foot","脚"],["eye","眼睛"],["ear","耳朵"],["mouth","嘴巴"],["nose","鼻子"],
+  ["head","头"],["arm","手臂"],["leg","腿"],["body","身体"],["red","红色"],
+  ["blue","蓝色"],["green","绿色"],["yellow","黄色"],["white","白色"],["black","黑色"],
+  ["one","一"],["two","二"],["three","三"],["four","四"],["five","五"],
+  ["six","六"],["seven","七"],["eight","八"],["nine","九"],["ten","十"],
+  ["morning","早上"],["noon","中午"],["night","晚上"],["today","今天"],["moon","月亮"],
+  ["sun","太阳"],["star","星星"],["tree","树"],["flower","花"],["grass","草"],
+  ["river","河"],["house","房子"],["school","学校"],["teacher","老师"],["student","学生"],
+  ["friend","朋友"],["brother","兄弟"],["sister","姐妹"],["mother","妈妈"],["father","爸爸"],
+  ["boy","男孩"],["girl","女孩"],["baby","宝宝"],["rain","雨"],["snow","雪"],
+  ["wind","风"],["cloud","云"],["hot","热的"],["cold","冷的"],["big","大的"],
+  ["small","小的"],["long","长的"],["short","短的"],["tall","高的"],["new","新的"],
+  ["old","旧的"],["good","好的"],["bad","坏的"],["happy","开心的"],["sad","伤心的"],
+  ["hungry","饿的"],["thirsty","渴的"],["run","跑"],["walk","走"],["jump","跳"],
+  ["sit","坐"],["stand","站"],["open","打开"],["close","关闭"],["eat","吃"],
+  ["drink","喝"],["sleep","睡觉"],["read","读"],["write","写"],["draw","画"],
+  ["sing","唱歌"],["dance","跳舞"],["play","玩"],["work","工作"],["love","爱"],
+  ["this","这个"],["that","那个"],["here","这里"],["there","那里"],["yes","是"],["no","不"],
+  ["please","请"],["thank","谢谢"],["sorry","对不起"],["hello","你好"],["bye","再见"],
+];
+
+let vocabQuiz = [];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function genVocab() {
+  const pool = shuffle(WORD_BANK).slice(0, 50);
+  vocabQuiz = pool;
+  const grid = document.getElementById('wordGrid');
+  grid.innerHTML = '';
+  document.getElementById('vocabResult').textContent = '';
+  pool.forEach(([en, cn], i) => {
+    const item = document.createElement('div');
+    item.className = 'word-item';
+    item.id = 'vw' + i;
+    item.innerHTML = `
+      <span class="num">${i + 1}.</span>
+      <span class="en">${en}</span>
+      <input type="text" id="vi${i}" placeholder="中文" oninput="document.getElementById('vw${i}').classList.remove('correct','wrong')">
+      <span class="hint" id="vh${i}"></span>`;
+    grid.appendChild(item);
+  });
+}
+
+function checkVocab() {
+  let correct = 0;
+  vocabQuiz.forEach(([en, cn], i) => {
+    const item = document.getElementById('vw' + i);
+    const input = document.getElementById('vi' + i);
+    const hint = document.getElementById('vh' + i);
+    const user = input.value.trim();
+    item.classList.remove('correct', 'wrong', 'show-answer');
+    hint.textContent = '';
+    if (user === cn) {
+      item.classList.add('correct');
+      correct++;
+    } else if (user === '') {
+      item.classList.add('wrong');
+      hint.textContent = cn;
+      hint.style.color = '#e74c3c';
+      item.classList.add('show-answer');
+    } else {
+      item.classList.add('wrong');
+      hint.textContent = cn;
+      hint.style.color = '#e74c3c';
+      item.classList.add('show-answer');
+    }
+  });
+  const pct = Math.round(correct / vocabQuiz.length * 100);
+  const bar = document.getElementById('vocabResult');
+  bar.textContent = `${correct} / ${vocabQuiz.length} 正确（${pct}%）`;
+  bar.className = pct >= 90 ? 'score-good' : 'score-bad';
+  bar.style.cssText = 'font-weight:600;margin-left:12px;' + (pct >= 90 ? 'color:#27ae60' : 'color:#e74c3c');
+}
+
 // ── 导航 ──────────────────────────────────────────
 function show(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
@@ -235,6 +351,7 @@ function show(id) {
 // 初始化
 genQuestions();
 renderCard();
+genVocab();
 </script>
 </body>
 </html>
