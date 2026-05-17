@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学习素材站</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, sans-serif; background: #f5f5f5; color: #333; }
+  header { background: #2c3e50; color: #fff; padding: 20px; text-align: center; }
+  header h1 { font-size: 1.5rem; font-weight: 600; }
+  nav { display: flex; justify-content: center; gap: 4px; background: #34495e; padding: 8px; flex-wrap: wrap; }
+  nav button { background: transparent; border: 1px solid #555; color: #ccc; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
+  nav button:hover, nav button.active { background: #2c3e50; border-color: #2c3e50; color: #fff; }
+  main { max-width: 700px; margin: 24px auto; padding: 0 16px; }
+  .section { display: none; }
+  .section.active { display: block; }
+  .card { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  h2 { font-size: 1.1rem; margin-bottom: 14px; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 8px; }
+
+  /* 口算题 */
+  .qa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .qa-item { background: #f8f9fa; border-radius: 8px; padding: 12px; text-align: center; }
+  .qa-item span { font-size: 1.1rem; font-weight: 600; color: #2c3e50; }
+  .qa-item input { width: 60px; text-align: center; border: 1px solid #ccc; border-radius: 4px; padding: 4px; margin-left: 6px; font-size: 1rem; }
+  .qa-item.correct input { border-color: #27ae60; background: #eafaf1; }
+  .qa-item.wrong input { border-color: #e74c3c; background: #fdecea; }
+  .qa-item.correct span { color: #27ae60; }
+  .qa-item.wrong span { color: #e74c3c; }
+  .btn { background: #2c3e50; color: #fff; border: none; padding: 10px 24px; border-radius: 6px; cursor: pointer; font-size: 0.95rem; }
+  .btn:hover { background: #34495e; }
+  .btn+input { vertical-align: middle; margin-right: 8px; }
+
+  /* 闪卡 */
+  .flashcard-wrap { perspective: 1000px; max-width: 400px; margin: 0 auto 16px; }
+  .flashcard { width: 100%; height: 180px; position: relative; transform-style: preserve-3d; transition: transform 0.5s; cursor: pointer; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .flashcard-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 600; padding: 20px; text-align: center; }
+  .flashcard-front { background: linear-gradient(135deg, #2c3e50, #34495e); color: #fff; }
+  .flashcard-back { background: linear-gradient(135deg, #27ae60, #2ecc71); color: #fff; transform: rotateY(180deg); }
+  .flash-nav { display: flex; justify-content: center; gap: 12px; align-items: center; }
+  .flash-nav span { color: #888; font-size: 0.9rem; }
+  .flash-nav button { background: #eee; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; }
+  .flash-nav button:hover { background: #ddd; }
+
+  /* IELTS */
+  .ielts-list { list-style: none; }
+  .ielts-list li { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+  .ielts-list li:last-child { border-bottom: none; }
+  .ielts-list a { color: #2980b9; text-decoration: none; }
+  .ielts-list a:hover { text-decoration: underline; }
+  .tag { background: #e8f4fd; color: #2980b9; font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; }
+
+  #result-bar { text-align: center; margin-top: 10px; font-weight: 600; color: #2c3e50; }
+  .score-good { color: #27ae60; }
+  .score-bad { color: #e74c3c; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📚 学习素材站</h1>
+</header>
+
+<nav>
+  <button class="active" onclick="show('math')">口算练习</button>
+  <button onclick="show('flash')">闪卡背词</button>
+  <button onclick="show('ielts')">IELTS 资料</button>
+</nav>
+
+<main>
+
+  <!-- 口算练习 -->
+  <div id="math" class="section active">
+    <div class="card">
+      <h2>1~5 的乘法口算</h2>
+      <div class="qa-grid" id="qaGrid"></div>
+      <div style="margin-top:16px; text-align:center;">
+        <button class="btn" onclick="genQuestions()">重新生成</button>
+        <button class="btn" onclick="checkAnswers()" style="background:#27ae60;">批改</button>
+        <span id="result-bar"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 闪卡 -->
+  <div id="flash" class="section">
+    <div class="card">
+      <h2>点击卡片翻转 · 学习 IELTS 核心词汇</h2>
+      <div class="flashcard-wrap">
+        <div class="flashcard" id="flashcard" onclick="flipCard()">
+          <div class="flashcard-face flashcard-front" id="fcFront">点击开始</div>
+          <div class="flashcard-face flashcard-back" id="fcBack"></div>
+        </div>
+      </div>
+      <div class="flash-nav">
+        <button onclick="prevCard()">← 上一张</button>
+        <span id="fcCount">1 / 20</span>
+        <button onclick="nextCard()">下一张 →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- IELTS 资料 -->
+  <div id="ielts" class="section">
+    <div class="card">
+      <h2>IELTS 核心资料</h2>
+      <ul class="ielts-list">
+        <li>
+          <a href="https://hcnyxzcp6mqq.feishu.cn/docx/Ah9NdkKlsoA79yx9bWbcde9RnEg" target="_blank">🎯 IELTS 6.5 分冲刺计划</a>
+          <span class="tag">计划</span>
+        </li>
+        <li>
+          <a href="https://hcnyxzcp6mqq.feishu.cn/drive/folder/VLzPfW9UDl5H1cdzNXDcnZYenNF" target="_blank">📁 IELTS 共享资料文件夹</a>
+          <span class="tag">文件夹</span>
+        </li>
+        <li>
+          <a href="#" onclick="alert('请在飞书共享文件夹中查看 ielts_flashcards.html')">📇 闪卡 HTML 文件</a>
+          <span class="tag">下载</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ── 口算 ──────────────────────────────────────────
+const questions = [];
+let answers = [];
+
+function randInt(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
+
+function genQuestions() {
+  const qaGrid = document.getElementById('qaGrid');
+  qaGrid.innerHTML = '';
+  questions.length = 0;
+  answers = [];
+  document.getElementById('result-bar').textContent = '';
+  document.getElementById('result-bar').className = '';
+
+  for (let i = 0; i < 20; i++) {
+    const a = randInt(1, 5);
+    const b = randInt(1, 9);
+    questions.push({ a, b, product: a * b });
+    answers.push(null);
+
+    const item = document.createElement('div');
+    item.className = 'qa-item';
+    item.id = 'q' + i;
+    item.innerHTML = `<span>${a} × ${b} = </span><input type="number" id="i${i}" oninput="answers[${i}]=this.value">`;
+    qaGrid.appendChild(item);
+  }
+}
+
+function checkAnswers() {
+  let correct = 0;
+  questions.forEach((q, i) => {
+    const item = document.getElementById('q' + i);
+    const input = document.getElementById('i' + i);
+    const userAns = parseInt(input.value);
+    item.classList.remove('correct', 'wrong');
+    if (!isNaN(userAns)) {
+      if (userAns === q.product) {
+        item.classList.add('correct');
+        correct++;
+      } else {
+        item.classList.add('wrong');
+      }
+    } else {
+      item.classList.add('wrong');
+    }
+  });
+  const total = questions.length;
+  const pct = Math.round(correct / total * 100);
+  const bar = document.getElementById('result-bar');
+  bar.textContent = `${correct} / ${total} 正确（${pct}%）`;
+  bar.className = pct >= 90 ? 'score-good' : 'score-bad';
+}
+
+// ── 闪卡 ──────────────────────────────────────────
+const flashCards = [
+  { front: 'vocabulary', back: 'n. 词汇；词汇量' },
+  { front: 'fluent', back: 'adj. 流利的；流畅的' },
+  { front: 'comprehensive', back: 'adj. 综合的；全面的' },
+  { front: 'persuade', back: 'v. 说服；使相信' },
+  { front: 'illustrate', back: 'v. 说明；阐明；给…加插图' },
+  { front: 'accumulate', back: 'v. 积累；积聚' },
+  { front: 'circumstance', back: 'n. 情况；环境；形势' },
+  { front: 'significant', back: 'adj. 重要的；意义重大的' },
+  { front: 'acknowledge', back: 'v. 承认；确认；表示感谢' },
+  { front: 'alternative', back: 'n. / adj. 替代；替代的；可供选择' },
+  { front: 'benefit', back: 'n. 利益；好处；v. 有益于' },
+  { front: 'participate', back: 'v. 参加；参与' },
+  { front: 'environment', back: 'n. 环境；周围状况' },
+  { front: 'economy', back: 'n. 经济；节约' },
+  { front: 'guarantee', back: 'v. / n. 保证；担保' },
+  { front: 'investigate', back: 'v. 调查；研究' },
+  { front: 'maintain', back: 'v. 维持；保持；坚持；维护' },
+  { front: 'requirement', back: 'n. 要求；必要条件；需求' },
+  { front: 'sufficient', back: 'adj. 足够的；充足的' },
+  { front: 'tendency', back: 'n. 倾向；趋势' },
+];
+
+let fcIdx = 0;
+
+function renderCard() {
+  const c = flashCards[fcIdx];
+  document.getElementById('fcFront').textContent = c.front;
+  document.getElementById('fcBack').textContent = c.back;
+  document.getElementById('fcCount').textContent = `${fcIdx + 1} / ${flashCards.length}`;
+  document.getElementById('flashcard').classList.remove('flipped');
+}
+
+function flipCard() {
+  document.getElementById('flashcard').classList.toggle('flipped');
+}
+function prevCard() {
+  fcIdx = (fcIdx - 1 + flashCards.length) % flashCards.length;
+  renderCard();
+}
+function nextCard() {
+  fcIdx = (fcIdx + 1) % flashCards.length;
+  renderCard();
+}
+
+// ── 导航 ──────────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// 初始化
+genQuestions();
+renderCard();
+</script>
+</body>
+</html>
