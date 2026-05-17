@@ -7,25 +7,21 @@
   <style>
     :root {
       --primary: #2563eb;
-      --bg: #f8fafc;
+      --bg: #f1f5f9;
       --card: #ffffff;
       --text: #1e293b;
       --muted: #64748b;
       --border: #e2e8f0;
-      --tag-noun: #dbeafe;
-      --tag-noun-text: #1e40af;
-      --tag-verb: #dcfce7;
-      --tag-verb-text: #166534;
-      --tag-adj: #fef3c7;
-      --tag-adj-text: #92400e;
-      --tag-adv: #fce7f3;
-      --tag-adv-text: #9d174d;
-      --tag-prep: #e0e7ff;
-      --tag-prep-text: #3730a3;
-      --tag-pron: #ccfbf1;
-      --tag-pron-text: #115e59;
-      --tag-conj: #fee2e2;
-      --tag-conj-text: #991b1b;
+      --hover-bg: #e8f0fe;
+      --active-bg: #dbeafe;
+      --sidebar-w: 220px;
+      --tag-noun: #dbeafe;      --tag-noun-text: #1e40af;
+      --tag-verb: #dcfce7;      --tag-verb-text: #166534;
+      --tag-adj: #fef3c7;      --tag-adj-text: #92400e;
+      --tag-adv: #fce7f3;      --tag-adv-text: #9d174d;
+      --tag-prep: #e0e7ff;     --tag-prep-text: #3730a3;
+      --tag-pron: #ccfbf1;     --tag-pron-text: #115e59;
+      --tag-conj: #fee2e2;     --tag-conj-text: #991b1b;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -33,37 +29,82 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      padding: 24px 16px 80px;
     }
-    .header {
-      max-width: 720px;
-      margin: 0 auto 28px;
-      text-align: center;
+
+    /* ── Layout ── */
+    .wrapper { display: flex; min-height: 100vh; }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      padding: 20px 0;
+      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+      flex-shrink: 0;
     }
-    .header h1 {
-      font-size: 1.6rem;
+    .sidebar .brand {
+      padding: 0 16px 16px;
       font-weight: 700;
+      font-size: 1.05rem;
       color: var(--primary);
-      margin-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
     }
-    .header p {
+    .sidebar .brand small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .nav-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      color: var(--text);
+      transition: background 0.12s, color 0.12s;
+      border: none; background: none; width: 100%; text-align: left;
+    }
+    .nav-item:hover { background: var(--hover-bg); }
+    .nav-item.active {
+      background: var(--active-bg);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .nav-item .dot {
+      width: 8px; height: 8px; border-radius: 99px;
+      flex-shrink: 0;
+    }
+
+    /* ── Content ── */
+    .content {
+      flex: 1;
+      padding: 32px 36px 80px;
+      max-width: 780px;
+    }
+    .content-header {
+      margin-bottom: 28px;
+    }
+    .content-header h1 {
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+    .content-header p {
       font-size: 0.85rem;
       color: var(--muted);
+      margin-top: 4px;
     }
-    .grid {
-      max-width: 720px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    @media (max-width: 540px) {
-      .grid { grid-template-columns: 1fr; }
-    }
+
+    /* ── Topic sections ── */
+    .topic-section { display: none; }
+    .topic-section.active { display: block; }
+
     .card {
       background: var(--card);
       border-radius: 12px;
-      padding: 18px;
+      padding: 20px 24px;
       border: 1px solid var(--border);
       box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
@@ -73,7 +114,15 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 9px;
+      border-radius: 99px;
+      margin-bottom: 10px;
     }
     .example {
       background: var(--bg);
@@ -89,264 +138,216 @@
       margin-bottom: 2px;
     }
     .example .zh { color: var(--muted); font-size: 0.82rem; }
-    .tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 1px 7px;
-      border-radius: 99px;
-      margin-bottom: 10px;
-    }
     .rule {
       font-size: 0.85rem;
-      color: var(--text);
       margin-bottom: 10px;
       padding-left: 10px;
       border-left: 3px solid var(--primary);
     }
     .rule:last-child { margin-bottom: 0; }
+
+    /* ── Footer ── */
     .footer {
-      max-width: 720px;
-      margin: 28px auto 0;
+      margin-top: 36px;
       text-align: center;
       font-size: 0.78rem;
       color: var(--muted);
     }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .wrapper { flex-direction: column; }
+      .sidebar {
+        width: 100%; height: auto; position: static;
+        border-right: none; border-bottom: 1px solid var(--border);
+        padding: 12px 0;
+        display: flex; flex-wrap: wrap; gap: 2px;
+      }
+      .sidebar .brand { display: none; }
+      .nav-item { width: auto; padding: 8px 12px; font-size: 0.82rem; }
+      .content { padding: 20px 16px 60px; }
+    }
   </style>
 </head>
 <body>
+<div class="wrapper">
 
-<div class="header">
-  <h1>Hong Kong Primary 2 English Grammar</h1>
-  <p>香港小学二年级英语语法知识点速查</p>
-</div>
+  <!-- ── Sidebar Navigation ── -->
+  <nav class="sidebar" id="sidebar">
+    <div class="brand">
+      P2 Grammar
+      <small>香港小学二年级</small>
+    </div>
+    <button class="nav-item active" data-topic="nouns"        onclick="switchTopic('nouns')">        <span class="dot" style="background:var(--tag-noun-text)"></span>Nouns 名词</button>
+    <button class="nav-item"        data-topic="articles"     onclick="switchTopic('articles')">     <span class="dot" style="background:var(--tag-noun-text)"></span>Articles 冠词</button>
+    <button class="nav-item"        data-topic="pronouns"     onclick="switchTopic('pronouns')">     <span class="dot" style="background:var(--tag-pron-text)"></span>Pronouns 代词</button>
+    <button class="nav-item"        data-topic="adjectives"   onclick="switchTopic('adjectives')">   <span class="dot" style="background:var(--tag-adj-text)"></span>Adjectives 形容词</button>
+    <button class="nav-item"        data-topic="verb-be"      onclick="switchTopic('verb-be')">      <span class="dot" style="background:var(--tag-verb-text)"></span>Verb Be (am/is/are)</button>
+    <button class="nav-item"        data-topic="verb-action"  onclick="switchTopic('verb-action')">  <span class="dot" style="background:var(--tag-verb-text)"></span>Action Verbs 行为动词</button>
+    <button class="nav-item"        data-topic="adverbs"      onclick="switchTopic('adverbs')">      <span class="dot" style="background:var(--tag-adv-text)"></span>Adverbs 副词</button>
+    <button class="nav-item"        data-topic="prepositions" onclick="switchTopic('prepositions')"> <span class="dot" style="background:var(--tag-prep-text)"></span>Prepositions 介词</button>
+    <button class="nav-item"        data-topic="conjunctions" onclick="switchTopic('conjunctions')"> <span class="dot" style="background:var(--tag-conj-text)"></span>Conjunctions 连词</button>
+    <button class="nav-item"        data-topic="questions"    onclick="switchTopic('questions')">    <span class="dot" style="background:var(--tag-prep-text)"></span>Question Words 疑问词</button>
+    <button class="nav-item"        data-topic="sentences"    onclick="switchTopic('sentences')">    <span class="dot" style="background:var(--tag-verb-text)"></span>Sentences 句型</button>
+  </nav>
 
-<div class="grid">
+  <!-- ── Main Content ── -->
+  <main class="content">
+    <div class="content-header">
+      <h1>Hong Kong Primary 2 English Grammar</h1>
+      <p>香港小学二年级英语语法知识点 · 点击左侧导航栏查看各模块</p>
+    </div>
 
-  <!-- Nouns -->
-  <div class="card">
-    <span class="tag" style="background:var(--tag-noun);color:var(--tag-noun-text)">Nouns 名词</span>
-    <div class="card-title">Common & Proper Nouns</div>
-    <div class="example">
-      <div class="en">a dog, a cat, a book, a school</div>
-      <div class="zh">普通名词（common noun）</div>
-    </div>
-    <div class="example">
-      <div class="en">Tom, Mary, Hong Kong, Monday</div>
-      <div class="zh">专有名词（首字母大写）</div>
-    </div>
-    <div class="rule">规则：可数名词可加 a/an，或用复数形式</div>
-    <div class="rule">复数：加 -s（dogs, cats）；以 s/x/ch/sh 结尾加 -es（boxes, watches）</div>
-  </div>
-
-  <!-- Articles -->
-  <div class="card">
-    <span class="tag" style="background:var(--tag-noun);color:var(--tag-noun-text)">Articles 冠词</span>
-    <div class="card-title">a / an / the</div>
-    <div class="example">
-      <div class="en">a dog, a university, a hot day</div>
-      <div class="zh">a + 辅音音标开头的词</div>
-    </div>
-    <div class="example">
-      <div class="en">an apple, an egg, an old man</div>
-      <div class="zh">an + 元音音标开头的词</div>
-    </div>
-    <div class="example">
-      <div class="en">the sun, the book on the desk</div>
-      <div class="zh">the = 特指，双方都知道的事物</div>
-    </div>
-    <div class="rule">口诀：a dog, an apple, the is special</div>
-  </div>
-
-  <!-- Pronouns -->
-  <div class="card">
-    <span class="tag" style="background:var(--tag-pron);color:var(--tag-pron-text)">Pronouns 代词</span>
-    <div class="card-title">Subject & Object Pronouns</div>
-    <div class="example">
-      <div class="en">I, you, he, she, it, we, they</div>
-      <div class="zh">主格（作主语）</div>
-    </div>
-    <div class="example">
-      <div class="en">me, you, him, her, it, us, them</div>
-      <div class="zh">宾格（作宾语）</div>
-    </div>
-    <div class="example">
-      <div class="en">He likes <u>her</u>. (NOT: He likes <u>she</u>.)</div>
-      <div class="zh">动词/介词后用宾格</div>
-    </div>
-    <div class="rule">This/That 是指示代词：This is... / That is...</div>
-  </div>
-
-  <!-- Adjectives -->
-  <div class="card">
-    <span class="tag" style="background:var(--tag-adj);color:var(--tag-adj-text)">Adjectives 形容词</span>
-    <div class="card-title">Descriptive & Comparing</div>
-    <div class="example">
-      <div class="en">a big dog, a red apple, a happy boy</div>
-      <div class="zh">形容词 + 名词（形容词在前）</div>
-    </div>
-    <div class="example">
-      <div class="en">The dog is <u>big</u>. The dog is <u>bigger</u> than me.</div>
-      <div class="zh">比较级：形容词 + -er / more...</div>
-    </div>
-    <div class="example">
-      <div class="en">big → bigger → biggest</div>
-      <div class="zh">单音节词直接加 -er, -est</div>
-    </div>
-    <div class="rule">常见双音节词：happy → happier → happiest</div>
-  </div>
-
-  <!-- Verbs - Be -->
-  <div class="card">
-    <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
-    <div class="card-title">Verb "Be" (am / is / are)</div>
-    <div class="example">
-      <div class="en">I <u>am</u> a student. I'm 8 years old.</div>
-      <div class="zh">I + am</div>
-    </div>
-    <div class="example">
-      <div class="en">He/She/It <u>is</u> at school. She's happy.</div>
-      <div class="zh">He / She / It + is</div>
-    </div>
-    <div class="example">
-      <div class="en">You/We/They <u>are</u> my friends.</div>
-      <div class="zh">You / We / They + are</div>
-    </div>
-    <div class="rule">否定：is not = isn't / are not = aren't</div>
-  </div>
-
-  <!-- Verbs - Action -->
-  <div class="card">
-    <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
-    <div class="card-title">Action Verbs & Tenses</div>
-    <div class="example">
-      <div class="en">I <u>play</u> football every day. (一般现在时)</div>
-      <div class="zh">主语 + 动词原形（第三人称单数加 -s）</div>
-    </div>
-    <div class="example">
-      <div class="en">He <u>plays</u> football. She <u>goes</u> to school.</div>
-      <div class="zh">He/She/It 动词 + -s / -es</div>
-    </div>
-    <div class="example">
-      <div class="en">I <u>walked</u> to school yesterday. (过去时)</div>
-      <div class="zh">规则动词 + -ed（walked, played, watched）</div>
-    </div>
-    <div class="rule">不规则过去时：go → went, eat → ate, see → saw</div>
-  </div>
-
-  <!-- Adverbs -->
-  <div class="card">
-    <span class="tag" style="background:var(--tag-adv);color:var(--tag-adv-text)">Adverbs 副词</span>
-    <div class="card-title">Time, Manner & Place</div>
-    <div class="example">
-      <div class="en">I <u>always</u> do my homework. / I <u>usually</u> walk to school.</div>
-      <div class="zh">频率副词：always, usually, often, sometimes, never</div>
-    </div>
-    <div class="example">
-      <div class="en">She sings <u>beautifully</u>. (方式副词)</div>
-      <div class="zh">形容词 + -ly = 方式副词</div>
-    </div>
-    <div class="example">
-      <div class="en">I went <u>yesterday</u>. Sit <u>here</u>.</div>
-      <div class="zh">时间/地点副词</div>
-    </div>
-    <div class="rule">位置：动词 + 方式 + 地点 + 时间</div>
-  </div>
-
-  <!-- Prepositions -->
-  <div class="card">
-    <span class="tag" style="background:var(--tag-prep);color:var(--tag-prep-text)">Prepositions 介词</span>
-    <div class="card-title">Place & Time Prepositions</div>
-    <div class="example">
-      <div class="en">The cat is <u>on</u> the table. / <u>in</u> the box. / <u>under</u> the chair.</div>
-      <div class="zh">地点：on, in, under, next to, between</div>
-    </div>
-    <div class="example">
-      <div class="en">I wake up <u>at</u> 7 o'clock. / <u>in</u> the morning. / <u>on</u> Monday.</div>
-      <div class="zh">时间：at + 时刻 / in + 月/早/晚 / on + 星期/日期</div>
-    </div>
-    <div class="rule">at 具体时间点；in 大时间段；on 具体日期/星期</div>
-  </div>
-
-  <!-- Conjunctions -->
-  <div class="card">
-    <span class="tag" style="background:var(--tag-conj);color:var(--tag-conj-text)">Conjunctions 连词</span>
-    <div class="card-title">and / but / because / so</div>
-    <div class="example">
-      <div class="en">I like apples <u>and</u> bananas. (并列)</div>
-      <div class="zh">and = 和，表示并列关系</div>
-    </div>
-    <div class="example">
-      <div class="en">He's short <u>but</u> strong. (转折)</div>
-      <div class="zh">but = 但是，表示转折</div>
-    </div>
-    <div class="example">
-      <div class="en">I stayed home <u>because</u> it rained. (原因)</div>
-      <div class="zh">because = 因为，引导原因从句</div>
-    </div>
-    <div class="example">
-      <div class="en">It rained, <u>so</u> I stayed home. (结果)</div>
-      <div class="zh">so = 所以，引导结果从句</div>
-    </div>
-  </div>
-
-  <!-- Question Words -->
-  <div class="card">
-    <span class="tag" style="background:var(--tag-prep);color:var(--tag-prep-text)">Questions 疑问词</span>
-    <div class="card-title">Wh- Questions</div>
-    <div class="example">
-      <div class="en"><u>What</u> is your name? — It's Tom.</div>
-      <div class="zh">What = 什么（问事物）</div>
-    </div>
-    <div class="example">
-      <div class="en"><u>Where</u> do you live? — I live in Hong Kong.</div>
-      <div class="zh">Where = 哪里（问地点）</div>
-    </div>
-    <div class="example">
-      <div class="en"><u>When</u> is your birthday? — It's in June.</div>
-      <div class="zh">When = 什么时候（问时间）</div>
-    </div>
-    <div class="example">
-      <div class="en"><u>Who</u> is that? — It's my mother.</div>
-      <div class="zh">Who = 谁（问人物）</div>
-    </div>
-    <div class="example">
-      <div class="en"><u>Why</u> are you sad? — Because I lost my book.</div>
-      <div class="zh">Why = 为什么（问原因）</div>
-    </div>
-    <div class="example">
-      <div class="en"><u>How</u> are you? — I'm fine, thank you!</div>
-      <div class="zh">How = 怎么样（问状态/方式）</div>
-    </div>
-  </div>
-
-  <!-- Simple Sentences -->
-  <div class="card" style="grid-column: 1 / -1;">
-    <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Sentences 句型</span>
-    <div class="card-title">Basic Sentence Patterns</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:10px;">
-      <div class="example">
-        <div class="en" style="font-size:0.85rem;">S + V (主谓)</div>
-        <div class="zh">Birds fly. / He runs.</div>
-      </div>
-      <div class="example">
-        <div class="en" style="font-size:0.85rem;">S + V + O (主谓宾)</div>
-        <div class="zh">I like apples. / She reads books.</div>
-      </div>
-      <div class="example">
-        <div class="en" style="font-size:0.85rem;">S + Be + Adj (主系表)</div>
-        <div class="zh">She is kind. / They are happy.</div>
+    <!-- ============== Nouns ============== -->
+    <div id="topic-nouns" class="topic-section active">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-noun);color:var(--tag-noun-text)">Nouns 名词</span>
+        <div class="card-title">Common & Proper Nouns</div>
+        <div class="example"><div class="en">a dog, a cat, a book, a school</div><div class="zh">普通名词（common noun）</div></div>
+        <div class="example"><div class="en">Tom, Mary, Hong Kong, Monday</div><div class="zh">专有名词（首字母大写）</div></div>
+        <div class="rule">规则：可数名词可加 a/an，或用复数形式</div>
+        <div class="rule">复数：加 -s（dogs, cats）；以 s/x/ch/sh 结尾加 -es（boxes, watches）</div>
       </div>
     </div>
-    <div class="rule" style="margin-top:10px;">陈述句 → 疑问句：Do/Does/Did + 主语 + 动词原形？</div>
-    <div class="rule">Yes/No 问句回答：Yes, 主语 + do/does. / No, 主语 + don't/doesn't.</div>
-  </div>
 
+    <!-- ============== Articles ============== -->
+    <div id="topic-articles" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-noun);color:var(--tag-noun-text)">Articles 冠词</span>
+        <div class="card-title">a / an / the</div>
+        <div class="example"><div class="en">a dog, a university, a hot day</div><div class="zh">a + 辅音音标开头的词</div></div>
+        <div class="example"><div class="en">an apple, an egg, an old man</div><div class="zh">an + 元音音标开头的词</div></div>
+        <div class="example"><div class="en">the sun, the book on the desk</div><div class="zh">the = 特指，双方都知道的事物</div></div>
+        <div class="rule">口诀：a dog, an apple, the is special</div>
+      </div>
+    </div>
+
+    <!-- ============== Pronouns ============== -->
+    <div id="topic-pronouns" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-pron);color:var(--tag-pron-text)">Pronouns 代词</span>
+        <div class="card-title">Subject & Object Pronouns</div>
+        <div class="example"><div class="en">I, you, he, she, it, we, they</div><div class="zh">主格（作主语）</div></div>
+        <div class="example"><div class="en">me, you, him, her, it, us, them</div><div class="zh">宾格（作宾语）</div></div>
+        <div class="example"><div class="en">He likes <u>her</u>. (NOT: He likes <u>she</u>.)</div><div class="zh">动词/介词后用宾格</div></div>
+        <div class="rule">This/That 是指示代词：This is... / That is...</div>
+      </div>
+    </div>
+
+    <!-- ============== Adjectives ============== -->
+    <div id="topic-adjectives" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-adj);color:var(--tag-adj-text)">Adjectives 形容词</span>
+        <div class="card-title">Descriptive & Comparing</div>
+        <div class="example"><div class="en">a big dog, a red apple, a happy boy</div><div class="zh">形容词 + 名词（形容词在前）</div></div>
+        <div class="example"><div class="en">The dog is <u>big</u>. The dog is <u>bigger</u> than me.</div><div class="zh">比较级：形容词 + -er / more...</div></div>
+        <div class="example"><div class="en">big → bigger → biggest</div><div class="zh">单音节词直接加 -er, -est</div></div>
+        <div class="rule">常见双音节词：happy → happier → happiest</div>
+      </div>
+    </div>
+
+    <!-- ============== Verb Be ============== -->
+    <div id="topic-verb-be" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
+        <div class="card-title">Verb "Be" (am / is / are)</div>
+        <div class="example"><div class="en">I <u>am</u> a student. I'm 8 years old.</div><div class="zh">I + am</div></div>
+        <div class="example"><div class="en">He/She/It <u>is</u> at school. She's happy.</div><div class="zh">He / She / It + is</div></div>
+        <div class="example"><div class="en">You/We/They <u>are</u> my friends.</div><div class="zh">You / We / They + are</div></div>
+        <div class="rule">否定：is not = isn't / are not = aren't</div>
+      </div>
+    </div>
+
+    <!-- ============== Action Verbs ============== -->
+    <div id="topic-verb-action" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
+        <div class="card-title">Action Verbs & Tenses</div>
+        <div class="example"><div class="en">I <u>play</u> football every day. (一般现在时)</div><div class="zh">主语 + 动词原形（第三人称单数加 -s）</div></div>
+        <div class="example"><div class="en">He <u>plays</u> football. She <u>goes</u> to school.</div><div class="zh">He/She/It 动词 + -s / -es</div></div>
+        <div class="example"><div class="en">I <u>walked</u> to school yesterday. (过去时)</div><div class="zh">规则动词 + -ed（walked, played, watched）</div></div>
+        <div class="rule">不规则过去时：go → went, eat → ate, see → saw</div>
+      </div>
+    </div>
+
+    <!-- ============== Adverbs ============== -->
+    <div id="topic-adverbs" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-adv);color:var(--tag-adv-text)">Adverbs 副词</span>
+        <div class="card-title">Time, Manner & Place</div>
+        <div class="example"><div class="en">I <u>always</u> do my homework. / I <u>usually</u> walk to school.</div><div class="zh">频率副词：always, usually, often, sometimes, never</div></div>
+        <div class="example"><div class="en">She sings <u>beautifully</u>. (方式副词)</div><div class="zh">形容词 + -ly = 方式副词</div></div>
+        <div class="example"><div class="en">I went <u>yesterday</u>. Sit <u>here</u>.</div><div class="zh">时间/地点副词</div></div>
+        <div class="rule">位置：动词 + 方式 + 地点 + 时间</div>
+      </div>
+    </div>
+
+    <!-- ============== Prepositions ============== -->
+    <div id="topic-prepositions" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-prep);color:var(--tag-prep-text)">Prepositions 介词</span>
+        <div class="card-title">Place & Time Prepositions</div>
+        <div class="example"><div class="en">The cat is <u>on</u> the table. / <u>in</u> the box. / <u>under</u> the chair.</div><div class="zh">地点：on, in, under, next to, between</div></div>
+        <div class="example"><div class="en">I wake up <u>at</u> 7 o'clock. / <u>in</u> the morning. / <u>on</u> Monday.</div><div class="zh">时间：at + 时刻 / in + 月/早/晚 / on + 星期/日期</div></div>
+        <div class="rule">at 具体时间点；in 大时间段；on 具体日期/星期</div>
+      </div>
+    </div>
+
+    <!-- ============== Conjunctions ============== -->
+    <div id="topic-conjunctions" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-conj);color:var(--tag-conj-text)">Conjunctions 连词</span>
+        <div class="card-title">and / but / because / so</div>
+        <div class="example"><div class="en">I like apples <u>and</u> bananas. (并列)</div><div class="zh">and = 和，表示并列关系</div></div>
+        <div class="example"><div class="en">He's short <u>but</u> strong. (转折)</div><div class="zh">but = 但是，表示转折</div></div>
+        <div class="example"><div class="en">I stayed home <u>because</u> it rained. (原因)</div><div class="zh">because = 因为，引导原因从句</div></div>
+        <div class="example"><div class="en">It rained, <u>so</u> I stayed home. (结果)</div><div class="zh">so = 所以，引导结果从句</div></div>
+      </div>
+    </div>
+
+    <!-- ============== Questions ============== -->
+    <div id="topic-questions" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-prep);color:var(--tag-prep-text)">Questions 疑问词</span>
+        <div class="card-title">Wh- Questions</div>
+        <div class="example"><div class="en"><u>What</u> is your name? — It's Tom.</div><div class="zh">What = 什么（问事物）</div></div>
+        <div class="example"><div class="en"><u>Where</u> do you live? — I live in Hong Kong.</div><div class="zh">Where = 哪里（问地点）</div></div>
+        <div class="example"><div class="en"><u>When</u> is your birthday? — It's in June.</div><div class="zh">When = 什么时候（问时间）</div></div>
+        <div class="example"><div class="en"><u>Who</u> is that? — It's my mother.</div><div class="zh">Who = 谁（问人物）</div></div>
+        <div class="example"><div class="en"><u>Why</u> are you sad? — Because I lost my book.</div><div class="zh">Why = 为什么（问原因）</div></div>
+        <div class="example"><div class="en"><u>How</u> are you? — I'm fine, thank you!</div><div class="zh">How = 怎么样（问状态/方式）</div></div>
+      </div>
+    </div>
+
+    <!-- ============== Sentences ============== -->
+    <div id="topic-sentences" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Sentences 句型</span>
+        <div class="card-title">Basic Sentence Patterns</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;">
+          <div class="example"><div class="en" style="font-size:0.85rem;">S + V (主谓)</div><div class="zh">Birds fly. / He runs.</div></div>
+          <div class="example"><div class="en" style="font-size:0.85rem;">S + V + O (主谓宾)</div><div class="zh">I like apples. / She reads books.</div></div>
+          <div class="example"><div class="en" style="font-size:0.85rem;">S + Be + Adj (主系表)</div><div class="zh">She is kind. / They are happy.</div></div>
+        </div>
+        <div class="rule">陈述句 → 疑问句：Do/Does/Did + 主语 + 动词原形？</div>
+        <div class="rule">Yes/No 问句回答：Yes, 主语 + do/does. / No, 主语 + don't/doesn't.</div>
+      </div>
+    </div>
+
+    <div class="footer">Hong Kong Primary 2 English Grammar &middot; 香港小学二年级英语语法知识点</div>
+  </main>
 </div>
 
-<div class="footer">
-  Hong Kong Primary 2 English Grammar &middot; 香港小学二年级英语语法知识点
-</div>
+<script>
+function switchTopic(id) {
+  // hide all
+  document.querySelectorAll('.topic-section').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
 
+  // show selected
+  document.getElementById('topic-' + id).classList.add('active');
+  document.querySelector('.nav-item[data-topic="' + id + '"]').classList.add('active');
+}
+</script>
 </body>
 </html>
