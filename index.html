@@ -26,6 +26,12 @@
   .word-item .hint { font-size: 0.8rem; color: #888; min-width: 60px; }
   .word-item.show-answer .hint { color: #27ae60; font-weight: 600; }
 
+  /* 语法练习 - 知识点评分tab */
+  .topic-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .topic-tab { padding: 6px 14px; border: 1.5px solid #ccc; border-radius: 20px; background: #fff; cursor: pointer; font-size: 0.88rem; color: #555; transition: all 0.15s; }
+  .topic-tab:hover { border-color: #2c3e50; color: #2c3e50; }
+  .topic-tab.active { background: #2c3e50; border-color: #2c3e50; color: #fff; }
+
   /* 语法练习 */
   .gram-grid { display: flex; flex-direction: column; gap: 12px; }
   .gram-item { background: #f8f9fa; border-radius: 10px; padding: 14px 16px; }
@@ -39,6 +45,11 @@
   .gram-item .opt-btn.show-correct { border-color: #27ae60; background: #d4edda; color: #27ae60; }
   .gram-item .result-icon { font-size: 1.1rem; margin-left: 8px; vertical-align: middle; }
   .gram-item.done { opacity: 0.85; }
+
+  .topic-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .topic-tab { padding: 6px 14px; border-radius: 20px; border: 1.5px solid #ccc; background: #fff; cursor: pointer; font-size: 0.85rem; color: #555; transition: all 0.15s; }
+  .topic-tab:hover { border-color: #2c3e50; color: #2c3e50; }
+  .topic-tab.active { background: #2c3e50; border-color: #2c3e50; color: #fff; }
   main { max-width: 700px; margin: 24px auto; padding: 0 16px; }
   .section { display: none; }
   .section.active { display: block; }
@@ -133,6 +144,7 @@
   <button onclick="show('flash')">闪卡背词</button>
   <button onclick="show('vocab')">背单词</button>
   <button onclick="show('gram')">语法练习</button>
+  <button onclick="show('gramk')">语法知识</button>
   <button onclick="show('ielts')">IELTS 资料</button>
 </nav>
 
@@ -194,12 +206,35 @@
   <!-- 语法练习 -->
   <div id="gram" class="section">
     <div class="card">
-      <h2>小学二年级英文语法 · 选词填空</h2>
+      <h2>小学二年级英文语法</h2>
+      <div class="topic-tabs" id="gramTabs">
+        <button class="topic-tab active" data-topic="all" onclick="switchTopic('all')">综合练习</button>
+        <button class="topic-tab" data-topic="be" onclick="switchTopic('be')">be 动词</button>
+        <button class="topic-tab" data-topic="demo" onclick="switchTopic('demo')">指示代词</button>
+        <button class="topic-tab" data-topic="article" onclick="switchTopic('article')">a / an</button>
+        <button class="topic-tab" data-topic="pronoun" onclick="switchTopic('pronoun')">人称代词</button>
+        <button class="topic-tab" data-topic="there" onclick="switchTopic('there')">There is/are</button>
+        <button class="topic-tab" data-topic="ques" onclick="switchTopic('ques')">疑问句</button>
+      </div>
       <div class="gram-grid" id="gramGrid"></div>
       <div style="margin-top:16px; text-align:center; display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;">
-        <button class="btn" onclick="genGrammar()">换一批</button>
+        <button class="btn" onclick="genGrammarTopic(currentTopic)">换一批</button>
         <button class="btn" onclick="checkGrammar()" style="background:#27ae60;">提交答案</button>
         <span id="gramResult" style="font-weight:600;"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 语法知识 -->
+  <div id="gramk" class="section">
+    <div class="card">
+      <h2>香港小二英语语法知识点</h2>
+      <p style="color:#64748b;margin:8px 0 16px;font-size:0.88rem;">10个核心语法模块，附例句和规则说明</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <a href="hk-english-grammar.html" target="_blank" style="display:block;background:#f8f9fa;border:1.5px solid #e2e8f0;border-radius:10px;padding:16px;text-decoration:none;color:#1e293b;">
+          <div style="font-weight:600;font-size:0.95rem;margin-bottom:4px;">Hong Kong P2 English Grammar</div>
+          <div style="color:#64748b;font-size:0.8rem;">名词 · 冠词 · 代词 · 形容词 · be动词 · 行为动词 · 副词 · 介词 · 连词 · 疑问词</div>
+        </a>
       </div>
     </div>
   </div>
