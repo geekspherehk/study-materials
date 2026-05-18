@@ -138,6 +138,10 @@
       margin-bottom: 2px;
     }
     .example .zh { color: var(--muted); font-size: 0.82rem; }
+    /* ── Video Link ── */
+    .video-link { margin: 12px 0 8px; }
+    .video-link a { display: inline-block; background: #fb7299; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background .2s; }
+    .video-link a:hover { background: #f56c8a; }
     .rule {
       font-size: 0.85rem;
       margin-bottom: 10px;
@@ -183,6 +187,7 @@
     <button class="nav-item"        data-topic="pronouns"     onclick="switchTopic('pronouns')">     <span class="dot" style="background:var(--tag-pron-text)"></span>Pronouns 代词</button>
     <button class="nav-item"        data-topic="adjectives"   onclick="switchTopic('adjectives')">   <span class="dot" style="background:var(--tag-adj-text)"></span>Adjectives 形容词</button>
     <button class="nav-item"        data-topic="verb-be"      onclick="switchTopic('verb-be')">      <span class="dot" style="background:var(--tag-verb-text)"></span>Verb Be (am/is/are)</button>
+    <button class="nav-item"        data-topic="third-person" onclick="switchTopic('third-person')"> <span class="dot" style="background:var(--tag-verb-text)"></span>Third Person 第三人称单数</button>
     <button class="nav-item"        data-topic="verb-action"  onclick="switchTopic('verb-action')">  <span class="dot" style="background:var(--tag-verb-text)"></span>Action Verbs 行为动词</button>
     <button class="nav-item"        data-topic="adverbs"      onclick="switchTopic('adverbs')">      <span class="dot" style="background:var(--tag-adv-text)"></span>Adverbs 副词</button>
     <button class="nav-item"        data-topic="prepositions" onclick="switchTopic('prepositions')"> <span class="dot" style="background:var(--tag-prep-text)"></span>Prepositions 介词</button>
@@ -255,6 +260,27 @@
         <div class="example"><div class="en">He/She/It <u>is</u> at school. She's happy.</div><div class="zh">He / She / It + is</div></div>
         <div class="example"><div class="en">You/We/They <u>are</u> my friends.</div><div class="zh">You / We / They + are</div></div>
         <div class="rule">否定：is not = isn't / are not = aren't</div>
+      </div>
+    </div>
+
+    <!-- ============== Third Person Singular ============== -->
+    <div id="topic-third-person" class="topic-section">
+      <div class="card">
+        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
+        <div class="card-title">第三人称单数 (He/She/It + verb-s)</div>
+        <div class="video-link">
+          <a href="https://www.bilibili.com/video/BV14N4y127Ji" target="_blank" rel="noopener">
+            📺 看视频讲解：X姐妹讲语法-第三人称单数（5分钟）→
+          </a>
+        </div>
+        <div class="example"><div class="en">He <u>plays</u> football.</div><div class="zh">主语是 He/She/It 时，动词加 -s</div></div>
+        <div class="example"><div class="en">She <u>reads</u> a book.</div><div class="zh">一般动词直接加 -s（read → reads, like → likes）</div></div>
+        <div class="example"><div class="en">He <u>goes</u> to school by bus.</div><div class="zh">以 o/s/x/ch/sh 结尾 + -es（go → goes, wash → washes）</div></div>
+        <div class="example"><div class="en">She <u>studies</u> English every day.</div><div class="zh">辅音+y → 变 y 为 i 再加 -es（study → studies, fly → flies）</div></div>
+        <div class="example"><div class="en">He <u>has</u> a pet cat.</div><div class="zh">have → has（不规则变化）</div></div>
+        <div class="example"><div class="en">The sun <u>rises</u> in the east.</div><div class="zh">非人称单数主语同样适用（the sun, the dog, my father）</div></div>
+        <div class="rule">否定句用 doesn't + 动词原形：He doesn't <u>like</u> milk.</div>
+        <div class="rule">疑问句用 Does + 主语 + 动词原形：<u>Does</u> she <u>like</u> cats?</div>
       </div>
     </div>
 
