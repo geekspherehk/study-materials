@@ -581,11 +581,13 @@ genQuestions();
 renderCard();
 genVocab();
 genGrammar();
-// 检查URL hash, 自动切换到对应语法分类
+
+// 如果URL有hash，自动切换到对应语法分类
 (function() {
-  const hash = location.hash.replace('#','');
-  if (hash && document.querySelector(`.topic-tab[data-topic="${hash}"]`)) {
-    document.querySelector(`.topic-tab[data-topic="${hash}"]`).click();
+  const hash = location.hash.replace('#', '');
+  if (hash && hash !== 'all') {
+    const tab = document.querySelector('.topic-tab[data-topic="' + hash + '"]');
+    if (tab) tab.click();
   }
 })();
 </script>
