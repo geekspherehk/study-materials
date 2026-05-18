@@ -323,6 +323,22 @@
 </div>
 
 <script>
+// ── VIDEO DATA (B站嵌入) ──
+const VIDEO_DATA = {
+  nouns:        { bvid: 'BV1De4y1S7j3', title: '名词变复数' },
+  articles:     { bvid: 'BV12t421W7zS', title: 'a/an/noun' },
+  pronouns:     { bvid: 'BV1KV41167tr', title: '人称代词（宾格）' },
+  adjectives:   { bvid: 'BV1NG4y1g7Jw', title: '形容词比较级和最高级' },
+  'verb-be':    { bvid: 'BV124411i7LM', title: 'be动词am, is, are用法' },
+  'third-person':{ bvid: 'BV1YR4y1B753', title: '动词三单用法' },
+  'verb-action':{ bvid: 'BV1q8411x7hx', title: '一般过去时-动词变过去式' },
+  adverbs:      { bvid: 'BV1Nu411D7Ht', title: '频率副词' },
+  prepositions: { bvid: 'BV1Ji421h7iP', title: '方位介词on/in/under' },
+  conjunctions: { bvid: 'BV1GFk1YfECY', title: '连词and/but/because' },
+  questions:    { bvid: 'BV133411e7yq', title: '特殊疑问句who/when/where' },
+  sentences:    { bvid: 'BV1hR4y1Q7sj', title: '句型转换-改一般疑问句' }
+};
+
 // ── DATA: 12 topics × 5 questions ──
 const QUESTIONS = {
   nouns: [
@@ -453,6 +469,17 @@ function renderTopic(topic) {
   let html = '<div class="card">';
   html += '<span class="tag" style="background:#dbeafe;color:#1e40af">' + getTopicLabel(topic) + '</span>';
   html += '<div class="card-title">' + getTopicSubtitle(topic) + '</div>';
+
+  // Video embed (skip mixed & wrong)
+  if (VIDEO_DATA[topic]) {
+    const v = VIDEO_DATA[topic];
+    html += '<div class="video-embed" style="position:relative;width:100%;padding-bottom:56.25%;margin:0 0 16px;border-radius:10px;overflow:hidden;">';
+    html += '<iframe src="https://player.bilibili.com/player.html?bvid=' + v.bvid + '&autoplay=0&high_quality=1&danmaku=1" ';
+    html += 'style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen loading="lazy"></iframe>';
+    html += '</div>';
+    html += '<div style="text-align:center;margin:0 0 16px;font-size:0.82rem;color:var(--muted);">';
+    html += '📺 B站讲解视频：' + v.title + '</div>';
+  }
 
   // Stats
   html += '<div class="q-stats">';
