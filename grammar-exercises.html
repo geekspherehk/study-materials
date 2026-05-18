@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2 Grammar Exercises 练习题</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --hover-bg: #e8f0fe;
+      --active-bg: #dbeafe;
+      --sidebar-w: 220px;
+      --correct: #16a34a;
+      --wrong: #dc2626;
+      --tag-noun-text: #1e40af;
+      --tag-verb-text: #166534;
+      --tag-adj-text: #92400e;
+      --tag-adv-text: #9d174d;
+      --tag-prep-text: #3730a3;
+      --tag-pron-text: #115e59;
+      --tag-conj-text: #991b1b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .wrapper { display: flex; min-height: 100vh; }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      padding: 20px 0;
+      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+      flex-shrink: 0;
+    }
+    .sidebar .brand {
+      padding: 0 16px 16px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--primary);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 8px;
+    }
+    .sidebar .brand small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .nav-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      color: var(--text);
+      transition: background 0.12s, color 0.12s;
+      border: none; background: none; width: 100%; text-align: left;
+    }
+    .nav-item:hover { background: var(--hover-bg); }
+    .nav-item.active {
+      background: var(--active-bg);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .nav-item .dot {
+      width: 8px; height: 8px; border-radius: 99px;
+      flex-shrink: 0;
+    }
+    .nav-item.wrong-tab {
+      border-top: 1px solid var(--border);
+      margin-top: 6px;
+      padding-top: 12px;
+    }
+    .wrong-badge {
+      margin-left: auto;
+      background: var(--wrong);
+      color: #fff;
+      font-size: 0.7rem;
+      border-radius: 99px;
+      padding: 1px 7px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    /* ── Content ── */
+    .content {
+      flex: 1;
+      padding: 32px 36px 80px;
+      max-width: 780px;
+    }
+    .content-header {
+      margin-bottom: 28px;
+    }
+    .content-header h1 {
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+    .content-header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .topic-section { display: none; }
+    .topic-section.active { display: block; }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .card-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 9px;
+      border-radius: 99px;
+      margin-bottom: 10px;
+    }
+
+    /* ── Question ── */
+    .question { display: none; margin-bottom: 16px; }
+    .question.active { display: block; }
+    .q-text {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .q-num {
+      color: var(--primary);
+      font-weight: 700;
+      margin-right: 6px;
+    }
+    .opts { display: flex; flex-direction: column; gap: 8px; }
+    .opt {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .opt:hover { border-color: var(--primary); background: var(--hover-bg); }
+    .opt.disabled { pointer-events: none; opacity: 0.7; }
+    .opt.correct { border-color: var(--correct); background: #f0fdf4; }
+    .opt.wrong { border-color: var(--wrong); background: #fef2f2; }
+    .opt.show-correct { border-color: var(--correct); background: #f0fdf4; }
+    .opt-letter {
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--bg);
+      font-weight: 700; font-size: 0.85rem; color: var(--muted);
+      flex-shrink: 0;
+    }
+    .opt.correct .opt-letter { background: var(--correct); color: #fff; }
+    .opt.wrong .opt-letter { background: var(--wrong); color: #fff; }
+    .opt.show-correct .opt-letter { background: var(--correct); color: #fff; }
+
+    /* ── Pagination ── */
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .page-btn {
+      padding: 6px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--card);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.12s;
+    }
+    .page-btn:hover { background: var(--hover-bg); }
+    .page-btn:disabled { opacity: 0.4; cursor: default; }
+    .page-info {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .q-dots {
+      display: flex; gap: 6px; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .q-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--border); cursor: pointer;
+      transition: background 0.12s;
+    }
+    .q-dot.active { background: var(--primary); }
+    .q-dot.answered { background: var(--correct); }
+    .q-dot.wrong-dot { background: var(--wrong); }
+    .q-dot.current-wrong { background: var(--wrong); }
+
+    .q-stats {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .wrong-count {
+      margin-left: 4px;
+      color: var(--wrong);
+      font-weight: 600;
+    }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+    .empty-state .emoji {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+    .empty-state p { font-size: 0.95rem; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 36px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .wrapper { flex-direction: column; }
+      .sidebar {
+        width: 100%; height: auto; position: static;
+        border-right: none; border-bottom: 1px solid var(--border);
+        padding: 12px 0;
+        display: flex; flex-wrap: wrap; gap: 2px;
+      }
+      .sidebar .brand { display: none; }
+      .nav-item { width: auto; padding: 8px 12px; font-size: 0.82rem; }
+      .nav-item.wrong-tab { border-top: none; margin-top: 0; }
+      .wrong-badge { margin-left: 0; }
+      .content { padding: 20px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ── Sidebar ── -->
+  <nav class="sidebar" id="sidebar">
+    <div class="brand">
+      P2 Grammar Exercises
+      <small>香港小学二年级</small>
+    </div>
+    <button class="nav-item active" data-topic="nouns"        onclick="switchTopic('nouns')">        <span class="dot" style="background:#1e40af"></span>Nouns 名词</button>
+    <button class="nav-item"        data-topic="articles"     onclick="switchTopic('articles')">     <span class="dot" style="background:#1e40af"></span>Articles 冠词</button>
+    <button class="nav-item"        data-topic="pronouns"     onclick="switchTopic('pronouns')">     <span class="dot" style="background:#115e59"></span>Pronouns 代词</button>
+    <button class="nav-item"        data-topic="adjectives"   onclick="switchTopic('adjectives')">   <span class="dot" style="background:#92400e"></span>Adjectives 形容词</button>
+    <button class="nav-item"        data-topic="verb-be"      onclick="switchTopic('verb-be')">      <span class="dot" style="background:#166534"></span>Verb Be (am/is/are)</button>
+    <button class="nav-item"        data-topic="third-person" onclick="switchTopic('third-person')"> <span class="dot" style="background:#166534"></span>Third Person 第三人称</button>
+    <button class="nav-item"        data-topic="verb-action"  onclick="switchTopic('verb-action')">  <span class="dot" style="background:#166534"></span>Action Verbs 行为动词</button>
+    <button class="nav-item"        data-topic="adverbs"      onclick="switchTopic('adverbs')">      <span class="dot" style="background:#9d174d"></span>Adverbs 副词</button>
+    <button class="nav-item"        data-topic="prepositions" onclick="switchTopic('prepositions')"> <span class="dot" style="background:#3730a3"></span>Prepositions 介词</button>
+    <button class="nav-item"        data-topic="conjunctions" onclick="switchTopic('conjunctions')"> <span class="dot" style="background:#991b1b"></span>Conjunctions 连词</button>
+    <button class="nav-item"        data-topic="questions"    onclick="switchTopic('questions')">    <span class="dot" style="background:#3730a3"></span>Question Words 疑问词</button>
+    <button class="nav-item"        data-topic="sentences"    onclick="switchTopic('sentences')">    <span class="dot" style="background:#166534"></span>Sentences 句型</button>
+    <button class="nav-item"        data-topic="mixed"        onclick="switchTopic('mixed')">        <span class="dot" style="background:var(--primary)"></span>综合练习</button>
+    <button class="nav-item wrong-tab" data-topic="wrong"     onclick="switchTopic('wrong')">
+      <span class="dot" style="background:var(--wrong)"></span>错题本
+      <span class="wrong-badge" id="wrongBadge">0</span>
+    </button>
+  </nav>
+
+  <!-- ── Main Content ── -->
+  <main class="content" id="mainContent">
+    <div class="content-header">
+      <h1>P2 Grammar Exercises</h1>
+      <p>香港小学二年级英语语法练习题 · 点击选项查看答案</p>
+    </div>
+
+    <!-- Each topic gets its own topic-section -->
+    <div id="topic-nouns" class="topic-section active"></div>
+    <div id="topic-articles" class="topic-section"></div>
+    <div id="topic-pronouns" class="topic-section"></div>
+    <div id="topic-adjectives" class="topic-section"></div>
+    <div id="topic-verb-be" class="topic-section"></div>
+    <div id="topic-third-person" class="topic-section"></div>
+    <div id="topic-verb-action" class="topic-section"></div>
+    <div id="topic-adverbs" class="topic-section"></div>
+    <div id="topic-prepositions" class="topic-section"></div>
+    <div id="topic-conjunctions" class="topic-section"></div>
+    <div id="topic-questions" class="topic-section"></div>
+    <div id="topic-sentences" class="topic-section"></div>
+    <div id="topic-mixed" class="topic-section"></div>
+    <div id="topic-wrong" class="topic-section"></div>
+
+    <div class="footer">Hong Kong Primary 2 English Grammar Exercises</div>
+  </main>
+</div>
+
+<script>
+// ── DATA: 12 topics × 5 questions ──
+const QUESTIONS = {
+  nouns: [
+    { q: 'Which word is a <b>common noun</b>?', opts: ['Tom', 'dog', 'Monday', 'Hong Kong'], ans: 'B' },
+    { q: 'Which word is a <b>proper noun</b>?', opts: ['cat', 'book', 'Mary', 'school'], ans: 'C' },
+    { q: 'What is the plural of <b>box</b>?', opts: ['boxs', 'boxes', 'boxies', 'box'], ans: 'B' },
+    { q: 'What is the plural of <b>baby</b>?', opts: ['babys', 'babies', 'babyes', 'baby'], ans: 'B' },
+    { q: 'Which one is a <b>proper noun</b>?', opts: ['teacher', 'pencil', 'China', 'table'], ans: 'C' }
+  ],
+  articles: [
+    { q: '___ apple a day keeps the doctor away.', opts: ['A', 'An', 'The', 'None'], ans: 'B' },
+    { q: 'I saw ___ elephant at the zoo.', opts: ['a', 'an', 'the', 'None'], ans: 'B' },
+    { q: 'She has ___ beautiful doll.', opts: ['a', 'an', 'the', 'None'], ans: 'A' },
+    { q: '___ sun is very hot today.', opts: ['A', 'An', 'The', 'None'], ans: 'C' },
+    { q: 'He is ___ university student.', opts: ['a', 'an', 'the', 'None'], ans: 'A' }
+  ],
+  pronouns: [
+    { q: '___ is my friend. (Tom)', opts: ['He', 'Him', 'His', 'Her'], ans: 'A' },
+    { q: 'Please give ___ the book. (I)', opts: ['I', 'my', 'me', 'mine'], ans: 'C' },
+    { q: '___ are playing in the park. (Tom and I)', opts: ['We', 'Us', 'They', 'Them'], ans: 'A' },
+    { q: 'Look at ___! (she)', opts: ['she', 'her', 'hers', 'she\'s'], ans: 'B' },
+    { q: '___ is a sunny day.', opts: ['He', 'She', 'It', 'They'], ans: 'C' }
+  ],
+  adjectives: [
+    { q: 'The elephant is ___ than the mouse.', opts: ['big', 'bigger', 'biggest', 'more big'], ans: 'B' },
+    { q: 'She is the ___ girl in our class.', opts: ['tall', 'taller', 'tallest', 'more tall'], ans: 'C' },
+    { q: 'I have a ___ dress.', opts: ['red beautiful', 'beautiful red', 'beautifully red', 'more beautiful'], ans: 'B' },
+    { q: 'Today is ___ than yesterday.', opts: ['hot', 'hotter', 'hottest', 'more hot'], ans: 'B' },
+    { q: 'This book is very ___.', opts: ['interest', 'interested', 'interesting', 'interests'], ans: 'C' }
+  ],
+  'verb-be': [
+    { q: 'I ___ a student.', opts: ['am', 'is', 'are', 'be'], ans: 'A' },
+    { q: 'She ___ happy today.', opts: ['am', 'is', 'are', 'be'], ans: 'B' },
+    { q: 'They ___ my friends.', opts: ['am', 'is', 'are', 'be'], ans: 'C' },
+    { q: 'The cat ___ on the sofa.', opts: ['am', 'is', 'are', 'be'], ans: 'B' },
+    { q: 'We ___ in the classroom.', opts: ['am', 'is', 'are', 'be'], ans: 'C' }
+  ],
+  'third-person': [
+    { q: 'He ___ (play) football every day.', opts: ['play', 'plays', 'playing', 'played'], ans: 'B' },
+    { q: 'She ___ (go) to school by bus.', opts: ['go', 'goes', 'going', 'went'], ans: 'B' },
+    { q: 'It ___ (have) a long tail.', opts: ['have', 'has', 'having', 'had'], ans: 'B' },
+    { q: 'My mother ___ (wash) the dishes.', opts: ['wash', 'washes', 'washing', 'washed'], ans: 'B' },
+    { q: 'He ___ (study) English every day.', opts: ['study', 'studys', 'studies', 'studying'], ans: 'C' }
+  ],
+  'verb-action': [
+    { q: 'I ___ (walk) to school yesterday.', opts: ['walk', 'walks', 'walked', 'walking'], ans: 'C' },
+    { q: 'She ___ (eat) an apple every morning.', opts: ['eat', 'eats', 'eating', 'ate'], ans: 'B' },
+    { q: 'We ___ (watch) TV last night.', opts: ['watch', 'watches', 'watched', 'watching'], ans: 'C' },
+    { q: 'They ___ (go) to the park last Sunday.', opts: ['go', 'goes', 'going', 'went'], ans: 'D' },
+    { q: 'The baby ___ (cry) now.', opts: ['cry', 'cries', 'is crying', 'cried'], ans: 'C' }
+  ],
+  adverbs: [
+    { q: 'I ___ brush my teeth before bed. (always)', opts: ['brush always', 'always brush', 'brushes always', 'always brushes'], ans: 'B' },
+    { q: 'She sings ___. (beautiful)', opts: ['beauty', 'beautiful', 'beautifully', 'more beautiful'], ans: 'C' },
+    { q: 'He ___ eats vegetables. (never)', opts: ['never eats', 'eats never', 'never eat', 'eat never'], ans: 'A' },
+    { q: 'We go to the library ___. (sometimes)', opts: ['sometimes we go', 'we go sometimes', 'we sometimes go', 'go we sometimes'], ans: 'C' },
+    { q: 'The turtle walks ___. (slow)', opts: ['slow', 'slowly', 'slower', 'slowest'], ans: 'B' }
+  ],
+  prepositions: [
+    { q: 'The book is ___ the desk.', opts: ['at', 'in', 'on', 'under'], ans: 'C' },
+    { q: 'I wake up ___ 7 o\'clock.', opts: ['at', 'in', 'on', 'by'], ans: 'A' },
+    { q: 'My birthday is ___ June.', opts: ['at', 'in', 'on', 'from'], ans: 'B' },
+    { q: 'The cat is hiding ___ the bed.', opts: ['at', 'on', 'under', 'in'], ans: 'C' },
+    { q: 'We have PE class ___ Monday.', opts: ['at', 'in', 'on', 'by'], ans: 'C' }
+  ],
+  conjunctions: [
+    { q: 'I like apples ___ bananas.', opts: ['but', 'because', 'and', 'so'], ans: 'C' },
+    { q: 'He is short ___ strong.', opts: ['and', 'but', 'because', 'so'], ans: 'B' },
+    { q: 'I stayed home ___ it rained.', opts: ['and', 'but', 'because', 'so'], ans: 'C' },
+    { q: 'It was hot, ___ I turned on the fan.', opts: ['and', 'but', 'because', 'so'], ans: 'D' },
+    { q: 'She was tired, ___ she went to bed early.', opts: ['and', 'but', 'because', 'so'], ans: 'D' }
+  ],
+  questions: [
+    { q: '___ is your name? — My name is Tom.', opts: ['What', 'Where', 'Who', 'How'], ans: 'A' },
+    { q: '___ do you live? — I live in Hong Kong.', opts: ['What', 'Where', 'When', 'Why'], ans: 'B' },
+    { q: '___ is that? — It\'s my mother.', opts: ['What', 'Where', 'Who', 'How'], ans: 'C' },
+    { q: '___ are you sad? — Because I lost my book.', opts: ['What', 'Where', 'Why', 'How'], ans: 'C' },
+    { q: '___ are you? — I\'m fine, thank you!', opts: ['What', 'Where', 'Who', 'How'], ans: 'D' }
+  ],
+  sentences: [
+    { q: 'Which is a correct sentence?', opts: ['Birds fly.', 'Birds flying.', 'Birds flies.', 'Birds is fly.'], ans: 'A' },
+    { q: 'Make a question: "You like cats."', opts: ['Like you cats?', 'Do you like cats?', 'You like cats?', 'Does you like cats?'], ans: 'B' },
+    { q: 'Which is correct?', opts: ['She is kind.', 'She kind.', 'She are kind.', 'She is kindly.'], ans: 'A' },
+    { q: '"He likes dogs." Change to question:', opts: ['He likes dogs?', 'Does he like dogs?', 'Do he like dogs?', 'Like he dogs?'], ans: 'B' },
+    { q: 'Which sentence pattern is "She reads books."?', opts: ['S+V', 'S+V+O', 'S+Be+Adj', 'S+V+O+O'], ans: 'B' }
+  ]
+};
+
+// ── State ──
+let wrongQuestions = JSON.parse(localStorage.getItem('p2grammarWrong') || '[]');
+let answeredState = {}; // { "topic-idx": "A" or null } — stores chosen option letter or null if not yet answered
+let currentPage = {};  // { "topic": 0 } — current question index per topic
+
+function initState() {
+  for (let topic in QUESTIONS) {
+    answeredState[topic] = new Array(QUESTIONS[topic].length).fill(null);
+    currentPage[topic] = 0;
+  }
+  // mixed pool is generated on the fly
+  updateWrongBadge();
+}
+initState();
+
+// ── Render ──
+function renderTopic(topic) {
+  const container = document.getElementById('topic-' + topic);
+  if (!container) return;
+
+  if (topic === 'wrong') {
+    renderWrong(container);
+    return;
+  }
+
+  let questions;
+  if (topic === 'mixed') {
+    // Generate 10 random questions from all topics
+    questions = getMixedQuestions();
+  } else {
+    questions = QUESTIONS[topic] || [];
+  }
+
+  if (!questions.length) {
+    container.innerHTML = '<div class="empty-state"><div class="emoji">😊</div><p>No questions available.</p></div>';
+    container.classList.add('active');
+    return;
+  }
+
+  let html = '<div class="card">';
+  html += '<span class="tag" style="background:#dbeafe;color:#1e40af">' + getTopicLabel(topic) + '</span>';
+  html += '<div class="card-title">' + getTopicSubtitle(topic) + '</div>';
+
+  // Stats
+  html += '<div class="q-stats">';
+  const stateKey = topic;
+  let answeredCount = answeredState[stateKey].filter(x => x !== null).length;
+  html += '已答题: <span id="stats-answered-' + topic + '">' + answeredCount + '</span> / ' + questions.length;
+  html += ' · 错误: <span class="wrong-count" id="stats-wrong-' + topic + '">0</span>';
+  html += '</div>';
+
+  // Dots
+  html += '<div class="q-dots" id="dots-' + topic + '">';
+  for (let i = 0; i < questions.length; i++) {
+    html += '<span class="q-dot' + (i === 0 ? ' active' : '') + '" data-idx="' + i + '" onclick="goToQuestion(\'' + topic + '\',' + i + ')"></span>';
+  }
+  html += '</div>';
+
+  // Questions
+  for (let i = 0; i < questions.length; i++) {
+    html += renderQuestion(topic, questions[i], i, i === 0);
+  }
+
+  // Pagination
+  html += '<div class="pagination">';
+  html += '<button class="page-btn" id="prev-' + topic + '" onclick="prevQuestion(\'' + topic + '\')">◀ 上一题</button>';
+  html += '<span class="page-info" id="pageinfo-' + topic + '">1 / ' + questions.length + '</span>';
+  html += '<button class="page-btn" id="next-' + topic + '" onclick="nextQuestion(\'' + topic + '\')">下一题 ▶</button>';
+  html += '</div>';
+
+  html += '</div>';
+  container.innerHTML = html;
+  container.classList.add('active');
+  updatePagination(topic);
+  updateStats(topic);
+}
+
+function renderQuestion(topic, qData, idx, active) {
+  const letters = ['A', 'B', 'C', 'D'];
+  let html = '<div class="question' + (active ? ' active' : '') + '" data-idx="' + idx + '" id="q-' + topic + '-' + idx + '">';
+  html += '<div class="q-text"><span class="q-num">' + (idx + 1) + '.</span>' + qData.q + '</div>';
+  html += '<div class="opts">';
+  for (let oi = 0; oi < qData.opts.length; oi++) {
+    const letter = letters[oi];
+    const chosen = answeredState[topic] ? answeredState[topic][idx] : null;
+    let extraClass = '';
+    if (chosen === letter) {
+      if (letter === qData.ans) extraClass = ' correct';
+      else extraClass = ' wrong';
+      // Also show correct answer if wrong
+    } else if (chosen !== null && letter === qData.ans && chosen !== letter) {
+      extraClass = ' show-correct';
+    }
+    const disabled = chosen !== null ? ' disabled' : '';
+    html += '<div class="opt' + extraClass + disabled + '" onclick="selectOption(\'' + topic + '\',' + idx + ',\'' + letter + '\')">';
+    html += '<span class="opt-letter">' + letter + '</span>';
+    html += '<span>' + qData.opts[oi] + '</span>';
+    if (chosen === letter && letter === qData.ans) {
+      html += ' <span style="color:var(--correct);margin-left:auto;">✓</span>';
+    } else if (chosen === letter && letter !== qData.ans) {
+      html += ' <span style="color:var(--wrong);margin-left:auto;">✗</span>';
+    }
+    html += '</div>';
+  }
+  html += '</div></div>';
+  return html;
+}
+
+function renderWrong(container) {
+  if (wrongQuestions.length === 0) {
+    container.innerHTML = '<div class="card"><span class="tag" style="background:#fee2e2;color:#991b1b">错题本</span>'
+      + '<div class="card-title">Wrong Answers</div>'
+      + '<div class="empty-state"><div class="emoji">🎉</div><p>太棒了！你没有错题！</p></div></div>';
+    container.classList.add('active');
+    return;
+  }
+
+  let html = '<div class="card">';
+  html += '<span class="tag" style="background:#fee2e2;color:#991b1b">错题本</span>';
+  html += '<div class="card-title">Wrong Answers (' + wrongQuestions.length + ')</div>';
+
+  const letters = ['A', 'B', 'C', 'D'];
+  wrongQuestions.forEach((item, idx) => {
+    html += '<div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">';
+    html += '<div style="font-size:0.82rem;color:var(--muted);margin-bottom:4px;">';
+    html += '来自: ' + getTopicLabel(item.topic) + ' · 题号 ' + (item.idx + 1) + '</div>';
+    html += '<div style="font-weight:600;margin-bottom:8px;font-size:0.92rem;">' + item.q + '</div>';
+    html += '<div class="opts">';
+    for (let oi = 0; oi < item.opts.length; oi++) {
+      const letter = letters[oi];
+      let extraClass = '';
+      if (letter === item.ans) extraClass = ' correct';
+      else if (letter === item.chosen && letter !== item.ans) extraClass = ' wrong';
+      html += '<div class="opt disabled' + extraClass + '">';
+      html += '<span class="opt-letter">' + letter + '</span>';
+      html += '<span>' + item.opts[oi] + '</span>';
+      if (letter === item.ans) html += ' <span style="color:var(--correct);margin-left:auto;">✓</span>';
+      else if (letter === item.chosen) html += ' <span style="color:var(--wrong);margin-left:auto;">✗</span>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+  });
+
+  html += '<div style="text-align:center;margin-top:12px;">';
+  html += '<button class="page-btn" onclick="clearWrong()" style="border-color:var(--wrong);color:var(--wrong);">清空错题本</button>';
+  html += '</div>';
+  html += '</div>';
+  container.innerHTML = html;
+  container.classList.add('active');
+}
+
+// ── Mixed questions ──
+function getMixedQuestions() {
+  const all = [];
+  for (let topic in QUESTIONS) {
+    QUESTIONS[topic].forEach((q, idx) => {
+      all.push({ ...q, _topic: topic, _idx: idx });
+    });
+  }
+  // Shuffle and take 10
+  const shuffled = [...all].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 10);
+}
+
+// ── Actions ──
+function selectOption(topic, idx, letter) {
+  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
+  const qData = questions[idx];
+  if (!qData) return;
+
+  // Already answered
+  if (answeredState[topic] && answeredState[topic][idx] !== null) return;
+
+  // Save answer
+  answeredState[topic][idx] = letter;
+
+  // Update dots
+  updateDots(topic);
+
+  // Check if wrong
+  if (letter !== qData.ans) {
+    // Add to wrong questions if not already there
+    const exists = wrongQuestions.some(w => w.topic === topic && w.idx === idx && w.q === qData.q);
+    if (!exists) {
+      wrongQuestions.push({
+        topic: topic,
+        idx: idx,
+        q: qData.q,
+        opts: qData.opts,
+        ans: qData.ans,
+        chosen: letter
+      });
+      localStorage.setItem('p2grammarWrong', JSON.stringify(wrongQuestions));
+      updateWrongBadge();
+    }
+  }
+
+  // Re-render the question to show correct/wrong
+  const container = document.getElementById('q-' + topic + '-' + idx);
+  if (container) {
+    const letters = ['A', 'B', 'C', 'D'];
+    let html = '<div class="q-text"><span class="q-num">' + (idx + 1) + '.</span>' + qData.q + '</div>';
+    html += '<div class="opts">';
+    for (let oi = 0; oi < qData.opts.length; oi++) {
+      const l = letters[oi];
+      let extraClass = '';
+      if (l === qData.ans) extraClass = l === letter ? ' correct' : ' show-correct';
+      else if (l === letter && l !== qData.ans) extraClass = ' wrong';
+      html += '<div class="opt disabled' + extraClass + '">';
+      html += '<span class="opt-letter">' + l + '</span>';
+      html += '<span>' + qData.opts[oi] + '</span>';
+      if (l === qData.ans) html += ' <span style="color:var(--correct);margin-left:auto;">✓</span>';
+      else if (l === letter && l !== qData.ans) html += ' <span style="color:var(--wrong);margin-left:auto;">✗</span>';
+      html += '</div>';
+    }
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  updateStats(topic);
+}
+
+function prevQuestion(topic) {
+  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
+  if (currentPage[topic] > 0) {
+    goToQuestion(topic, currentPage[topic] - 1);
+  }
+}
+
+function nextQuestion(topic) {
+  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
+  if (currentPage[topic] < questions.length - 1) {
+    goToQuestion(topic, currentPage[topic] + 1);
+  }
+}
+
+function goToQuestion(topic, idx) {
+  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
+  if (idx < 0 || idx >= questions.length) return;
+  currentPage[topic] = idx;
+
+  // Update question visibility
+  const container = document.getElementById('topic-' + topic);
+  if (!container) return;
+  container.querySelectorAll('.question').forEach(el => el.classList.remove('active'));
+  const target = document.getElementById('q-' + topic + '-' + idx);
+  if (target) target.classList.add('active');
+
+  updateDots(topic);
+  updatePagination(topic);
+}
+
+function updatePagination(topic) {
+  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
+  const info = document.getElementById('pageinfo-' + topic);
+  const prev = document.getElementById('prev-' + topic);
+  const next = document.getElementById('next-' + topic);
+  if (info) info.textContent = (currentPage[topic] + 1) + ' / ' + questions.length;
+  if (prev) prev.disabled = currentPage[topic] === 0;
+  if (next) next.disabled = currentPage[topic] >= questions.length - 1;
+}
+
+function updateDots(topic) {
+  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
+  const container = document.getElementById('dots-' + topic);
+  if (!container) return;
+  const dots = container.querySelectorAll('.q-dot');
+  dots.forEach((dot, i) => {
+    const chosen = answeredState[topic] ? answeredState[topic][i] : null;
+    dot.className = 'q-dot';
+    if (i === currentPage[topic]) dot.classList.add('active');
+    if (chosen !== null) {
+      // Check if correct
+      const q = questions[i];
+      if (q && chosen === q.ans) dot.classList.add('answered');
+      else dot.classList.add('wrong-dot');
+    }
+  });
+}
+
+function updateStats(topic) {
+  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
+  let answeredCount = 0;
+  let wrongCount = 0;
+  for (let i = 0; i < (questions ? questions.length : 0); i++) {
+    const chosen = answeredState[topic] ? answeredState[topic][i] : null;
+    if (chosen !== null) {
+      answeredCount++;
+      const q = questions[i];
+      if (q && chosen !== q.ans) wrongCount++;
+    }
+  }
+  const statsEl = document.getElementById('stats-answered-' + topic);
+  const wrongEl = document.getElementById('stats-wrong-' + topic);
+  if (statsEl) statsEl.textContent = answeredCount;
+  if (wrongEl) wrongEl.textContent = wrongCount;
+}
+
+function updateWrongBadge() {
+  const badge = document.getElementById('wrongBadge');
+  if (badge) badge.textContent = wrongQuestions.length;
+}
+
+function clearWrong() {
+  if (!confirm('确定清空所有错题吗？')) return;
+  wrongQuestions = [];
+  localStorage.setItem('p2grammarWrong', JSON.stringify(wrongQuestions));
+  updateWrongBadge();
+  switchTopic('wrong');
+}
+
+// ── Topic labels ──
+function getTopicLabel(topic) {
+  const labels = {
+    nouns: 'Nouns 名词',
+    articles: 'Articles 冠词',
+    pronouns: 'Pronouns 代词',
+    adjectives: 'Adjectives 形容词',
+    'verb-be': 'Verb Be (am/is/are)',
+    'third-person': 'Third Person 第三人称单数',
+    'verb-action': 'Action Verbs 行为动词',
+    adverbs: 'Adverbs 副词',
+    prepositions: 'Prepositions 介词',
+    conjunctions: 'Conjunctions 连词',
+    questions: 'Question Words 疑问词',
+    sentences: 'Sentences 句型',
+    mixed: '综合练习',
+    wrong: '错题本'
+  };
+  return labels[topic] || topic;
+}
+
+function getTopicSubtitle(topic) {
+  const subtitles = {
+    nouns: 'Common & Proper Nouns',
+    articles: 'a / an / the',
+    pronouns: 'Subject & Object Pronouns',
+    adjectives: 'Descriptive & Comparing',
+    'verb-be': 'am / is / are',
+    'third-person': 'He/She/It + verb-s',
+    'verb-action': 'Tenses & Actions',
+    adverbs: 'Frequency, Manner & Place',
+    prepositions: 'Place & Time',
+    conjunctions: 'and / but / because / so',
+    questions: 'Wh- Questions',
+    sentences: 'Basic Patterns',
+    mixed: '10 Random Questions',
+    wrong: 'Review Wrong Answers'
+  };
+  return subtitles[topic] || '';
+}
+
+// ── Switch topic ──
+function switchTopic(topic) {
+  // Hide all sections
+  document.querySelectorAll('.topic-section').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+
+  // If switching to wrong, reset answeredState for it (no persistent state)
+  if (topic === 'mixed') {
+    // fresh random every time
+    const stateKey = 'mixed';
+    answeredState[stateKey] = [];
+    currentPage[stateKey] = 0;
+  }
+
+  // Show selected
+  const target = document.getElementById('topic-' + topic);
+  if (target) {
+    renderTopic(topic);
+    target.classList.add('active');
+  }
+  const navItem = document.querySelector('.nav-item[data-topic="' + topic + '"]');
+  if (navItem) navItem.classList.add('active');
+}
+
+// ── Init on load ──
+window.addEventListener('DOMContentLoaded', function() {
+  // Restore answeredState from localStorage
+  const saved = localStorage.getItem('p2grammarState');
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      for (let key in parsed) {
+        if (answeredState[key]) {
+          answeredState[key] = parsed[key];
+        }
+      }
+    } catch(e) {}
+  }
+
+  renderTopic('nouns');
+  switchTopic('nouns');
+});
+
+// ── Save state periodically ──
+window.addEventListener('beforeunload', function() {
+  localStorage.setItem('p2grammarState', JSON.stringify(answeredState));
+});
+</script>
+</body>
+</html>
