@@ -142,6 +142,8 @@
     .video-link { margin: 12px 0 8px; }
     .video-link a { display: inline-block; background: #fb7299; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background .2s; }
     .video-link a:hover { background: #f56c8a; }
+    .video-embed { position: relative; width: 100%; padding-bottom: 56.25%; margin: 12px 0 16px; border-radius: 10px; overflow: hidden; }
+    .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     .rule {
       font-size: 0.85rem;
       margin-bottom: 10px;
@@ -272,6 +274,12 @@
           <a href="https://www.bilibili.com/video/BV14N4y127Ji" target="_blank" rel="noopener">
             📺 看视频讲解：X姐妹讲语法-第三人称单数（5分钟）→
           </a>
+        </div>
+        <div class="video-embed">
+          <iframe src="https://player.bilibili.com/player.html?bvid=BV14N4y127Ji&autoplay=0&high_quality=1&danmaku=1" 
+            allowfullscreen="true" 
+            loading="lazy">
+          </iframe>
         </div>
         <div class="example"><div class="en">He <u>plays</u> football.</div><div class="zh">主语是 He/She/It 时，动词加 -s</div></div>
         <div class="example"><div class="en">She <u>reads</u> a book.</div><div class="zh">一般动词直接加 -s（read → reads, like → likes）</div></div>
