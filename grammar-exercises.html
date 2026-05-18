@@ -339,6 +339,70 @@ const VIDEO_DATA = {
   sentences:    { bvid: 'BV1hR4y1Q7sj', title: '句型转换-改一般疑问句' }
 };
 
+// ── KNOWLEDGE DATA (知识点核心内容) ──
+const KNOWLEDGE_DATA = {
+  nouns: {
+    subtitle: 'Common & Proper Nouns',
+    examples: ['<b>a dog, a cat, a book, a school</b> — 普通名词（common noun）', '<b>Tom, Mary, Hong Kong, Monday</b> — 专有名词（首字母大写）'],
+    rules: ['可数名词可加 a/an，或用复数形式', '复数：加 -s（dogs, cats）；以 s/x/ch/sh 结尾加 -es（boxes, watches）']
+  },
+  articles: {
+    subtitle: 'a / an / the',
+    examples: ['<b>a dog, a university, a hot day</b> — a + 辅音音标开头的词', '<b>an apple, an egg, an old man</b> — an + 元音音标开头的词', '<b>the sun, the book on the desk</b> — the = 特指，双方都知道的事物'],
+    rules: ['口诀：a dog, an apple, the is special']
+  },
+  pronouns: {
+    subtitle: 'Subject & Object Pronouns',
+    examples: ['<b>I, you, he, she, it, we, they</b> — 主格（作主语）', '<b>me, you, him, her, it, us, them</b> — 宾格（作宾语）', '<b>He likes her.</b> (NOT: He likes she.) — 动词/介词后用宾格'],
+    rules: ['This/That 是指示代词：This is... / That is...']
+  },
+  adjectives: {
+    subtitle: 'Descriptive & Comparing',
+    examples: ['<b>a big dog, a red apple, a happy boy</b> — 形容词 + 名词（形容词在前）', '<b>big → bigger → biggest</b> — 单音节词直接加 -er, -est', '<b>The dog is bigger than me.</b> — 比较级：形容词 + -er / more...'],
+    rules: ['常见双音节词：happy → happier → happiest', '多音节词用 more：more beautiful']
+  },
+  'verb-be': {
+    subtitle: 'Verb "Be" (am / is / are)',
+    examples: ['<b>I am a student.</b> — I + am', '<b>He/She/It is at school.</b> — He / She / It + is', '<b>You/We/They are my friends.</b> — You / We / They + are'],
+    rules: ['否定：is not = isn\'t / are not = aren\'t', '疑问：Is/Are + 主语 + ...？']
+  },
+  'third-person': {
+    subtitle: '第三人称单数 (He/She/It + verb-s)',
+    examples: ['<b>He plays football.</b> — 主语 He/She/It 时动词加 -s', '<b>She reads a book.</b> — 一般动词直接加 -s（read → reads）', '<b>He goes to school.</b> — 以 o/s/x/ch/sh 结尾加 -es', '<b>She studies English.</b> — 辅音+y → 变 y 为 i 再加 -es', '<b>He has a pet cat.</b> — have → has（不规则变化）'],
+    rules: ['否定句用 doesn\'t + 动词原形：He doesn\'t like milk.', '疑问句用 Does + 主语 + 动词原形：Does she like cats?']
+  },
+  'verb-action': {
+    subtitle: 'Action Verbs & Tenses',
+    examples: ['<b>I play football every day.</b> （一般现在时）主语 + 动词原形（第三人称单数加 -s）', '<b>He plays football.</b> — He/She/It 动词 + -s / -es', '<b>I walked to school yesterday.</b> （过去时）规则动词 + -ed'],
+    rules: ['不规则过去时：go → went, eat → ate, see → saw', '现在进行时：am/is/are + verb-ing']
+  },
+  adverbs: {
+    subtitle: 'Time, Manner & Place',
+    examples: ['<b>I always do my homework.</b> — 频率副词：always, usually, often, sometimes, never', '<b>She sings beautifully.</b> — 形容词 + -ly = 方式副词', '<b>I went yesterday. / Sit here.</b> — 时间/地点副词'],
+    rules: ['位置：动词 + 方式 + 地点 + 时间']
+  },
+  prepositions: {
+    subtitle: 'Place & Time Prepositions',
+    examples: ['<b>on the table / in the box / under the chair</b> — 地点介词', '<b>at 7 o\'clock / in the morning / on Monday</b> — 时间介词'],
+    rules: ['at = 具体时间点；in = 大时间段；on = 具体日期/星期']
+  },
+  conjunctions: {
+    subtitle: 'and / but / because / so',
+    examples: ['<b>I like apples and bananas.</b> — and = 和，并列关系', '<b>He\'s short but strong.</b> — but = 但是，转折关系', '<b>I stayed home because it rained.</b> — because = 因为，原因', '<b>It rained, so I stayed home.</b> — so = 所以，结果'],
+    rules: ['注意：because 和 so 不能同时使用']
+  },
+  questions: {
+    subtitle: 'Wh- Questions',
+    examples: ['<b>What is your name?</b> — What = 什么（问事物）', '<b>Where do you live?</b> — Where = 哪里（问地点）', '<b>When is your birthday?</b> — When = 什么时候（问时间）', '<b>Who is that?</b> — Who = 谁（问人物）', '<b>Why are you sad?</b> — Why = 为什么（问原因）', '<b>How are you?</b> — How = 怎么样（问状态/方式）'],
+    rules: ['疑问词 + 一般疑问句 = 特殊疑问句']
+  },
+  sentences: {
+    subtitle: 'Basic Sentence Patterns',
+    examples: ['<b>Birds fly.</b> — S + V (主谓)', '<b>I like apples.</b> — S + V + O (主谓宾)', '<b>She is kind.</b> — S + Be + Adj (主系表)'],
+    rules: ['陈述句→疑问句：Do/Does/Did + 主语 + 动词原形？', 'Yes/No 问句回答：Yes, 主语 + do/does. / No, 主语 + don\'t/doesn\'t.']
+  }
+};
+
 // ── DATA: 12 topics × 5 questions ──
 const QUESTIONS = {
   nouns: [
@@ -469,6 +533,27 @@ function renderTopic(topic) {
   let html = '<div class="card">';
   html += '<span class="tag" style="background:#dbeafe;color:#1e40af">' + getTopicLabel(topic) + '</span>';
   html += '<div class="card-title">' + getTopicSubtitle(topic) + '</div>';
+
+  // Knowledge content (skip mixed & wrong)
+  if (KNOWLEDGE_DATA[topic] && topic !== 'mixed' && topic !== 'wrong') {
+    const kd = KNOWLEDGE_DATA[topic];
+    // Examples
+    for (let e of kd.examples) {
+      html += '<div class="example">';
+      const parts = e.split('—');
+      if (parts.length >= 2) {
+        html += '<div class="en">' + parts[0].trim() + '</div>';
+        html += '<div class="zh">' + parts.slice(1).join('—').trim() + '</div>';
+      } else {
+        html += '<div class="en">' + e + '</div>';
+      }
+      html += '</div>';
+    }
+    // Rules
+    for (let r of kd.rules) {
+      html += '<div class="rule">' + r + '</div>';
+    }
+  }
 
   // Video embed (skip mixed & wrong)
   if (VIDEO_DATA[topic]) {
