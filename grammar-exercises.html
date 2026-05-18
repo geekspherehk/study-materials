@@ -140,6 +140,36 @@
       margin-bottom: 10px;
     }
 
+    /* ── Section Divider Cards ── */
+    .sec-card { margin-bottom: 16px; }
+    .sec-card:last-child { margin-bottom: 0; }
+    .sec-header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 18px;
+      border-radius: 10px 10px 0 0;
+      font-weight: 700; font-size: 0.88rem; letter-spacing: 0.04em;
+    }
+    .sec-header .icon { font-size: 1.1rem; }
+    .sec-body {
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      background: var(--card);
+    }
+    .sec-knowledge .sec-header { background: #ede9fe; color: #5b21b6; }
+    .sec-knowledge .sec-body { border-color: #ddd6fe; }
+    .sec-video .sec-header { background: #fce7f3; color: #9d174d; }
+    .sec-video .sec-body { border-color: #fbcfe8; }
+    .sec-exercise .sec-header { background: #dbeafe; color: #1e40af; }
+    .sec-exercise .sec-body { border-color: #bfdbfe; }
+    .ksub {
+      font-size: 0.85rem; font-weight: 600;
+      color: var(--muted); margin: 14px 0 8px;
+      padding-bottom: 4px; border-bottom: 1px solid var(--border);
+    }
+    .ksub:first-child { margin-top: 0; }
+
     /* ── Question ── */
     .question { display: none; margin-bottom: 16px; }
     .question.active { display: block; }
@@ -339,68 +369,261 @@ const VIDEO_DATA = {
   sentences:    { bvid: 'BV1hR4y1Q7sj', title: '句型转换-改一般疑问句' }
 };
 
-// ── KNOWLEDGE DATA (知识点核心内容) ──
+// ── KNOWLEDGE DATA (知识点核心内容, 细化版) ──
 const KNOWLEDGE_DATA = {
-  nouns: {
-    subtitle: 'Common & Proper Nouns',
-    examples: ['<b>a dog, a cat, a book, a school</b> — 普通名词（common noun）', '<b>Tom, Mary, Hong Kong, Monday</b> — 专有名词（首字母大写）'],
-    rules: ['可数名词可加 a/an，或用复数形式', '复数：加 -s（dogs, cats）；以 s/x/ch/sh 结尾加 -es（boxes, watches）']
-  },
-  articles: {
-    subtitle: 'a / an / the',
-    examples: ['<b>a dog, a university, a hot day</b> — a + 辅音音标开头的词', '<b>an apple, an egg, an old man</b> — an + 元音音标开头的词', '<b>the sun, the book on the desk</b> — the = 特指，双方都知道的事物'],
-    rules: ['口诀：a dog, an apple, the is special']
-  },
-  pronouns: {
-    subtitle: 'Subject & Object Pronouns',
-    examples: ['<b>I, you, he, she, it, we, they</b> — 主格（作主语）', '<b>me, you, him, her, it, us, them</b> — 宾格（作宾语）', '<b>He likes her.</b> (NOT: He likes she.) — 动词/介词后用宾格'],
-    rules: ['This/That 是指示代词：This is... / That is...']
-  },
-  adjectives: {
-    subtitle: 'Descriptive & Comparing',
-    examples: ['<b>a big dog, a red apple, a happy boy</b> — 形容词 + 名词（形容词在前）', '<b>big → bigger → biggest</b> — 单音节词直接加 -er, -est', '<b>The dog is bigger than me.</b> — 比较级：形容词 + -er / more...'],
-    rules: ['常见双音节词：happy → happier → happiest', '多音节词用 more：more beautiful']
-  },
-  'verb-be': {
-    subtitle: 'Verb "Be" (am / is / are)',
-    examples: ['<b>I am a student.</b> — I + am', '<b>He/She/It is at school.</b> — He / She / It + is', '<b>You/We/They are my friends.</b> — You / We / They + are'],
-    rules: ['否定：is not = isn\'t / are not = aren\'t', '疑问：Is/Are + 主语 + ...？']
-  },
-  'third-person': {
-    subtitle: '第三人称单数 (He/She/It + verb-s)',
-    examples: ['<b>He plays football.</b> — 主语 He/She/It 时动词加 -s', '<b>She reads a book.</b> — 一般动词直接加 -s（read → reads）', '<b>He goes to school.</b> — 以 o/s/x/ch/sh 结尾加 -es', '<b>She studies English.</b> — 辅音+y → 变 y 为 i 再加 -es', '<b>He has a pet cat.</b> — have → has（不规则变化）'],
-    rules: ['否定句用 doesn\'t + 动词原形：He doesn\'t like milk.', '疑问句用 Does + 主语 + 动词原形：Does she like cats?']
-  },
-  'verb-action': {
-    subtitle: 'Action Verbs & Tenses',
-    examples: ['<b>I play football every day.</b> （一般现在时）主语 + 动词原形（第三人称单数加 -s）', '<b>He plays football.</b> — He/She/It 动词 + -s / -es', '<b>I walked to school yesterday.</b> （过去时）规则动词 + -ed'],
-    rules: ['不规则过去时：go → went, eat → ate, see → saw', '现在进行时：am/is/are + verb-ing']
-  },
-  adverbs: {
-    subtitle: 'Time, Manner & Place',
-    examples: ['<b>I always do my homework.</b> — 频率副词：always, usually, often, sometimes, never', '<b>She sings beautifully.</b> — 形容词 + -ly = 方式副词', '<b>I went yesterday. / Sit here.</b> — 时间/地点副词'],
-    rules: ['位置：动词 + 方式 + 地点 + 时间']
-  },
-  prepositions: {
-    subtitle: 'Place & Time Prepositions',
-    examples: ['<b>on the table / in the box / under the chair</b> — 地点介词', '<b>at 7 o\'clock / in the morning / on Monday</b> — 时间介词'],
-    rules: ['at = 具体时间点；in = 大时间段；on = 具体日期/星期']
-  },
-  conjunctions: {
-    subtitle: 'and / but / because / so',
-    examples: ['<b>I like apples and bananas.</b> — and = 和，并列关系', '<b>He\'s short but strong.</b> — but = 但是，转折关系', '<b>I stayed home because it rained.</b> — because = 因为，原因', '<b>It rained, so I stayed home.</b> — so = 所以，结果'],
-    rules: ['注意：because 和 so 不能同时使用']
-  },
-  questions: {
-    subtitle: 'Wh- Questions',
-    examples: ['<b>What is your name?</b> — What = 什么（问事物）', '<b>Where do you live?</b> — Where = 哪里（问地点）', '<b>When is your birthday?</b> — When = 什么时候（问时间）', '<b>Who is that?</b> — Who = 谁（问人物）', '<b>Why are you sad?</b> — Why = 为什么（问原因）', '<b>How are you?</b> — How = 怎么样（问状态/方式）'],
-    rules: ['疑问词 + 一般疑问句 = 特殊疑问句']
-  },
-  sentences: {
-    subtitle: 'Basic Sentence Patterns',
-    examples: ['<b>Birds fly.</b> — S + V (主谓)', '<b>I like apples.</b> — S + V + O (主谓宾)', '<b>She is kind.</b> — S + Be + Adj (主系表)'],
-    rules: ['陈述句→疑问句：Do/Does/Did + 主语 + 动词原形？', 'Yes/No 问句回答：Yes, 主语 + do/does. / No, 主语 + don\'t/doesn\'t.']
-  }
+  nouns: [
+    { title: 'Common Nouns 普通名词', items: [
+      '<b>dog, cat, book, school, teacher</b> — 普通事物、动物、人物',
+      '可数名词前可加 a/an：<b>a dog, a book, an apple</b>',
+      '<b>I have <u>a</u> cat.</b> — 第一次提到用 a/an'
+    ]},
+    { title: 'Proper Nouns 专有名词', items: [
+      '<b>Tom, Mary, Hong Kong, Monday, China</b> — 首字母大写',
+      '<b>I live in Hong Kong.</b> — Hong Kong 是专有名词，首字母大写',
+      '对比：<b>I like dogs.</b> (普通) vs <b>I like Max.</b> (专有，狗的名字)'
+    ]},
+    { title: 'Plural Nouns 名词复数', items: [
+      '规则复数：加 -s 或 -es：<b>dog→dogs, box→boxes, watch→watches</b>',
+      '辅音+y → 变 y 为 i 加 -es：<b>baby→babies, party→parties</b>',
+      '不规则复数：<b>child→children, foot→feet, tooth→teeth</b>',
+      '<b>There are two <u>dogs</u>.</b> — 数量大于 1 用复数'
+    ]}
+  ],
+  articles: [
+    { title: 'a vs an', items: [
+      '<b>a</b> + 辅音音标开头的词：<b>a dog, a university, a hot dog</b>',
+      '<b>an</b> + 元音音标开头的词：<b>an apple, an egg, an hour</b>',
+      '口诀：<b>a</b> 辅音，<b>an</b> 元音 (不是字母，是发音！)',
+      '<b>It is <u>an</u> elephant.</b> — elephant 是元音音标开头'
+    ]},
+    { title: 'the 定冠词', items: [
+      '<b>the</b> = 特指某个事物，双方都知道的东西',
+      '再次提到用 the：<b>I saw <u>a</u> cat. <u>The</u> cat is black.</b>',
+      '世界上独一无二的用 the：<b>the sun, the moon, the sky</b>',
+      '<b>Please close <u>the</u> door.</b> — 双方都知道是哪个门'
+    ]},
+    { title: '零冠词', items: [
+      '一般泛指复数名词不加 the：<b>Dogs are cute.</b> (不是 The dogs)',
+      '专有名词/人名前不加 the：<b>Tom is my friend.</b> (不是 The Tom)'
+    ]}
+  ],
+  pronouns: [
+    { title: 'Subject Pronouns 主格', items: [
+      '主格作主语，放在动词前面：<b>I, you, he, she, it, we, they</b>',
+      '<b><u>She</u> is my teacher.</b> — She 是主语',
+      '<b><u>We</u> like ice cream.</b> — We 代替"我和别人"'
+    ]},
+    { title: 'Object Pronouns 宾格', items: [
+      '宾格作宾语，放在动词或介词后面：<b>me, you, him, her, it, us, them</b>',
+      '<b>He likes <u>her</u>.</b> (NOT: He likes she.) — 动词后用宾格',
+      '<b>Please give it to <u>me</u>.</b> (NOT: to I) — 介词后用宾格',
+      '口诀：主格是"谁"，宾格是"谁被"'
+    ]},
+    { title: 'Possessives 物主代词', items: [
+      '形容词性：<b>my, your, his, her, its, our, their</b> — 后面必须跟名词',
+      '<b>This is <u>my</u> book.</b> — my + 名词',
+      '<b><u>Her</u> cat is cute.</b> — her = 她的'
+    ]},
+    { title: 'Demonstratives 指示代词', items: [
+      '<b>This</b> = 这个 (近处单数)；<b>That</b> = 那个 (远处单数)',
+      '<b>These</b> = 这些 (近处复数)；<b>Those</b> = 那些 (远处复数)',
+      '<b><u>This</u> is my pencil.</b> — 指近处的铅笔'
+    ]}
+  ],
+  adjectives: [
+    { title: '形容词的位置', items: [
+      '形容词 + 名词：<b>a <u>big</u> dog, a <u>red</u> apple, a <u>happy</u> boy</b>',
+      'be + 形容词：<b>The dog <u>is big</u>.</b> — 形容词放在 be 动词后面',
+      '多个形容词：顺序 = 大小 + 颜色：<b>a <u>big black</u> dog</b>'
+    ]},
+    { title: '比较级 -er', items: [
+      '单音节词 + -er：<b>big→bigger, tall→taller, fast→faster</b>',
+      '辅音+y → y 改 i + -er：<b>happy→happier, easy→easier</b>',
+      'than = 比：<b>A dog is <u>bigger than</u> a cat.</b>',
+      '<b>Tom is <u>taller than</u> Jerry.</b> — Tom 比 Jerry 高'
+    ]},
+    { title: '最高级 -est', items: [
+      '单音节词 + -est，前面加 the：<b>big→biggest, tall→tallest</b>',
+      '<b>She is the <u>tallest</u> girl in our class.</b>'
+    ]},
+    { title: '多音节比较 more/most', items: [
+      '多音节词(3个或以上音节)：more + 形容词',
+      '<b>beautiful → more beautiful → most beautiful</b>'
+    ]}
+  ],
+  'verb-be': [
+    { title: 'am / is / are 用法', items: [
+      '<b>I + am</b>：<b>I <u>am</u> a student.</b>',
+      '<b>He/She/It + is</b>：<b>She <u>is</u> happy. It <u>is</u> a cat.</b>',
+      '<b>You/We/They + are</b>：<b>They <u>are</u> my friends.</b>',
+      '口诀：I am, you are, he/she/it is, we/you/they are'
+    ]},
+    { title: '否定句', items: [
+      'is not = <b>isn\'t</b>：<b>She <u>isn\'t</u> a teacher.</b>',
+      'are not = <b>aren\'t</b>：<b>They <u>aren\'t</u> at home.</b>',
+      'am not = 没有缩写：<b>I <u>am not</u> late.</b>'
+    ]},
+    { title: '疑问句', items: [
+      'Is/Are + 主语：<b><u>Is</u> she happy?</b> → Yes, she is. / No, she isn\'t.',
+      '<b><u>Are</u> you ready?</b> → Yes, I am. / No, I\'m not.',
+      '<b><u>Is</u> it raining?</b> → Yes, it is.'
+    ]}
+  ],
+  'third-person': [
+    { title: '一般现在时加 -s', items: [
+      '主语 He/She/It 时，动词加 -s：<b>play→plays, read→reads, like→likes</b>',
+      '<b>He <u>plays</u> football.</b> — play → plays',
+      '<b>She <u>reads</u> a book.</b> — read → reads',
+      '<b>It <u>looks</u> nice.</b> — look → looks'
+    ]},
+    { title: '以 o/s/x/ch/sh 结尾加 -es', items: [
+      '动词以 <b>o/s/x/ch/sh</b> 结尾 → +es：<b>go→goes, wash→washes, watch→watches</b>',
+      '<b>He <u>goes</u> to school by bus.</b> — go → goes',
+      '<b>She <u>washes</u> the dishes.</b> — wash → washes'
+    ]},
+    { title: '辅音+y → ies', items: [
+      '辅音字母 + y → 变 y 为 i 再加 -es：<b>study→studies, fly→flies, cry→cries</b>',
+      '<b>She <u>studies</u> English.</b> — study → studies',
+      '<b>The bird <u>flies</u> high.</b> — fly → flies'
+    ]},
+    { title: '不规则：have→has', items: [
+      '<b>have → has</b>：<b>He <u>has</u> a pet cat.</b>',
+      '否定：<b>doesn\'t</b> + 动词原形：<b>He <u>doesn\'t like</u> milk.</b>',
+      '疑问：<b>Does</b> + 主语 + 动词原形：<b><u>Does</u> she <u>like</u> cats?</b>',
+    ]}
+  ],
+  'verb-action': [
+    { title: '现在时 Present Simple', items: [
+      '主语 I/You/We/They + 动词原形：<b>I <u>play</u> football.</b>',
+      '主语 He/She/It + 动词-s/es：<b>He <u>plays</u> football.</b>',
+      '<b>We <u>eat</u> breakfast at 7 am.</b> — 一般现在时'
+    ]},
+    { title: '过去时 Past Simple', items: [
+      '规则动词 + -ed：<b>walk→walked, play→played, watch→watched</b>',
+      '以 e 结尾加 -d：<b>like→liked, dance→danced</b>',
+      '辅音+y→ied：<b>cry→cried, study→studied</b>',
+      '<b>I <u>walked</u> to school yesterday.</b> — 过去式'
+    ]},
+    { title: '不规则过去时', items: [
+      '<b>go → went, eat → ate, see → saw, do → did, have → had</b>',
+      '<b>get → got, say → said, make → made, take → took</b>',
+      '<b>Yesterday, we <u>went</u> to the park.</b> — go → went'
+    ]},
+    { title: '现在进行时 Present Continuous', items: [
+      'am/is/are + verb-ing：<b>I <u>am reading</u>. She <u>is singing</u>.</b>',
+      '动词-ing 规则：直接加 -ing（play→playing）；去 e 加 -ing（dance→dancing）',
+      '<b>The baby <u>is crying</u> now.</b> — 正在进行'
+    ]}
+  ],
+  adverbs: [
+    { title: '频率副词', items: [
+      'always (100%), usually (90%), often (70%), sometimes (50%), never (0%)',
+      '放在行为动词前，be 动词后：<b>I <u>always</u> brush my teeth.</b>',
+      '<b>She <u>never</u> eats meat.</b> — never = 从来不',
+      '<b>He <u>sometimes</u> walks to school.</b>'
+    ]},
+    { title: '方式副词', items: [
+      '形容词 + -ly = 方式副词：<b>beautiful→beautifully, quick→quickly</b>',
+      '<b>She sings <u>beautifully</u>.</b> — beautful→beautifully',
+      '<b>Run <u>quickly</u>!</b> — quick→quickly',
+      '注意：<b>good → well</b>（不规则）：<b>He plays <u>well</u>.</b>'
+    ]},
+    { title: '时间/地点副词', items: [
+      '时间副词：<b>yesterday, today, now, soon, then</b>',
+      '地点副词：<b>here, there, inside, outside</b>',
+      '顺序：动词 + 方式 + 地点 + 时间：<b>She sang <u>beautifully</u> <u>at home</u> <u>yesterday</u>.</b>'
+    ]}
+  ],
+  prepositions: [
+    { title: '方位介词', items: [
+      '<b>on</b> = 在...上面：<b>The book is <u>on</u> the table.</b>',
+      '<b>in</b> = 在...里面：<b>The cat is <u>in</u> the box.</b>',
+      '<b>under</b> = 在...下面：<b>The dog is <u>under</u> the chair.</b>',
+      '<b>behind</b> = 在...后面：<b>The ball is <u>behind</u> the door.</b>',
+      '<b>next to</b> = 在...旁边：<b>The school is <u>next to</u> the park.</b>'
+    ]},
+    { title: '时间介词', items: [
+      '<b>at</b> + 具体时间点：<b><u>at</u> 7 o\'clock, <u>at</u> noon, <u>at</u> night</b>',
+      '<b>in</b> + 大时间段：<b><u>in</u> the morning, <u>in</u> June, <u>in</u> 2024</b>',
+      '<b>on</b> + 具体日期/星期：<b><u>on</u> Monday, <u>on</u> June 1st</b>',
+      '口诀：<b>at</b> 点钟，<b>in</b> 月年，<b>on</b> 星期和日期'
+    ]}
+  ],
+  conjunctions: [
+    { title: 'and (和/并且)', items: [
+      '<b>and</b> = 连接同类事物或动作：<b>I like apples <u>and</u> bananas.</b>',
+      '<b>She can sing <u>and</u> dance.</b> — 连接两个动作',
+      '<b>Tom <u>and</u> Jerry are friends.</b> — 连接两个名词'
+    ]},
+    { title: 'but (但是)', items: [
+      '<b>but</b> = 转折，表示前后相反：<b>He is short <u>but</u> strong.</b>',
+      '<b>I like dogs <u>but</u> I don\'t like cats.</b> — 前后对比',
+      '<b>She is tired <u>but</u> happy.</b> — 两个相反的形容词'
+    ]},
+    { title: 'because (因为)', items: [
+      '<b>because</b> = 原因：<b>I stayed home <u>because</u> it rained.</b>',
+      '<b>He is sad <u>because</u> he lost his toy.</b> — because + 原因',
+      '注意：because 和 so 不能同时用！'
+    ]},
+    { title: 'so (所以)', items: [
+      '<b>so</b> = 结果：<b>It rained, <u>so</u> I stayed home.</b>',
+      '<b>I was hungry, <u>so</u> I ate a sandwich.</b> — so + 结果',
+      '<b>She was tired, <u>so</u> she went to bed early.</b>'
+    ]}
+  ],
+  questions: [
+    { title: 'What (什么) / Where (哪里)', items: [
+      '<b>What</b> = 问事物：<b><u>What</u> is your name?</b> → My name is Tom.',
+      '<b><u>What</u> is this?</b> → It\'s a pencil.',
+      '<b>Where</b> = 问地点：<b><u>Where</u> do you live?</b> → I live in Hong Kong.',
+      '<b><u>Where</u> is my book?</b> → It\'s on the desk.'
+    ]},
+    { title: 'When (什么时候) / Who (谁)', items: [
+      '<b>When</b> = 问时间：<b><u>When</u> is your birthday?</b> → It\'s in June.',
+      '<b><u>When</u> do you go to school?</b> → At 8 o\'clock.',
+      '<b>Who</b> = 问人物：<b><u>Who</u> is that?</b> → That\'s my mother.',
+      '<b><u>Who</u> is your teacher?</b> → Miss Lee.'
+    ]},
+    { title: 'Why (为什么) / How (怎么样)', items: [
+      '<b>Why</b> = 问原因：<b><u>Why</u> are you sad?</b> → Because I lost my book.',
+      '<b><u>Why</u> is he late?</b> → Because it rained.',
+      '<b>How</b> = 问状态/方式：<b><u>How</u> are you?</b> → I\'m fine.',
+      '<b><u>How</u> do you go to school?</b> → By bus.'
+    ]},
+    { title: '疑问句结构', items: [
+      '疑问词 + 一般疑问句：<b>What is this? Where are you going?</b>',
+      'Yes/No 问句：Do/Does/Did + 主语 + 动词原形？',
+      '<b><u>Do</u> you like cats?</b> → Yes, I do. / No, I don\'t.',
+      '<b><u>Does</u> he play football?</b> → Yes, he does. / No, he doesn\'t.'
+    ]}
+  ],
+  sentences: [
+    { title: 'S+V (主语+动词)', items: [
+      '最简单的句子：主语 + 动词',
+      '<b>Birds <u>fly</u>.</b> — 鸟飞。',
+      '<b>She <u>runs</u>.</b> — 她跑。',
+      '<b>It <u>rains</u>.</b> — 下雨了。'
+    ]},
+    { title: 'S+V+O (主语+动词+宾语)', items: [
+      '主语 + 动词 + 动作对象（宾语）',
+      '<b>I <u>like apples</u>.</b> — 我喜欢苹果。',
+      '<b>She <u>reads books</u>.</b> — 她读书。',
+      '<b>He <u>plays football</u>.</b> — 他踢足球。'
+    ]},
+    { title: 'S+Be+Adj (主语+be+形容词)', items: [
+      '主语 + be 动词 + 描述（形容词/名词）',
+      '<b>She <u>is kind</u>.</b> — 她很善良。',
+      '<b>The sky <u>is blue</u>.</b> — 天是蓝的。',
+      '<b>I <u>am happy</u>.</b> — 我很快乐。'
+    ]},
+    { title: '陈述句↔疑问句转换', items: [
+      '陈述句 → 一般疑问句：Do/Does/Did 开头',
+      '<b>You like cats.</b> → <b><u>Do</u> you like cats?</b>',
+      '<b>He likes dogs.</b> → <b><u>Does</u> he like dogs?</b>',
+      '注意：Does 后面动词还原为原形：likes → like',
+      'Yes/No 回答：肯定用 Yes + 主语 + do/does/did；否定用 No + 主语 + don\'t/doesn\'t/didn\'t'
+    ]}
+  ]
 };
 
 // ── DATA: 12 topics × 5 questions ──
@@ -518,7 +741,6 @@ function renderTopic(topic) {
 
   let questions;
   if (topic === 'mixed') {
-    // Generate 10 random questions from all topics
     questions = getMixedQuestions();
   } else {
     questions = QUESTIONS[topic] || [];
@@ -530,41 +752,41 @@ function renderTopic(topic) {
     return;
   }
 
-  let html = '<div class="card">';
-  html += '<span class="tag" style="background:#dbeafe;color:#1e40af">' + getTopicLabel(topic) + '</span>';
-  html += '<div class="card-title">' + getTopicSubtitle(topic) + '</div>';
+  let html = '';
 
-  // Knowledge content (skip mixed & wrong)
-  if (KNOWLEDGE_DATA[topic] && topic !== 'mixed' && topic !== 'wrong') {
+  // ── Knowledge section (skip mixed & wrong) ──
+  if (KNOWLEDGE_DATA[topic]) {
+    html += '<div class="sec-card sec-knowledge">';
+    html += '<div class="sec-header"><span class="icon">📖</span>知识点讲解</div>';
+    html += '<div class="sec-body">';
     const kd = KNOWLEDGE_DATA[topic];
-    // Examples
-    for (let e of kd.examples) {
-      html += '<div class="example">';
-      const parts = e.split('—');
-      if (parts.length >= 2) {
-        html += '<div class="en">' + parts[0].trim() + '</div>';
-        html += '<div class="zh">' + parts.slice(1).join('—').trim() + '</div>';
-      } else {
-        html += '<div class="en">' + e + '</div>';
+    for (let i = 0; i < kd.length; i++) {
+      html += '<div class="ksub">' + kd[i].title + '</div>';
+      for (let j = 0; j < kd[i].items.length; j++) {
+        html += '<div class="example"><div class="en">' + kd[i].items[j] + '</div></div>';
       }
-      html += '</div>';
     }
-    // Rules
-    for (let r of kd.rules) {
-      html += '<div class="rule">' + r + '</div>';
-    }
+    html += '</div></div>';
   }
 
-  // Video embed (skip mixed & wrong)
+  // ── Video section (skip mixed & wrong) ──
   if (VIDEO_DATA[topic]) {
     const v = VIDEO_DATA[topic];
-    html += '<div class="video-embed" style="position:relative;width:100%;padding-bottom:56.25%;margin:0 0 16px;border-radius:10px;overflow:hidden;">';
+    html += '<div class="sec-card sec-video">';
+    html += '<div class="sec-header"><span class="icon">🎬</span>视频讲解</div>';
+    html += '<div class="sec-body">';
+    html += '<div class="video-embed" style="position:relative;width:100%;padding-bottom:56.25%;border-radius:10px;overflow:hidden;">';
     html += '<iframe src="https://player.bilibili.com/player.html?bvid=' + v.bvid + '&autoplay=0&high_quality=1&danmaku=1" ';
     html += 'style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen loading="lazy"></iframe>';
     html += '</div>';
-    html += '<div style="text-align:center;margin:0 0 16px;font-size:0.82rem;color:var(--muted);">';
-    html += '📺 B站讲解视频：' + v.title + '</div>';
+    html += '<div style="text-align:center;margin-top:8px;font-size:0.82rem;color:var(--muted);">📺 ' + v.title + '</div>';
+    html += '</div></div>';
   }
+
+  // ── Exercise section ──
+  html += '<div class="sec-card sec-exercise">';
+  html += '<div class="sec-header"><span class="icon">✏️</span>练习题</div>';
+  html += '<div class="sec-body">';
 
   // Stats
   html += '<div class="q-stats">';
@@ -593,7 +815,8 @@ function renderTopic(topic) {
   html += '<button class="page-btn" id="next-' + topic + '" onclick="nextQuestion(\'' + topic + '\')">下一题 ▶</button>';
   html += '</div>';
 
-  html += '</div>';
+  html += '</div></div>';
+
   container.innerHTML = html;
   container.classList.add('active');
   updatePagination(topic);
