@@ -401,6 +401,20 @@ function switchTopic(id) {
   document.getElementById('topic-' + id).classList.add('active');
   document.querySelector('.nav-item[data-topic="' + id + '"]').classList.add('active');
 }
+
+// URL hash support - auto switch topic from #hash
+(function() {
+  const hash = location.hash.replace('#', '');
+  if (hash) {
+    const el = document.getElementById('topic-' + hash);
+    if (el) switchTopic(hash);
+  }
+  // Listen for hash changes
+  window.addEventListener('hashchange', function() {
+    const h = location.hash.replace('#', '');
+    if (h && document.getElementById('topic-' + h)) switchTopic(h);
+  });
+})();
 </script>
 </body>
 </html>]]>

@@ -143,8 +143,8 @@
   <button class="active" onclick="show('math')">口算练习</button>
   <button onclick="show('flash')">闪卡背词</button>
   <button onclick="show('vocab')">背单词</button>
-  <button onclick="show('gram')">语法练习</button>
-  <button onclick="show('gramk')">语法知识</button>
+  <a href="grammar-exercises.html" style="text-decoration:none;color:inherit;"><button>📝 语法练习</button></a>
+  <a href="hk-english-grammar.html" style="text-decoration:none;color:inherit;"><button>📖 语法知识</button></a>
   <button onclick="show('ielts')">IELTS 资料</button>
 </nav>
 
@@ -226,18 +226,26 @@
   </div>
 
   <!-- 语法知识 -->
-  <div id="gramk" class="section">
-    <div class="card">
-      <h2>香港小二英语语法知识点</h2>
-      <p style="color:#64748b;margin:8px 0 16px;font-size:0.88rem;">10个核心语法模块，附例句和规则说明</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <a href="hk-english-grammar.html" target="_blank" style="display:block;background:#f8f9fa;border:1.5px solid #e2e8f0;border-radius:10px;padding:16px;text-decoration:none;color:#1e293b;">
-          <div style="font-weight:600;font-size:0.95rem;margin-bottom:4px;">Hong Kong P2 English Grammar</div>
-          <div style="color:#64748b;font-size:0.8rem;">名词 · 冠词 · 代词 · 形容词 · be动词 · 行为动词 · 副词 · 介词 · 连词 · 疑问词</div>
-        </a>
+    <div id="gramk" class="section">
+    <div class="card" style="text-align:center;padding:40px 24px;">
+      <h2>📖 语法知识点</h2>
+      <p style="color:#64748b;margin:10px 0 20px;">12 个香港小学二年级语法模块，点击查看详细讲解</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;max-width:600px;margin:0 auto;">
+        <a href="hk-english-grammar.html#nouns" class="btn" style="background:#1e40af;display:block;">名词</a>
+        <a href="hk-english-grammar.html#articles" class="btn" style="background:#1e40af;display:block;">冠词</a>
+        <a href="hk-english-grammar.html#pronouns" class="btn" style="background:#115e59;display:block;">代词</a>
+        <a href="hk-english-grammar.html#adjectives" class="btn" style="background:#92400e;display:block;">形容词</a>
+        <a href="hk-english-grammar.html#verb-be" class="btn" style="background:#166534;display:block;">Be动词</a>
+        <a href="hk-english-grammar.html#third-person" class="btn" style="background:#166534;display:block;">第三人称单数</a>
+        <a href="hk-english-grammar.html#verb-action" class="btn" style="background:#166534;display:block;">行为动词</a>
+        <a href="hk-english-grammar.html#adverbs" class="btn" style="background:#9d174d;display:block;">副词</a>
+        <a href="hk-english-grammar.html#prepositions" class="btn" style="background:#3730a3;display:block;">介词</a>
+        <a href="hk-english-grammar.html#conjunctions" class="btn" style="background:#991b1b;display:block;">连词</a>
+        <a href="hk-english-grammar.html#questions" class="btn" style="background:#3730a3;display:block;">疑问词</a>
+        <a href="hk-english-grammar.html#sentences" class="btn" style="background:#166534;display:block;">句型</a>
       </div>
     </div>
-  </div>
+  </div></div>
 
   <!-- IELTS 资料 -->
   <div id="ielts" class="section">
