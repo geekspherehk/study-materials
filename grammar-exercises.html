@@ -672,6 +672,10 @@ function renderTopic(topic) {
   html += '<span class="page-info" id="pageinfo-' + topic + '">1 / ' + questions.length + '</span>';
   html += '<button class="page-btn" id="next-' + topic + '" onclick="nextQuestion(\'' + topic + '\')">下一题 ▶</button>';
   html += '</div>';
+  // Reset all button
+  html += '<div style="text-align:center;margin-top:10px;">';
+  html += '<button class="redo-btn" onclick="resetTopic(\'' + topic + '\')" style="font-size:0.78rem;padding:4px 14px;border:1px solid var(--border);border-radius:4px;background:none;cursor:pointer;color:var(--muted);">🔄 重做本组全部</button>';
+  html += '</div>';
 
   html += '</div></div>';
 
@@ -708,7 +712,14 @@ function renderQuestion(topic, qData, idx, active) {
     }
     html += '</div>';
   }
-  html += '</div></div>';
+  html += '</div>';
+  // Redo button (only show if already answered)
+  if (answeredState[topic] && answeredState[topic][idx] !== null) {
+    html += '<div style="text-align:right;margin-top:8px;">';
+    html += '<button class="redo-btn" onclick="resetSingleQuestion(\'' + topic + '\',' + idx + ')" style="font-size:0.78rem;padding:3px 10px;border:1px solid var(--border);border-radius:4px;background:none;cursor:pointer;color:var(--muted);">🔄 重做此题</button>';
+    html += '</div>';
+  }
+  html += '</div>';
   return html;
 }
 
@@ -774,8 +785,13 @@ function selectOption(topic, idx, letter) {
   const qData = questions[idx];
   if (!qData) return;
 
-  // Already answered
-  if (answeredState[topic] && answeredState[topic][idx] !== null) return;
+  // If already answered with same answer, allow re-select (reset)
+  // If already answered with a different letter, reset and re-answer
+  if (answeredState[topic] && answeredState[topic][idx] !== null) {
+    if (answeredState[topic][idx] === letter) return; // same choice, no change
+    // User selected a different answer - redo
+    resetSingleQuestion(topic, idx);
+  }
 
   // Save answer
   answeredState[topic][idx] = letter;
@@ -905,6 +921,56 @@ function updateStats(topic) {
 function updateWrongBadge() {
   const badge = document.getElementById('wrongBadge');
   if (badge) badge.textContent = wrongQuestions.length;
+}
+
+function resetTopic(topic) {
+  if (!confirm('确定要重做本组全部题目吗？')) return;
+  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
+  if (!questions) return;
+  // Clear all answers for this topic
+  for (let i = 0; i < questions.length; i++) {
+    if (answeredState[topic] && answeredState[topic][i] !== null) {
+      // Remove from wrongQuestions
+      const qData = questions[i];
+      const existsIdx = wrongQuestions.findIndex(w => w.topic === topic && w.idx === i && w.q === qData.q);
+      if (existsIdx !== -1) wrongQuestions.splice(existsIdx, 1);
+    }
+  }
+  localStorage.setItem('p2grammarWrong', JSON.stringify(wrongQuestions));
+  updateWrongBadge();
+  answeredState[topic] = new Array(questions.length).fill(null);
+  currentPage[topic] = 0;
+  // Re-render
+  renderTopic(topic);
+}
+
+function resetSingleQuestion(topic, idx) {
+  // Remove from wrongQuestions
+  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
+  const qData = questions[idx];
+  const existsIdx = wrongQuestions.findIndex(w => w.topic === topic && w.idx === idx && w.q === qData.q);
+  if (existsIdx !== -1) wrongQuestions.splice(existsIdx, 1);
+  localStorage.setItem('p2grammarWrong', JSON.stringify(wrongQuestions));
+  updateWrongBadge();
+  // Clear answer state
+  answeredState[topic][idx] = null;
+  // Re-render the question
+  const container = document.getElementById('q-' + topic + '-' + idx);
+  if (container) {
+    const letters = ['A', 'B', 'C', 'D'];
+    let html = '<div class="q-text"><span class="q-num">' + (idx + 1) + '.</span>' + qData.q + '</div>';
+    html += '<div class="opts">';
+    for (let oi = 0; oi < qData.opts.length; oi++) {
+      html += '<div class="opt" onclick="selectOption(\'' + topic + '\',' + idx + ',\'' + letters[oi] + '\')">';
+      html += '<span class="opt-letter">' + letters[oi] + '</span>';
+      html += '<span>' + qData.opts[oi] + '</span>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+    container.innerHTML = html;
+  }
+  updateStats(topic);
+  updateDots(topic);
 }
 
 function clearWrong() {
