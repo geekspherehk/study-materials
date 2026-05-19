@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2 English Quiz 6 Revision — Level 2</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --hover-bg: #e8f0fe;
+      --active-bg: #dbeafe;
+      --correct: #16a34a;
+      --wrong: #dc2626;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px 16px 60px;
+    }
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+    .header h1 small {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── Score Bar ── */
+    .score-bar {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px 20px;
+      border: 2px solid var(--border);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .score-bar .score-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .score-bar .score-text .num { color: var(--primary); font-size: 1.3rem; }
+    .score-bar .score-text .total { color: var(--muted); }
+    .progress-wrap {
+      width: 100%;
+      height: 14px;
+      background: #e2e8f0;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #3b82f6);
+      border-radius: 99px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    /* ── Section Header ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 12px 12px 0 0;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      margin-top: 24px;
+    }
+    .section-header:first-child { margin-top: 0; }
+    .section-header .icon { font-size: 1.3rem; }
+    .section-body {
+      padding: 18px;
+      border: 2px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      background: var(--card);
+      margin-bottom: 4px;
+    }
+
+    /* Section Colors */
+    .sec-tenses .section-header { background: #dbeafe; color: #1e40af; border: 2px solid #bfdbfe; border-bottom: none; }
+    .sec-tenses .section-body { border-color: #bfdbfe; }
+    .sec-proofreading .section-header { background: #d1fae5; color: #065f46; border: 2px solid #a7f3d0; border-bottom: none; }
+    .sec-proofreading .section-body { border-color: #a7f3d0; }
+    .sec-reading .section-header { background: #fef3c7; color: #92400e; border: 2px solid #fde68a; border-bottom: none; }
+    .sec-reading .section-body { border-color: #fde68a; }
+    .sec-seasons .section-header { background: #ede9fe; color: #5b21b6; border: 2px solid #c4b5fd; border-bottom: none; }
+    .sec-seasons .section-body { border-color: #c4b5fd; }
+    .sec-gerund .section-header { background: #fce7f3; color: #9d174d; border: 2px solid #fbcfe8; border-bottom: none; }
+    .sec-gerund .section-body { border-color: #fbcfe8; }
+
+    /* ── Reading Passage ── */
+    .reading-passage {
+      background: #fffbeb;
+      border: 2px solid #fde68a;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    .reading-passage .rp-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #92400e;
+      margin-bottom: 8px;
+    }
+    .reading-passage p {
+      font-size: 0.92rem;
+      color: #78350f;
+      margin-bottom: 6px;
+    }
+    .reading-passage p:last-child { margin-bottom: 0; }
+
+    /* ── Question ── */
+    .question {
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+    .question:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+    .q-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.8;
+    }
+    .q-text .q-num {
+      color: var(--primary);
+      font-weight: 700;
+      margin-right: 4px;
+    }
+
+    /* ── Input blanks ── */
+    .blank-input {
+      display: inline-block;
+      width: 80px;
+      padding: 4px 6px;
+      margin: 0 2px;
+      border: none;
+      border-bottom: 2px dashed var(--primary);
+      background: transparent;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--primary);
+      outline: none;
+      text-align: center;
+      font-family: inherit;
+      transition: border-color 0.15s;
+    }
+    .blank-input:focus {
+      border-bottom-color: var(--primary);
+      background: #f0f7ff;
+    }
+    .blank-input.correct-input {
+      border-bottom-color: var(--correct);
+      color: var(--correct);
+      background: #f0fdf4;
+    }
+    .blank-input.wrong-input {
+      border-bottom-color: var(--wrong);
+      color: var(--wrong);
+      background: #fef2f2;
+    }
+    .blank-input.show-answer-input {
+      border-bottom-color: var(--wrong);
+      color: var(--wrong);
+      background: #fef2f2;
+    }
+
+    /* ── Check button ── */
+    .check-btn-wrap {
+      text-align: center;
+      margin-top: 12px;
+    }
+    .check-btn {
+      padding: 8px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      color: #fff;
+    }
+    .check-btn:hover { opacity: 0.85; }
+    .check-btn:active { transform: scale(0.97); }
+    .check-btn.sec-tenses { background: #1e40af; }
+    .check-btn.sec-proofreading { background: #065f46; }
+    .check-btn.sec-reading { background: #92400e; }
+    .check-btn.sec-seasons { background: #5b21b6; }
+    .check-btn.sec-gerund { background: #9d174d; }
+
+    /* ── Feedback ── */
+    .feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      display: none;
+    }
+    .feedback.show { display: block; }
+    .feedback .correct-fb { color: var(--correct); }
+    .feedback .wrong-fb { color: var(--wrong); }
+    .feedback-item {
+      margin: 2px 0;
+      font-size: 0.88rem;
+    }
+    .feedback-item.c { color: var(--correct); }
+    .feedback-item.w { color: var(--wrong); }
+
+    /* ── Multiple Choice (reused from Level 1) ── */
+    .opts { display: flex; flex-direction: column; gap: 6px; }
+    .opt {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 14px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .opt:hover:not(.disabled) { border-color: var(--primary); background: var(--hover-bg); }
+    .opt.disabled { pointer-events: none; opacity: 0.7; }
+    .opt.correct { border-color: var(--correct); background: #f0fdf4; }
+    .opt.wrong { border-color: var(--wrong); background: #fef2f2; }
+    .opt.show-correct { border-color: var(--correct); background: #f0fdf4; }
+    .opt-letter {
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--bg);
+      font-weight: 700; font-size: 0.85rem; color: var(--muted);
+      flex-shrink: 0;
+    }
+    .opt.correct .opt-letter { background: var(--correct); color: #fff; }
+    .opt.wrong .opt-letter { background: var(--wrong); color: #fff; }
+    .opt.show-correct .opt-letter { background: var(--correct); color: #fff; }
+    .opt .emoji-result {
+      margin-left: auto;
+      font-size: 1.1rem;
+    }
+
+    /* ── Proofreading sentence ── */
+    .proofread-sentence {
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 8px 12px;
+      background: #f8fafc;
+      border-radius: 8px;
+      border-left: 4px solid #a7f3d0;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .proofread-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .proofread-input-wrap label {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .proofread-input {
+      width: 160px;
+      padding: 6px 10px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .proofread-input:focus {
+      border-color: #065f46;
+    }
+    .proofread-input.correct-input {
+      border-color: var(--correct);
+      background: #f0fdf4;
+    }
+    .proofread-input.wrong-input {
+      border-color: var(--wrong);
+      background: #fef2f2;
+    }
+
+    /* ── Reset Button ── */
+    .reset-btn-wrap {
+      text-align: center;
+      margin-top: 24px;
+    }
+    .reset-btn {
+      padding: 10px 28px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--card);
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .reset-btn:hover { border-color: var(--primary); background: var(--hover-bg); }
+
+    .footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      body { padding: 12px 10px 40px; }
+      .header { padding: 14px 16px; }
+      .header h1 { font-size: 1.2rem; }
+      .section-body { padding: 12px 14px; }
+      .q-text { font-size: 0.9rem; }
+      .opt { padding: 8px 12px; font-size: 0.88rem; }
+      .reading-passage { padding: 12px 14px; }
+      .blank-input { width: 65px; font-size: 0.85rem; }
+      .proofread-input { width: 130px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>📝 Quiz 6 Revision — Level 2 ✨ <small>香港小学二年级英语复习测验 · 进阶版</small></h1>
+    <p>This is the harder version! Type your answers instead of choosing. Click the check button to see if you're correct.</p>
+  </div>
+
+  <!-- Score Bar -->
+  <div class="score-bar">
+    <div class="score-text">
+      Score 得分: <span class="num" id="scoreNum">0</span> <span class="total">/ 20</span>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- ====== A. TENSES (5 questions, fill-in-the-blank, multi-blank) ====== -->
+  <div class="sec-tenses">
+    <div class="section-header">
+      <span class="icon">⏰</span> A. Tenses 时态
+    </div>
+    <div class="section-body">
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;">Fill in the blanks with the correct form of the verbs.</p>
+
+      <div class="question" id="q1">
+        <div class="q-text">
+          <span class="q-num">1.</span>
+          My brother <input type="text" class="blank-input" id="t1a" placeholder="___"> (be) busy. He <input type="text" class="blank-input" id="t1b" placeholder="___"> (study) very hard.
+        </div>
+      </div>
+
+      <div class="question" id="q2">
+        <div class="q-text">
+          <span class="q-num">2.</span>
+          She <input type="text" class="blank-input" id="t2a" placeholder="___"> (go) to school by bus every day.
+        </div>
+      </div>
+
+      <div class="question" id="q3">
+        <div class="q-text">
+          <span class="q-num">3.</span>
+          They <input type="text" class="blank-input" id="t3a" placeholder="___"> (play) football last Sunday.
+        </div>
+      </div>
+
+      <div class="question" id="q4">
+        <div class="q-text">
+          <span class="q-num">4.</span>
+          The cat <input type="text" class="blank-input" id="t4a" placeholder="___"> (sleep) on the sofa now.
+        </div>
+      </div>
+
+      <div class="question" id="q5">
+        <div class="q-text">
+          <span class="q-num">5.</span>
+          We <input type="text" class="blank-input" id="t5a" placeholder="___"> (visit) our grandmother last weekend.
+        </div>
+      </div>
+
+      <div class="check-btn-wrap">
+        <button class="check-btn sec-tenses" onclick="checkTenses()">✅ Check Answers</button>
+      </div>
+      <div class="feedback" id="tensesFeedback"></div>
+    </div>
+  </div>
+
+  <!-- ====== B. PROOFREADING (5 questions, find the mistake) ====== -->
+  <div class="sec-proofreading">
+    <div class="section-header">
+      <span class="icon">✏️</span> B. Proofreading 校对改错
+    </div>
+    <div class="section-body">
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;">Each sentence has ONE mistake. Type the correct word or phrase.</p>
+
+      <div class="question" id="q6">
+        <div class="proofread-sentence">1. She go to school at 8 o'clock every morning.</div>
+        <div class="proofread-input-wrap">
+          <label for="p1">Correct word:</label>
+          <input type="text" class="proofread-input" id="p1" placeholder="type correct word">
+        </div>
+      </div>
+
+      <div class="question" id="q7">
+        <div class="proofread-sentence">2. He have two apples.</div>
+        <div class="proofread-input-wrap">
+          <label for="p2">Correct word:</label>
+          <input type="text" class="proofread-input" id="p2" placeholder="type correct word">
+        </div>
+      </div>
+
+      <div class="question" id="q8">
+        <div class="proofread-sentence">3. My mother cook dinner every night.</div>
+        <div class="proofread-input-wrap">
+          <label for="p3">Correct word:</label>
+          <input type="text" class="proofread-input" id="p3" placeholder="type correct word">
+        </div>
+      </div>
+
+      <div class="question" id="q9">
+        <div class="proofread-sentence">4. The children play football on friday.</div>
+        <div class="proofread-input-wrap">
+          <label for="p4">Correct word:</label>
+          <input type="text" class="proofread-input" id="p4" placeholder="type correct word">
+        </div>
+      </div>
+
+      <div class="question" id="q10">
+        <div class="proofread-sentence">5. He like playing basketball.</div>
+        <div class="proofread-input-wrap">
+          <label for="p5">Correct word:</label>
+          <input type="text" class="proofread-input" id="p5" placeholder="type correct word">
+        </div>
+      </div>
+
+      <div class="check-btn-wrap">
+        <button class="check-btn sec-proofreading" onclick="checkProofreading()">✅ Check Answers</button>
+      </div>
+      <div class="feedback" id="proofreadingFeedback"></div>
+    </div>
+  </div>
+
+  <!-- ====== C. READING COMPREHENSION (4 questions, short answer) ====== -->
+  <div class="sec-reading">
+    <div class="section-header">
+      <span class="icon">📖</span> C. Reading Comprehension 阅读理解
+    </div>
+    <div class="section-body">
+      <div class="reading-passage">
+        <div class="rp-title">📄 Mary's Daily Routine</div>
+        <p>My name is Mary. I am eight years old. I live in Hong Kong with my family.</p>
+        <p>Every morning, I wake up at 7 o'clock. I brush my teeth and wash my face. Then I eat breakfast. I usually have bread and milk for breakfast.</p>
+        <p>After breakfast, I go to school by bus. I have lunch at school with my friends. I usually eat rice, chicken and vegetables.</p>
+        <p>After school, I go home at 4 o'clock. I do my homework first. Then I play with my pet dog, Lucky. He is very cute!</p>
+        <p>In the evening, I have dinner with my family at 7 o'clock. After dinner, I read storybooks. I go to bed at 9 o'clock.</p>
+      </div>
+
+      <div class="question" id="q11">
+        <div class="q-text"><span class="q-num">1.</span> What time does Mary wake up?</div>
+        <input type="text" class="proofread-input" id="r1" placeholder="type your answer" style="width:200px;">
+      </div>
+
+      <div class="question" id="q12">
+        <div class="q-text"><span class="q-num">2.</span> What does Mary eat for breakfast?</div>
+        <input type="text" class="proofread-input" id="r2" placeholder="type your answer" style="width:200px;">
+      </div>
+
+      <div class="question" id="q13">
+        <div class="q-text"><span class="q-num">3.</span> How does Mary go to school?</div>
+        <input type="text" class="proofread-input" id="r3" placeholder="type your answer" style="width:200px;">
+      </div>
+
+      <div class="question" id="q14">
+        <div class="q-text"><span class="q-num">4.</span> Where does Mary have lunch?</div>
+        <input type="text" class="proofread-input" id="r4" placeholder="type your answer" style="width:200px;">
+      </div>
+
+      <div class="check-btn-wrap">
+        <button class="check-btn sec-reading" onclick="checkReading()">✅ Check Answers</button>
+      </div>
+      <div class="feedback" id="readingFeedback"></div>
+    </div>
+  </div>
+
+  <!-- ====== D. SEASONS & WEATHER (3 questions, multiple choice) ====== -->
+  <div class="sec-seasons">
+    <div class="section-header">
+      <span class="icon">🌤️</span> D. Seasons & Weather 季节与天气
+    </div>
+    <div class="section-body">
+
+      <div class="question" id="q15">
+        <div class="q-text">
+          <span class="q-num">1.</span>
+          It is cold and snowy. You can make a snowman. Which season is it?
+        </div>
+        <div class="opts" data-answer="c">
+          <div class="opt" data-letter="A" onclick="checkOpt(this,'a','q15')">
+            <span class="opt-letter">A</span> Spring
+            <span class="emoji-result"></span>
+          </div>
+          <div class="opt" data-letter="B" onclick="checkOpt(this,'b','q15')">
+            <span class="opt-letter">B</span> Summer
+            <span class="emoji-result"></span>
+          </div>
+          <div class="opt" data-letter="C" onclick="checkOpt(this,'c','q15')">
+            <span class="opt-letter">C</span> Winter
+            <span class="emoji-result"></span>
+          </div>
+          <div class="opt" data-letter="D" onclick="checkOpt(this,'d','q15')">
+            <span class="opt-letter">D</span> Autumn
+            <span class="emoji-result"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="question" id="q16">
+        <div class="q-text">
+          <span class="q-num">2.</span>
+          In Hong Kong, summer is very hot and rainy. What should you bring?
+        </div>
+        <div class="opts" data-answer="a">
+          <div class="opt" data-letter="A" onclick="checkOpt(this,'a','q16')">
+            <span class="opt-letter">A</span> Umbrella ☂️
+            <span class="emoji-result"></span>
+          </div>
+          <div class="opt" data-letter="B" onclick="checkOpt(this,'b','q16')">
+            <span class="opt-letter">B</span> Coat
+            <span class="emoji-result"></span>
+          </div>
+          <div class="opt" data-letter="C" onclick="checkOpt(this,'c','q16')">
+            <span class="opt-letter">C</span> Scarf
+            <span class="emoji-result"></span>
+          </div>
+          <div class="opt" data-letter="D" onclick="checkOpt(this,'d','q16')">
+            <span class="opt-letter">D</span> Gloves
+            <span class="emoji-result"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="question" id="q17">
+        <div class="q-text">
+          <span class="q-num">3.</span>
+          The leaves fall from the trees. It is cool and windy. Which season?
+        </div>
+        <div class="opts" data-answer="c">
+          <div class="opt" data-letter="A" onclick="checkOpt(this,'a','q17')">
+            <span class="opt-letter">A</span> Spring
+            <span class="emoji-result"></span>
+          </div>
+          <div class="opt" data-letter="B" onclick="checkOpt(this,'b','q17')">
+            <span class="opt-letter">B</span> Summer
+            <span class="emoji-result"></span>
+          </div>
+          <div class="opt" data-letter="C" onclick="checkOpt(this,'c','q17')">
+            <span class="opt-letter">C</span> Autumn 🍂
+            <span class="emoji-result"></span>
+          </div>
+          <div class="opt" data-letter="D" onclick="checkOpt(this,'d','q17')">
+            <span class="opt-letter">D</span> Winter
+            <span class="emoji-result"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="check-btn-wrap" style="display:none;">
+        <button class="check-btn sec-seasons">✅ Check Answers</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== E. LIKE + GERUND (3 questions, fill blank with like/likes + -ing) ====== -->
+  <div class="sec-gerund">
+    <div class="section-header">
+      <span class="icon">❤️</span> E. Like + Gerund (like / likes + -ing)
+    </div>
+    <div class="section-body">
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;">Fill in the blank with <strong>like/likes</strong> + the correct <strong>-ing</strong> form.</p>
+
+      <div class="question" id="q18">
+        <div class="q-text">
+          <span class="q-num">1.</span>
+          Mimi <input type="text" class="blank-input" id="g1" placeholder="___" style="width:140px;"> (like / run) in the playground.
+        </div>
+      </div>
+
+      <div class="question" id="q19">
+        <div class="q-text">
+          <span class="q-num">2.</span>
+          I <input type="text" class="blank-input" id="g2" placeholder="___" style="width:140px;"> (like / swim) in the pool.
+        </div>
+      </div>
+
+      <div class="question" id="q20">
+        <div class="q-text">
+          <span class="q-num">3.</span>
+          Tom and Jerry <input type="text" class="blank-input" id="g3" placeholder="___" style="width:140px;"> (like / play) basketball.
+        </div>
+      </div>
+
+      <div class="check-btn-wrap">
+        <button class="check-btn sec-gerund" onclick="checkGerund()">✅ Check Answers</button>
+      </div>
+      <div class="feedback" id="gerundFeedback"></div>
+    </div>
+  </div>
+
+  <!-- Reset Button -->
+  <div class="reset-btn-wrap">
+    <button class="reset-btn" onclick="resetQuiz()">🔄 Reset Quiz 重新开始</button>
+  </div>
+
+  <div class="footer">P2 English Quiz 6 Revision · Level 2 · 香港小学二年级英语复习测验</div>
+</div>
+
+<script>
+let score = 0;
+const totalQ = 20;
+
+// ── Track answered MC questions ──
+let mcAnswered = {};
+
+function updateScore() {
+  document.getElementById('scoreNum').textContent = score;
+  const pct = Math.round((score / totalQ) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+// ── Multiple choice (Seasons section) ──
+function checkOpt(el, selected, qId) {
+  if (mcAnswered[qId]) return;
+  const parent = el.closest('.opts');
+  const correct = parent.dataset.answer;
+  const opts = parent.querySelectorAll('.opt');
+
+  opts.forEach(o => o.classList.add('disabled'));
+
+  if (selected === correct) {
+    el.classList.add('correct');
+    el.querySelector('.emoji-result').textContent = '✓';
+    score++;
+  } else {
+    el.classList.add('wrong');
+    el.querySelector('.emoji-result').textContent = '✗';
+    opts.forEach(o => {
+      const letter = o.getAttribute('onclick').match(/'(\w+)'/)?.[1];
+      if (letter === correct) {
+        o.classList.add('show-correct');
+        o.querySelector('.emoji-result').textContent = '✓';
+      }
+    });
+  }
+
+  mcAnswered[qId] = true;
+  updateScore();
+}
+
+// ── Tenses check ──
+function checkTenses() {
+  const inputs = [
+    { id: 't1a', ans: 'is' },
+    { id: 't1b', ans: 'studies' },
+    { id: 't2a', ans: 'goes' },
+    { id: 't3a', ans: 'played' },
+    { id: 't4a', ans: 'is sleeping' },
+    { id: 't5a', ans: 'visited' }
+  ];
+
+  const feedback = document.getElementById('tensesFeedback');
+  let html = '';
+  let newScore = 0;
+
+  inputs.forEach((item, i) => {
+    const el = document.getElementById(item.id);
+    const val = el.value.trim().toLowerCase();
+    const correctAns = item.ans.toLowerCase();
+    if (val === correctAns) {
+      el.classList.remove('wrong-input', 'show-answer-input');
+      el.classList.add('correct-input');
+      html += `<div class="feedback-item c">✓ Q${i + 1} blank — Correct!</div>`;
+      newScore++;
+    } else {
+      el.classList.remove('correct-input');
+      el.classList.add('wrong-input');
+      html += `<div class="feedback-item w">✗ Q${i + 1} — correct answer: <strong>${item.ans}</strong></div>`;
+    }
+  });
+
+  // Update score (tenses = 5 questions, but 6 blanks — worth 5 total)
+  // Actually, we count each blank as adding to score, but total is 20.
+  // The 5 tense questions contribute to the overall score.
+  // Let's track them as 5 contributions (each question = 1 point, multi-blank questions count as 1)
+  // But the user task says "5 questions" each worth something.
+  // We'll award a point per question (q1-multi counts as 1)
+  
+  // Better approach: award per blank for consistency. The user said "5 questions" so 5 points total.
+  // We need to group blanks by question.
+  // q1: t1a + t1b → 0.5 each or just check both right
+  const q1a = document.getElementById('t1a').value.trim().toLowerCase();
+  const q1b = document.getElementById('t1b').value.trim().toLowerCase();
+  const q1ok = (q1a === 'is' && q1b === 'studies');
+  
+  // Let's just reset and re-score properly
+  // Actually let me implement a cleaner approach - feature flag to avoid double counting
+  
+  feedback.innerHTML = html;
+  feedback.classList.add('show');
+}
+
+// ── Proofreading check ──
+function checkProofreading() {
+  const questions = [
+    { id: 'p1', ans: 'goes' },
+    { id: 'p2', ans: 'has' },
+    { id: 'p3', ans: 'cooks' },
+    { id: 'p4', ans: 'Friday' },
+    { id: 'p5', ans: 'likes' }
+  ];
+
+  const feedback = document.getElementById('proofreadingFeedback');
+  let html = '';
+  let newScore = 0;
+  let updateNeeded = false;
+
+  questions.forEach((q, i) => {
+    const el = document.getElementById(q.id);
+    const val = el.value.trim();
+    // For capital-F Friday, we need exact match, but lowercase comparison for others
+    let isCorrect = false;
+    if (q.id === 'p4') {
+      isCorrect = val === 'Friday';
+    } else {
+      isCorrect = val.toLowerCase() === q.ans.toLowerCase();
+    }
+
+    if (isCorrect) {
+      el.classList.remove('wrong-input');
+      el.classList.add('correct-input');
+      html += `<div class="feedback-item c">✓ Q${i + 1} — Correct!</div>`;
+      newScore++;
+    } else {
+      el.classList.remove('correct-input');
+      el.classList.add('wrong-input');
+      html += `<div class="feedback-item w">✗ Q${i + 1} — correct answer: <strong>${q.ans}</strong></div>`;
+    }
+  });
+
+  feedback.innerHTML = html;
+  feedback.classList.add('show');
+}
+
+// ── Reading check ──
+function checkReading() {
+  const questions = [
+    { id: 'r1', answers: ['7 o\'clock', '7:00', '7 oclock'] },
+    { id: 'r2', answers: ['bread and milk', 'bread and eggs', 'bread', 'milk and bread'] },
+    { id: 'r3', answers: ['by bus', 'bus'] },
+    { id: 'r4', answers: ['at school', 'school'] }
+  ];
+
+  const feedback = document.getElementById('readingFeedback');
+  let html = '';
+  let newScore = 0;
+
+  questions.forEach((q, i) => {
+    const el = document.getElementById(q.id);
+    const val = el.value.trim().toLowerCase();
+    const isCorrect = q.answers.some(a => a.toLowerCase() === val);
+
+    if (isCorrect) {
+      el.classList.remove('wrong-input');
+      el.classList.add('correct-input');
+      html += `<div class="feedback-item c">✓ Q${i + 1} — Correct!</div>`;
+      newScore++;
+    } else {
+      el.classList.remove('correct-input');
+      el.classList.add('wrong-input');
+      html += `<div class="feedback-item w">✗ Q${i + 1} — correct answer: <strong>${q.answers[0]}</strong></div>`;
+    }
+  });
+
+  feedback.innerHTML = html;
+  feedback.classList.add('show');
+}
+
+// ── Gerund check ──
+function checkGerund() {
+  const questions = [
+    { id: 'g1', ans: 'likes running' },
+    { id: 'g2', ans: 'like swimming' },
+    { id: 'g3', ans: 'like playing' }
+  ];
+
+  const feedback = document.getElementById('gerundFeedback');
+  let html = '';
+  let newScore = 0;
+
+  questions.forEach((q, i) => {
+    const el = document.getElementById(q.id);
+    const val = el.value.trim().toLowerCase();
+    const isCorrect = val === q.ans.toLowerCase();
+
+    if (isCorrect) {
+      el.classList.remove('wrong-input', 'show-answer-input');
+      el.classList.add('correct-input');
+      html += `<div class="feedback-item c">✓ Q${i + 1} — Correct!</div>`;
+      newScore++;
+    } else {
+      el.classList.remove('correct-input');
+      el.classList.add('wrong-input');
+      html += `<div class="feedback-item w">✗ Q${i + 1} — correct answer: <strong>${q.ans}</strong></div>`;
+    }
+  });
+
+  feedback.innerHTML = html;
+  feedback.classList.add('show');
+}
+
+// ── Global scoring system ──
+// We need a proper scoring tracker that integrates all sections.
+// Let's rebuild with a unified approach.
+
+let sectionScores = {
+  tenses: { answered: false, correct: 0 },
+  proofreading: { answered: false, correct: 0 },
+  reading: { answered: false, correct: 0 },
+  gerund: { answered: false, correct: 0 }
+};
+
+// Override the check functions to integrate with global score
+const origTenses = checkTenses;
+checkTenses = function() {
+  if (sectionScores.tenses.answered) return;
+  
+  const answers = {
+    t1a: 'is', t1b: 'studies', t2a: 'goes', t3a: 'played', t4a: 'is sleeping', t5a: 'visited'
+  };
+  
+  const feedback = document.getElementById('tensesFeedback');
+  let html = '';
+  let correctCount = 0;
+  
+  // Group q1 as one question
+  const q1a = document.getElementById('t1a').value.trim().toLowerCase();
+  const q1b = document.getElementById('t1b').value.trim().toLowerCase();
+  const q1Correct = q1a === 'is' && q1b === 'studies';
+  
+  const otherQ = ['t2a', 't3a', 't4a', 't5a'];
+  let otherCorrect = 0;
+  otherQ.forEach(id => {
+    const el = document.getElementById(id);
+    const v = el.value.trim().toLowerCase();
+    if (v === answers[id].toLowerCase()) otherCorrect++;
+  });
+  
+  correctCount = (q1Correct ? 1 : 0) + otherCorrect;
+  
+  // Show feedback per blank
+  const allBlanks = ['t1a','t1b','t2a','t3a','t4a','t5a'];
+  allBlanks.forEach(id => {
+    const el = document.getElementById(id);
+    const v = el.value.trim().toLowerCase();
+    if (v === answers[id].toLowerCase()) {
+      el.classList.remove('wrong-input','show-answer-input');
+      el.classList.add('correct-input');
+    } else {
+      el.classList.remove('correct-input');
+      el.classList.add('wrong-input');
+      html += `<div class="feedback-item w">✗ "${id.replace('t','Q').replace('a','')}": correct answer: <strong>${answers[id]}</strong></div>`;
+    }
+  });
+  
+  // Count q1 as one point (both blanks must be right)
+  if (q1Correct) {
+    correctCount = 1 + otherCorrect; // q1 = 1 point, rest each = 1
+  }
+  
+  sectionScores.tenses.answered = true;
+  sectionScores.tenses.correct = correctCount;
+  
+  feedback.innerHTML = html;
+  feedback.classList.add('show');
+  
+  recalcTotal();
+};
+
+const origProof = checkProofreading;
+checkProofreading = function() {
+  if (sectionScores.proofreading.answered) return;
+  
+  const answers = { p1: 'goes', p2: 'has', p3: 'cooks', p4: 'Friday', p5: 'likes' };
+  const feedback = document.getElementById('proofreadingFeedback');
+  let html = '';
+  let correctCount = 0;
+  
+  ['p1','p2','p3','p4','p5'].forEach(id => {
+    const el = document.getElementById(id);
+    const v = el.value.trim();
+    let ok = false;
+    if (id === 'p4') {
+      ok = v === 'Friday';
+    } else {
+      ok = v.toLowerCase() === answers[id].toLowerCase();
+    }
+    
+    if (ok) {
+      el.classList.remove('wrong-input');
+      el.classList.add('correct-input');
+      correctCount++;
+    } else {
+      el.classList.remove('correct-input');
+      el.classList.add('wrong-input');
+      html += `<div class="feedback-item w">✗ Q — correct answer: <strong>${answers[id]}</strong></div>`;
+    }
+  });
+  
+  sectionScores.proofreading.answered = true;
+  sectionScores.proofreading.correct = correctCount;
+  
+  feedback.innerHTML = html;
+  feedback.classList.add('show');
+  recalcTotal();
+};
+
+const origRead = checkReading;
+checkReading = function() {
+  if (sectionScores.reading.answered) return;
+  
+  const answers = [
+    { id: 'r1', accepted: ['7 o\'clock', '7:00', '7 oclock'] },
+    { id: 'r2', accepted: ['bread and milk', 'bread and eggs', 'bread', 'milk and bread'] },
+    { id: 'r3', accepted: ['by bus', 'bus'] },
+    { id: 'r4', accepted: ['at school', 'school'] }
+  ];
+  
+  const feedback = document.getElementById('readingFeedback');
+  let html = '';
+  let correctCount = 0;
+  
+  answers.forEach((q, i) => {
+    const el = document.getElementById(q.id);
+    const v = el.value.trim().toLowerCase();
+    const ok = q.accepted.some(a => a.toLowerCase() === v);
+    
+    if (ok) {
+      el.classList.remove('wrong-input');
+      el.classList.add('correct-input');
+      correctCount++;
+    } else {
+      el.classList.remove('correct-input');
+      el.classList.add('wrong-input');
+      html += `<div class="feedback-item w">✗ Q${i+1} — correct answer: <strong>${q.accepted[0]}</strong></div>`;
+    }
+  });
+  
+  sectionScores.reading.answered = true;
+  sectionScores.reading.correct = correctCount;
+  
+  feedback.innerHTML = html;
+  feedback.classList.add('show');
+  recalcTotal();
+};
+
+const origGerund = checkGerund;
+checkGerund = function() {
+  if (sectionScores.gerund.answered) return;
+  
+  const answers = { g1: 'likes running', g2: 'like swimming', g3: 'like playing' };
+  const feedback = document.getElementById('gerundFeedback');
+  let html = '';
+  let correctCount = 0;
+  
+  ['g1','g2','g3'].forEach(id => {
+    const el = document.getElementById(id);
+    const v = el.value.trim().toLowerCase();
+    const ok = v === answers[id].toLowerCase();
+    
+    if (ok) {
+      el.classList.remove('wrong-input','show-answer-input');
+      el.classList.add('correct-input');
+      correctCount++;
+    } else {
+      el.classList.remove('correct-input');
+      el.classList.add('wrong-input');
+      html += `<div class="feedback-item w">✗ Q — correct answer: <strong>${answers[id]}</strong></div>`;
+    }
+  });
+  
+  sectionScores.gerund.answered = true;
+  sectionScores.gerund.correct = correctCount;
+  
+  feedback.innerHTML = html;
+  feedback.classList.add('show');
+  recalcTotal();
+};
+
+function recalcTotal() {
+  const mcScore = Object.keys(mcAnswered).length; // 3 MC questions in seasons
+  const tensesScore = sectionScores.tenses.answered ? sectionScores.tenses.correct : 0;
+  const proofScore = sectionScores.proofreading.answered ? sectionScores.proofreading.correct : 0;
+  const readScore = sectionScores.reading.answered ? sectionScores.reading.correct : 0;
+  const gerundScore = sectionScores.gerund.answered ? sectionScores.gerund.correct : 0;
+  
+  score = mcScore + tensesScore + proofScore + readScore + gerundScore;
+  updateScore();
+}
+
+// ── Reset ──
+function resetQuiz() {
+  score = 0;
+  mcAnswered = {};
+  sectionScores = {
+    tenses: { answered: false, correct: 0 },
+    proofreading: { answered: false, correct: 0 },
+    reading: { answered: false, correct: 0 },
+    gerund: { answered: false, correct: 0 }
+  };
+  updateScore();
+
+  // Remove all feedback and styling
+  document.querySelectorAll('.feedback').forEach(el => {
+    el.classList.remove('show');
+    el.innerHTML = '';
+  });
+  
+  document.querySelectorAll('.blank-input, .proofread-input').forEach(el => {
+    el.classList.remove('correct-input', 'wrong-input', 'show-answer-input');
+    el.value = '';
+  });
+  
+  document.querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('correct', 'wrong', 'show-correct', 'disabled');
+    o.querySelector('.emoji-result').textContent = '';
+  });
+}
+</script>
+</body>
+</html>
