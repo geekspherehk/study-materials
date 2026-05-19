@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2 English Quiz 6 Revision 复习测验</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --hover-bg: #e8f0fe;
+      --active-bg: #dbeafe;
+      --correct: #16a34a;
+      --wrong: #dc2626;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px 16px 60px;
+    }
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 20px 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 1.4rem;
+      color: var(--primary);
+    }
+    .header h1 small {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .header p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── Score Bar ── */
+    .score-bar {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 16px 20px;
+      border: 2px solid var(--border);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .score-bar .score-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .score-bar .score-text .num { color: var(--primary); font-size: 1.3rem; }
+    .score-bar .score-text .total { color: var(--muted); }
+    .progress-wrap {
+      width: 100%;
+      height: 14px;
+      background: #e2e8f0;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #3b82f6);
+      border-radius: 99px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    /* ── Section Header ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 12px 12px 0 0;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      margin-top: 24px;
+    }
+    .section-header:first-child { margin-top: 0; }
+    .section-header .icon { font-size: 1.3rem; }
+    .section-body {
+      padding: 18px;
+      border: 2px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      background: var(--card);
+      margin-bottom: 4px;
+    }
+
+    /* Section Colors */
+    .sec-tenses .section-header { background: #dbeafe; color: #1e40af; border: 2px solid #bfdbfe; border-bottom: none; }
+    .sec-tenses .section-body { border-color: #bfdbfe; }
+    .sec-proofreading .section-header { background: #d1fae5; color: #065f46; border: 2px solid #a7f3d0; border-bottom: none; }
+    .sec-proofreading .section-body { border-color: #a7f3d0; }
+    .sec-reading .section-header { background: #fef3c7; color: #92400e; border: 2px solid #fde68a; border-bottom: none; }
+    .sec-reading .section-body { border-color: #fde68a; }
+    .sec-seasons .section-header { background: #ede9fe; color: #5b21b6; border: 2px solid #c4b5fd; border-bottom: none; }
+    .sec-seasons .section-body { border-color: #c4b5fd; }
+    .sec-gerund .section-header { background: #fce7f3; color: #9d174d; border: 2px solid #fbcfe8; border-bottom: none; }
+    .sec-gerund .section-body { border-color: #fbcfe8; }
+
+    /* ── Reading Passage ── */
+    .reading-passage {
+      background: #fffbeb;
+      border: 2px solid #fde68a;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+    .reading-passage .rp-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #92400e;
+      margin-bottom: 8px;
+    }
+    .reading-passage p {
+      font-size: 0.92rem;
+      color: #78350f;
+      margin-bottom: 6px;
+    }
+    .reading-passage p:last-child { margin-bottom: 0; }
+
+    /* ── Question ── */
+    .question {
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+    .question:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+    .q-text {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    .q-text .q-num {
+      color: var(--primary);
+      font-weight: 700;
+      margin-right: 4px;
+    }
+    .q-text .blank {
+      display: inline-block;
+      min-width: 60px;
+      border-bottom: 2px dashed var(--primary);
+      margin: 0 2px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .q-text .underline {
+      text-decoration: underline;
+      text-decoration-color: #dc2626;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 2px;
+    }
+    .opts { display: flex; flex-direction: column; gap: 6px; }
+    .opt {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 14px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .opt:hover:not(.disabled) { border-color: var(--primary); background: var(--hover-bg); }
+    .opt.disabled { pointer-events: none; opacity: 0.7; }
+    .opt.correct { border-color: var(--correct); background: #f0fdf4; }
+    .opt.wrong { border-color: var(--wrong); background: #fef2f2; }
+    .opt.show-correct { border-color: var(--correct); background: #f0fdf4; }
+    .opt-letter {
+      width: 26px; height: 26px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: var(--bg);
+      font-weight: 700; font-size: 0.85rem; color: var(--muted);
+      flex-shrink: 0;
+    }
+    .opt.correct .opt-letter { background: var(--correct); color: #fff; }
+    .opt.wrong .opt-letter { background: var(--wrong); color: #fff; }
+    .opt.show-correct .opt-letter { background: var(--correct); color: #fff; }
+    .opt .emoji-result {
+      margin-left: auto;
+      font-size: 1.1rem;
+    }
+
+    /* ── Reset Button ── */
+    .reset-btn-wrap {
+      text-align: center;
+      margin-top: 24px;
+    }
+    .reset-btn {
+      padding: 10px 28px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: var(--card);
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: background 0.12s, border-color 0.12s;
+    }
+    .reset-btn:hover { border-color: var(--primary); background: var(--hover-bg); }
+
+    .footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      body { padding: 12px 10px 40px; }
+      .header { padding: 14px 16px; }
+      .header h1 { font-size: 1.2rem; }
+      .section-body { padding: 12px 14px; }
+      .q-text { font-size: 0.9rem; }
+      .opt { padding: 8px 12px; font-size: 0.88rem; }
+      .reading-passage { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>📝 P2 English Quiz 6 Revision <small>香港小学二年级英语复习测验</small></h1>
+    <p>Click your answer for each question · 点击选项查看答案 ✓ ✗</p>
+  </div>
+
+  <!-- Score Bar -->
+  <div class="score-bar">
+    <div class="score-text">
+      Score 得分: <span class="num" id="scoreNum">0</span> <span class="total">/ 20</span>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- ====== A. TENSES ====== -->
+  <div class="section-header sec-tenses">
+    <span class="icon">⏰</span> A. Tenses 时态
+  </div>
+  <div class="section-body sec-tenses">
+    <div class="question" id="q1">
+      <div class="q-text">
+        <span class="q-num">1.</span>
+        My brother <span class="blank">_____</span> (be) busy. He <span class="blank">_____</span> (study) very hard.
+      </div>
+      <div class="opts" data-answer="a">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          is / studies
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          are / study
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          is / study
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          am / studies
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q2">
+      <div class="q-text">
+        <span class="q-num">2.</span>
+        She <span class="blank">_____</span> (go) to school by bus every day.
+      </div>
+      <div class="opts" data-answer="b">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          go
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          goes
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          went
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          going
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q3">
+      <div class="q-text">
+        <span class="q-num">3.</span>
+        They <span class="blank">_____</span> (play) football last Sunday.
+      </div>
+      <div class="opts" data-answer="c">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          play
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          plays
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          played
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          playing
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q4">
+      <div class="q-text">
+        <span class="q-num">4.</span>
+        The cat <span class="blank">_____</span> (sleep) on the sofa now.
+      </div>
+      <div class="opts" data-answer="c">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          sleeps
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          slept
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          is sleeping
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          sleep
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q17">
+      <div class="q-text">
+        <span class="q-num">17.</span>
+        We <span class="blank">_____</span> (visit) our grandmother last weekend.
+      </div>
+      <div class="opts" data-answer="b">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          visit
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          visited
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          visits
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          visiting
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== B. PROOFREADING ====== -->
+  <div class="section-header sec-proofreading">
+    <span class="icon">✏️</span> B. Proofreading 校对改错
+  </div>
+  <div class="section-body sec-proofreading">
+    <div class="question" id="q5">
+      <div class="q-text">
+        <span class="q-num">5.</span>
+        The children have piano lessons on <span class="underline">friday</span>.
+      </div>
+      <div class="opts" data-answer="d">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          Friday
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          Fridays
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          fridays
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          on Friday
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q6">
+      <div class="q-text">
+        <span class="q-num">6.</span>
+        She <span class="underline">go</span> to school at 8 o'clock.
+      </div>
+      <div class="opts" data-answer="b">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          go
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          goes
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          is go
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          went
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q7">
+      <div class="q-text">
+        <span class="q-num">7.</span>
+        He <span class="underline">are</span> a good student.
+      </div>
+      <div class="opts" data-answer="b">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          am
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          is
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          are
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          be
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q8">
+      <div class="q-text">
+        <span class="q-num">8.</span>
+        My mother <span class="underline">cook</span> dinner every night.
+      </div>
+      <div class="opts" data-answer="c">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          cook
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          is cook
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          cooks
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          cooked
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q16">
+      <div class="q-text">
+        <span class="q-num">16.</span>
+        He <span class="underline">have</span> two apples.
+      </div>
+      <div class="opts" data-answer="c">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          have
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          haves
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          has
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          is have
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== C. READING COMPREHENSION ====== -->
+  <div class="section-header sec-reading">
+    <span class="icon">📖</span> C. Reading Comprehension 阅读理解
+  </div>
+  <div class="section-body sec-reading">
+    <div class="reading-passage">
+      <div class="rp-title">📄 Mary's Daily Routine</div>
+      <p>My name is Mary. I am eight years old. I live in Hong Kong with my family.</p>
+      <p>Every morning, I wake up at 7 o'clock. I brush my teeth and wash my face. Then I eat breakfast. I usually have bread and milk for breakfast.</p>
+      <p>After breakfast, I go to school by bus. I have lunch at school with my friends. I usually eat rice, chicken and vegetables.</p>
+      <p>After school, I go home at 4 o'clock. I do my homework first. Then I play with my pet dog, Lucky. He is very cute!</p>
+      <p>In the evening, I have dinner with my family at 7 o'clock. After dinner, I read storybooks. I go to bed at 9 o'clock.</p>
+    </div>
+
+    <div class="question" id="q20">
+      <div class="q-text">
+        <span class="q-num">20.</span>
+        Where does Mary have lunch?
+      </div>
+      <div class="opts" data-answer="b">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          At home
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          At school
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          On the bus
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          At the park
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== D. SEASONS & WEATHER ====== -->
+  <div class="section-header sec-seasons">
+    <span class="icon">🌤️</span> D. Seasons & Weather 季节与天气
+  </div>
+  <div class="section-body sec-seasons">
+    <div class="question" id="q9">
+      <div class="q-text">
+        <span class="q-num">9.</span>
+        What is the weather like in summer?
+      </div>
+      <div class="opts" data-answer="b">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          It's cold and windy.
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          It's hot and sunny. ☀️
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          It's cool and rainy.
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          It's snowy. ❄️
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q10">
+      <div class="q-text">
+        <span class="q-num">10.</span>
+        What do you usually do in summer?
+      </div>
+      <div class="opts" data-answer="c">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          I drink hot chocolate.
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          I play in the snow.
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          I go swimming. 🏊
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          I stay at home.
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q11">
+      <div class="q-text">
+        <span class="q-num">11.</span>
+        What is the weather like in autumn?
+      </div>
+      <div class="opts" data-answer="b">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          It's hot.
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          It's cool and windy. 🍂
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          It's freezing.
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          It's snowy.
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q19">
+      <div class="q-text">
+        <span class="q-num">19.</span>
+        What do you wear in winter?
+      </div>
+      <div class="opts" data-answer="b">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          T-shirt 👕
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          Coat 🧥
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          Sandals
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          Shorts
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== E. LIKE + GERUND ====== -->
+  <div class="section-header sec-gerund">
+    <span class="icon">❤️</span> E. Like + Gerund (like + -ing)
+  </div>
+  <div class="section-body sec-gerund">
+    <div class="question" id="q12">
+      <div class="q-text">
+        <span class="q-num">12.</span>
+        Mimi likes <span class="blank">_____</span> (run) in the playground.
+      </div>
+      <div class="opts" data-answer="d">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          run
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          runing
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          runs
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          running 🏃
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q13">
+      <div class="q-text">
+        <span class="q-num">13.</span>
+        He likes <span class="blank">_____</span> (swim) in the pool.
+      </div>
+      <div class="opts" data-answer="d">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          swim
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          swims
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          swiming
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          swimming 🏊
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q14">
+      <div class="q-text">
+        <span class="q-num">14.</span>
+        They like <span class="blank">_____</span> (play) basketball.
+      </div>
+      <div class="opts" data-answer="c">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          play
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          plays
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          playing 🏀
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          played
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q15">
+      <div class="q-text">
+        <span class="q-num">15.</span>
+        She likes <span class="blank">_____</span> (draw) pictures.
+      </div>
+      <div class="opts" data-answer="b">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          draw
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          drawing 🎨
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          draws
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          drew
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="question" id="q18">
+      <div class="q-text">
+        <span class="q-num">18.</span>
+        I like <span class="blank">_____</span> (read) storybooks.
+      </div>
+      <div class="opts" data-answer="b">
+        <div class="opt" data-letter="A" onclick="checkAnswer(this,'a')">
+          <span class="opt-letter">A</span>
+          read
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="B" onclick="checkAnswer(this,'b')">
+          <span class="opt-letter">B</span>
+          reading 📚
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="C" onclick="checkAnswer(this,'c')">
+          <span class="opt-letter">C</span>
+          reads
+          <span class="emoji-result"></span>
+        </div>
+        <div class="opt" data-letter="D" onclick="checkAnswer(this,'d')">
+          <span class="opt-letter">D</span>
+          am read
+          <span class="emoji-result"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset Button -->
+  <div class="reset-btn-wrap">
+    <button class="reset-btn" onclick="resetQuiz()">🔄 Reset Quiz 重新开始</button>
+  </div>
+
+  <div class="footer">P2 English Quiz 6 Revision · 香港小学二年级英语复习测验</div>
+</div>
+
+<script>
+let score = 0;
+let answered = {};
+
+function checkAnswer(el, selected) {
+  const parent = el.closest('.opts');
+  const qId = parent.closest('.question').id;
+  if (answered[qId]) return; // already answered
+
+  const correct = parent.dataset.answer;
+  const opts = parent.querySelectorAll('.opt');
+
+  // Disable all options
+  opts.forEach(o => o.classList.add('disabled'));
+
+  if (selected === correct) {
+    el.classList.add('correct');
+    el.querySelector('.emoji-result').textContent = '✓';
+    score++;
+  } else {
+    el.classList.add('wrong');
+    el.querySelector('.emoji-result').textContent = '✗';
+    // Show the correct answer
+    opts.forEach(o => {
+      if (o.getAttribute('onclick').includes("'" + correct + "'")) {
+        o.classList.add('show-correct');
+        o.querySelector('.emoji-result').textContent = '✓';
+      }
+    });
+  }
+
+  answered[qId] = true;
+  updateScore();
+}
+
+function updateScore() {
+  document.getElementById('scoreNum').textContent = score;
+  const pct = Math.round((score / 20) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function resetQuiz() {
+  score = 0;
+  answered = {};
+  updateScore();
+
+  document.querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('correct', 'wrong', 'show-correct', 'disabled');
+    o.querySelector('.emoji-result').textContent = '';
+  });
+}
+</script>
+</body>
+</html>
