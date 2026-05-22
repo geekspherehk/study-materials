@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方向 - P2數學</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+.lesson ul{padding-left:20px}
+.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+.lesson .example span{color:#7ee787}
+#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+.btns button:disabled{opacity:0.5;cursor:default}
+.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+.back{padding:6px 16px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+.back:hover{background:#30363d}
+.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 返回主頁</a>
+<h1>🧭 方向</h1>
+
+<div class="lesson">
+<h3>📖 學習重點</h3>
+<ul>
+<li>認識八個基本方向</li>
+<li>東、南、西、北</li>
+<li>東南、東北、西南、西北</li>
+<li>用方向描述位置和路線</li>
+<li>方向的相對性</li>
+</ul>
+</div>
+
+<div class="lesson">
+<h3>🧭 四個基本方向</h3>
+<div class="example">
+<b>🌅 東（E）</b> — 太陽升起的方向<br>
+<b>🌇 西（W）</b> — 太陽落下的方向<br>
+<b>☀️ 南（S）</b> — 中午太陽的方向（在北半球）<br>
+<b>🌙 北（N）</b> — 北極星的方向
+</div>
+<div class="example">
+<b>口訣：</b>上北下南，左西右東<br>
+<span>💡 面向北方，後面是南方，左邊是西方，右邊是東方</span>
+</div>
+</div>
+
+<div class="lesson">
+<h3>🧭 八個方向</h3>
+<div class="example">
+<b>四個基本方向：</b><br>
+<span>N（北）、S（南）、E（東）、W（西）</span>
+</div>
+<div class="example">
+<b>四個輔助方向：</b><br>
+<span>NE（東北）= 東和北的中間</span><br>
+<span>NW（西北）= 西和北的中間</span><br>
+<span>SE（東南）= 東和南的中間</span><br>
+<span>SW（西南）= 西和南的中間</span>
+</div>
+<div class="example" style="text-align:center">
+<b>方向盤：</b><br>
+<pre style="color:#7ee787;font-size:1em">
+        N（北）
+        ↑
+  NW ← ┼ → NE
+        │
+W ──────┼────── E
+        │
+  SW ← ┼ → SE
+        ↓
+        S（南）
+</pre>
+</div>
+</div>
+
+<div class="lesson">
+<h3>🧭 方向的相對性</h3>
+<p>方向是相對於觀察者的位置而定的。</p>
+<div class="example">
+如果你面向<span style="color:#7ee787">北</span>：<br>
+背後是 <b>南</b>，左邊是 <b>西</b>，右邊是 <b>東</b>
+</div>
+<div class="example">
+如果你面向<span style="color:#7ee787">東</span>：<br>
+背後是 <b>西</b>，左邊是 <b>北</b>，右邊是 <b>南</b>
+</div>
+<div class="example">
+如果你面向<span style="color:#7ee787">南</span>：<br>
+背後是 <b>北</b>，左邊是 <b>東</b>，右邊是 <b>西</b>
+</div>
+</div>
+
+<div class="lesson">
+<h3>🧭 用方向描述位置</h3>
+<div class="example">
+學校在家的 <b>東邊</b> → 從家出發往 <b>東</b> 走就能到學校
+</div>
+<div class="example">
+公園在學校的 <b>西北方</b> → 從學校往 <b>西北</b> 走就能到公園
+</div>
+<div class="example">
+<u>遊樂場在超市的哪個方向？</u><br>
+<span>→ 先找到超市的位置，再看遊樂場在超市的哪一邊</span>
+</div>
+</div>
+
+<h2>📝 練習題</h2>
+<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+<div id="score">0 / 0 正確</div>
+
+<script>
+const EXERCISES = [
+  // 基本方向
+  {q:"太陽從哪個方向升起？", opts:["東","南","西","北"], ans:"東"},
+  {q:"太陽從哪個方向落下？", opts:["東","南","西","北"], ans:"西"},
+  {q:"早上面向太陽，你的背後是哪個方向？", opts:["東","南","西","北"], ans:"西"},
+  {q:"中午太陽在什麼方向（北半球）？", opts:["東","南","西","北"], ans:"南"},
+  // 口訣
+  {q:"「上北下南，左___右___」", opts:["東、西","西、東","南、北","北、南"], ans:"西、東"},
+  {q:"面向北時，左邊是什麼方向？", opts:["東","南","西","北"], ans:"西"},
+  {q:"面向北時，右邊是什麼方向？", opts:["東","南","西","北"], ans:"東"},
+  // 八個方向
+  {q:"東和北的中間方向叫什麼？", opts:["東南","東北","西北","西南"], ans:"東北"},
+  {q:"西和南的中間方向叫什麼？", opts:["東南","東北","西北","西南"], ans:"西南"},
+  {q:"東南方向是___和___的中間？", opts:["東·北","東·南","西·北","西·南"], ans:"東·南"},
+  // 方向判斷
+  {q:"面向東時，你的右邊是什麼方向？", opts:["東","南","西","北"], ans:"南"},
+  {q:"面向東時，你的左邊是什麼方向？", opts:["東","南","西","北"], ans:"北"},
+  {q:"面向南時，你的背後是什麼方向？", opts:["東","南","西","北"], ans:"北"},
+  {q:"如果你的左邊是北，你面向的是什麼方向？", opts:["東","南","西","北"], ans:"西"},
+  // 應用
+  {q:"學校在你的家東邊，從家出發要去學校應該往哪個方向走？",
+    opts:["東","南","西","北"], ans:"東"},
+  {q:"公園在學校的西北方，從學校去公園應該往哪個方向走？",
+    opts:["東南","東北","西北","西南"], ans:"西北"},
+  {q:"如果你面向北，向左轉後面向哪個方向？",
+    opts:["東","南","西","北"], ans:"西"},
+];
+let correct=0;
+function renderExercises(){
+  const container=document.getElementById('exercises');
+  if(!container) return;container.innerHTML='';
+  EXERCISES.forEach((item,i)=>{
+    const div=document.createElement('div');div.className='exercise';
+    div.style.background=i%2===0?'#151b23':'#161b22';
+    div.style.border='1px solid #30363d';
+    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+    div.appendChild(h4);
+    const btnDiv=document.createElement('div');btnDiv.className='btns';
+    item.opts.forEach(opt=>{
+      const btn=document.createElement('button');btn.textContent=opt;
+      btn.onclick=()=>{
+        const s=btnDiv.querySelector('.selected');if(s) return;
+        btn.classList.add('selected');
+        const btns=btnDiv.querySelectorAll('button');
+        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+        const icon=document.createElement('p');
+        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+        div.appendChild(icon);
+        const bar=document.getElementById('score');
+        const t=EXERCISES.length;
+        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+      };
+      btnDiv.appendChild(btn);
+    });
+    div.appendChild(btnDiv);container.appendChild(div);
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const sec=document.createElement('div');sec.id='exercises';
+  document.querySelector('body').appendChild(sec);
+  renderExercises();
+});
+</script>
+</body>
+</html>

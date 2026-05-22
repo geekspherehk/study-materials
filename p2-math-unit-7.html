@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>立體圖形 - P2數學</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+.lesson ul{padding-left:20px}
+.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+.lesson .example span{color:#7ee787}
+#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+.btns button:disabled{opacity:0.5;cursor:default}
+.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+.back{padding:6px 16px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+.back:hover{background:#30363d}
+.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 返回主頁</a>
+<h1>📐 立體圖形</h1>
+
+<div class="lesson">
+<h3>📖 學習重點</h3>
+<ul>
+<li>認識常見的立體圖形</li>
+<li>正方體、長方體、圓柱體、球體</li>
+<li>立體圖形的特徵（面、邊、頂點）</li>
+<li>立體圖形與平面圖形的區別</li>
+<li>生活中的立體圖形</li>
+</ul>
+</div>
+
+<div class="lesson">
+<h3>📐 常見立體圖形</h3>
+
+<div class="example">
+<b>🧊 正方體（立方體）</b><br>
+<span>→ 6 個面（都是正方形，大小相同）</span><br>
+<span>→ 12 條棱（長度都相等）</span><br>
+<span>→ 8 個頂點</span><br>
+💡 例如：骰子、魔方
+</div>
+
+<div class="example">
+<b>📦 長方體</b><br>
+<span>→ 6 個面（都是長方形，對面大小相同）</span><br>
+<span>→ 12 條棱（分為3組，每組4條相等）</span><br>
+<span>→ 8 個頂點</span><br>
+💡 例如：書本、磚頭、盒子
+</div>
+
+<div class="example">
+<b>🥫 圓柱體</b><br>
+<span>→ 3 個面（2 個圓形底面 + 1 個曲面側面）</span><br>
+<span>→ 沒有棱和頂點</span><br>
+💡 例如：罐頭、水杯、圓柱筆筒
+</div>
+
+<div class="example">
+<b>⚽ 球體</b><br>
+<span>→ 1 個曲面（沒有平面、沒有棱、沒有頂點）</span><br>
+<span>→ 從哪個角度看都是圓形</span><br>
+💡 例如：足球、籃球、地球儀
+</div>
+</div>
+
+<div class="lesson">
+<h3>📐 立體 vs 平面</h3>
+<div class="example"><b>立體圖形</b>是有厚度、有體積的，可以在各個方向看到<br>
+<span>例如：球、盒子、罐頭</span></div>
+<div class="example"><b>平面圖形</b>是扁平的，只有長和寬<br>
+<span>例如：正方形、長方形、圓形、三角形</span></div>
+</div>
+
+<div class="lesson">
+<h3>📐 圖形對比表</h3>
+<div class="example"><b>正方體</b>：6 個面、12 條棱、8 個頂點 — 所有面都是正方形</div>
+<div class="example"><b>長方體</b>：6 個面、12 條棱、8 個頂點 — 所有面都是長方形</div>
+<div class="example"><b>三角柱</b>：5 個面、9 條棱、6 個頂點 — 2 個三角形 + 3 個長方形</div>
+<div class="example"><b>圓柱體</b>：3 個面（2 圓 + 1 曲面）— 沒有棱和頂點</div>
+<div class="example"><b>球體</b>：1 個曲面 — 沒有棱和頂點</div>
+</div>
+
+<h2>📝 練習題</h2>
+<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+<div id="score">0 / 0 正確</div>
+
+<script>
+const EXERCISES = [
+  // 正方體
+  {q:"正方體有幾個面？", opts:["4個","5個","6個","8個"], ans:"6個"},
+  {q:"正方體的所有面是什麼形狀？", opts:["長方形","三角形","正方形","圓形"], ans:"正方形"},
+  {q:"正方體有幾條棱？", opts:["8條","10條","12條","6條"], ans:"12條"},
+  {q:"正方體有幾個頂點？", opts:["6個","8個","10個","12個"], ans:"8個"},
+  // 長方體
+  {q:"長方體有幾個面？", opts:["4個","5個","6個","8個"], ans:"6個"},
+  {q:"長方體的面是什麼形狀？", opts:["都是正方形","都是長方形","有三角形","有圓形"], ans:"都是長方形"},
+  // 圓柱體
+  {q:"圓柱體有幾個底面？", opts:["1個","2個","3個","0個"], ans:"2個"},
+  {q:"圓柱體的底面是什麼形狀？", opts:["正方形","長方形","三角形","圓形"], ans:"圓形"},
+  {q:"圓柱體有頂點嗎？", opts:["有","沒有","有1個","有2個"], ans:"沒有"},
+  // 球體
+  {q:"球體有幾個面？", opts:["0個","1個","2個","3個"], ans:"1個"},
+  {q:"球體有棱嗎？", opts:["有","沒有","有1條","有2條"], ans:"沒有"},
+  {q:"從哪個方向看球體都是什麼形狀？", opts:["正方形","長方形","三角形","圓形"], ans:"圓形"},
+  // 綜合對比
+  {q:"正方體和長方體有幾個相同點？以下哪個是共同點？", opts:["面數","棱長都相等","面都是正方形","都只有4個面"], ans:"面數"},
+  {q:"哪個立體圖形有3個面？", opts:["正方體","長方體","圓柱體","球體"], ans:"圓柱體"},
+  {q:"哪個立體圖形只有一個曲面？", opts:["正方體","長方體","圓柱體","球體"], ans:"球體"},
+  // 生活例子
+  {q:"骰子是什麼立體圖形？", opts:["長方體","正方體","圓柱體","球體"], ans:"正方體"},
+  {q:"足球是什麼立體圖形？", opts:["正方體","長方體","圓柱體","球體"], ans:"球體"},
+  {q:"罐頭是什麼立體圖形？", opts:["正方體","長方體","圓柱體","球體"], ans:"圓柱體"},
+];
+let correct=0;
+function renderExercises(){
+  const container=document.getElementById('exercises');
+  if(!container) return;container.innerHTML='';
+  EXERCISES.forEach((item,i)=>{
+    const div=document.createElement('div');div.className='exercise';
+    div.style.background=i%2===0?'#151b23':'#161b22';
+    div.style.border='1px solid #30363d';
+    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+    div.appendChild(h4);
+    const btnDiv=document.createElement('div');btnDiv.className='btns';
+    item.opts.forEach(opt=>{
+      const btn=document.createElement('button');btn.textContent=opt;
+      btn.onclick=()=>{
+        const s=btnDiv.querySelector('.selected');if(s) return;
+        btn.classList.add('selected');
+        const btns=btnDiv.querySelectorAll('button');
+        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+        const icon=document.createElement('p');
+        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+        div.appendChild(icon);
+        const bar=document.getElementById('score');
+        const t=EXERCISES.length;
+        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+      };
+      btnDiv.appendChild(btn);
+    });
+    div.appendChild(btnDiv);container.appendChild(div);
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const sec=document.createElement('div');sec.id='exercises';
+  document.querySelector('body').appendChild(sec);
+  renderExercises();
+});
+</script>
+</body>
+</html>

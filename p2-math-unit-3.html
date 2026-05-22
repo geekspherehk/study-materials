@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>時間（時、分）- P2數學</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+.lesson ul{padding-left:20px}
+.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+.lesson .example span{color:#7ee787}
+#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+.btns button:disabled{opacity:0.5;cursor:default}
+.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+.back{padding:6px 16px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+.back:hover{background:#30363d}
+.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+.clock{font-size:1.2em;font-weight:bold;text-align:center;background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:16px;margin:8px 0;color:#e6c384}
+.clock span{color:#7ee787}
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 返回主頁</a>
+<h1>🕐 時間（時、分）</h1>
+
+<div class="lesson">
+<h3>📖 學習重點</h3>
+<ul>
+<li>時鐘的認識：時針、分針、秒針</li>
+<li>讀取整點時間</li>
+<li>讀取半點時間（30分鐘）</li>
+<li>讀取幾時幾分</li>
+<li>時間的單位換算</li>
+</ul>
+</div>
+
+<div class="lesson">
+<h3>🕐 認識時鐘</h3>
+<div class="clock">時針（短針）：<span>指示幾點</span> ⏰ 分針（長針）：<span>指示幾分</span></div>
+<ul>
+<li><b>時針</b>（短針）：走一大格是 <b>1 小時</b></li>
+<li><b>分針</b>（長針）：走一大格是 <b>5 分鐘</b>，走一圈是 <b>60 分鐘</b></li>
+<li><b>1 小時 = 60 分鐘</b></li>
+</ul>
+</div>
+
+<div class="lesson">
+<h3>🕐 整點和半點</h3>
+<div class="example">整點範例：時針指向 <b>3</b>，分針指向 <b>12</b><br>
+<span>→ 3 點 → 3:00</span></div>
+<div class="example">半點範例：時針在 <b>3 和 4 之間</b>，分針指向 <b>6</b><br>
+<span>→ 3 點半 → 3:30</span></div>
+</div>
+
+<div class="lesson">
+<h3>🕐 幾時幾分</h3>
+<div class="example">時針在 <b>8 和 9 之間偏 8</b>，分針指向 <b>3</b><br>
+<span>→ 8:15（八點十五分 / 八點一刻）</span></div>
+<div class="example">時針在 <b>8 和 9 之間偏 9</b>，分針指向 <b>9</b><br>
+<span>→ 8:45（八點四十五分 / 八點三刻）</span></div>
+<div class="example">時針在 <b>10 和 11 之間</b>，分針指向 <b>5</b><br>
+<span>→ 10:25（十點二十五分）</span></div>
+</div>
+
+<div class="lesson">
+<h3>🔄 時間計算</h3>
+<div class="example">2 小時 = <span>120</span> 分鐘</div>
+<div class="example">3 小時 15 分鐘 = <span>195</span> 分鐘</div>
+<div class="example">150 分鐘 = <span>2</span> 小時 <span>30</span> 分鐘</div>
+</div>
+
+<h2>📝 練習題</h2>
+<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+<div id="score">0 / 0 正確</div>
+
+<script>
+const EXERCISES = [
+  // 整點
+  {q:"時針指向 5，分針指向 12，是幾點？", opts:["5:00","5:30","5:15","5:45"], ans:"5:00"},
+  {q:"時針指向 9，分針指向 12，是幾點？", opts:["9:30","9:00","9:15","9:45"], ans:"9:00"},
+  // 半點
+  {q:"時針在 4 和 5 之間，分針指向 6，是幾點？", opts:["4:00","4:30","5:00","4:15"], ans:"4:30"},
+  {q:"時針在 11 和 12 之間，分針指向 6，是幾點？", opts:["12:00","11:15","11:30","11:45"], ans:"11:30"},
+  // 幾時幾分
+  {q:"時針在 2 和 3 之間偏 2，分針指向 3，是幾點？", opts:["2:03","2:15","2:20","2:30"], ans:"2:15"},
+  {q:"時針在 6 和 7 之間偏 7，分針指向 9，是幾點？", opts:["6:45","6:09","6:30","6:50"], ans:"6:45"},
+  {q:"時針在 7 和 8 之間，分針指向 4，是幾點？", opts:["7:04","7:40","7:20","7:30"], ans:"7:20"},
+  // 單位換算
+  {q:"1 小時 = ___ 分鐘", opts:["30","45","60","100"], ans:"60"},
+  {q:"2 小時 30 分鐘 = ___ 分鐘", opts:["150","130","180","120"], ans:"150"},
+  {q:"90 分鐘 = ___ 小時 ___ 分鐘", opts:["1小時30分","1小時15分","2小時","1小時45分"], ans:"1小時30分"},
+  {q:"3 小時 15 分鐘 = ___ 分鐘", opts:["185","175","195","180"], ans:"195"},
+  {q:"120 分鐘 = ___ 小時", opts:["1小時","2小時","3小時","4小時"], ans:"2小時"},
+  // 應用題
+  {q:"小明早上 8:00 上學，11:30 放學。他上了多久的課？",
+    opts:["2小時30分","3小時30分","3小時","4小時"], ans:"3小時30分"},
+  {q:"小美下午 2:15 開始做功課，做了 45 分鐘，幾點完成？",
+    opts:["2:45","3:00","3:15","3:30"], ans:"3:00"},
+  {q:"一節課是 35 分鐘，上了兩節課是多少分鐘？",
+    opts:["60分","65分","70分","75分"], ans:"70分"},
+  {q:"小華從家到學校要走 20 分鐘。他 7:45 出門，幾點到學校？",
+    opts:["8:05","8:00","7:55","8:15"], ans:"8:05"},
+];
+let correct=0;
+function renderExercises(){
+  const container=document.getElementById('exercises');
+  if(!container) return;container.innerHTML='';
+  EXERCISES.forEach((item,i)=>{
+    const div=document.createElement('div');div.className='exercise';
+    div.style.background=i%2===0?'#151b23':'#161b22';
+    div.style.border='1px solid #30363d';
+    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+    div.appendChild(h4);
+    const btnDiv=document.createElement('div');btnDiv.className='btns';
+    item.opts.forEach(opt=>{
+      const btn=document.createElement('button');btn.textContent=opt;
+      btn.onclick=()=>{
+        const s=btnDiv.querySelector('.selected');if(s) return;
+        btn.classList.add('selected');
+        const btns=btnDiv.querySelectorAll('button');
+        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+        const icon=document.createElement('p');
+        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+        div.appendChild(icon);
+        const bar=document.getElementById('score');
+        const t=EXERCISES.length;
+        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+      };
+      btnDiv.appendChild(btn);
+    });
+    div.appendChild(btnDiv);container.appendChild(div);
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const sec=document.createElement('div');sec.id='exercises';
+  document.querySelector('body').appendChild(sec);
+  renderExercises();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三角柱 - P2數學</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+.lesson ul{padding-left:20px}
+.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+.lesson .example span{color:#7ee787}
+#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+.btns button:disabled{opacity:0.5;cursor:default}
+.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+.back{padding:6px 16px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+.back:hover{background:#30363d}
+.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 返回主頁</a>
+<h1>📐 三角柱</h1>
+
+<div class="lesson">
+<h3>📖 學習重點</h3>
+<ul>
+<li>認識三角柱（三棱柱）</li>
+<li>三角柱的特徵：面、邊、頂點</li>
+<li>生活中的三角柱</li>
+<li>三角柱的展開圖</li>
+<li>三角柱與其他立體圖形的區別</li>
+</ul>
+</div>
+
+<div class="lesson">
+<h3>📐 什麼是三角柱？</h3>
+<p>三角柱是由 <b>2 個三角形</b>和 <b>3 個長方形</b>組成的立體圖形。</p>
+<div class="example">
+<b>特徵：</b><br>
+<span>頂點（尖角）：6 個</span><br>
+<span>邊（棱）：9 條</span><br>
+<span>面（平面）：5 個（2 個三角形 + 3 個長方形）</span>
+</div>
+</div>
+
+<div class="lesson">
+<h3>📐 三角柱的組成</h3>
+<ul>
+<li><b>底面（上下）：</b>2 個大小相同、互相平行的三角形</li>
+<li><b>側面（周圍）：</b>3 個長方形</li>
+<li><b>棱（邊）：</b>2 組三角形的邊 + 3 條側棱</li>
+</ul>
+<div class="example">💡 三角柱有 <span>9 條棱</span>：上下兩個三角形各有 3 條邊，再加上 3 條側面的棱</div>
+<div class="example">💡 三角柱有 <span>6 個頂點</span>：上下兩個三角形各 3 個角</div>
+<div class="example">💡 三角柱有 <span>5 個面</span>：2 個三角形面 + 3 個長方形面</div>
+</div>
+
+<div class="lesson">
+<h3>🏠 生活中的三角柱</h3>
+<div class="example">🍫 <b>巧克力條</b> — 很多巧克力棒的形狀就是三角柱體</div>
+<div class="example">🏕️ <b>露營帳篷</b> — 帳篷的形狀像一個三角柱</div>
+<div class="example">🏗️ <b>橋樑結構</b> — 橋樑的支撐架有時做成三角柱形</div>
+<div class="example">📏 <b>三角尺</b> — 雖然是平面的三角形，但三角尺的厚度讓它接近一個扁平的三角柱</div>
+</div>
+
+<div class="lesson">
+<h3>📐 展開圖</h3>
+<p>三角柱的展開圖由 5 個面組成：</p>
+<div class="example">展開後可以看到：<br>
+<span>→ 中間一排 3 個長方形（側面）</span><br>
+<span>→ 上下各 1 個三角形（底面）</span><br>
+💡 把展開圖沿線摺起來，就能變回一個三角柱！</div>
+</div>
+
+<div class="lesson">
+<h3>🔍 三角柱 vs 長方體</h3>
+<div class="example"><b>三角柱</b>：底面是三角形，有 5 個面、9 條棱、6 個頂點</div>
+<div class="example"><b>長方體</b>：底面是長方形，有 6 個面、12 條棱、8 個頂點</div>
+</div>
+
+<h2>📝 練習題</h2>
+<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+<div id="score">0 / 0 正確</div>
+
+<script>
+const EXERCISES = [
+  // 基本特徵
+  {q:"三角柱有幾個面？", opts:["4個","5個","6個","3個"], ans:"5個"},
+  {q:"三角柱有幾條棱（邊）？", opts:["6條","12條","9條","8條"], ans:"9條"},
+  {q:"三角柱有幾個頂點？", opts:["4個","6個","8個","10個"], ans:"6個"},
+  {q:"三角柱的底面是什麼形狀？", opts:["正方形","長方形","三角形","圓形"], ans:"三角形"},
+  {q:"三角柱的側面是什麼形狀？", opts:["三角形","正方形","長方形","圓形"], ans:"長方形"},
+  // 組成判斷
+  {q:"三角柱有幾個三角形面？", opts:["1個","2個","3個","4個"], ans:"2個"},
+  {q:"三角柱有幾個長方形面？", opts:["1個","2個","3個","0個"], ans:"3個"},
+  {q:"三角柱一共有多少個面？", opts:["3個","4個","5個","6個"], ans:"5個"},
+  // 與其他圖形比較
+  {q:"長方體有幾個面？", opts:["4個","5個","6個","8個"], ans:"6個"},
+  {q:"長方體有幾條棱？", opts:["8條","10條","12條","14條"], ans:"12條"},
+  {q:"長方體有幾個頂點？", opts:["4個","6個","8個","10個"], ans:"8個"},
+  {q:"三角柱比長方體少幾個面？", opts:["0個","1個","2個","3個"], ans:"1個"},
+  // 應用題
+  {q:"下列哪個不是三角柱？", opts:["巧克力條","帳篷","骰子","橋樑支撐架"], ans:"骰子"},
+  {q:"一個三角柱的所有頂點數加棱數等於多少？",
+    opts:["14","15","16","17"], ans:"15"},
+  {q:"一個三角柱的所有面數加頂點數等於多少？",
+    opts:["10","11","12","13"], ans:"11"},
+  {q:"三角柱的兩個底面是什麼關係？", opts:["一樣大","不一樣大","一個大一個小","沒有關係"], ans:"一樣大"},
+];
+let correct=0;
+function renderExercises(){
+  const container=document.getElementById('exercises');
+  if(!container) return;container.innerHTML='';
+  EXERCISES.forEach((item,i)=>{
+    const div=document.createElement('div');div.className='exercise';
+    div.style.background=i%2===0?'#151b23':'#161b22';
+    div.style.border='1px solid #30363d';
+    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+    div.appendChild(h4);
+    const btnDiv=document.createElement('div');btnDiv.className='btns';
+    item.opts.forEach(opt=>{
+      const btn=document.createElement('button');btn.textContent=opt;
+      btn.onclick=()=>{
+        const s=btnDiv.querySelector('.selected');if(s) return;
+        btn.classList.add('selected');
+        const btns=btnDiv.querySelectorAll('button');
+        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+        const icon=document.createElement('p');
+        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+        div.appendChild(icon);
+        const bar=document.getElementById('score');
+        const t=EXERCISES.length;
+        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+      };
+      btnDiv.appendChild(btn);
+    });
+    div.appendChild(btnDiv);container.appendChild(div);
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const sec=document.createElement('div');sec.id='exercises';
+  document.querySelector('body').appendChild(sec);
+  renderExercises();
+});
+</script>
+</body>
+</html>

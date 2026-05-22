@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四邊形 - P2數學</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+.lesson ul{padding-left:20px}
+.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+.lesson .example span{color:#7ee787}
+#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+.btns button:disabled{opacity:0.5;cursor:default}
+.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+.back{padding:6px 16px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+.back:hover{background:#30363d}
+.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+.shape-box{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+.shape{text-align:center;background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:16px;flex:1;min-width:120px}
+.shape h4{color:#e6c384;margin-bottom:8px}
+.shape p{color:#7ee787;font-size:0.9em}
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 返回主頁</a>
+<h1>📐 四邊形</h1>
+
+<div class="lesson">
+<h3>📖 學習重點</h3>
+<ul>
+<li>認識四邊形的特徵</li>
+<li>正方形和長方形的特徵</li>
+<li>平行四邊形和梯形</li>
+<li>四邊形的邊和角</li>
+<li>生活中的四邊形</li>
+</ul>
+</div>
+
+<div class="lesson">
+<h3>📐 什麼是四邊形？</h3>
+<div class="example">
+<b>四邊形的特徵：</b><br>
+<span>→ 有 4 條邊</span><br>
+<span>→ 有 4 個角</span><br>
+<span>→ 是封閉的平面圖形</span><br>
+<span>→ 所有邊都是直線</span>
+</div>
+</div>
+
+<div class="lesson">
+<h3>📐 常見的四邊形</h3>
+
+<div class="shape-box">
+<div class="shape">
+<h4>⬜ 正方形</h4>
+<span style="font-size:2em">▪️</span>
+<p>4 條邊一樣長</p>
+<p>4 個角都是直角</p>
+<p>對邊平行</p>
+</div>
+<div class="shape">
+<h4>▬ 長方形</h4>
+<span style="font-size:2em">▬</span>
+<p>對邊一樣長</p>
+<p>4 個角都是直角</p>
+<p>對邊平行</p>
+</div>
+</div>
+<div class="shape-box">
+<div class="shape">
+<h4>▱ 平行四邊形</h4>
+<p>🤚</p>
+<p>對邊一樣長</p>
+<p>對邊互相平行</p>
+<p>對角相等</p>
+</div>
+<div class="shape">
+<h4>⏢ 梯形</h4>
+<p>🔺</p>
+<p>只有一組對邊平行</p>
+<p>另一組對邊不平行</p>
+</div>
+</div>
+</div>
+
+<div class="lesson">
+<h3>📐 正方形 vs 長方形</h3>
+<div class="example"><b>相同點：</b><br>
+<span>→ 都有 4 條邊、4 個角</span><br>
+<span>→ 4 個角都是直角（90°）</span><br>
+<span>→ 對邊互相平行</span></div>
+<div class="example"><b>不同點：</b><br>
+<span>→ 正方形的 4 條邊一樣長</span><br>
+<span>→ 長方形只有對邊一樣長（長和寬可能不同）</span></div>
+</div>
+
+<div class="lesson">
+<h3>🏠 生活中的四邊形</h3>
+<div class="example"><b>正方形：</b>地磚、魔方的面、餐巾</div>
+<div class="example"><b>長方形：</b>書本、窗戶、手機屏幕、門</div>
+<div class="example"><b>平行四邊形：</b>菱形網格、推拉門的結構</div>
+<div class="example"><b>梯形：</b>梯子、屋頂的形狀、手提包</div>
+</div>
+
+<h2>📝 練習題</h2>
+<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+<div id="score">0 / 0 正確</div>
+
+<script>
+const EXERCISES = [
+  // 基本特徵
+  {q:"四邊形有幾條邊？", opts:["3條","4條","5條","6條"], ans:"4條"},
+  {q:"四邊形有幾個角？", opts:["3個","4個","5個","6個"], ans:"4個"},
+  {q:"正方形的 4 條邊有什麼特點？", opts:["一樣長","對邊一樣長","3條一樣長","都不一樣"], ans:"一樣長"},
+  {q:"長方形的對邊有什麼特點？", opts:["一樣長","不一樣","只有一組一樣","都不相等"], ans:"一樣長"},
+  {q:"正方形和長方形都有幾個直角？", opts:["2個","3個","4個","0個"], ans:"4個"},
+  // 辨別
+  {q:"下列哪個是正方形？", opts:["四邊一樣長","對邊一樣長","只有一組對邊平行","邊長不相等"], ans:"四邊一樣長"},
+  {q:"下列哪個不是四邊形？", opts:["正方形","長方形","三角形","平行四邊形"], ans:"三角形"},
+  {q:"梯形的特徵是什麼？", opts:["四邊一樣長","對邊一樣長","只有一組對邊平行","4個直角"], ans:"只有一組對邊平行"},
+  // 正方形 vs 長方形
+  {q:"正方形和長方形的共同點是什麼？", opts:["四邊一樣長","4個直角","對邊不平行","4條邊"], ans:"4個直角"},
+  {q:"正方形比長方形多什麼特點？", opts:["4個直角","對邊平行","四邊一樣長","對邊一樣長"], ans:"四邊一樣長"},
+  // 計算
+  {q:"一個正方形邊長 5 厘米，周長是多少？", opts:["10厘米","15厘米","20厘米","25厘米"], ans:"20厘米"},
+  {q:"一個長方形長 6 厘米、寬 4 厘米，周長是多少？", opts:["10厘米","20厘米","24厘米","30厘米"], ans:"20厘米"},
+  // 應用
+  {q:"地磚通常是什麼形狀？", opts:["三角形","圓形","正方形","梯形"], ans:"正方形"},
+  {q:"書本的形狀通常是什麼？", opts:["正方形","長方形","平行四邊形","梯形"], ans:"長方形"},
+  {q:"梯子的形狀像什麼？", opts:["正方形","長方形","平行四邊形","梯形"], ans:"梯形"},
+  {q:"平行四邊形的對邊有什麼特點？", opts:["都不平行","互相平行","只有一組平行","相交"], ans:"互相平行"},
+];
+let correct=0;
+function renderExercises(){
+  const container=document.getElementById('exercises');
+  if(!container) return;container.innerHTML='';
+  EXERCISES.forEach((item,i)=>{
+    const div=document.createElement('div');div.className='exercise';
+    div.style.background=i%2===0?'#151b23':'#161b22';
+    div.style.border='1px solid #30363d';
+    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+    div.appendChild(h4);
+    const btnDiv=document.createElement('div');btnDiv.className='btns';
+    item.opts.forEach(opt=>{
+      const btn=document.createElement('button');btn.textContent=opt;
+      btn.onclick=()=>{
+        const s=btnDiv.querySelector('.selected');if(s) return;
+        btn.classList.add('selected');
+        const btns=btnDiv.querySelectorAll('button');
+        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+        const icon=document.createElement('p');
+        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+        div.appendChild(icon);
+        const bar=document.getElementById('score');
+        const t=EXERCISES.length;
+        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+      };
+      btnDiv.appendChild(btn);
+    });
+    div.appendChild(btnDiv);container.appendChild(div);
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const sec=document.createElement('div');sec.id='exercises';
+  document.querySelector('body').appendChild(sec);
+  renderExercises();
+});
+</script>
+</body>
+</html>

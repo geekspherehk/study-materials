@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>長度（米、厘米）- P2數學</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+.lesson ul{padding-left:20px}
+.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+.lesson .example span{color:#7ee787}
+#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+.btns button:disabled{opacity:0.5;cursor:default}
+.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+.back{padding:6px 16px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+.back:hover{background:#30363d}
+.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 返回主頁</a>
+<h1>📏 長度（米、厘米）</h1>
+
+<div class="lesson">
+<h3>📖 學習重點</h3>
+<ul>
+<li>認識長度單位：米（m）和厘米（cm）</li>
+<li>米和厘米的換算</li>
+<li>用尺子量長度</li>
+<li>長度的加減計算</li>
+<li>生活中的長度</li>
+</ul>
+</div>
+
+<div class="lesson">
+<h3>📏 認識長度單位</h3>
+<div class="example"><b>1 米（1 m）</b> — 大約是教室門的高度<br>
+<span>💡 常用來量較長的東西</span></div>
+<div class="example"><b>1 厘米（1 cm）</b> — 大約是指甲的寬度<br>
+<span>💡 常用來量較短的東西</span></div>
+<div class="example"><b>1 米 = 100 厘米</b><br>
+<span>💡 記住：米（大單位）→ ×100 → 厘米（小單位）</span></div>
+</div>
+
+<div class="lesson">
+<h3>📏 單位換算</h3>
+<div class="example">2 米 = <span>200</span> 厘米<br>
+<span>→ 因為 1 米 = 100 厘米，2 米 = 2 × 100 = 200 厘米</span></div>
+<div class="example">3 米 50 厘米 = <span>350</span> 厘米<br>
+<span>→ 3 米 = 300 厘米，300 + 50 = 350 厘米</span></div>
+<div class="example">450 厘米 = <span>4</span> 米 <span>50</span> 厘米<br>
+<span>→ 450 ÷ 100 = 4 餘 50</span></div>
+</div>
+
+<div class="lesson">
+<h3>📏 長度比較</h3>
+<div class="example">比較大小：1 米 20 厘米 ○ 130 厘米<br>
+<span>→ 1 米 20 厘米 = 120 厘米，120 < 130，所以 1 米 20 厘米 < 130 厘米</span></div>
+<div class="example">比較大小：200 厘米 ○ 2 米<br>
+<span>→ 200 厘米 = 2 米，所以 200 厘米 = 2 米</span></div>
+</div>
+
+<div class="lesson">
+<h3>📏 長度的加減</h3>
+<div class="example">3 米 + 2 米 = <span>5</span> 米</div>
+<div class="example">50 厘米 + 30 厘米 = <span>80</span> 厘米 = <span>0</span> 米 <span>80</span> 厘米</div>
+<div class="example">1 米 50 厘米 + 2 米 30 厘米 = <span>3</span> 米 <span>80</span> 厘米</div>
+<div class="example">3 米 - 1 米 20 厘米 = <span>1</span> 米 <span>80</span> 厘米<br>
+<span>→ 3 米 = 2 米 100 厘米，100 - 20 = 80 厘米，2 - 1 = 1 米</span></div>
+</div>
+
+<h2>📝 練習題</h2>
+<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+<div id="score">0 / 0 正確</div>
+
+<script>
+const EXERCISES = [
+  // 單位換算
+  {q:"1 米 = ___ 厘米", opts:["10","50","100","1000"], ans:"100"},
+  {q:"200 厘米 = ___ 米", opts:["2","20","200","0.2"], ans:"2"},
+  {q:"3 米 = ___ 厘米", opts:["30","300","3000","3"], ans:"300"},
+  {q:"500 厘米 = ___ 米", opts:["50","5","500","0.5"], ans:"5"},
+  {q:"2 米 50 厘米 = ___ 厘米", opts:["250","2050","2005","25"], ans:"250"},
+  {q:"350 厘米 = ___ 米 ___ 厘米", opts:["3米50厘","35米","3米5厘","30米50厘"], ans:"3米50厘"},
+  // 長度比較
+  {q:"哪個更長？ 1 米 20 厘米 還是 130 厘米",
+    opts:["1米20釐米","130厘米","一樣長","無法比較"], ans:"130厘米"},
+  {q:"哪個更長？ 200 厘米 還是 2 米",
+    opts:["200厘米","2米","一樣長","無法比較"], ans:"一樣長"},
+  // 長度計算
+  {q:"3 米 + 2 米 = ___ 米", opts:["1","5","6","4"], ans:"5"},
+  {q:"50 厘米 + 30 厘米 = ___ 厘米", opts:["20","90","80","70"], ans:"80"},
+  {q:"1 米 50 厘米 + 2 米 30 厘米 = ___",
+    opts:["3米80厘","3米60厘","4米80厘","3米20厘"], ans:"3米80厘"},
+  {q:"3 米 - 1 米 20 厘米 = ___",
+    opts:["2米20厘","1米80厘","2米80厘","1米20厘"], ans:"1米80厘"},
+  // 應用題
+  {q:"一條繩子長 2 米 50 厘米，另一條長 1 米 80 厘米，兩條繩子共長多少？",
+    opts:["4米30厘","3米30厘","4米20厘","3米"], ans:"4米30厘"},
+  {q:"書桌長 120 厘米，椅子長 50 厘米。書桌比椅子長多少？",
+    opts:["170厘米","60厘米","70厘米","80厘米"], ans:"70厘米"},
+  {q:"教室門高 2 米，小明身高 1 米 30 厘米，門比小明高多少？",
+    opts:["70厘米","80厘米","1米","60厘米"], ans:"70厘米"},
+  {q:"一張紙長 30 厘米，寬 20 厘米。周長是多少？",
+    opts:["50厘米","60厘米","100厘米","600厘米"], ans:"100厘米"},
+];
+let correct=0;
+function renderExercises(){
+  const container=document.getElementById('exercises');
+  if(!container) return;container.innerHTML='';
+  EXERCISES.forEach((item,i)=>{
+    const div=document.createElement('div');div.className='exercise';
+    div.style.background=i%2===0?'#151b23':'#161b22';
+    div.style.border='1px solid #30363d';
+    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+    div.appendChild(h4);
+    const btnDiv=document.createElement('div');btnDiv.className='btns';
+    item.opts.forEach(opt=>{
+      const btn=document.createElement('button');btn.textContent=opt;
+      btn.onclick=()=>{
+        const s=btnDiv.querySelector('.selected');if(s) return;
+        btn.classList.add('selected');
+        const btns=btnDiv.querySelectorAll('button');
+        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+        const icon=document.createElement('p');
+        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+        div.appendChild(icon);
+        const bar=document.getElementById('score');
+        const t=EXERCISES.length;
+        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+      };
+      btnDiv.appendChild(btn);
+    });
+    div.appendChild(btnDiv);container.appendChild(div);
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const sec=document.createElement('div');sec.id='exercises';
+  document.querySelector('body').appendChild(sec);
+  renderExercises();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100以內的加減法 - P2數學</title>
+<style>
+/* ── reset ── */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+/* ── lesson cards ── */
+.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+.lesson ul{padding-left:20px}
+.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+.lesson .example span{color:#7ee787}
+/* ── exercise section ── */
+#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+.btns button:disabled{opacity:0.5;cursor:default}
+.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+/* ── layout ── */
+.back{padding:6px 16px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+.back:hover{background:#30363d}
+.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 返回主頁</a>
+<h1>📐 100以內的加減法</h1>
+
+<div class="lesson">
+<h3>📖 學習重點</h3>
+<ul>
+<li>100以內的不進位加法（兩位數 + 兩位數）</li>
+<li>100以內的進位加法（個位相加滿十進一）</li>
+<li>100以內的不退位減法</li>
+<li>100以內的退位減法（個位不夠減，向十位借1）</li>
+<li>連加連減（兩步計算）</li>
+</ul>
+</div>
+
+<div class="lesson">
+<h3>🧮 加法：個位相加</h3>
+<div class="example">例子：23 + 45 = 68<br>
+<span>→ 個位：3 + 5 = 8，十位：2 + 4 = 6</span></div>
+<div class="example">例子：37 + 28 = 65（進位）<br>
+<span>→ 個位：7 + 8 = 15，寫5進1<br>
+→ 十位：3 + 2 + 1（進位）= 6</span></div>
+</div>
+
+<div class="lesson">
+<h3>🧮 減法：個位相減</h3>
+<div class="example">例子：78 - 45 = 33<br>
+<span>→ 個位：8 - 5 = 3，十位：7 - 4 = 3</span></div>
+<div class="example">例子：53 - 27 = 26（退位）<br>
+<span>→ 個位：3不夠減7，向十位借1，變成13 - 7 = 6<br>
+→ 十位：5被借1剩下4，4 - 2 = 2</span></div>
+</div>
+
+<div class="lesson">
+<h3>🧮 連加連減</h3>
+<div class="example">例子：25 + 14 + 30 = 69<br>
+<span>→ 先算 25 + 14 = 39，再算 39 + 30 = 69</span></div>
+<div class="example">例子：80 - 25 - 13 = 42<br>
+<span>→ 先算 80 - 25 = 55，再算 55 - 13 = 42</span></div>
+</div>
+
+<h2>📝 練習題</h2>
+<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+<div id="score">0 / 0 正確</div>
+
+<script>
+const EXERCISES = [
+  // Q1-4: 不進位加法
+  {q:"23 + 45 = ?", opts:["68","78","65","58"], ans:"68"},
+  {q:"51 + 27 = ?", opts:["78","88","77","79"], ans:"78"},
+  {q:"34 + 52 = ?", opts:["86","85","96","76"], ans:"86"},
+  {q:"43 + 16 = ?", opts:["59","49","69","58"], ans:"59"},
+  // Q5-8: 進位加法
+  {q:"37 + 28 = ?", opts:["55","65","56","75"], ans:"65"},
+  {q:"46 + 38 = ?", opts:["84","74","94","85"], ans:"84"},
+  {q:"29 + 55 = ?", opts:["84","74","94","85"], ans:"84"},
+  {q:"68 + 27 = ?", opts:["95","85","105","96"], ans:"95"},
+  // Q9-12: 不退位減法
+  {q:"78 - 45 = ?", opts:["33","23","43","32"], ans:"33"},
+  {q:"96 - 42 = ?", opts:["54","64","44","55"], ans:"54"},
+  {q:"85 - 31 = ?", opts:["54","44","64","55"], ans:"54"},
+  {q:"59 - 26 = ?", opts:["33","43","23","32"], ans:"33"},
+  // Q13-16: 退位減法
+  {q:"53 - 27 = ?", opts:["26","36","34","24"], ans:"26"},
+  {q:"72 - 48 = ?", opts:["24","34","14","44"], ans:"24"},
+  {q:"61 - 35 = ?", opts:["26","36","34","24"], ans:"26"},
+  {q:"83 - 56 = ?", opts:["27","37","17","47"], ans:"27"},
+  // Q17-20: 連加連減
+  {q:"25 + 14 + 30 = ?", opts:["69","59","79","89"], ans:"69"},
+  {q:"12 + 33 + 44 = ?", opts:["89","79","99","69"], ans:"89"},
+  {q:"80 - 25 - 13 = ?", opts:["42","52","32","62"], ans:"42"},
+  {q:"95 - 34 - 21 = ?", opts:["40","50","30","60"], ans:"40"},
+];
+// ── render ──
+let correct=0;
+function renderExercises(){
+  const container=document.getElementById('exercises');
+  if(!container) return;
+  container.innerHTML='';
+  EXERCISES.forEach((item,i)=>{
+    const div=document.createElement('div');div.className='exercise';
+    div.style.background=i%2===0?'#151b23':'#161b22';
+    div.style.border='1px solid #30363d';
+    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+    div.appendChild(h4);
+    const btnDiv=document.createElement('div');btnDiv.className='btns';
+    item.opts.forEach(opt=>{
+      const btn=document.createElement('button');
+      btn.textContent=opt;
+      btn.onclick=()=>{
+        const s=btnDiv.querySelector('.selected');
+        if(s) return;
+        btn.classList.add('selected');
+        const btns=btnDiv.querySelectorAll('button');
+        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+        const icon=document.createElement('p');
+        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+        div.appendChild(icon);
+        const bar=document.getElementById('score');
+        const t=EXERCISES.length;
+        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+      };
+      btnDiv.appendChild(btn);
+    });
+    div.appendChild(btnDiv);container.appendChild(div);
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const sec=document.createElement('div');sec.id='exercises';
+  document.querySelector('body').appendChild(sec);
+  renderExercises();
+});
+</script>
+</body>
+</html>
