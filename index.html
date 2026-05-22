@@ -6,12 +6,19 @@
 <title>学习素材站</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, sans-serif; background: #f5f5f5; color: #333; }
-  header { background: #2c3e50; color: #fff; padding: 20px; text-align: center; }
-  header h1 { font-size: 1.5rem; font-weight: 600; }
-  nav { display: flex; justify-content: center; gap: 4px; background: #34495e; padding: 8px; flex-wrap: wrap; }
-  nav button { background: transparent; border: 1px solid #555; color: #ccc; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 0.9rem; }
-  nav button:hover, nav button.active { background: #2c3e50; border-color: #2c3e50; color: #fff; }
+  body { font-family: -apple-system, sans-serif; background: #f5f5f5; color: #333; display: flex; min-height: 100vh; }
+  
+  /* ── 左侧边栏 ── */
+  .sidebar { width: 220px; min-width: 220px; background: #2c3e50; color: #fff; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+  .sidebar h1 { font-size: 1.1rem; font-weight: 700; padding: 20px 16px 12px; border-bottom: 1px solid #3d5166; text-align: center; }
+  .sidebar .category { padding: 8px 16px 2px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #7f8c8d; }
+  .sidebar a, .sidebar button.side-btn { display: block; width: 100%; padding: 8px 16px 8px 20px; border: none; background: transparent; color: #bdc3c7; cursor: pointer; text-align: left; font-size: 0.9rem; text-decoration: none; transition: all 0.15s; border-left: 3px solid transparent; }
+  .sidebar a:hover, .sidebar button.side-btn:hover { background: #34495e; color: #fff; border-left-color: #3498db; }
+  .sidebar a.active, .sidebar button.side-btn.active { background: #34495e; color: #fff; border-left-color: #3498db; font-weight: 600; }
+  .sidebar .nav-gap { height: 1px; background: #3d5166; margin: 6px 16px; }
+  
+  /* ── 右侧主内容 ── */
+  .main-content { flex: 1; padding: 24px; max-width: 760px; margin: 0 auto; width: 100%; }
 
   /* 背单词 */
   .word-grid { display: flex; flex-direction: column; gap: 8px; max-height: 520px; overflow-y: auto; padding-right: 4px; }
@@ -50,7 +57,7 @@
   .topic-tab { padding: 6px 14px; border-radius: 20px; border: 1.5px solid #ccc; background: #fff; cursor: pointer; font-size: 0.85rem; color: #555; transition: all 0.15s; }
   .topic-tab:hover { border-color: #2c3e50; color: #2c3e50; }
   .topic-tab.active { background: #2c3e50; border-color: #2c3e50; color: #fff; }
-  main { max-width: 700px; margin: 24px auto; padding: 0 16px; }
+  main { max-width: 100%; margin: 0; padding: 0; }
   .section { display: none; }
   .section.active { display: block; }
   .card { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
@@ -135,20 +142,30 @@
 </head>
 <body>
 
-<header>
+<!-- ── 左侧边栏 ── -->
+<div class="sidebar">
   <h1>📚 学习素材站</h1>
-</header>
+  <div class="category">📐 数学</div>
+  <button class="side-btn active" onclick="show('math')">口算练习</button>
+  <div class="nav-gap"></div>
+  <div class="category">📖 英语</div>
+  <button class="side-btn" onclick="show('vocab')">背单词</button>
+  <button class="side-btn" onclick="show('gram')">📝 语法练习</button>
+  <a href="hk-english-grammar.html" class="side-btn" style="display:block;">📖 语法知识</a>
+  <div class="nav-gap"></div>
+  <div class="category">📝 小测复习</div>
+  <a href="quiz-6-revision.html" class="side-btn" style="display:block;">📝 Quiz 6 L1 (单选)</a>
+  <a href="quiz-6-revision-level2.html" class="side-btn" style="display:block;">✨ Quiz 6 L2 (填空)</a>
+  <div class="nav-gap"></div>
+  <div class="category">🃏 闪卡</div>
+  <button class="side-btn" onclick="show('flash')">IELTS 闪卡</button>
+  <div class="nav-gap"></div>
+  <div class="category">🎯 IELTS</div>
+  <button class="side-btn" onclick="show('ielts')">IELTS 资料</button>
+</div>
 
-<nav>
-  <button class="active" onclick="show('math')">口算练习</button>
-  <button onclick="show('flash')">闪卡背词</button>
-  <button onclick="show('vocab')">背单词</button>
-  <button onclick="show('gram')">📝 语法练习</button>
-  <a href="hk-english-grammar.html" style="text-decoration:none;color:inherit;"><button>📖 语法知识</button></a>
-  <a href="quiz-6-revision.html" style="text-decoration:none;color:inherit;"><button>📝 Quiz 6</button></a>
-  <button onclick="show('ielts')">IELTS 资料</button>
-</nav>
-
+<!-- ── 右侧主内容 ── -->
+<div class="main-content">
 <main>
 
   <!-- 口算练习 -->
@@ -280,8 +297,18 @@
   </div>
 
 </main>
+</div> <!-- /main-content -->
 
 <script>
+// ── 切换页面 ──────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) target.classList.add('active');
+  document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll(`.side-btn[onclick*="'${id}'"], .side-btn[href*="${id}"]`).forEach(b => b.classList.add('active'));
+}
+
 // ── 口算 ──────────────────────────────────────────
 const questions = [];
 let answers = [];
