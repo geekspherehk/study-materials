@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2 English Unit 2 - a/an/the</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f1f5f9; color: #1e293b; line-height: 1.6; padding: 24px; }
+  .container { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 1.4rem; color: #2563eb; margin-bottom: 4px; }
+  .subtitle { color: #64748b; font-size: 0.85rem; margin-bottom: 24px; }
+  .card { background: #fff; border-radius: 12px; padding: 20px 24px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 16px; }
+  .card-title { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 14px; }
+  .tag { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 2px 9px; border-radius: 99px; background: #dbeafe; color: #1e40af; margin-bottom: 10px; }
+  .example { background: #f8fafc; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; }
+  .example:last-child { margin-bottom: 0; }
+  .example .en { color: #2563eb; font-weight: 600; margin-bottom: 2px; }
+  .example .zh { color: #64748b; font-size: 0.82rem; }
+  .rule { font-size: 0.85rem; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #2563eb; }
+  .rule:last-child { margin-bottom: 0; }
+  .video-link { margin: 12px 0 16px; }
+  .video-link a { display: inline-block; background: #fb7299; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background .2s; }
+  .video-link a:hover { background: #f56c8a; }
+  .ex-item { padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+  .ex-item:last-child { border-bottom: none; }
+  .ex-item p { font-weight: 600; margin-bottom: 8px; }
+  .opts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .opt-btn { padding: 6px 16px; border: 1.5px solid #ccc; border-radius: 20px; background: #fff; cursor: pointer; font-size: 0.9rem; transition: all 0.15s; }
+  .opt-btn:hover { border-color: #2563eb; }
+  .opt-btn.selected { border-color: #2563eb; background: #2563eb; color: #fff; }
+  .opt-btn.correct { border-color: #27ae60; background: #27ae60; color: #fff; }
+  .opt-btn.wrong { border-color: #e74c3c; background: #e74c3c; color: #fff; }
+  .opt-btn.show-correct { border-color: #27ae60; background: #d4edda; color: #27ae60; }
+  .result-icon { margin-left: 8px; font-size: 1.1rem; }
+  .btn { background: #2c3e50; color: #fff; border: none; padding: 10px 24px; border-radius: 6px; cursor: pointer; font-size: 0.95rem; }
+  .btn:hover { background: #34495e; }
+  .btn-green { background: #27ae60; }
+  .btn-green:hover { background: #1e8449; }
+  .score-bar { margin-top: 12px; text-align: center; font-weight: 600; }
+  .back-link { display: inline-block; margin-top: 16px; color: #2563eb; text-decoration: none; font-size: 0.9rem; }
+  .back-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🔤 Unit 2 - a / an / the</h1>
+  <p class="subtitle">P2 English · 冠词（香港小学二年级）</p>
+
+  <div class="card">
+    <span class="tag">Articles 冠词</span>
+    <div class="card-title">a / an / the</div>
+    <div class="video-link">
+      <a href="https://www.youtube.com/results?search_query=a+an+the+kids+english+grammar" target="_blank" rel="noopener">📺 点击搜索 YouTube 教学视频 →</a>
+    </div>
+    <div class="example"><div class="en">a dog, a university, a hot day</div><div class="zh">a + 辅音音标开头的词</div></div>
+    <div class="example"><div class="en">an apple, an egg, an old man</div><div class="zh">an + 元音音标开头的词（注意听发音，不是看字母）</div></div>
+    <div class="example"><div class="en">an hour (h不发音), an honest boy</div><div class="zh">特殊情况：h 不发音时用 an</div></div>
+    <div class="example"><div class="en">the sun, the book on the desk</div><div class="zh">the = 特指，双方都知道的事物</div></div>
+    <div class="rule">📌 a/an 是不定冠词，用于第一次提到的单数可数名词</div>
+    <div class="rule">📌 the 是定冠词，用于已提到或双方都知道的名词</div>
+    <div class="rule">📌 口诀：a dog, an apple, the is special</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📝 练习题 — 选择正确答案</div>
+    <div id="ex-area"></div>
+    <div style="margin-top:16px; text-align:center;">
+      <button class="btn btn-green" onclick="checkAnswers()">提交答案</button>
+      <span id="score" class="score-bar"></span>
+    </div>
+  </div>
+  <a href="index.html" class="back-link">← 返回主页</a>
+</div>
+<script>
+const EXERCISES = [
+  { q: 'I have ___ apple.', opts: ['a', 'an'], ans: 'an' },
+  { q: 'She is ___ nice girl.', opts: ['a', 'an'], ans: 'a' },
+  { q: 'He is ___ honest boy.', opts: ['a', 'an'], ans: 'an' },
+  { q: 'It is ___ big bag.', opts: ['a', 'an'], ans: 'a' },
+  { q: '___ sun is bright today.', opts: ['A', 'An', 'The'], ans: 'The' },
+  { q: 'There is ___ elephant.', opts: ['a', 'an'], ans: 'an' },
+  { q: 'I saw ___ movie yesterday.', opts: ['a', 'an'], ans: 'a' },
+  { q: '___ orange is on the table.', opts: ['A', 'An', 'The'], ans: 'An' },
+  { q: 'She is ___ teacher.', opts: ['a', 'an'], ans: 'a' },
+  { q: 'He waited for ___ hour.', opts: ['a', 'an'], ans: 'an' },
+];
+
+function renderExercises() {
+  const area = document.getElementById('ex-area');
+  EXERCISES.forEach((item, i) => {
+    const div = document.createElement('div'); div.className = 'ex-item'; div.id = 'ex-' + i;
+    let html = '<p>' + (i+1) + '. ' + item.q + '</p><div class="opts">';
+    const shuffled = [...item.opts].sort(() => Math.random() - 0.5);
+    shuffled.forEach(opt => { html += '<button class="opt-btn" onclick="selectOpt(' + i + ', this, \\'' + opt + '\\')">' + opt + '</button>'; });
+    html += '<span class="result-icon" id="ri-' + i + '"></span></div>'; div.innerHTML = html; area.appendChild(div);
+  });
+}
+function selectOpt(idx, btn, val) { const c = document.getElementById('ex-' + idx); c.querySelectorAll('.opt-btn').forEach(b => { b.classList.remove('selected'); b.dataset.selected = ''; }); btn.classList.add('selected'); btn.dataset.selected = val; }
+function checkAnswers() {
+  let correct = 0;
+  EXERCISES.forEach((item, i) => {
+    const c = document.getElementById('ex-' + i); const btns = c.querySelectorAll('.opt-btn');
+    const s = c.querySelector('.opt-btn.selected'); const icon = document.getElementById('ri-' + i);
+    btns.forEach(b => { b.disabled = true; if(b.textContent.trim()===item.ans) b.classList.add(b===s?'correct':'show-correct'); else if(b===s) b.classList.add('wrong'); });
+    if(s&&s.textContent.trim()===item.ans){icon.textContent='✅';correct++;} else{icon.textContent='❌';}
+  });
+  const t = EXERCISES.length; const bar = document.getElementById('score');
+  bar.textContent = correct+' / '+t+' 正确（'+Math.round(correct/t*100)+'%）';
+  bar.style.color = correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+}
+renderExercises();
+</script>
+</body>
+</html>

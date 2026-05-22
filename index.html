@@ -15,6 +15,14 @@
   .sidebar a, .sidebar button.side-btn { display: block; width: 100%; padding: 8px 16px 8px 20px; border: none; background: transparent; color: #bdc3c7; cursor: pointer; text-align: left; font-size: 0.9rem; text-decoration: none; transition: all 0.15s; border-left: 3px solid transparent; }
   .sidebar a:hover, .sidebar button.side-btn:hover { background: #34495e; color: #fff; border-left-color: #3498db; }
   .sidebar a.active, .sidebar button.side-btn.active { background: #34495e; color: #fff; border-left-color: #3498db; font-weight: 600; }
+  .sidebar .side-btn.sub-btn { padding-left: 32px; font-size: 0.82rem; border-left-color: transparent; }
+  .sidebar .side-btn.sub-btn:hover, .sidebar .side-btn.sub-btn.active { border-left-color: #e67e22; }
+  .sidebar .side-btn.sub-btn.active { background: #34495e; color: #f39c12; font-weight: 600; }
+  .sidebar-details { width: 100%; }
+  .sidebar-details summary.side-summary { padding: 8px 16px 8px 20px; color: #bdc3c7; cursor: pointer; font-size: 0.88rem; list-style: none; display: flex; align-items: center; border-left: 3px solid transparent; user-select: none; transition: all 0.15s; }
+  .sidebar-details summary.side-summary:hover { background: #34495e; color: #fff; }
+  .sidebar-details summary.side-summary::before { content: "▶"; margin-right: 6px; font-size: 0.7rem; transition: transform 0.2s; }
+  .sidebar-details[open] summary.side-summary::before { content: "▼"; }
   .sidebar .nav-gap { height: 1px; background: #3d5166; margin: 6px 16px; }
   
   /* ── 右侧主内容 ── */
@@ -153,9 +161,38 @@
   <button class="side-btn" onclick="show('gram')">📝 语法练习</button>
   <a href="hk-english-grammar.html" class="side-btn" style="display:block;">📖 语法知识</a>
   <div class="nav-gap"></div>
-  <div class="category">📝 小测复习</div>
-  <a href="quiz-6-revision.html" class="side-btn" style="display:block;">📝 Quiz 6 L1 (单选)</a>
-  <a href="quiz-6-revision-level2.html" class="side-btn" style="display:block;">✨ Quiz 6 L2 (填空)</a>
+  <div class="category">👶 小二 · 📖 英文</div>
+  <details class="sidebar-details" open>
+    <summary class="side-summary">🔤 P2 英文知识点 (20个)</summary>
+    <button class="side-btn sub-btn" onclick="showP2Topic(1)">U1. is/am/are</button>
+    <button class="side-btn sub-btn" onclick="showP2Topic(2)">U2. a/an/the</button>
+    <button class="side-btn sub-btn" onclick="showP2Topic(3)">U3. can</button>
+    <button class="side-btn sub-btn" onclick="showP2Topic(9)">U9. do/does</button>
+    <button class="side-btn sub-btn" onclick="showP2Topic(10)">U10. Common expressions</button>
+    <button class="side-btn sub-btn" onclick="showP2Topic(11)">U11. I/me/my...</button>
+    <button class="side-btn sub-btn" onclick="showP2Topic(12)">U12. Nouns</button>
+    <button class="side-btn sub-btn" onclick="showP2Topic(13)">U13. Ordinal numbers</button>
+  <a href="p2-unit-1.html" class="side-btn sub-btn">Unit 1 - is/am/are</a>
+    <a href="p2-unit-2.html" class="side-btn sub-btn">Unit 2 - a/an/the</a>
+    <a href="p2-unit-3.html" class="side-btn sub-btn">Unit 3 - can</a>
+    <a href="p2-unit-4.html" class="side-btn sub-btn">Unit 4 - and/but</a>
+    <a href="p2-unit-5.html" class="side-btn sub-btn">Unit 5 - this/that/these/those</a>
+    <a href="p2-unit-6.html" class="side-btn sub-btn">Unit 6 - in/on/under</a>
+    <a href="p2-unit-7.html" class="side-btn sub-btn">Unit 7 - Prepositions of place</a>
+    <a href="p2-unit-8.html" class="side-btn sub-btn">Unit 8 - Simple present tense</a>
+    <a href="p2-unit-9.html" class="side-btn sub-btn">Unit 9 - do/does</a>
+    <a href="p2-unit-10.html" class="side-btn sub-btn">Unit 10 - Common expressions</a>
+    <a href="p2-unit-11.html" class="side-btn sub-btn">Unit 11 - I/me/my...</a>
+    <a href="p2-unit-12.html" class="side-btn sub-btn">Unit 12 - Nouns</a>
+    <a href="p2-unit-13.html" class="side-btn sub-btn">Unit 13 - Ordinal numbers</a>
+    <a href="p2-unit-14.html" class="side-btn sub-btn">Unit 14 - Adjectives</a>
+    <a href="p2-unit-15.html" class="side-btn sub-btn">Unit 15 - Opposites</a>
+    <a href="p2-unit-16.html" class="side-btn sub-btn">Unit 16 - Question words: Wh-</a>
+    <a href="p2-unit-17.html" class="side-btn sub-btn">Unit 17 - Question words: How</a>
+    <a href="p2-unit-18.html" class="side-btn sub-btn">Unit 18 - Imperatives</a>
+    <a href="p2-unit-19.html" class="side-btn sub-btn">Unit 19 - Comprehension(1): Rules</a>
+    <a href="p2-unit-20.html" class="side-btn sub-btn">Unit 20 - Comprehension(2): Letters</a>
+  </details>
   <div class="nav-gap"></div>
   <div class="category">🃏 闪卡</div>
   <button class="side-btn" onclick="show('flash')">IELTS 闪卡</button>
@@ -275,6 +312,17 @@
     </div>
   </div>
   
+  <!-- 小二 英文 -->
+  <div id="p2-english" class="section">
+    <div class="card" style="padding:20px;">
+      <div id="p2-content-area">
+        <h2 id="p2-title">👦 小二英文 · 选择左侧知识点开始学习</h2>
+        <p id="p2-lesson-desc" style="color:#64748b;margin:10px 0 20px;">点击左侧知识点，查看基础讲解、视频和练习题</p>
+        <div id="p2-lesson-body"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- IELTS 资料 -->
   <div id="ielts" class="section">
     <div class="card">

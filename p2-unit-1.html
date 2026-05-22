@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2 English Unit 1 - is/am/are</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f1f5f9; color: #1e293b; line-height: 1.6; padding: 24px; }
+  .container { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 1.4rem; color: #2563eb; margin-bottom: 4px; }
+  .subtitle { color: #64748b; font-size: 0.85rem; margin-bottom: 24px; }
+  .card { background: #fff; border-radius: 12px; padding: 20px 24px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 16px; }
+  .card-title { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 14px; }
+  .tag { display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 2px 9px; border-radius: 99px; background: #dcfce7; color: #166534; margin-bottom: 10px; }
+  .example { background: #f8fafc; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; }
+  .example:last-child { margin-bottom: 0; }
+  .example .en { color: #2563eb; font-weight: 600; margin-bottom: 2px; }
+  .example .zh { color: #64748b; font-size: 0.82rem; }
+  .rule { font-size: 0.85rem; margin-bottom: 10px; padding-left: 10px; border-left: 3px solid #2563eb; }
+  .rule:last-child { margin-bottom: 0; }
+  .video-link { margin: 12px 0 16px; }
+  .video-link a { display: inline-block; background: #fb7299; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background .2s; }
+  .video-link a:hover { background: #f56c8a; }
+  /* 练习题 */
+  .ex-item { padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+  .ex-item:last-child { border-bottom: none; }
+  .ex-item p { font-weight: 600; margin-bottom: 8px; }
+  .opts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .opt-btn { padding: 6px 16px; border: 1.5px solid #ccc; border-radius: 20px; background: #fff; cursor: pointer; font-size: 0.9rem; transition: all 0.15s; }
+  .opt-btn:hover { border-color: #2563eb; }
+  .opt-btn.selected { border-color: #2563eb; background: #2563eb; color: #fff; }
+  .opt-btn.correct { border-color: #27ae60; background: #27ae60; color: #fff; }
+  .opt-btn.wrong { border-color: #e74c3c; background: #e74c3c; color: #fff; }
+  .opt-btn.show-correct { border-color: #27ae60; background: #d4edda; color: #27ae60; }
+  .result-icon { margin-left: 8px; font-size: 1.1rem; }
+  .btn { background: #2c3e50; color: #fff; border: none; padding: 10px 24px; border-radius: 6px; cursor: pointer; font-size: 0.95rem; }
+  .btn:hover { background: #34495e; }
+  .btn-green { background: #27ae60; }
+  .btn-green:hover { background: #1e8449; }
+  .score-bar { margin-top: 12px; text-align: center; font-weight: 600; }
+  .back-link { display: inline-block; margin-top: 16px; color: #2563eb; text-decoration: none; font-size: 0.9rem; }
+  .back-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>👦 Unit 1 - is / am / are</h1>
+  <p class="subtitle">P2 English · be 动词（香港小学二年级）</p>
+
+  <!-- 基础知识 -->
+  <div class="card">
+    <span class="tag">Grammar 语法</span>
+    <div class="card-title">Verb "Be" (am / is / are)</div>
+
+    <div class="video-link">
+      <a href="https://www.youtube.com/results?search_query=is+am+are+kids+english+grammar" target="_blank" rel="noopener">
+        📺 点击搜索 YouTube 教学视频 →
+      </a>
+    </div>
+
+    <div class="example"><div class="en">I <u>am</u> a student. I'm 8 years old.</div><div class="zh">I + am — 主语是 I 时用 am</div></div>
+    <div class="example"><div class="en">He/She/It <u>is</u> at school. She's happy.</div><div class="zh">He / She / It + is — 单数主语用 is</div></div>
+    <div class="example"><div class="en">You/We/They <u>are</u> my friends.</div><div class="zh">You / We / They + are — 复数主语用 are</div></div>
+    <div class="rule">📌 否定句：is not = isn't / are not = aren't / am not 没有缩写</div>
+    <div class="rule">📌 疑问句：把 am/is/are 提到句首：<u>Are</u> you happy?</div>
+    <div class="rule">📌 口诀：I 用 am，you 用 are，is 用于他她它，复数全部都用 are</div>
+  </div>
+
+  <!-- 练习题 -->
+  <div class="card">
+    <div class="card-title">📝 练习题 — 选择正确答案</div>
+    <div id="ex-area"></div>
+    <div style="margin-top:16px; text-align:center;">
+      <button class="btn btn-green" onclick="checkAnswers()">提交答案</button>
+      <span id="score" class="score-bar"></span>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-link">← 返回主页</a>
+</div>
+
+<script>
+const EXERCISES = [
+  { q: 'I ___ a student.', opts: ['am', 'is', 'are'], ans: 'am' },
+  { q: 'She ___ a girl.', opts: ['am', 'is', 'are'], ans: 'is' },
+  { q: 'He ___ a boy.', opts: ['am', 'is', 'are'], ans: 'is' },
+  { q: 'They ___ friends.', opts: ['am', 'is', 'are'], ans: 'are' },
+  { q: 'You ___ kind.', opts: ['am', 'is', 'are'], ans: 'are' },
+  { q: 'It ___ a cat.', opts: ['am', 'is', 'are'], ans: 'is' },
+  { q: 'We ___ happy.', opts: ['am', 'is', 'are'], ans: 'are' },
+  { q: 'My name ___ Tom.', opts: ['am', 'is', 'are'], ans: 'is' },
+  { q: 'The dogs ___ cute.', opts: ['am', 'is', 'are'], ans: 'are' },
+  { q: 'I ___ eight years old.', opts: ['am', 'is', 'are'], ans: 'am' },
+];
+
+function renderExercises() {
+  const area = document.getElementById('ex-area');
+  EXERCISES.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'ex-item';
+    div.id = 'ex-' + i;
+    let html = '<p>' + (i+1) + '. ' + item.q + '</p><div class="opts">';
+    const shuffled = [...item.opts].sort(() => Math.random() - 0.5);
+    shuffled.forEach(opt => {
+      html += '<button class="opt-btn" onclick="selectOpt(' + i + ', this, \\'' + opt + '\\')">' + opt + '</button>';
+    });
+    html += '<span class="result-icon" id="ri-' + i + '"></span></div>';
+    div.innerHTML = html;
+    area.appendChild(div);
+  });
+}
+
+function selectOpt(idx, btn, val) {
+  const container = document.getElementById('ex-' + idx);
+  container.querySelectorAll('.opt-btn').forEach(b => { b.classList.remove('selected'); b.dataset.selected = ''; });
+  btn.classList.add('selected');
+  btn.dataset.selected = val;
+}
+
+function checkAnswers() {
+  let correct = 0;
+  EXERCISES.forEach((item, i) => {
+    const container = document.getElementById('ex-' + i);
+    const btns = container.querySelectorAll('.opt-btn');
+    const selected = container.querySelector('.opt-btn.selected');
+    const icon = document.getElementById('ri-' + i);
+    btns.forEach(b => { b.disabled = true;
+      if (b.textContent.trim() === item.ans) b.classList.add(b === selected ? 'correct' : 'show-correct');
+      else if (b === selected) b.classList.add('wrong');
+    });
+    if (selected && selected.textContent.trim() === item.ans) { icon.textContent = '✅'; correct++; }
+    else { icon.textContent = '❌'; }
+  });
+  const total = EXERCISES.length;
+  const bar = document.getElementById('score');
+  bar.textContent = correct + ' / ' + total + ' 正确（' + Math.round(correct/total*100) + '%）';
+  bar.style.color = correct === total ? '#27ae60' : correct/total >= 0.8 ? '#e67e22' : '#e74c3c';
+}
+
+renderExercises();
+</script>
+</body>
+</html>

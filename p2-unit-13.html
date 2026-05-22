@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2 English Unit 13 - Ordinal numbers</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.example{background:#f8fafc;border-radius:8px;padding:10px 14px;margin-bottom:8px;margin-top:2px}
+.example .en{color:#2563eb;font-weight:600;margin-bottom:2px}
+.example .zh{color:#64748b;font-size:0.82rem}
+.rule{font-size:0.85rem;margin-bottom:10px;padding-left:10px;border-left:3px solid #2563eb}
+.video-link{margin:12px 0 16px}
+.video-link a{display:inline-block;background:#fb7299;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:background .2s}
+.video-link a:hover{background:#f56c8a}
+.ex-item{padding:12px 0;border-bottom:1px solid #f1f5f9}
+.ex-item:last-child{border-bottom:none}
+.ex-item p{font-weight:600;margin-bottom:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt-btn{padding:6px 16px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
+.opt-btn:hover{border-color:#2563eb}
+.opt-btn.selected{border-color:#2563eb;background:#2563eb;color:#fff}
+.opt-btn.correct{border-color:#27ae60;background:#27ae60;color:#fff}
+.opt-btn.wrong{border-color:#e74c3c;background:#e74c3c;color:#fff}
+.opt-btn.show-correct{border-color:#27ae60;background:#d4edda;color:#27ae60}
+.result-icon{margin-left:8px;font-size:1.1rem}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem}
+.btn:hover{background:#34495e}
+.btn-green{background:#27ae60} .btn-green:hover{background:#1e8449}
+.score-bar{margin-top:12px;text-align:center;font-weight:600}
+.back-link{display:inline-block;margin-top:16px;color:#2563eb;text-decoration:none;font-size:0.9rem}
+.back-link:hover{text-decoration:underline}
+</style></head><body><div class="container">
+<h1>🔢 Unit 13 - Ordinal numbers</h1>
+<p class="subtitle">P2 English · 序数词（香港小学二年级）</p>
+<div class="card">
+<span class="tag" style="background:#fef3c7;color:#92400e">Numbers 数字</span>
+<div class="card-title">Ordinal Numbers (1st, 2nd, 3rd...)</div>
+<div class="video-link"><a href="https://www.youtube.com/results?search_query=ordinal+numbers+for+kids" target="_blank" rel="noopener">📺 点击搜索 YouTube 教学视频 →</a></div>
+<div class="example"><div class="en">1st — <u>first</u>   /   2nd — <u>second</u>   /   3rd — <u>third</u></div><div class="zh">第一、第二、第三是特殊形式</div></div><div class="example"><div class="en">4th — fourth   5th — fifth   6th — sixth</div><div class="zh">从第四开始，多在基数词后加 -th</div></div><div class="example"><div class="en">I am the <u>first</u> in the race.</div><div class="zh">序数词表示顺序、排名</div></div><div class="example"><div class="en">January is the <u>first</u> month.</div><div class="zh">月份：一月 first，二月 second...</div></div><div class="rule">📌 特殊：first(1st), second(2nd), third(3rd)</div><div class="rule">📌 变化：five→fifth, eight→eighth, nine→ninth</div><div class="rule">📌 以 y 结尾：twenty→twentieth (变 y 为 ie)</div>
+</div>
+<div class="card">
+<div class="card-title">📝 练习题 — 选择正确答案</div>
+<div id="ex-area"></div>
+<div style="margin-top:16px;text-align:center;"><button class="btn btn-green" onclick="checkAnswers()">提交答案</button><span id="score" class="score-bar"></span></div>
+</div>
+<a href="index.html" class="back-link">← 返回主页</a></div>
+<script>const EX=[{'q': 'January is the ___ month.', 'opts': ['first', 'second', 'one'], 'ans': 'first'}, {'q': 'He came in ___ place.', 'opts': ['two', 'second', 'twoth'], 'ans': 'second'}, {'q': 'Wednesday is the ___ day of the week.', 'opts': ['third', 'fourth', 'five'], 'ans': 'third'}, {'q': '___ is the fifth month.', 'opts': ['May', 'April', 'June'], 'ans': 'May'}, {'q': 'December is the ___ month.', 'opts': ['eleventh', 'twelfth', 'twelveth'], 'ans': 'twelfth'}];
+function r(){const a=document.getElementById('ex-area');EX.forEach((item,i)=>{const d=document.createElement('div');d.className='ex-item';d.id='ex-'+i;let h='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';const sh=[...item.opts].sort(()=>Math.random()-0.5);sh.forEach(o=>{h+='<button class="opt-btn" onclick="s('+i+',this,\\\''+o+'\\\')">'+o+'</button>';});h+='<span class="result-icon" id="ri-'+i+'"></span></div>';d.innerHTML=h;a.appendChild(d);});}
+function s(i,b,v){const c=document.getElementById('ex-'+i);c.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('selected');x.dataset.selected='';});b.classList.add('selected');b.dataset.selected=v;}
+function c(){let cr=0;EX.forEach((item,i)=>{const c=document.getElementById('ex-'+i);const bs=c.querySelectorAll('.opt-btn');const ss=c.querySelector('.opt-btn.selected');const ic=document.getElementById('ri-'+i);bs.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===ss?'correct':'show-correct');else if(b===ss)b.classList.add('wrong');});if(ss&&ss.textContent.trim()===item.ans){ic.textContent='✅';cr++;}else{ic.textContent='❌';}});const t=EX.length;const bar=document.getElementById('score');bar.textContent=cr+' / '+t+' 正确（'+Math.round(cr/t*100)+'%）';bar.style.color=cr===t?'#27ae60':cr/t>=0.8?'#e67e22':'#e74c3c';}
+r();</script></body></html>
