@@ -164,6 +164,62 @@
   .opt-btn {
     transition: all .15s, transform .1s;
   }
+
+  /* 首页介绍区 */
+  .hero-section { text-align: center; padding: 40px 20px 32px; }
+  .hero-title { font-size: 1.8rem; font-weight: 800; color: #1e293b; margin-bottom: 8px; }
+  .hero-subtitle { font-size: 1.1rem; color: #475569; }
+  .hero-desc { font-size: 0.9rem; color: #94a3b8; margin-top: 6px; }
+
+  /* 搜索区 */
+  .search-section { margin: 0 0 28px; }
+  .search-box { display: flex; gap: 8px; }
+  .search-box input { flex: 1; padding: 12px 18px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; background: #fff; outline: none; transition: border-color .2s; }
+  .search-box input:focus { border-color: #2563eb; }
+  .search-btn { padding: 12px 24px; background: #2563eb; color: #fff; border: none; border-radius: 12px; cursor: pointer; font-size: 0.95rem; font-weight: 600; white-space: nowrap; }
+  .search-btn:hover { background: #1d4ed8; }
+
+  /* 快速入口卡片 */
+  .quick-cards { display: flex; gap: 10px; margin-bottom: 32px; flex-wrap: wrap; }
+  .quick-card { display: flex; align-items: center; gap: 8px; padding: 12px 22px; background: #fff; border: 1.5px solid #e2e8f0; border-radius: 12px; text-decoration: none; color: #475569; font-weight: 600; font-size: 0.95rem; transition: all .15s; }
+  .quick-card:hover { border-color: #2563eb; color: #2563eb; box-shadow: 0 2px 8px rgba(37,99,235,0.1); transform: translateY(-1px); }
+  .quick-card.active { background: #2563eb; border-color: #2563eb; color: #fff; }
+  .qc-icon { font-size: 1.2rem; }
+  .qc-label { }
+
+  /* 搜索结果 */
+  .search-results { margin-bottom: 24px; }
+  .search-results:empty { display: none; }
+  .search-result-item { padding: 14px 18px; background: #fff; border-radius: 10px; margin-bottom: 8px; border: 1px solid #e2e8f0; transition: all .15s; }
+  .search-result-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); transform: translateY(-1px); }
+  .search-result-item a { text-decoration: none; color: #2563eb; font-weight: 600; font-size: 1rem; }
+  .search-result-item a:hover { text-decoration: underline; }
+  .search-result-item .sr-meta { font-size: 0.82rem; color: #94a3b8; margin-top: 4px; }
+
+  /* 全部资料卡片列表 */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .section-title { font-size: 1.15rem; font-weight: 700; color: #1e293b; grid-column: 1 / -1; margin-bottom: 4px; }
+  .unit-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; transition: box-shadow .15s, transform .15s; }
+  .unit-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .unit-card a { text-decoration: none; color: inherit; }
+  .unit-card .uc-subject { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 6px; }
+  .unit-card .uc-title { font-size: 1rem; font-weight: 700; color: #2563eb; margin-bottom: 4px; }
+  .unit-card .uc-desc { font-size: 0.85rem; color: #64748b; }
+  .unit-card .uc-meta { font-size: 0.8rem; color: #94a3b8; margin-top: 8px; display: flex; gap: 12px; }
+  .unit-card .uc-tag { display: inline-block; padding: 1px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; }
+  .unit-card .uc-tag.english { background: #dbeafe; color: #2563eb; }
+  .unit-card .uc-tag.math { background: #fef3c7; color: #d97706; }
+
+  /* 响应式 */
+  @media (max-width:600px) {
+    .hero-title { font-size: 1.3rem; }
+    .hero-section { padding: 24px 12px 20px; }
+    .search-box { flex-direction: column; }
+    .search-btn { width: 100%; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .quick-cards { justify-content: center; }
+  }
+
 </style>
 </head>
 <body>
@@ -229,142 +285,44 @@
 <div class="main-content">
 <main>
 
-  <!-- 口算练习 -->
-  <div id="math" class="section active">
-    <div class="card">
-      <h2>1~5 的乘法口算</h2>
-      <div class="qa-grid" id="qaGrid"></div>
-      <div style="margin-top:16px; text-align:center;">
-        <button class="btn" onclick="genQuestions()">重新生成</button>
-        <button class="btn" onclick="checkAnswers()" style="background:#27ae60;">批改</button>
-        <span id="result-bar"></span>
-      </div>
+  <!-- 首页介绍 -->
+  <div id="home" class="section active">
+    <div class="hero-section">
+      <h1 class="hero-title">📚 学习素材站</h1>
+      <p class="hero-subtitle">一站式全科学习资料查阅与练习平台</p>
+      <p class="hero-desc">持续更新课件、试卷、笔记、习题素材 · 所有内容免费使用</p>
     </div>
-  </div>
 
-  <!-- 全对奖励弹窗 -->
-  <div id="reward-overlay">
-    <div class="reward-burst">
-      <img class="reward-img" id="rewardImg" src="" alt="神兽登场">
+    <!-- 搜索区 -->
+    <div class="search-section">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="输入科目、知识点或单元名称搜索…" oninput="doSearch(this.value)">
+        <button class="search-btn" onclick="doSearch(document.getElementById('searchInput').value)">🔍 搜索</button>
+      </div>
     </div>
-    <div class="reward-text" id="rewardText">全对！神兽登场！</div>
-    <button class="reward-btn" onclick="closeReward()">太棒了！</button>
-  </div>
 
-  <!-- 闪卡 -->
-  <div id="flash" class="section">
-    <div class="card">
-      <h2>点击卡片翻转 · 学习 IELTS 核心词汇</h2>
-      <div class="flashcard-wrap">
-        <div class="flashcard" id="flashcard" onclick="flipCard()">
-          <div class="flashcard-face flashcard-front" id="fcFront">点击开始</div>
-          <div class="flashcard-face flashcard-back" id="fcBack"></div>
-        </div>
-      </div>
-      <div class="flash-nav">
-        <button onclick="prevCard()">← 上一张</button>
-        <span id="fcCount">1 / 20</span>
-        <button onclick="nextCard()">下一张 →</button>
-      </div>
+    <!-- 快速入口：学科卡片 -->
+    <div class="quick-cards">
+      <a href="#" onclick="show('home')" class="quick-card active" data-subject="all">
+        <span class="qc-icon">📌</span>
+        <span class="qc-label">全部</span>
+      </a>
+      <a href="#" onclick="filterBySubject('math')" class="quick-card">
+        <span class="qc-icon">📐</span>
+        <span class="qc-label">数学</span>
+      </a>
+      <a href="#" onclick="filterBySubject('english')" class="quick-card">
+        <span class="qc-icon">📖</span>
+        <span class="qc-label">英文</span>
+      </a>
     </div>
-  </div>
 
-  <!-- 背单词 -->
-  <div id="vocab" class="section">
-    <div class="card">
-      <h2>小学二年级英文 · 看英文写中文（50题）</h2>
-      <div class="word-grid" id="wordGrid"></div>
-      <div style="margin-top:16px; text-align:center;">
-        <button class="btn" onclick="genVocab()">换一批</button>
-        <button class="btn" onclick="checkVocab()" style="background:#27ae60;">批改</button>
-        <span id="vocabResult"></span>
-      </div>
-    </div>
-  </div>
+    <!-- 搜索结果区 -->
+    <div id="searchResults" class="search-results"></div>
 
-  <!-- 语法练习 -->
-  <div id="gram" class="section">
-    <div class="card">
-      <h2>小学二年级英文语法</h2>
-      <div class="topic-tabs" id="gramTabs">
-        <button class="topic-tab active" data-topic="all" onclick="switchTopic('all')">综合练习</button>
-        <button class="topic-tab" data-topic="be" onclick="switchTopic('be')">be 动词</button>
-        <button class="topic-tab" data-topic="demo" onclick="switchTopic('demo')">指示代词</button>
-        <button class="topic-tab" data-topic="article" onclick="switchTopic('article')">a / an</button>
-        <button class="topic-tab" data-topic="pronoun" onclick="switchTopic('pronoun')">人称代词</button>
-        <button class="topic-tab" data-topic="there" onclick="switchTopic('there')">There is/are</button>
-        <button class="topic-tab" data-topic="ques" onclick="switchTopic('ques')">疑问句</button>
-      </div>
-      <div class="gram-grid" id="gramGrid"></div>
-      <div style="margin-top:16px; text-align:center; display:flex; gap:10px; justify-content:center; align-items:center; flex-wrap:wrap;">
-        <button class="btn" onclick="genGrammarTopic(currentTopic)">换一批</button>
-        <button class="btn" onclick="checkGrammar()" style="background:#27ae60;">提交答案</button>
-        <span id="gramResult" style="font-weight:600;"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 语法知识 -->
-    <div id="gramk" class="section">
-    <div class="card" style="text-align:center;padding:40px 24px;">
-      <h2>📖 语法知识点</h2>
-      <p style="color:#64748b;margin:10px 0 20px;">12 个香港小学二年级语法模块，点击查看详细讲解</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;max-width:600px;margin:0 auto;">
-        <a href="hk-english-grammar.html#nouns" class="btn" style="background:#1e40af;display:block;">名词</a>
-        <a href="hk-english-grammar.html#articles" class="btn" style="background:#1e40af;display:block;">冠词</a>
-        <a href="hk-english-grammar.html#pronouns" class="btn" style="background:#115e59;display:block;">代词</a>
-        <a href="hk-english-grammar.html#adjectives" class="btn" style="background:#92400e;display:block;">形容词</a>
-        <a href="hk-english-grammar.html#verb-be" class="btn" style="background:#166534;display:block;">Be动词</a>
-        <a href="hk-english-grammar.html#third-person" class="btn" style="background:#166534;display:block;">第三人称单数</a>
-        <a href="hk-english-grammar.html#verb-action" class="btn" style="background:#166534;display:block;">行为动词</a>
-        <a href="hk-english-grammar.html#adverbs" class="btn" style="background:#9d174d;display:block;">副词</a>
-        <a href="hk-english-grammar.html#prepositions" class="btn" style="background:#3730a3;display:block;">介词</a>
-        <a href="hk-english-grammar.html#conjunctions" class="btn" style="background:#991b1b;display:block;">连词</a>
-        <a href="hk-english-grammar.html#questions" class="btn" style="background:#3730a3;display:block;">疑问词</a>
-        <a href="hk-english-grammar.html#sentences" class="btn" style="background:#166534;display:block;">句型</a>
-      </div>
-    </div>
-  </div></div>
-
-  <!-- Quiz 6 Revision -->
-  <div id="quiz6" class="section">
-    <div class="card" style="text-align:center;padding:30px 24px;">
-      <h2>📝 Quiz 6 Revision Sheet</h2>
-      <p style="color:#64748b;margin:10px 0 20px;font-size:0.88rem;">P2 English 小测复习 — 时态·改错·阅读理解·季节·like+gerund</p>
-      <a href="quiz-6-revision.html" style="color:#7c3aed;text-decoration:none;font-weight:600;">📝 Quiz 6 L1 (单选)</a> ·
-      <a href="quiz-6-revision-level2.html" style="color:#dc2626;text-decoration:none;font-weight:600;">✨ Quiz 6 L2 (填空)</a>
-    </div>
-  </div>
-  
-  <!-- 小二 英文 -->
-  <div id="p2-english" class="section">
-    <div class="card" style="padding:20px;">
-      <div id="p2-content-area">
-        <h2 id="p2-title">👦 小二英文 · 选择左侧知识点开始学习</h2>
-        <p id="p2-lesson-desc" style="color:#64748b;margin:10px 0 20px;">点击左侧知识点，查看基础讲解、视频和练习题</p>
-        <div id="p2-lesson-body"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- IELTS 资料 -->
-  <div id="ielts" class="section">
-    <div class="card">
-      <h2>IELTS 核心资料</h2>
-      <ul class="ielts-list">
-        <li>
-          <a href="https://hcnyxzcp6mqq.feishu.cn/docx/Ah9NdkKlsoA79yx9bWbcde9RnEg" target="_blank">🎯 IELTS 6.5 分冲刺计划</a>
-          <span class="tag">计划</span>
-        </li>
-        <li>
-          <a href="https://hcnyxzcp6mqq.feishu.cn/drive/folder/VLzPfW9UDl5H1cdzNXDcnZYenNF" target="_blank">📁 IELTS 共享资料文件夹</a>
-          <span class="tag">文件夹</span>
-        </li>
-        <li>
-          <a href="#" onclick="alert('请在飞书共享文件夹中查看 ielts_flashcards.html')">📇 闪卡 HTML 文件</a>
-          <span class="tag">下载</span>
-        </li>
-      </ul>
+    <!-- 全部资料卡片列表（默认显示） -->
+    <div id="allCards" class="cards-grid">
+      <h2 class="section-title">📖 全部学习单元</h2>
     </div>
   </div>
 
@@ -708,6 +666,128 @@ genGrammar();
     if (tab) tab.click();
   }
 })();
+
+  // ── 所有学习单元数据 ──────────────────────────
+  const units = [
+  { id: 1, file: "p2-unit-1.html", title: "Unit 1 - is/am/are", desc: "Be动词：is, am, are的用法区别", subject: "english" },
+  { id: 2, file: "p2-unit-2.html", title: "Unit 2 - a/an/the", desc: "冠词a, an, the的用法", subject: "english" },
+  { id: 3, file: "p2-unit-3.html", title: "Unit 3 - can", desc: "情态动词can的用法", subject: "english" },
+  { id: 4, file: "p2-unit-4.html", title: "Unit 4 - and/but", desc: "连词and, but的用法", subject: "english" },
+  { id: 5, file: "p2-unit-5.html", title: "Unit 5 - this/that/these/those", desc: "指示代词this, that, these, those", subject: "english" },
+  { id: 6, file: "p2-unit-6.html", title: "Unit 6 - in/on/under", desc: "介词in, on, under的用法", subject: "english" },
+  { id: 7, file: "p2-unit-7.html", title: "Unit 7 - Prepositions of place", desc: "地点介词总结", subject: "english" },
+  { id: 8, file: "p2-unit-8.html", title: "Unit 8 - Simple present tense", desc: "一般现在时", subject: "english" },
+  { id: 9, file: "p2-unit-9.html", title: "Unit 9 - do/does", desc: "助动词do/does的用法", subject: "english" },
+  { id: 10, file: "p2-unit-10.html", title: "Unit 10 - Common expressions", desc: "日常用语表达：like to, want to, need to等", subject: "english" },
+  { id: 11, file: "p2-unit-11.html", title: "Unit 11 - I/me/my/mine", desc: "代词I, me, my, mine的用法", subject: "english" },
+  { id: 12, file: "p2-unit-12.html", title: "Unit 12 - Nouns", desc: "名词：可数/不可数、单复数", subject: "english" },
+  { id: 13, file: "p2-unit-13.html", title: "Unit 13 - Ordinal numbers", desc: "序数词：first, second, third等", subject: "english" },
+  { id: 14, file: "p2-unit-14.html", title: "Unit 14 - Adjectives", desc: "形容词的用法", subject: "english" },
+  { id: 15, file: "p2-unit-15.html", title: "Unit 15 - Opposites", desc: "反义词：big/small, hot/cold等", subject: "english" },
+  { id: 16, file: "p2-unit-16.html", title: "Unit 16 - Question words: Wh-", desc: "疑问词：who, what, when, where, why", subject: "english" },
+  { id: 17, file: "p2-unit-17.html", title: "Unit 17 - Question words: How", desc: "疑问词：how的用法", subject: "english" },
+  { id: 18, file: "p2-unit-18.html", title: "Unit 18 - Imperatives", desc: "祈使句的用法", subject: "english" },
+  { id: 19, file: "p2-unit-19.html", title: "Unit 19 - Comprehension: Rules", desc: "阅读理解：规则类", subject: "english" },
+  { id: 20, file: "p2-unit-20.html", title: "Unit 20 - Comprehension: Letters", desc: "阅读理解：书信类", subject: "english" },
+  { id: 30+i, file: "p2-math-unit-1.html", title: "U1 - 加与减", desc: "100以内的加减法", subject: "math" },
+  { id: 30+i, file: "p2-math-unit-2.html", title: "U2 - 乘法", desc: "1-9的乘法表学习", subject: "math" },
+  { id: 30+i, file: "p2-math-unit-3.html", title: "U3 - 除法", desc: "基本除法运算", subject: "math" },
+  { id: 30+i, file: "p2-math-unit-4.html", title: "U4 - 图形的认识", desc: "常见平面图形识别", subject: "math" },
+  { id: 30+i, file: "p2-math-unit-5.html", title: "U5 - 长度", desc: "长度认识和测量", subject: "math" },
+  { id: 30+i, file: "p2-math-unit-6.html", title: "U6 - 四边形", desc: "四边形的特征和分类", subject: "math" },
+  { id: 30+i, file: "p2-math-unit-7.html", title: "U7 - 立体图形", desc: "立体图形认识", subject: "math" },
+  { id: 30+i, file: "p2-math-unit-8.html", title: "U8 - 方向", desc: "方向识别和描述", subject: "math" },
+];
+
+  // ── 搜索 ──────────────────────────────────────
+  function doSearch(query) {
+    q = query.trim().toLowerCase();
+    const results = document.getElementById('searchResults');
+    const allCards = document.getElementById('allCards');
+    
+    if (!q) {
+      results.innerHTML = '';
+      allCards.style.display = '';
+      document.querySelectorAll('.quick-card').forEach(c => c.classList.remove('active'));
+      document.querySelector('.quick-card[data-subject="all"]')?.classList.add('active');
+      return;
+    }
+    
+    const matches = units.filter(u =>
+      u.title.toLowerCase().includes(q) || u.desc.toLowerCase().includes(q)
+    );
+    
+    allCards.style.display = 'none';
+    if (matches.length === 0) {
+      results.innerHTML = '<p style="text-align:center;color:#94a3b8;padding:40px;">没有找到相关单元 😅</p>';
+      return;
+    }
+    
+    results.innerHTML = matches.map(u => {
+      const tagClass = u.subject === 'english' ? 'english' : 'math';
+      const tagLabel = u.subject === 'english' ? '📖 英文' : '📐 数学';
+      return \`<div class="search-result-item">
+        <a href="\${u.file}">\${u.title}</a>
+        <div class="sr-meta">
+          <span class="uc-tag \${tagClass}">\${tagLabel}</span>
+          <span style="margin-left:8px;">\${u.desc}</span>
+        </div>
+      </div>\`;
+    }).join('');
+  }
+
+  // ── 筛选 ──────────────────────────────────────
+  function filterBySubject(subject) {
+    document.querySelectorAll('.quick-card').forEach(c => c.classList.remove('active'));
+    const btn = document.querySelector(\`.quick-card[onclick*="'\${subject}'"]\`);
+    if (btn) btn.classList.add('active');
+    
+    const allCards = document.getElementById('allCards');
+    let html = '<h2 class="section-title">📖 ' +
+      (subject === 'math' ? '数学' : '英文') + ' 学习单元</h2>';
+    
+    const filtered = units.filter(u => u.subject === subject);
+    filtered.forEach(u => {
+      const tagClass = u.subject === 'english' ? 'english' : 'math';
+      const tagLabel = u.subject === 'english' ? '📖 英文' : '📐 数学';
+      html += \`<div class="unit-card">
+        <a href="\${u.file}">
+          <div class="uc-subject">\${tagLabel}</div>
+          <div class="uc-title">\${u.title}</div>
+          <div class="uc-desc">\${u.desc}</div>
+          <div class="uc-meta">
+            <span class="uc-tag \${tagClass}">\${tagLabel}</span>
+          </div>
+        </a>
+      </div>\`;
+    });
+    allCards.innerHTML = html;
+    document.getElementById('searchResults').innerHTML = '';
+    document.getElementById('searchInput').value = '';
+  }
+
+  // ── 初始化全部卡片 ────────────────────────────
+  function renderAllCards() {
+    const allCards = document.getElementById('allCards');
+    let html = '<h2 class="section-title">📖 全部学习单元</h2>';
+    units.forEach(u => {
+      const tagClass = u.subject === 'english' ? 'english' : 'math';
+      const tagLabel = u.subject === 'english' ? '📖 英文' : '📐 数学';
+      html += \`<div class="unit-card">
+        <a href="\${u.file}">
+          <div class="uc-subject">\${tagLabel}</div>
+          <div class="uc-title">\${u.title}</div>
+          <div class="uc-desc">\${u.desc}</div>
+          <div class="uc-meta">
+            <span class="uc-tag \${tagClass}">\${tagLabel}</span>
+          </div>
+        </a>
+      </div>\`;
+    });
+    allCards.innerHTML = html;
+  }
+  renderAllCards();
+
 </script>
 </body>
 </html>
