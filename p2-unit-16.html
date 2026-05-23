@@ -23,7 +23,7 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .ex-item{padding:12px 0;border-bottom:1px solid #f1f5f9}
 .ex-item:last-child{border-bottom:none}.ex-item p{font-weight:600;margin-bottom:8px}
 .opts{display:flex;gap:8px;flex-wrap:wrap}
-.opt-btn{padding:6px 16px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
+.opt-btn{padding:8px 24px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
 .opt-btn:hover{border-color:#2563eb}.opt-btn.selected{border-color:#2563eb;background:#2563eb;color:#fff}
 .opt-btn.correct{border-color:#27ae60;background:#27ae60;color:#fff}.opt-btn.wrong{border-color:#e74c3c;background:#e74c3c;color:#fff}
 .opt-btn.show-correct{border-color:#27ae60;background:#d4edda;color:#27ae60}.result-icon{margin-left:8px;font-size:1.1rem}
@@ -32,6 +32,32 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .score-bar{margin-top:12px;text-align:center;font-weight:600}
 .back-link{display:inline-block;margin-top:16px;color:#2563eb;text-decoration:none;font-size:0.9rem}
 .back-link:hover{text-decoration:underline}
+
+/* 导航按钮 */
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+/* 卡片增强 */
+.card{transition:box-shadow .2s,transform .15s}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+/* 移动端优化 */
+@media (max-width:480px){
+  body{padding:12px}
+  .card{padding:14px 16px}
+  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+  .nav-btn{padding:10px 12px;font-size:0.8rem}
+  .nav-text{max-width:60px}
+  .nav-buttons{gap:4px}
+}
+@media (max-width:360px){
+  .nav-text{display:none}
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CreativeWork","name":"Question words: Wh-","description":"特殊疑問詞：What, Who, When, Where, Why的用法（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
@@ -43,7 +69,12 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 <div class="example"><div class="en"><u>What</u> is your name? — My name is Tom.</div><div class="zh">What = 什么（问事物）</div></div><div class="example"><div class="en"><u>Who</u> is he? — He is my friend.</div><div class="zh">Who = 谁（问人）</div></div><div class="example"><div class="en"><u>Where</u> is my book? — It's on the desk.</div><div class="zh">Where = 哪里（问地点）</div></div><div class="example"><div class="en"><u>When</u> do you get up? — At 7 o'clock.</div><div class="zh">When = 什么时候（问时间）</div></div><div class="example"><div class="en"><u>Why</u> are you late? — Because I missed the bus.</div><div class="zh">Why = 为什么（问原因）</div></div><div class="example"><div class="en"><u>Which</u> color do you like? — Red.</div><div class="zh">Which = 哪一个（给选项的提问）</div></div><div class="rule">📌 Wh- 疑问词通常放在句首</div><div class="rule">📌 答句要根据问句内容回答</div></div>
 <div class="card"><div class="card-title">📝 练习题 — 选择正确答案</div><div id="ex-area"></div>
 <div style="margin-top:16px;text-align:center;"><button class="btn btn-green" onclick="checkAnswers()">提交答案</button><span id="score" class="score-bar"></span></div></div>
-<a href="index.html" class="back-link">← 返回主页</a></div>
+
+<div class="nav-buttons">
+  <div class="nav-left"><a href="p2-unit-15.html" class="nav-btn nav-prev">&larr; <span class="nav-text">英文 U15</span></a></div>
+  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
+  <div class="nav-right"><a href="p2-unit-17.html" class="nav-btn nav-next"><span class="nav-text">英文 U17</span> &rarr;</a></div>
+</div></div>
 <script>const EX=[{'q': '___ is your name?', 'opts': ['What', 'Where', 'Who'], 'ans': 'What'}, {'q': '___ is the pencil? — On the desk.', 'opts': ['What', 'Where', 'Who'], 'ans': 'Where'}, {'q': "___ are you? — I'm fine.", 'opts': ['How', 'What', 'Why'], 'ans': 'How'}, {'q': '___ is she? — She is my sister.', 'opts': ['What', 'Who', 'Where'], 'ans': 'Who'}, {'q': "___ do you like this? — Because it's fun.", 'opts': ['What', 'Why', 'When'], 'ans': 'Why'}, {'q': '___ one is yours? — The red one.', 'opts': ['What', 'Which', 'Who'], 'ans': 'Which'}];
 function r(){const a=document.getElementById('ex-area');EX.forEach((item,i)=>{const d=document.createElement('div');d.className='ex-item';d.id='ex-'+i;let h='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';const sh=[...item.opts].sort(()=>Math.random()-0.5);sh.forEach(o=>{h+='<button class="opt-btn" onclick="s('+i+',this,\\\''+o+'\\\')">'+o+'</button>';});h+='<span class="result-icon" id="ri-'+i+'"></span></div>';d.innerHTML=h;a.appendChild(d);});}
 function s(i,b,v){const c=document.getElementById('ex-'+i);c.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('selected');x.dataset.selected='';});b.classList.add('selected');b.dataset.selected=v;}

@@ -29,7 +29,7 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .ex-item:last-child{border-bottom:none}
 .ex-item p{font-weight:600;margin-bottom:8px}
 .opts{display:flex;gap:8px;flex-wrap:wrap}
-.opt-btn{padding:6px 16px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
+.opt-btn{padding:8px 24px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
 .opt-btn:hover{border-color:#2563eb}
 .opt-btn.selected{border-color:#2563eb;background:#2563eb;color:#fff}
 .opt-btn.correct{border-color:#27ae60;background:#27ae60;color:#fff}
@@ -43,6 +43,32 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .score-bar{margin-top:12px;text-align:center;font-weight:600}
 .back-link{display:inline-block;margin-top:16px;color:#2563eb;text-decoration:none;font-size:0.9rem}
 .back-link:hover{text-decoration:underline}
+
+/* 导航按钮 */
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+/* 卡片增强 */
+.card{transition:box-shadow .2s,transform .15s}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+/* 移动端优化 */
+@media (max-width:480px){
+  body{padding:12px}
+  .card{padding:14px 16px}
+  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+  .nav-btn{padding:10px 12px;font-size:0.8rem}
+  .nav-text{max-width:60px}
+  .nav-buttons{gap:4px}
+}
+@media (max-width:360px){
+  .nav-text{display:none}
+}
 </style>
 
 <script type="application/ld+json">
@@ -67,7 +93,12 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 <div id="ex-area"></div>
 <div style="margin-top:16px;text-align:center;"><button class="btn btn-green" onclick="checkAnswers()">提交答案</button><span id="score" class="score-bar"></span></div>
 </div>
-<a href="index.html" class="back-link">← 返回主页</a>
+
+<div class="nav-buttons">
+  <div class="nav-left"><a href="p2-unit-2.html" class="nav-btn nav-prev">&larr; <span class="nav-text">英文 U2</span></a></div>
+  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
+  <div class="nav-right"><a href="p2-unit-4.html" class="nav-btn nav-next"><span class="nav-text">英文 U4</span> &rarr;</a></div>
+</div>
 </div>
 <script>
 const EXERCISES = [{'q': 'I ___ swim very well.', 'opts': ['can', "can't", 'am'], 'ans': 'can'}, {'q': 'She ___ speak English.', 'opts': ['can', "can't", 'is'], 'ans': 'can'}, {'q': '___ you play the piano?', 'opts': ['Are', 'Do', 'Can'], 'ans': 'Can'}, {'q': 'A bird ___ fly.', 'opts': ['can', "can't", 'is'], 'ans': 'can'}, {'q': 'A fish ___ walk.', 'opts': ['can', "can't", 'does'], 'ans': "can't"}, {'q': 'We ___ run fast.', 'opts': ['can', "can't", 'are'], 'ans': 'can'}, {'q': '___ he jump high?', 'opts': ['Does', 'Is', 'Can'], 'ans': 'Can'}, {'q': 'She ___ ride a bike.', 'opts': ['can', "can't", 'has'], 'ans': 'can'}];

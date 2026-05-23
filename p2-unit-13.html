@@ -3,16 +3,11 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>P2 English Unit 13 - Ordinal numbers</title>
-<meta name="description" content="P2英文序数词 first/second/third 用法｜香港小学二年级序数词 1st-31st">
-<meta name="keywords" content="P2 English,香港小学二年级英文,ordinal numbers,序数词,first second third,英文数字">
-<meta property="og:title" content="P2 English Unit 13 - Ordinal numbers">
-<meta property="og:description" content="P2英文序数词 first/second/third 用法｜香港小学二年级序数词 1st-31st">
 </title>
 <meta name="description" content="P2英文序数词 first/second/third 用法｜香港小学二年级序数词 1st-31st">
 <meta name="keywords" content="P2 English,香港小学二年级英文,ordinal numbers,序数词,first second third,英文数字">
 <meta property="og:title" content="P2 English Unit 13 - Ordinal numbers">
 <meta property="og:description" content="P2英文序数词 first/second/third 用法｜香港小学二年级序数词 1st-31st">
-<meta property="og:type" content="website">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
@@ -33,7 +28,7 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .ex-item:last-child{border-bottom:none}
 .ex-item p{font-weight:600;margin-bottom:8px}
 .opts{display:flex;gap:8px;flex-wrap:wrap}
-.opt-btn{padding:6px 16px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
+.opt-btn{padding:8px 24px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
 .opt-btn:hover{border-color:#2563eb}
 .opt-btn.selected{border-color:#2563eb;background:#2563eb;color:#fff}
 .opt-btn.correct{border-color:#27ae60;background:#27ae60;color:#fff}
@@ -46,6 +41,32 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .score-bar{margin-top:12px;text-align:center;font-weight:600}
 .back-link{display:inline-block;margin-top:16px;color:#2563eb;text-decoration:none;font-size:0.9rem}
 .back-link:hover{text-decoration:underline}
+
+/* 导航按钮 */
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+/* 卡片增强 */
+.card{transition:box-shadow .2s,transform .15s}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+/* 移动端优化 */
+@media (max-width:480px){
+  body{padding:12px}
+  .card{padding:14px 16px}
+  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+  .nav-btn{padding:10px 12px;font-size:0.8rem}
+  .nav-text{max-width:60px}
+  .nav-buttons{gap:4px}
+}
+@media (max-width:360px){
+  .nav-text{display:none}
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CreativeWork","name":"Ordinal numbers","description":"序數詞：first到twentieth的用法及日期表達（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
@@ -64,7 +85,12 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 <div id="ex-area"></div>
 <div style="margin-top:16px;text-align:center;"><button class="btn btn-green" onclick="checkAnswers()">提交答案</button><span id="score" class="score-bar"></span></div>
 </div>
-<a href="index.html" class="back-link">← 返回主页</a></div>
+
+<div class="nav-buttons">
+  <div class="nav-left"><a href="p2-unit-12.html" class="nav-btn nav-prev">&larr; <span class="nav-text">英文 U12</span></a></div>
+  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
+  <div class="nav-right"><a href="p2-unit-14.html" class="nav-btn nav-next"><span class="nav-text">英文 U14</span> &rarr;</a></div>
+</div></div>
 <script>const EX=[{'q': 'January is the ___ month.', 'opts': ['first', 'second', 'one'], 'ans': 'first'}, {'q': 'He came in ___ place.', 'opts': ['two', 'second', 'twoth'], 'ans': 'second'}, {'q': 'Wednesday is the ___ day of the week.', 'opts': ['third', 'fourth', 'five'], 'ans': 'third'}, {'q': '___ is the fifth month.', 'opts': ['May', 'April', 'June'], 'ans': 'May'}, {'q': 'December is the ___ month.', 'opts': ['eleventh', 'twelfth', 'twelveth'], 'ans': 'twelfth'}];
 function r(){const a=document.getElementById('ex-area');EX.forEach((item,i)=>{const d=document.createElement('div');d.className='ex-item';d.id='ex-'+i;let h='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';const sh=[...item.opts].sort(()=>Math.random()-0.5);sh.forEach(o=>{h+='<button class="opt-btn" onclick="s('+i+',this,\\\''+o+'\\\')">'+o+'</button>';});h+='<span class="result-icon" id="ri-'+i+'"></span></div>';d.innerHTML=h;a.appendChild(d);});}
 function s(i,b,v){const c=document.getElementById('ex-'+i);c.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('selected');x.dataset.selected='';});b.classList.add('selected');b.dataset.selected=v;}

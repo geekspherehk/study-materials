@@ -185,7 +185,33 @@
       .nav-item { width: auto; padding: 8px 12px; font-size: 0.82rem; }
       .content { padding: 20px 16px 60px; }
     }
-  </style>
+  
+/* 导航按钮 */
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+/* 卡片增强 */
+.card{transition:box-shadow .2s,transform .15s}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+/* 移动端优化 */
+@media (max-width:480px){
+  body{padding:12px}
+  .card{padding:14px 16px}
+  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+  .nav-btn{padding:10px 12px;font-size:0.8rem}
+  .nav-text{max-width:60px}
+  .nav-buttons{gap:4px}
+}
+@media (max-width:360px){
+  .nav-text{display:none}
+}
+</style>
 </head>
 <body>
 <div class="wrapper">
@@ -425,5 +451,11 @@ function switchTopic(id) {
   });
 })();
 </script>
+
+<div class="nav-buttons">
+  <div class="nav-left"><a href="hk-p2-english-kp.html" class="nav-btn nav-prev">&larr; <span class="nav-text">英文知识页</span></a></div>
+  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
+  <div class="nav-right"><a href="grammar-exercises.html" class="nav-btn nav-next"><span class="nav-text">语法练习题</span> &rarr;</a></div>
+</div>
 </body>
 </html>]]>

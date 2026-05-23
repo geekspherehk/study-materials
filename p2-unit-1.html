@@ -23,7 +23,7 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .ex-item{padding:12px 0;border-bottom:1px solid #f1f5f9}
 .ex-item:last-child{border-bottom:none}.ex-item p{font-weight:600;margin-bottom:8px}
 .opts{display:flex;gap:8px;flex-wrap:wrap}
-.opt-btn{padding:6px 16px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
+.opt-btn{padding:8px 24px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
 .opt-btn:hover{border-color:#2563eb}.opt-btn.selected{border-color:#2563eb;background:#2563eb;color:#fff}
 .opt-btn.correct{border-color:#27ae60;background:#27ae60;color:#fff}.opt-btn.wrong{border-color:#e74c3c;background:#e74c3c;color:#fff}
 .opt-btn.show-correct{border-color:#27ae60;background:#d4edda;color:#27ae60}.result-icon{margin-left:8px;font-size:1.1rem}
@@ -32,6 +32,32 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .score-bar{margin-top:12px;text-align:center;font-weight:600}
 .back-link{display:inline-block;margin-top:16px;color:#2563eb;text-decoration:none;font-size:0.9rem}
 .back-link:hover{text-decoration:underline}
+
+/* 导航按钮 */
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+/* 卡片增强 */
+.card{transition:box-shadow .2s,transform .15s}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+/* 移动端优化 */
+@media (max-width:480px){
+  body{padding:12px}
+  .card{padding:14px 16px}
+  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+  .nav-btn{padding:10px 12px;font-size:0.8rem}
+  .nav-text{max-width:60px}
+  .nav-buttons{gap:4px}
+}
+@media (max-width:360px){
+  .nav-text{display:none}
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CreativeWork","name":"is/am/are","description":"Be動詞：is, am, are的用法區別及練習（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
@@ -43,9 +69,14 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 <div class="example"><div class="en">I <u>am</u> a student. I'm 8 years old.</div><div class="zh">I + am — 主语是 I 时用 am</div></div><div class="example"><div class="en">He/She/It <u>is</u> at school. She's happy.</div><div class="zh">He/She/It + is — 单数主语用 is</div></div><div class="example"><div class="en">You/We/They <u>are</u> my friends.</div><div class="zh">You/We/They + are — 复数主语用 are</div></div><div class="rule">📌 否定句：is not = isn't / are not = aren't / am not 没有缩写</div><div class="rule">📌 疑问句：把 am/is/are 提到句首：<u>Are</u> you happy?</div><div class="rule">📌 口诀：I 用 am，you 用 are，is 用于他她它，复数全部都用 are</div></div>
 <div class="card"><div class="card-title">📝 练习题 — 选择正确答案</div><div id="ex-area"></div>
 <div style="margin-top:16px;text-align:center;"><button class="btn btn-green" onclick="checkAnswers()">提交答案</button><span id="score" class="score-bar"></span></div></div>
-<a href="index.html" class="back-link">← 返回主页</a></div>
-<script>const EX=[{'q': 'I ___ a student.', 'opts': ['am', 'is', 'are'], 'ans': 'am'}, {'q': 'She ___ a girl.', 'opts': ['am', 'is', 'are'], 'ans': 'is'}, {'q': 'He ___ a boy.', 'opts': ['am', 'is', 'are'], 'ans': 'is'}, {'q': 'They ___ friends.', 'opts': ['am', 'is', 'are'], 'ans': 'are'}, {'q': 'You ___ kind.', 'opts': ['am', 'is', 'are'], 'ans': 'are'}, {'q': 'It ___ a cat.', 'opts': ['am', 'is', 'are'], 'ans': 'is'}, {'q': 'We ___ happy.', 'opts': ['am', 'is', 'are'], 'ans': 'are'}, {'q': 'My name ___ Tom.', 'opts': ['am', 'is', 'are'], 'ans': 'is'}, {'q': 'The dogs ___ cute.', 'opts': ['am', 'is', 'are'], 'ans': 'are'}, {'q': 'I ___ eight years old.', 'opts': ['am', 'is', 'are'], 'ans': 'am'}];
-function r(){const a=document.getElementById('ex-area');EX.forEach((item,i)=>{const d=document.createElement('div');d.className='ex-item';d.id='ex-'+i;let h='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';const sh=[...item.opts].sort(()=>Math.random()-0.5);sh.forEach(o=>{h+='<button class="opt-btn" onclick="s('+i+',this,\\\''+o+'\\\')">'+o+'</button>';});h+='<span class="result-icon" id="ri-'+i+'"></span></div>';d.innerHTML=h;a.appendChild(d);});}
-function s(i,b,v){const c=document.getElementById('ex-'+i);c.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('selected');x.dataset.selected='';});b.classList.add('selected');b.dataset.selected=v;}
-function c(){let cr=0;EX.forEach((item,i)=>{const c=document.getElementById('ex-'+i);const bs=c.querySelectorAll('.opt-btn');const ss=c.querySelector('.opt-btn.selected');const ic=document.getElementById('ri-'+i);bs.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===ss?'correct':'show-correct');else if(b===ss)b.classList.add('wrong');});if(ss&&ss.textContent.trim()===item.ans){ic.textContent='▶';cr++;}else{ic.textContent='❌';}});const t=EX.length;const bar=document.getElementById('score');bar.textContent=cr+' / '+t+' 正确（'+Math.round(cr/t*100)+'%）';bar.style.color=cr===t?'#27ae60':cr/t>=0.8?'#e67e22':'#e74c3c';}
-r();</script></body></html>
+
+<div class="nav-buttons">
+  <div class="nav-left"><span class="nav-btn nav-disabled">&larr; <span class="nav-text">已是第一页</span></span></div>
+  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
+  <div class="nav-right"><a href="p2-unit-2.html" class="nav-btn nav-next"><span class="nav-text">英文 U2</span> &rarr;</a></div>
+</div></div>
+<script>const EXERCISES=[{'q': 'I ___ a student.', 'opts': ['am', 'is', 'are'], 'ans': 'am'}, {'q': 'She ___ a girl.', 'opts': ['am', 'is', 'are'], 'ans': 'is'}, {'q': 'He ___ a boy.', 'opts': ['am', 'is', 'are'], 'ans': 'is'}, {'q': 'They ___ friends.', 'opts': ['am', 'is', 'are'], 'ans': 'are'}, {'q': 'You ___ kind.', 'opts': ['am', 'is', 'are'], 'ans': 'are'}, {'q': 'It ___ a cat.', 'opts': ['am', 'is', 'are'], 'ans': 'is'}, {'q': 'We ___ happy.', 'opts': ['am', 'is', 'are'], 'ans': 'are'}, {'q': 'My name ___ Tom.', 'opts': ['am', 'is', 'are'], 'ans': 'is'}, {'q': 'The dogs ___ cute.', 'opts': ['am', 'is', 'are'], 'ans': 'are'}, {'q': 'I ___ eight years old.', 'opts': ['am', 'is', 'are'], 'ans': 'am'}];
+function renderExercises(){const a=document.getElementById('ex-area');EXERCISES.forEach((item,i)=>{const d=document.createElement('div');d.className='ex-item';d.id='ex-'+i;let h='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';const sh=[...item.opts].sort(()=>Math.random()-0.5);sh.forEach(o=>{h+='<button class="opt-btn" onclick="selectOpt('+i+',this,''+o+'')">'+o+'</button>';});h+='<span class="result-icon" id="ri-'+i+'"></span></div>';d.innerHTML=h;a.appendChild(d);});}
+function selectOpt(i,b,v){const c=document.getElementById('ex-'+i);c.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('selected');x.dataset.selected='';});b.classList.add('selected');b.dataset.selected=v;}
+function checkAnswers(){let cr=0;EXERCISES.forEach((item,i)=>{const c=document.getElementById('ex-'+i);const bs=c.querySelectorAll('.opt-btn');const ss=c.querySelector('.opt-btn.selected');const ic=document.getElementById('ri-'+i);bs.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===ss?'correct':'show-correct');else if(b===ss)b.classList.add('wrong');});if(ss&&ss.textContent.trim()===item.ans){ic.textContent='✅';cr++;}else{ic.textContent='❌';}});const t=EXERCISES.length;const bar=document.getElementById('score');bar.textContent=cr+' / '+t+' 正确（'+Math.round(cr/t*100)+'%）';bar.style.color=cr===t?'#27ae60':cr/t>=0.8?'#e67e22':'#e74c3c';}
+renderExercises();</script></body></html>
