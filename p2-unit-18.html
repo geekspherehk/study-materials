@@ -61,35 +61,21 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 
 
   /* 移动端侧边栏展开 */
-  .sidebar.mobile-show{transform:translateX(0)}
-  .mobile-overlay.show{display:block;opacity:1}
   /* 移动端响应式布局 */
 
   body{flex-direction:column;padding:0}
-  .top-nav-bar{display:none} /* 桌面默认隐藏 */
-  .container{max-width:100%;padding:0 16px}
   
   @media(max-width:768px){
-    .top-nav-bar{display:flex;position:fixed;top:0;left:0;right:0;z-index:1000;height:48px;background:#fff;border-bottom:1px solid #e2e8f0;align-items:center;padding:0 12px;gap:10px}
-    .top-nav-bar .menu-btn{font-size:1.4rem;background:none;border:none;cursor:pointer;color:#1e293b;padding:4px 6px}
-    .top-nav-bar .nav-title{font-size:1rem;font-weight:700;color:#2563eb;flex:1;text-align:center}
-    .top-nav-bar .spacer{width:32px}
     body{padding-top:48px}
     .container{padding:0 12px}
     .card{padding:14px 16px;border-radius:10px}
     .nav-buttons{padding:12px 0;gap:8px}
     .nav-btn{padding:8px 12px;font-size:0.8rem}
     .nav-text{display:none}
-    .sidebar{display:none}
-  }
   
   @media(min-width:769px){
     body{display:flex;flex-direction:row;padding:24px}
-    .sidebar{display:flex;width:220px;min-width:220px}
-    .sidebar h1{display:block}
     .container{flex:1;max-width:760px;margin:0 auto;padding:0 24px}
-    .main-wrapper{display:flex;flex:1;max-width:960px;margin:0 auto;width:100%}
-  }
   /* 导航按钮桌面端 */
   @media(min-width:769px){
     .nav-text{display:inline}
@@ -100,15 +86,12 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 {"@context":"https://schema.org","@type":"CreativeWork","name":"Imperatives","description":"祈使句：肯定否定形式及禮貌用語（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
 </script>
 </head><body>
-  <nav class="top-nav-bar">
+  
     <button class="menu-btn" onclick="document.getElementById('sidebar').classList.toggle('mobile-show');document.getElementById('mobileOverlay').classList.toggle('show')">☰</button>
     <span class="nav-title">🐛 小书虫乐园</span>
     <span class="spacer"></span>
   </nav>
-  <div class="main-wrapper">
-<div class="container">
-<h1>⚠️ Unit 18 - Imperatives</h1><p class="subtitle">P2 English · 祈使句（香港小学二年级）</p>
-<div class="card"><span class="tag" style="background:#fee2e2;color:#991b1b">Sentences 句型</span><div class="card-title">Giving Commands & Requests</div>
+  
 <div class="video-link"><a href="https://www.youtube.com/results?search_query=imperatives+for+kids" target="_blank" rel="noopener">📺 点击搜索 YouTube 教学视频 →</a></div>
 <div class="example"><div class="en"><u>Open</u> the door, please.</div><div class="zh">肯定祈使句：以动词原形开头</div></div><div class="example"><div class="en"><u>Sit</u> down, please. / <u>Stand</u> up.</div><div class="zh">常见祈使用语：坐下、起立</div></div><div class="example"><div class="en"><u>Don't</u> run in the hallway!</div><div class="zh">否定祈使句：Don't + 动词原形</div></div><div class="example"><div class="en"><u>Don't</u> be late!</div><div class="zh">Don't + be + 形容词/名词</div></div><div class="example"><div class="en">Please be quiet.</div><div class="zh">加 please 让祈使句更礼貌</div></div><div class="rule">📌 祈使句的主语通常是 You（隐含的），不说出来</div><div class="rule">📌 please 可以放在句首或句尾</div><div class="rule">📌 Don't 后面永远跟动词原形</div></div>
 <div class="card"><div class="card-title">📝 练习题 — 选择正确答案</div><div id="ex-area"></div>
