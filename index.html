@@ -138,9 +138,21 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
   .hero-icon{font-size:2.2rem}
   .hero-bookworm{font-size:1.1rem}
 }
+/* ── 语法练习样式 ── */
+.gram-item{padding:16px;border:1px solid var(--border);border-radius:10px;margin-bottom:12px;background:#fafbfc;transition:all .15s}
+.gram-item:hover{border-color:#cbd5e1;background:#f1f5f9}
+.gram-item .sentence{font-size:1.1rem;margin-bottom:12px;color:var(--text);font-weight:500}
+.gram-item .options{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.gram-item .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px;border:2px solid var(--border);border-radius:8px;background:#fff;color:var(--text);cursor:pointer;transition:all .15s;font-weight:500}
+.gram-item .opt-btn:hover{border-color:var(--primary);color:var(--primary);background:#eff6ff}
+.gram-item .opt-btn.selected{border-color:var(--primary);background:#eff6ff;color:var(--primary);font-weight:700}
+.gram-item .opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.gram-item .opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.gram-item .opt-btn.show-correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449;opacity:0.7}
+.gram-item .result-icon{font-size:1.5rem;margin-left:12px}
+@media (max-width:480px){.gram-item .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}}
+/* ── 语法练习样式 ── */
 </style>
-</head>
-<body>
 
 <!-- ── 顶部导航栏 ── -->
 <nav class="top-nav">
@@ -153,33 +165,34 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 <div class="mobile-overlay" id="mobileOverlay" onclick="closeMenu()"></div>
 
 <!-- ── 左侧边栏 ── -->
-   156|<div class="sidebar" id="sidebar">
-   157|  <h1>🐛 小书虫乐园</h1>
-   158|  <div class="nav-gap"></div>
-   159|  <div class="category">👶 小二 · 📖 英文</div>
-   160|  <details class="sidebar-details" open>
-   161|    <summary class="side-summary">🔤 P2 英文知识点 (20个)</summary>
-   162|  <a href="p2-unit-1.html" class="side-btn sub-btn">Unit 1 - is/am/are</a>
-   163|    <a href="p2-unit-2.html" class="side-btn sub-btn">Unit 2 - a/an/the</a>
-   164|    <a href="p2-unit-3.html" class="side-btn sub-btn">Unit 3 - can</a>
-   165|    <a href="p2-unit-4.html" class="side-btn sub-btn">Unit 4 - and/but</a>
-   166|    <a href="p2-unit-5.html" class="side-btn sub-btn">Unit 5 - this/that/these/those</a>
-   167|    <a href="p2-unit-6.html" class="side-btn sub-btn">Unit 6 - in/on/under</a>
-   168|    <a href="p2-unit-7.html" class="side-btn sub-btn">Unit 7 - Prepositions of place</a>
-   169|    <a href="p2-unit-8.html" class="side-btn sub-btn">Unit 8 - Simple present tense</a>
-   170|    <a href="p2-unit-9.html" class="side-btn sub-btn">Unit 9 - do/does</a>
-   171|    <a href="p2-unit-10.html" class="side-btn sub-btn">Unit 10 - Common expressions</a>
-   172|    <a href="p2-unit-11.html" class="side-btn sub-btn">Unit 11 - I/me/my...</a>
-   173|    <a href="p2-unit-12.html" class="side-btn sub-btn">Unit 12 - Nouns</a>
-   174|    <a href="p2-unit-13.html" class="side-btn sub-btn">Unit 13 - Ordinal numbers</a>
-   175|    <a href="p2-unit-14.html" class="side-btn sub-btn">Unit 14 - Adjectives</a>
-   176|    <a href="p2-unit-15.html" class="side-btn sub-btn">Unit 15 - Opposites</a>
-   177|    <a href="p2-unit-16.html" class="side-btn sub-btn">Unit 16 - Question words: Wh-</a>
-   178|    <a href="p2-unit-17.html" class="side-btn sub-btn">Unit 17 - Question words: How</a>
-   179|    <a href="p2-unit-18.html" class="side-btn sub-btn">Unit 18 - Imperatives</a>
-   180|    <a href="p2-unit-19.html" class="side-btn sub-btn">Unit 19 - Comprehension(1): Rules</a>
-   181|    <a href="p2-unit-20.html" class="side-btn sub-btn">Unit 20 - Comprehension(2): Letters</a>
-   182|  </details>
+<!-- ── 左侧边栏 ── -->
+<div class="sidebar" id="sidebar">
+  <h1>🐛 小书虫乐园</h1>
+  <div class="nav-gap"></div>
+  <div class="category">👶 小二 · 📖 英文</div>
+  <details class="sidebar-details" open>
+    <summary class="side-summary">🔤 P2 英文知识点 (20个)</summary>
+  <a href="p2-unit-1.html" class="side-btn sub-btn">Unit 1 - is/am/are</a>
+    <a href="p2-unit-2.html" class="side-btn sub-btn">Unit 2 - a/an/the</a>
+    <a href="p2-unit-3.html" class="side-btn sub-btn">Unit 3 - can</a>
+    <a href="p2-unit-4.html" class="side-btn sub-btn">Unit 4 - and/but</a>
+    <a href="p2-unit-5.html" class="side-btn sub-btn">Unit 5 - this/that/these/those</a>
+    <a href="p2-unit-6.html" class="side-btn sub-btn">Unit 6 - in/on/under</a>
+    <a href="p2-unit-7.html" class="side-btn sub-btn">Unit 7 - Prepositions of place</a>
+    <a href="p2-unit-8.html" class="side-btn sub-btn">Unit 8 - Simple present tense</a>
+    <a href="p2-unit-9.html" class="side-btn sub-btn">Unit 9 - do/does</a>
+    <a href="p2-unit-10.html" class="side-btn sub-btn">Unit 10 - Common expressions</a>
+    <a href="p2-unit-11.html" class="side-btn sub-btn">Unit 11 - I/me/my...</a>
+    <a href="p2-unit-12.html" class="side-btn sub-btn">Unit 12 - Nouns</a>
+    <a href="p2-unit-13.html" class="side-btn sub-btn">Unit 13 - Ordinal numbers</a>
+    <a href="p2-unit-14.html" class="side-btn sub-btn">Unit 14 - Adjectives</a>
+    <a href="p2-unit-15.html" class="side-btn sub-btn">Unit 15 - Opposites</a>
+    <a href="p2-unit-16.html" class="side-btn sub-btn">Unit 16 - Question words: Wh-</a>
+    <a href="p2-unit-17.html" class="side-btn sub-btn">Unit 17 - Question words: How</a>
+    <a href="p2-unit-18.html" class="side-btn sub-btn">Unit 18 - Imperatives</a>
+    <a href="p2-unit-19.html" class="side-btn sub-btn">Unit 19 - Comprehension(1): Rules</a>
+    <a href="p2-unit-20.html" class="side-btn sub-btn">Unit 20 - Comprehension(2): Letters</a>
+  </details>
    183|  <button class="side-btn" onclick="show('gram')">📝 语法练习</button>
    184|  <div class="nav-gap"></div>
    185|</div>
@@ -436,8 +449,6 @@ const searchData = [
   { name: 'P2 Unit 18 - Imperatives', url: 'p2-unit-18.html', subject: '英文', type: '知识点' },
   { name: 'P2 Unit 19 - Comprehension(1): Rules', url: 'p2-unit-19.html', subject: '英文', type: '知识点' },
   { name: 'P2 Unit 20 - Comprehension(2): Letters', url: 'p2-unit-20.html', subject: '英文', type: '知识点' },
-  { name: 'P2 知识点总览', url: 'hk-p2-english-kp.html', subject: '英文', type: '总览' },
-  { name: '语法知识', url: 'hk-english-grammar.html', subject: '英文', type: '语法' },
   { name: '语法练习题', url: 'grammar-exercises.html', subject: '英文', type: '练习' },
   { name: '小测6复习(L1)', url: 'quiz-6-revision.html', subject: '英文', type: '复习' },
   { name: '小测6复习(L2)', url: 'quiz-6-revision-level2.html', subject: '英文', type: '复习' },
