@@ -11,46 +11,40 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
-.container{max-width:720px;margin:0 auto}
+.container{max-width:800px;margin:0 auto}
 h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
 .card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
 .card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
 .tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
-.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem}
-.btn:hover{background:#34495e}
-.btn-green{background:#27ae60}
-.btn-green:hover{background:#1e8449}
-/* unit selector */
 .unit-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
 .unit-tab{padding:6px 12px;border-radius:20px;border:1.5px solid #cbd5e1;background:#fff;cursor:pointer;font-size:0.82rem;transition:all .15s;font-weight:500}
 .unit-tab:hover{border-color:#2563eb;color:#2563eb}
 .unit-tab.active{background:#2563eb;color:#fff;border-color:#2563eb}
-/* flashcard */
-.flashcard-wrapper{perspective:800px;margin-bottom:16px;min-height:200px}
-.flashcard{position:relative;width:100%;min-height:180px;cursor:pointer;transition:transform .3s;transform-style:preserve-3d}
-.flashcard-front,.flashcard-back{position:absolute;top:0;left:0;width:100%;min-height:180px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;border-radius:12px;border:1.5px solid #e2e8f0;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-.flashcard-front{background:#fff;z-index:2}
-.flashcard-back{background:#f0fdf4;border-color:#86efac;transform:rotateY(180deg)}
-.flashcard.flipped{transform:rotateY(180deg)}
-.flashcard .en-word{font-size:1.6rem;font-weight:700;color:#2563eb;margin-bottom:8px}
-.flashcard .zh-word{font-size:1.15rem;color:#334155}
-.flashcard .example-en{font-size:0.9rem;color:#475569;margin-top:10px;font-style:italic}
-.flashcard .example-zh{font-size:0.8rem;color:#64748b;margin-top:4px}
-.flashcard .hint{font-size:0.8rem;color:#94a3b8;margin-top:16px}
-.flip-count{margin-top:24px;text-align:center;font-size:0.9rem;color:#64748b}
+/* vocab list */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.vocab-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:12px;cursor:pointer;transition:all .15s}
+.vocab-item:hover{border-color:#93c5fd;box-shadow:0 2px 6px rgba(37,99,235,0.08)}
+.vocab-item .en{font-size:1rem;font-weight:700;color:#2563eb;margin-bottom:4px}
+.vocab-item .zh{font-size:0.85rem;color:#475569;display:none}
+.vocab-item.show-zh .zh{display:block}
+.vocab-item .ex{font-size:0.75rem;color:#94a3b8;margin-top:4px;display:none}
+.vocab-item.show-zh .ex{display:block}
+.shuffle-bar{text-align:center;margin-bottom:14px}
+.btn{background:#2c3e50;color:#fff;border:none;padding:8px 18px;border-radius:6px;cursor:pointer;font-size:0.85rem}
+.btn:hover{background:#34495e}
+.btn-green{background:#27ae60}.btn-green:hover{background:#1e8449}
 .nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
 .nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
 .nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
 .nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
 .nav-home{background:#1e293b;color:#fff;border-color:#1e293b}
 .nav-home:hover{background:#2563eb;border-color:#2563eb}
-.shuffle-bar{text-align:center;margin-bottom:16px}
-.shuffle-bar .btn{font-size:0.85rem;padding:6px 18px}
 @media (max-width:480px){
   body{padding:12px}
   .card{padding:14px 16px}
-  .flashcard .en-word{font-size:1.3rem}
+  .vocab-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  .vocab-item{padding:10px}
   .unit-tab{padding:5px 10px;font-size:0.78rem}
 }
 </style>
@@ -58,297 +52,139 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 <body>
 <div class="container">
   <h1>📚 P2 English 词汇闪卡</h1>
-  <p class="subtitle">香港小学二年级英文 · 20单元核心词汇 · 点击卡片翻转</p>
-
-  <!-- unit selector -->
+  <p class="subtitle">香港小学二年级英文 · 20单元核心词汇 · 点击单词翻转</p>
   <div class="card">
     <div class="card-title">📖 选择单元</div>
     <div class="unit-tabs" id="unitTabs"></div>
+    <div class="shuffle-bar"><button class="btn" onclick="shuffleVocab()">🔀 随机排序</button> <button class="btn btn-green" onclick="toggleAll()">👁 全部翻转</button></div>
   </div>
-
-  <!-- flashcard area -->
   <div class="card">
     <div class="card-title" id="unitTitle">U1 - is/am/are</div>
-    <div class="shuffle-bar"><button class="btn" onclick="shuffleVocab()">🔀 随机排序</button></div>
-    <div class="flashcard-wrapper">
-      <div class="flashcard" id="flashcard" onclick="flipCard()">
-        <div class="flashcard-front">
-          <div class="en-word" id="frontWord"></div>
-          <div class="example-en" id="frontExample"></div>
-          <div class="hint">👆 点击翻转</div>
-        </div>
-        <div class="flashcard-back">
-          <div class="zh-word" id="backWord"></div>
-          <div class="example-zh" id="backExample"></div>
-          <div class="hint">👆 点击下一张</div>
-        </div>
-      </div>
-    </div>
-    <div class="flip-count" id="flipCount">第 1 / 0 个词</div>
+    <div class="vocab-grid" id="vocabGrid"></div>
   </div>
-
-  <!-- navigation buttons -->
   <div class="nav-buttons">
     <div class="nav-left"><a href="index.html" class="nav-btn">&larr; <span class="nav-text">返回主页</span></a></div>
     <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
     <div class="nav-right"><a href="p2-unit-1.html" class="nav-btn"><span class="nav-text">开始练习</span> &rarr;</a></div>
   </div>
 </div>
-
 <script>
-// All 20 units vocabulary data
 const ALL_VOCAB = {
   1: { title: 'U1 - is/am/are', words: [
-    { en: 'am', zh: '是（主语是I）', exEn: 'I am a student.', exZh: '我是一名学生。' },
-    { en: 'is', zh: '是（单数主语）', exEn: 'She is happy.', exZh: '她很高兴。' },
-    { en: 'are', zh: '是（复数主语）', exEn: 'They are friends.', exZh: '他们是朋友。' },
-    { en: 'happy', zh: '开心的', exEn: 'I am happy.', exZh: '我很开心。' },
-    { en: 'sad', zh: '伤心的', exEn: 'He is sad.', exZh: '他很难过。' },
-    { en: 'tall', zh: '高的', exEn: 'She is tall.', exZh: '她很高。' },
-    { en: 'short', zh: '矮的；短的', exEn: 'He is short.', exZh: '他很矮。' },
+    { en: 'am', zh: '是（主语是I）', ex: 'I am a student.' }, { en: 'is', zh: '是（单数主语）', ex: 'She is happy.' }, { en: 'are', zh: '是（复数主语）', ex: 'They are friends.' }, { en: 'happy', zh: '开心的', ex: 'I am happy.' }, { en: 'sad', zh: '伤心的', ex: 'He is sad.' }, { en: 'tall', zh: '高的', ex: 'She is tall.' }, { en: 'short', zh: '矮的；短的', ex: 'He is short.' },
   ]},
   2: { title: 'U2 - a/an/the', words: [
-    { en: 'a', zh: '一个（辅音音素前）', exEn: 'a book', exZh: '一本书' },
-    { en: 'an', zh: '一个（元音音素前）', exEn: 'an apple', exZh: '一个苹果' },
-    { en: 'the', zh: '这个/那个', exEn: 'the cat', exZh: '那只猫' },
-    { en: 'apple', zh: '苹果', exEn: 'an apple', exZh: '一个苹果' },
-    { en: 'orange', zh: '橙子', exEn: 'an orange', exZh: '一个橙子' },
-    { en: 'elephant', zh: '大象', exEn: 'an elephant', exZh: '一头大象' },
-    { en: 'book', zh: '书', exEn: 'a book', exZh: '一本书' },
+    { en: 'a', zh: '一个（辅音音素前）', ex: 'a book' }, { en: 'an', zh: '一个（元音音素前）', ex: 'an apple' }, { en: 'the', zh: '这个/那个', ex: 'the cat' }, { en: 'apple', zh: '苹果', ex: 'an apple' }, { en: 'orange', zh: '橙子', ex: 'an orange' }, { en: 'elephant', zh: '大象', ex: 'an elephant' }, { en: 'book', zh: '书', ex: 'a book' },
   ]},
   3: { title: 'U3 - can', words: [
-    { en: 'can', zh: '能，会', exEn: 'I can swim.', exZh: '我会游泳。' },
-    { en: 'cannot', zh: '不能', exEn: 'I cannot fly.', exZh: '我不会飞。' },
-    { en: 'run', zh: '跑', exEn: 'I can run fast.', exZh: '我能跑很快。' },
-    { en: 'jump', zh: '跳', exEn: 'She can jump high.', exZh: '她能跳得很高。' },
-    { en: 'swim', zh: '游泳', exEn: 'They can swim.', exZh: '他们会游泳。' },
-    { en: 'fly', zh: '飞', exEn: 'A bird can fly.', exZh: '鸟会飞。' },
-    { en: 'sing', zh: '唱歌', exEn: 'He can sing well.', exZh: '他唱歌很好听。' },
+    { en: 'can', zh: '能，会', ex: 'I can swim.' }, { en: 'cannot', zh: '不能', ex: 'I cannot fly.' }, { en: 'run', zh: '跑', ex: 'I can run fast.' }, { en: 'jump', zh: '跳', ex: 'She can jump high.' }, { en: 'swim', zh: '游泳', ex: 'They can swim.' }, { en: 'fly', zh: '飞', ex: 'A bird can fly.' }, { en: 'sing', zh: '唱歌', ex: 'He can sing well.' },
   ]},
   4: { title: 'U4 - and / but', words: [
-    { en: 'and', zh: '和，而且', exEn: 'I like cats and dogs.', exZh: '我喜欢猫和狗。' },
-    { en: 'but', zh: '但是', exEn: 'I like apples but not oranges.', exZh: '我喜欢苹果但不喜欢橙子。' },
-    { en: 'like', zh: '喜欢', exEn: 'I like reading.', exZh: '我喜欢阅读。' },
-    { en: 'happy', zh: '开心的', exEn: 'She is happy, but he is sad.', exZh: '她开心，但他难过。' },
-    { en: 'hot', zh: '热的', exEn: 'It is hot and sunny.', exZh: '天气炎热又晴朗。' },
-    { en: 'cold', zh: '冷的', exEn: 'It is cold but sunny.', exZh: '天气冷但晴朗。' },
-    { en: 'big', zh: '大的', exEn: 'The elephant is big and strong.', exZh: '大象又大又强。' },
+    { en: 'and', zh: '和，而且', ex: 'I like cats and dogs.' }, { en: 'but', zh: '但是', ex: 'I like apples but not oranges.' }, { en: 'like', zh: '喜欢', ex: 'I like reading.' }, { en: 'hot', zh: '热的', ex: 'It is hot and sunny.' }, { en: 'cold', zh: '冷的', ex: 'It is cold but sunny.' }, { en: 'big', zh: '大的', ex: 'The elephant is big and strong.' }, { en: 'small', zh: '小的', ex: 'A mouse is small.' },
   ]},
   5: { title: 'U5 - this/that/these/those', words: [
-    { en: 'this', zh: '这个（近处单数）', exEn: 'This is my pen.', exZh: '这是我的笔。' },
-    { en: 'that', zh: '那个（远处单数）', exEn: 'That is your bag.', exZh: '那是你的包。' },
-    { en: 'these', zh: '这些（近处复数）', exEn: 'These are my books.', exZh: '这些是我的书。' },
-    { en: 'those', zh: '那些（远处复数）', exEn: 'Those are your pencils.', exZh: '那些是你的铅笔。' },
-    { en: 'pen', zh: '笔', exEn: 'This is my pen.', exZh: '这是我的笔。' },
-    { en: 'bag', zh: '书包', exEn: 'That is her bag.', exZh: '那是她的书包。' },
-    { en: 'pencil', zh: '铅笔', exEn: 'These are pencils.', exZh: '这些是铅笔。' },
+    { en: 'this', zh: '这个（近处单数）', ex: 'This is my pen.' }, { en: 'that', zh: '那个（远处单数）', ex: 'That is your bag.' }, { en: 'these', zh: '这些（近处复数）', ex: 'These are my books.' }, { en: 'those', zh: '那些（远处复数）', ex: 'Those are your pencils.' }, { en: 'pen', zh: '笔', ex: 'This is my pen.' }, { en: 'bag', zh: '书包', ex: 'That is her bag.' }, { en: 'pencil', zh: '铅笔', ex: 'These are pencils.' },
   ]},
   6: { title: 'U6 - in / on / under', words: [
-    { en: 'in', zh: '在...里面', exEn: 'The cat is in the box.', exZh: '猫在盒子里。' },
-    { en: 'on', zh: '在...上面', exEn: 'The book is on the desk.', exZh: '书在书桌上。' },
-    { en: 'under', zh: '在...下面', exEn: 'The ball is under the chair.', exZh: '球在椅子下面。' },
-    { en: 'box', zh: '盒子', exEn: 'in the box', exZh: '在盒子里' },
-    { en: 'desk', zh: '书桌', exEn: 'on the desk', exZh: '在书桌上' },
-    { en: 'chair', zh: '椅子', exEn: 'under the chair', exZh: '在椅子下' },
-    { en: 'bed', zh: '床', exEn: 'under the bed', exZh: '在床底下' },
+    { en: 'in', zh: '在...里面', ex: 'The cat is in the box.' }, { en: 'on', zh: '在...上面', ex: 'The book is on the desk.' }, { en: 'under', zh: '在...下面', ex: 'The ball is under the chair.' }, { en: 'box', zh: '盒子', ex: 'in the box' }, { en: 'desk', zh: '书桌', ex: 'on the desk' }, { en: 'chair', zh: '椅子', ex: 'under the chair' }, { en: 'bed', zh: '床', ex: 'under the bed' },
   ]},
   7: { title: 'U7 - Prepositions of place', words: [
-    { en: 'next to', zh: '在...旁边', exEn: 'The school is next to the park.', exZh: '学校在公园旁边。' },
-    { en: 'behind', zh: '在...后面', exEn: 'The ball is behind the door.', exZh: '球在门后面。' },
-    { en: 'in front of', zh: '在...前面', exEn: 'The tree is in front of the house.', exZh: '树在房子前面。' },
-    { en: 'between', zh: '在...之间', exEn: 'The cat is between the two boxes.', exZh: '猫在两个盒子之间。' },
-    { en: 'near', zh: '在...附近', exEn: 'I live near the school.', exZh: '我住在学校附近。' },
-    { en: 'park', zh: '公园', exEn: 'near the park', exZh: '在公园附近' },
-    { en: 'door', zh: '门', exEn: 'behind the door', exZh: '在门后面' },
+    { en: 'next to', zh: '在...旁边', ex: 'The school is next to the park.' }, { en: 'behind', zh: '在...后面', ex: 'The ball is behind the door.' }, { en: 'in front of', zh: '在...前面', ex: 'The tree is in front of the house.' }, { en: 'between', zh: '在...之间', ex: 'The cat is between the boxes.' }, { en: 'near', zh: '在...附近', ex: 'I live near the school.' }, { en: 'park', zh: '公园', ex: 'near the park' }, { en: 'door', zh: '门', ex: 'behind the door' },
   ]},
   8: { title: 'U8 - Simple present tense', words: [
-    { en: 'walk', zh: '走路', exEn: 'I walk to school.', exZh: '我走路去学校。' },
-    { en: 'eat', zh: '吃', exEn: 'She eats breakfast.', exZh: '她吃早餐。' },
-    { en: 'drink', zh: '喝', exEn: 'They drink milk.', exZh: '他们喝牛奶。' },
-    { en: 'read', zh: '阅读', exEn: 'He reads books.', exZh: '他看书。' },
-    { en: 'write', zh: '写', exEn: 'I write a letter.', exZh: '我写信。' },
-    { en: 'play', zh: '玩', exEn: 'We play games.', exZh: '我们玩游戏。' },
-    { en: 'sleep', zh: '睡觉', exEn: 'She sleeps at nine.', exZh: '她九点睡觉。' },
+    { en: 'walk', zh: '走路', ex: 'I walk to school.' }, { en: 'eat', zh: '吃', ex: 'She eats breakfast.' }, { en: 'drink', zh: '喝', ex: 'They drink milk.' }, { en: 'read', zh: '阅读', ex: 'He reads books.' }, { en: 'write', zh: '写', ex: 'I write a letter.' }, { en: 'play', zh: '玩', ex: 'We play games.' }, { en: 'sleep', zh: '睡觉', ex: 'She sleeps at nine.' },
   ]},
   9: { title: 'U9 - do / does', words: [
-    { en: 'do', zh: '做（I/you/we/they）', exEn: 'I do my homework.', exZh: '我做作业。' },
-    { en: 'does', zh: '做（he/she/it）', exEn: 'She does her homework.', exZh: '她做作业。' },
-    { en: 'homework', zh: '家庭作业', exEn: 'do homework', exZh: '做家庭作业' },
-    { en: 'housework', zh: '家务', exEn: 'I do housework.', exZh: '我做家务。' },
-    { en: 'morning', zh: '早上', exEn: 'in the morning', exZh: '在早上' },
-    { en: 'evening', zh: '傍晚', exEn: 'in the evening', exZh: '在傍晚' },
-    { en: 'every', zh: '每一个', exEn: 'every day', exZh: '每一天' },
+    { en: 'do', zh: '做（I/you/we/they）', ex: 'I do my homework.' }, { en: 'does', zh: '做（he/she/it）', ex: 'She does her homework.' }, { en: 'homework', zh: '家庭作业', ex: 'do homework' }, { en: 'housework', zh: '家务', ex: 'I do housework.' }, { en: 'morning', zh: '早上', ex: 'in the morning' }, { en: 'evening', zh: '傍晚', ex: 'in the evening' }, { en: 'every', zh: '每一个', ex: 'every day' },
   ]},
   10: { title: 'U10 - Common expressions', words: [
-    { en: 'hello', zh: '你好', exEn: 'Hello! How are you?', exZh: '你好！你好吗？' },
-    { en: 'goodbye', zh: '再见', exEn: 'Goodbye, see you!', exZh: '再见！' },
-    { en: 'please', zh: '请', exEn: 'Please sit down.', exZh: '请坐下。' },
-    { en: 'sorry', zh: '对不起', exEn: 'I am sorry.', exZh: '对不起。' },
-    { en: 'thank you', zh: '谢谢你', exEn: 'Thank you very much.', exZh: '非常感谢你。' },
-    { en: 'excuse me', zh: '打扰一下', exEn: 'Excuse me, where is the toilet?', exZh: '打扰一下，厕所在哪里？' },
-    { en: 'welcome', zh: '欢迎', exEn: 'Welcome to our school.', exZh: '欢迎来到我们学校。' },
+    { en: 'hello', zh: '你好', ex: 'Hello! How are you?' }, { en: 'goodbye', zh: '再见', ex: 'Goodbye, see you!' }, { en: 'please', zh: '请', ex: 'Please sit down.' }, { en: 'sorry', zh: '对不起', ex: 'I am sorry.' }, { en: 'thank you', zh: '谢谢你', ex: 'Thank you very much.' }, { en: 'excuse me', zh: '打扰一下', ex: 'Excuse me, where is the toilet?' }, { en: 'welcome', zh: '欢迎', ex: 'Welcome to our school.' },
   ]},
   11: { title: 'U11 - I / me / my / mine', words: [
-    { en: 'I', zh: '我（主格）', exEn: 'I am a boy.', exZh: '我是一个男孩。' },
-    { en: 'me', zh: '我（宾格）', exEn: 'Give me a book.', exZh: '给我一本书。' },
-    { en: 'my', zh: '我的', exEn: 'This is my pen.', exZh: '这是我的笔。' },
-    { en: 'you', zh: '你（主格/宾格）', exEn: 'You are kind.', exZh: '你很善良。' },
-    { en: 'he', zh: '他（主格）', exEn: 'He is tall.', exZh: '他很高。' },
-    { en: 'she', zh: '她（主格）', exEn: 'She is happy.', exZh: '她很开心。' },
-    { en: 'they', zh: '他们（主格）', exEn: 'They are students.', exZh: '他们是学生。' },
+    { en: 'I', zh: '我（主格）', ex: 'I am a boy.' }, { en: 'me', zh: '我（宾格）', ex: 'Give me a book.' }, { en: 'my', zh: '我的', ex: 'This is my pen.' }, { en: 'you', zh: '你（主格/宾格）', ex: 'You are kind.' }, { en: 'he', zh: '他（主格）', ex: 'He is tall.' }, { en: 'she', zh: '她（主格）', ex: 'She is happy.' }, { en: 'they', zh: '他们（主格）', ex: 'They are students.' },
   ]},
-  12: { title: 'U12 - Conjunctions (and / but)', words: [
-    { en: 'and', zh: '和', exEn: 'I have a cat and a dog.', exZh: '我有一只猫和一只狗。' },
-    { en: 'but', zh: '但是', exEn: 'She is small but strong.', exZh: '她虽小但强壮。' },
-    { en: 'or', zh: '或者', exEn: 'Tea or coffee?', exZh: '茶还是咖啡？' },
-    { en: 'because', zh: '因为', exEn: 'I like it because it is fun.', exZh: '我喜欢它因为它有趣。' },
-    { en: 'so', zh: '所以', exEn: 'It rained, so I stayed home.', exZh: '下雨了，所以我呆在家。' },
-    { en: 'both', zh: '两者都', exEn: 'Both are nice.', exZh: '两者都很好。' },
-    { en: 'also', zh: '也', exEn: 'I also like apples.', exZh: '我也喜欢苹果。' },
+  12: { title: 'U12 - and / but / because', words: [
+    { en: 'and', zh: '和', ex: 'I have a cat and a dog.' }, { en: 'but', zh: '但是', ex: 'She is small but strong.' }, { en: 'or', zh: '或者', ex: 'Tea or coffee?' }, { en: 'because', zh: '因为', ex: 'I like it because it is fun.' }, { en: 'so', zh: '所以', ex: 'It rained, so I stayed home.' }, { en: 'both', zh: '两者都', ex: 'Both are nice.' }, { en: 'also', zh: '也', ex: 'I also like apples.' },
   ]},
-  13: { title: 'U13 - Countable / Uncountable', words: [
-    { en: 'some', zh: '一些', exEn: 'some milk', exZh: '一些牛奶' },
-    { en: 'any', zh: '一些（疑问/否定）', exEn: 'Do you have any water?', exZh: '你有水吗？' },
-    { en: 'many', zh: '很多（可数）', exEn: 'many books', exZh: '很多书' },
-    { en: 'much', zh: '很多（不可数）', exEn: 'much water', exZh: '很多水' },
-    { en: 'water', zh: '水', exEn: 'some water', exZh: '一些水' },
-    { en: 'milk', zh: '牛奶', exEn: 'some milk', exZh: '一些牛奶' },
-    { en: 'bread', zh: '面包', exEn: 'some bread', exZh: '一些面包' },
+  13: { title: 'U13 - some / any / many / much', words: [
+    { en: 'some', zh: '一些', ex: 'some milk' }, { en: 'any', zh: '一些（疑问/否定）', ex: 'Do you have any water?' }, { en: 'many', zh: '很多（可数）', ex: 'many books' }, { en: 'much', zh: '很多（不可数）', ex: 'much water' }, { en: 'water', zh: '水', ex: 'some water' }, { en: 'milk', zh: '牛奶', ex: 'some milk' }, { en: 'bread', zh: '面包', ex: 'some bread' },
   ]},
   14: { title: 'U14 - Singular / Plural', words: [
-    { en: 'cat', zh: '猫（单数）', exEn: 'a cat', exZh: '一只猫' },
-    { en: 'cats', zh: '猫（复数）', exEn: 'two cats', exZh: '两只猫' },
-    { en: 'dog', zh: '狗（单数）', exEn: 'a dog', exZh: '一只狗' },
-    { en: 'dogs', zh: '狗（复数）', exEn: 'three dogs', exZh: '三只狗' },
-    { en: 'child', zh: '小孩（单数）', exEn: 'one child', exZh: '一个小孩' },
-    { en: 'children', zh: '孩子们（复数）', exEn: 'many children', exZh: '很多孩子' },
-    { en: 'foot', zh: '脚（单数）', exEn: 'one foot', exZh: '一只脚' },
-    { en: 'feet', zh: '脚（复数）', exEn: 'two feet', exZh: '两只脚' },
+    { en: 'cat', zh: '猫（单数）', ex: 'a cat' }, { en: 'cats', zh: '猫（复数）', ex: 'two cats' }, { en: 'dog', zh: '狗（单数）', ex: 'a dog' }, { en: 'dogs', zh: '狗（复数）', ex: 'three dogs' }, { en: 'child', zh: '小孩（单数）', ex: 'one child' }, { en: 'children', zh: '孩子们（复数）', ex: 'many children' }, { en: 'foot', zh: '脚（单数）', ex: 'one foot' }, { en: 'feet', zh: '脚（复数）', ex: 'two feet' },
   ]},
   15: { title: 'U15 - Describing Words', words: [
-    { en: 'beautiful', zh: '美丽的', exEn: 'a beautiful flower', exZh: '一朵美丽的花' },
-    { en: 'ugly', zh: '丑陋的', exEn: 'an ugly frog', exZh: '一只丑陋的青蛙' },
-    { en: 'clean', zh: '干净的', exEn: 'clean hands', exZh: '干净的手' },
-    { en: 'dirty', zh: '脏的', exEn: 'dirty shoes', exZh: '脏鞋子' },
-    { en: 'fast', zh: '快的', exEn: 'a fast car', exZh: '一辆快车' },
-    { en: 'slow', zh: '慢的', exEn: 'a slow turtle', exZh: '一只慢乌龟' },
-    { en: 'soft', zh: '柔软的', exEn: 'a soft pillow', exZh: '一个柔软的枕头' },
+    { en: 'beautiful', zh: '美丽的', ex: 'a beautiful flower' }, { en: 'ugly', zh: '丑陋的', ex: 'an ugly frog' }, { en: 'clean', zh: '干净的', ex: 'clean hands' }, { en: 'dirty', zh: '脏的', ex: 'dirty shoes' }, { en: 'fast', zh: '快的', ex: 'a fast car' }, { en: 'slow', zh: '慢的', ex: 'a slow turtle' }, { en: 'soft', zh: '柔软的', ex: 'a soft pillow' },
   ]},
   16: { title: 'U16 - Action Words (Present)', words: [
-    { en: 'cook', zh: '做饭', exEn: 'Mom cooks dinner.', exZh: '妈妈做晚饭。' },
-    { en: 'wash', zh: '洗', exEn: 'I wash my hands.', exZh: '我洗手。' },
-    { en: 'clean', zh: '打扫', exEn: 'We clean the room.', exZh: '我们打扫房间。' },
-    { en: 'watch', zh: '看', exEn: 'I watch TV.', exZh: '我看电视。' },
-    { en: 'listen', zh: '听', exEn: 'Listen to the teacher.', exZh: '听老师说。' },
-    { en: 'speak', zh: '说话', exEn: 'Speak English.', exZh: '说英语。' },
-    { en: 'study', zh: '学习', exEn: 'I study at school.', exZh: '我在学校学习。' },
+    { en: 'cook', zh: '做饭', ex: 'Mom cooks dinner.' }, { en: 'wash', zh: '洗', ex: 'I wash my hands.' }, { en: 'clean', zh: '打扫', ex: 'We clean the room.' }, { en: 'watch', zh: '看', ex: 'I watch TV.' }, { en: 'listen', zh: '听', ex: 'Listen to the teacher.' }, { en: 'speak', zh: '说话', ex: 'Speak English.' }, { en: 'study', zh: '学习', ex: 'I study at school.' },
   ]},
   17: { title: 'U17 - like / love / enjoy', words: [
-    { en: 'like', zh: '喜欢', exEn: 'I like ice cream.', exZh: '我喜欢冰淇淋。' },
-    { en: 'love', zh: '爱，非常喜欢', exEn: 'I love my family.', exZh: '我爱我的家人。' },
-    { en: 'enjoy', zh: '享受，喜欢', exEn: 'I enjoy reading books.', exZh: '我享受读书的乐趣。' },
-    { en: 'hate', zh: '讨厌', exEn: 'I hate spiders.', exZh: '我讨厌蜘蛛。' },
-    { en: 'prefer', zh: '更喜欢', exEn: 'I prefer tea to coffee.', exZh: '比起咖啡我更喜欢茶。' },
-    { en: 'favourite', zh: '最喜欢的', exEn: 'My favourite colour is blue.', exZh: '我最喜欢的颜色是蓝色。' },
-    { en: 'fun', zh: '有趣的', exEn: 'It is fun to play.', exZh: '玩耍很有趣。' },
+    { en: 'like', zh: '喜欢', ex: 'I like ice cream.' }, { en: 'love', zh: '爱，非常喜欢', ex: 'I love my family.' }, { en: 'enjoy', zh: '享受，喜欢', ex: 'I enjoy reading.' }, { en: 'hate', zh: '讨厌', ex: 'I hate spiders.' }, { en: 'prefer', zh: '更喜欢', ex: 'I prefer tea.' }, { en: 'favourite', zh: '最喜欢的', ex: 'My favourite colour is blue.' }, { en: 'fun', zh: '有趣的', ex: 'It is fun to play.' },
   ]},
   18: { title: 'U18 - Question Words', words: [
-    { en: 'what', zh: '什么', exEn: 'What is your name?', exZh: '你叫什么名字？' },
-    { en: 'where', zh: '哪里', exEn: 'Where is the toilet?', exZh: '厕所在哪里？' },
-    { en: 'when', zh: '什么时候', exEn: 'When is your birthday?', exZh: '你的生日是什么时候？' },
-    { en: 'who', zh: '谁', exEn: 'Who is she?', exZh: '她是谁？' },
-    { en: 'why', zh: '为什么', exEn: 'Why are you late?', exZh: '你为什么迟到？' },
-    { en: 'how', zh: '怎样', exEn: 'How are you?', exZh: '你好吗？' },
-    { en: 'which', zh: '哪一个', exEn: 'Which one do you like?', exZh: '你喜欢哪一个？' },
+    { en: 'what', zh: '什么', ex: 'What is your name?' }, { en: 'where', zh: '哪里', ex: 'Where is the toilet?' }, { en: 'when', zh: '什么时候', ex: 'When is your birthday?' }, { en: 'who', zh: '谁', ex: 'Who is she?' }, { en: 'why', zh: '为什么', ex: 'Why are you late?' }, { en: 'how', zh: '怎样', ex: 'How are you?' }, { en: 'which', zh: '哪一个', ex: 'Which one do you like?' },
   ]},
   19: { title: 'U19 - Imperatives', words: [
-    { en: 'sit', zh: '坐', exEn: 'Sit down, please.', exZh: '请坐下。' },
-    { en: 'stand', zh: '站', exEn: 'Stand up, please.', exZh: '请起立。' },
-    { en: 'open', zh: '打开', exEn: 'Open the door.', exZh: '打开门。' },
-    { en: 'close', zh: '关闭', exEn: 'Close the window.', exZh: '关上窗户。' },
-    { en: 'come', zh: '来', exEn: 'Come here.', exZh: '过来这里。' },
-    { en: 'go', zh: '去', exEn: 'Go to bed.', exZh: '去睡觉。' },
-    { en: 'look', zh: '看', exEn: 'Look at the board.', exZh: '看黑板。' },
+    { en: 'sit', zh: '坐', ex: 'Sit down, please.' }, { en: 'stand', zh: '站', ex: 'Stand up, please.' }, { en: 'open', zh: '打开', ex: 'Open the door.' }, { en: 'close', zh: '关闭', ex: 'Close the window.' }, { en: 'come', zh: '来', ex: 'Come here.' }, { en: 'go', zh: '去', ex: 'Go to bed.' }, { en: 'look', zh: '看', ex: 'Look at the board.' },
   ]},
   20: { title: 'U20 - Comprehension (Letters)', words: [
-    { en: 'letter', zh: '信；字母', exEn: 'Write a letter.', exZh: '写一封信。' },
-    { en: 'friend', zh: '朋友', exEn: 'My friend is Tom.', exZh: '我的朋友是汤姆。' },
-    { en: 'address', zh: '地址', exEn: 'What is your address?', exZh: '你的地址是哪里？' },
-    { en: 'envelope', zh: '信封', exEn: 'Put it in an envelope.', exZh: '把它放进信封里。' },
-    { en: 'stamp', zh: '邮票', exEn: 'Put a stamp on it.', exZh: '贴上邮票。' },
-    { en: 'post', zh: '邮寄；邮件', exEn: 'I post a letter.', exZh: '我寄一封信。' },
-    { en: 'story', zh: '故事', exEn: 'Tell me a story.', exZh: '给我讲个故事。' },
+    { en: 'letter', zh: '信；字母', ex: 'Write a letter.' }, { en: 'friend', zh: '朋友', ex: 'My friend is Tom.' }, { en: 'address', zh: '地址', ex: 'What is your address?' }, { en: 'envelope', zh: '信封', ex: 'Put it in an envelope.' }, { en: 'stamp', zh: '邮票', ex: 'Put a stamp on it.' }, { en: 'post', zh: '邮寄', ex: 'I post a letter.' }, { en: 'story', zh: '故事', ex: 'Tell me a story.' },
   ]},
 };
 
-// State
 let currentUnit = 1;
-let vocabList = [];
-let currentIndex = 0;
+let shuffled = false;
 
 function init() {
-  // Build unit tabs
   const tabContainer = document.getElementById('unitTabs');
   for (let i = 1; i <= 20; i++) {
     const tab = document.createElement('button');
     tab.className = 'unit-tab' + (i === 1 ? ' active' : '');
     tab.textContent = 'U' + i;
-    tab.dataset.unit = i;
-    tab.addEventListener('click', function() {
+    tab.onclick = function() {
       document.querySelectorAll('.unit-tab').forEach(t => t.classList.remove('active'));
       this.classList.add('active');
-      currentUnit = parseInt(this.dataset.unit);
+      currentUnit = parseInt(this.textContent.replace('U', ''));
       document.getElementById('unitTitle').textContent = ALL_VOCAB[currentUnit].title;
-      vocabList = [...ALL_VOCAB[currentUnit].words];
-      shuffleArray(vocabList);
-      currentIndex = 0;
-      showCard();
-    });
+      shuffled = false;
+      renderGrid();
+    };
     tabContainer.appendChild(tab);
   }
-
-  // Load first unit
-  vocabList = [...ALL_VOCAB[1].words];
-  shuffleArray(vocabList);
-  showCard();
+  renderGrid();
 }
 
-function shuffleArray(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
+function renderGrid() {
+  const grid = document.getElementById('vocabGrid');
+  grid.innerHTML = '';
+  let words = ALL_VOCAB[currentUnit].words;
+  if (shuffled) {
+    words = [...words];
+    for (let i = words.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [words[i], words[j]] = [words[j], words[i]];
+    }
   }
+  words.forEach((w, idx) => {
+    const div = document.createElement('div');
+    div.className = 'vocab-item';
+    div.innerHTML = '<div class="en">' + w.en + ' <span style="font-size:0.75rem;color:#94a3b8">(点击翻转)</span></div><div class="zh">' + w.zh + '</div><div class="ex">' + w.ex + '</div>';
+    div.onclick = function() {
+      this.classList.toggle('show-zh');
+    };
+    grid.appendChild(div);
+  });
 }
 
 function shuffleVocab() {
-  shuffleArray(vocabList);
-  currentIndex = 0;
-  showCard();
+  shuffled = true;
+  renderGrid();
 }
 
-function showCard() {
-  const flashcard = document.getElementById('flashcard');
-  flashcard.classList.remove('flipped');
-
-  if (vocabList.length === 0) return;
-
-  const word = vocabList[currentIndex];
-  document.getElementById('frontWord').textContent = word.en;
-  document.getElementById('frontExample').textContent = word.exEn;
-  document.getElementById('backWord').textContent = word.zh;
-  document.getElementById('backExample').textContent = word.exZh;
-  document.getElementById('flipCount').textContent = '第 ' + (currentIndex + 1) + ' / ' + vocabList.length + ' 个词';
-}
-
-function flipCard() {
-  const flashcard = document.getElementById('flashcard');
-  if (flashcard.classList.contains('flipped')) {
-    // Go to next card
-    currentIndex = (currentIndex + 1) % vocabList.length;
-    showCard();
-  } else {
-    flashcard.classList.add('flipped');
-  }
+function toggleAll() {
+  const items = document.querySelectorAll('.vocab-item');
+  const anyHidden = Array.from(items).some(item => !item.classList.contains('show-zh'));
+  items.forEach(item => item.classList.toggle('show-zh', anyHidden));
 }
 
 init();
