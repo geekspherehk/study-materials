@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2 Maths Unit 6 - 容量</title>
+<meta name="description" content="P2數學 容量｜香港小學二年級｜升和毫升、容量比較、容量計算">
+<meta name="keywords" content="P2數學,香港小學二年級數學,容量,升,毫升,香港小學數學">
+<meta property="og:title" content="P2 Maths Unit 6 - 容量 | 小書蟲乐园">
+<meta property="og:description" content="P2數學 容量｜香港小學二年級｜升和毫升、容量比較、容量計算">
+<meta property="og:type" content="website">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.example{background:#f8fafc;border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.example:last-child{margin-bottom:0}
+.example .en{color:#2563eb;font-weight:600;margin-bottom:2px}
+.example .zh{color:#64748b;font-size:0.82rem}
+.rule{font-size:0.85rem;margin-bottom:10px;padding-left:10px;border-left:3px solid #2563eb}
+.video-link{margin:12px 0 16px}
+.video-link a{display:inline-block;background:#fb7299;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:background .2s}
+.video-link a:hover{background:#f56c8a}
+.ex-item{padding:12px 0;border-bottom:1px solid #f1f5f9}
+.ex-item:last-child{border-bottom:none}
+.ex-item p{font-weight:600;margin-bottom:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt-btn{padding:8px 24px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
+.opt-btn:hover{border-color:#2563eb}
+.opt-btn.selected{border-color:#2563eb;background:#2563eb;color:#fff}
+.opt-btn.correct{border-color:#27ae60;background:#27ae60;color:#fff}
+.opt-btn.wrong{border-color:#e74c3c;background:#e74c3c;color:#fff}
+.opt-btn.show-correct{border-color:#27ae60;background:#d4edda;color:#27ae60}
+.result-icon{margin-left:8px;font-size:1.1rem}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem}
+.btn:hover{background:#34495e}
+.btn-green{background:#27ae60}
+.btn-green:hover{background:#1e8449}
+.score-bar{margin-top:12px;text-align:center;font-weight:600;color:#2c3e50}
+.back-link{display:inline-block;margin-top:16px;color:#2563eb;text-decoration:none;font-size:0.9rem}
+.back-link:hover{text-decoration:underline}
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+@media (max-width:480px){body{padding:12px}.card{padding:14px 16px}h1{font-size:1.2rem}}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🧪 容量</h1>
+  <p class="subtitle">P2 數學 · 升和毫升、容量比較、容量計算（香港小學二年級）</p>
+
+  <div class="card">
+    <span class="tag" style="background:#ffe4b5;color:#92400e">認識單位</span>
+    <div class="card-title">📌 升（L）和毫升（mL）</div>
+    <div class="rule">容量常用單位：升（L）和毫升（mL）</div>
+    <div class="example">
+      <div class="en">📝 1 升 = 1000 毫升</div>
+      <div class="zh">1L = 1000mL，2L500mL = 2500mL</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 一瓶水約 500 mL，一桶油約 5 L</div>
+      <div class="zh">一杯奶茶約 200 mL</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 把 3L250mL 換算成毫升 → 3250mL</div>
+      <div class="zh">把 4080mL 換算成升和毫升 → 4L80mL</div>
+    </div>
+    <div class="video-link"><a href="https://www.youtube.com/results?search_query=%E5%AE%B9%E9%87%8F+%E5%8D%87+%E6%AF%AB%E5%8D%87+%E5%B0%8F%E5%AD%A6%E4%BA%8C%E5%B9%B4%E7%BA%A7" target="_blank" rel="noopener">▶ YouTube 搜尋：容量 升 毫升 二年級</a></div>
+  </div>
+
+  <div class="card">
+    <span class="tag" style="background:#c7d2fe;color:#3730a3">比較容量</span>
+    <div class="card-title">📌 容量比較與計算</div>
+    <div class="example">
+      <div class="en">📝 一個水壺裝 1L500mL，一個杯裝 250mL，哪個容量大？</div>
+      <div class="zh">1L500mL = 1500mL > 250mL，水壺容量大</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 兩個水桶，一個 8L，一個 5L300mL，相差多少？</div>
+      <div class="zh">8L - 5L300mL = 2L700mL</div>
+    </div>
+    <div class="rule">比較容量時，先統一單位再比較。</div>
+  </div>
+
+  <div class="card">
+    <span class="tag" style="background:#bbf7d0;color:#166534">應用</span>
+    <div class="card-title">📌 容量應用題</div>
+    <div class="example">
+      <div class="en">📝 一個魚缸有 12L 水，倒出 3L500mL 後，還有多少水？</div>
+      <div class="zh">12L - 3L500mL = 8L500mL</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 媽媽買了 3 瓶 1.5L 的果汁，一共有多少升？</div>
+      <div class="zh">1.5 × 3 = 4.5（L）</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag" style="background:#fecaca;color:#991b1b">✏️ 練習</span>
+    <div class="card-title">📌 試一試！（點擊選項作答）</div>
+    <div id="ex-area"></div>
+    <div style="margin-top:12px"><button class="btn btn-green" onclick="checkAnswers()">✅ 核對答案</button></div>
+    <div class="score-bar" id="score" style="display:none"></div>
+  </div>
+
+  <div class="nav-buttons">
+    <div class="nav-left"><a href="p2-math-unit5.html" class="nav-btn">&larr; <span class="nav-text">上一個</span></a></div>
+    <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主頁</a></div>
+    <div class="nav-right"><a href="p2-math-unit7.html" class="nav-btn"><span class="nav-text">下一單元</span> &rarr;</a></div>
+  </div>
+</div>
+
+<script>
+const EXERCISES = [
+  { q: '1L = ____ mL', opts: '10 100 1000 500'.split(' '), ans: '1000' },
+  { q: '2L300mL = ____ mL', opts: '23 230 2300 2003'.split(' '), ans: '2300' },
+  { q: '一個浴缸最多可裝約多少水？', opts: '200L 200mL 2L 20L'.split(' '), ans: '200L' },
+  { q: '3500mL = ____ L ____ mL', opts: '3L500mL 35L0mL 350L0mL 3L50mL'.split(' '), ans: '3L500mL' },
+  { q: '茶杯容量約 250mL，一壺茶有 1L，可以倒滿多少杯？', opts: '2杯 4杯 3杯 5杯'.split(' '), ans: '4杯' },
+  { q: '桶A有 5L水，桶B比桶A少 1L200mL，桶B有多少水？', opts: '3L800mL 4L200mL 4L800mL 3L200mL'.split(' '), ans: '3L800mL' },
+];
+
+let answered = false;
+
+function renderExercises() {
+  const a = document.getElementById('ex-area');
+  EXERCISES.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.className = 'ex-item';
+    let h = '<p>' + (i + 1) + '. ' + item.q + '</p><div class="opts">';
+    item.opts.forEach(o => {
+      h += '<button class="opt-btn" data-i="' + i + '" data-v="' + o + '" onclick="selectOpt(this)">' + o + '</button>';
+    });
+    h += '<span class="result-icon" id="ri-' + i + '"></span>  </div></div>';
+    d.innerHTML = h;
+    a.appendChild(d);
+  });
+}
+
+function selectOpt(btn) {
+  if (answered) return;
+  const i = btn.dataset.i;
+  document.querySelectorAll('.opt-btn[data-i="' + i + '"]').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function checkAnswers() {
+  if (answered) return;
+  answered = true;
+  let cr = 0;
+  EXERCISES.forEach((item, i) => {
+    const ss = document.querySelector('.opt-btn.selected[data-i="' + i + '"]');
+    const ic = document.getElementById('ri-' + i);
+    if (ss && ss.dataset.v === item.ans) { ic.textContent = '✅'; cr++; } else { ic.textContent = '❌'; }
+  });
+  const t = EXERCISES.length;
+  const bar = document.getElementById('score');
+  bar.style.display = 'block';
+  bar.textContent = cr + ' / ' + t + ' 正確 (' + Math.round(cr / t * 100) + '%)';
+  bar.style.color = cr === t ? '#27ae60' : cr / t >= 0.8 ? '#e67e22' : '#e74c3c';
+}
+
+renderExercises();
+</script>
+</body>
+</html>
