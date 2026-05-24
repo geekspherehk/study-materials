@@ -10,6 +10,69 @@
 <meta property="og:type" content="website">
 
 
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.example{background:#f8fafc;border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.example:last-child{margin-bottom:0}
+.example .en{color:#2563eb;font-weight:600;margin-bottom:2px}
+.example .zh{color:#64748b;font-size:0.82rem}
+.rule{font-size:0.85rem;margin-bottom:10px;padding-left:10px;border-left:3px solid #2563eb}
+.video-link{margin:12px 0 16px}
+.video-link a{display:inline-block;background:#fb7299;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:background .2s}
+.video-link a:hover{background:#f56c8a}
+.ex-item{padding:12px 0;border-bottom:1px solid #f1f5f9}
+.ex-item:last-child{border-bottom:none}
+.ex-item p{font-weight:600;margin-bottom:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt-btn{padding:8px 24px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
+.opt-btn:hover{border-color:#2563eb}
+.opt-btn.selected{border-color:#2563eb;background:#2563eb;color:#fff}
+.opt-btn.correct{border-color:#27ae60;background:#27ae60;color:#fff}
+.opt-btn.wrong{border-color:#e74c3c;background:#e74c3c;color:#fff}
+.opt-btn.show-correct{border-color:#27ae60;background:#d4edda;color:#27ae60}
+.result-icon{margin-left:8px;font-size:1.1rem}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem}
+.btn:hover{background:#34495e}
+.btn-green{background:#27ae60}
+.btn-green:hover{background:#1e8449}
+.score-bar{margin-top:12px;text-align:center;font-weight:600}
+.back-link{display:inline-block;margin-top:16px;color:#2563eb;text-decoration:none;font-size:0.9rem}
+.back-link:hover{text-decoration:underline}
+
+/* 导航按钮 */
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+/* 卡片增强 */
+.card{transition:box-shadow .2s,transform .15s}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+/* 移动端优化 */
+@media (max-width:480px){
+  body{padding:12px}
+  .card{padding:14px 16px}
+  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+  .nav-btn{padding:10px 12px;font-size:0.8rem}
+  .nav-text{max-width:60px}
+  .nav-buttons{gap:4px}
+}
+@media (max-width:360px){
+  .nav-text{display:none}
+}
+</style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CreativeWork","name":"in/on/under","description":"方位介詞 in/on/under 的用法及練習（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
 </script>
