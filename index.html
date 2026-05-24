@@ -2,230 +2,142 @@
 <html lang="zh-HK">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>学习素材站 - 香港小學二年級英文與數學練習</title>
+<!-- SEO meta -->
 <meta name="description" content="香港小學二年級學習資源｜P2英文語法練習（is/am/are, a/an/the, can等20個單元）＋ P2數學練習（加減法、乘法表、時間、長度、立體圖形等8個單元）｜含互動題目與即時批改">
-<meta name="keywords" content="香港小學二年級, P2英文, P2數學, 小二英文練習, 小二數學練習, Grammar練習, 加減法, 乘法表, 香港學童學習資源">
-<meta property="og:title" content="學習素材站 - 香港小學二年級英文與數學練習">
+<meta name="keywords" content="香港小學二年級, P2英文, P2數學, 小二練習, 小二英文, 小二數學, 語法練習, 中文試卷, 香港小學教育">
+<meta name="author" content="GeeksphereHK">
+<meta property="og:title" content="学习素材站 - 香港小學二年級英文與數學練習">
 <meta property="og:description" content="香港小學二年級學習資源｜P2英文語法練習＋P2數學練習｜含互動題目與即時批改">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://geekspherehk.github.io/study-materials/">
+<meta property="og:locale" content="zh_HK">
 <link rel="canonical" href="https://geekspherehk.github.io/study-materials/">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, sans-serif; background: #f5f5f5; color: #333; display: flex; min-height: 100vh; }
-  
-  /* ── 左侧边栏 ── */
-  .sidebar { width: 220px; min-width: 220px; background: #2c3e50; color: #fff; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
-  .sidebar h1 { font-size: 1.1rem; font-weight: 700; padding: 20px 16px 12px; border-bottom: 1px solid #3d5166; text-align: center; }
-  .sidebar .category { padding: 8px 16px 2px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #7f8c8d; }
-  .sidebar a, .sidebar button.side-btn { display: block; width: 100%; padding: 8px 16px 8px 20px; border: none; background: transparent; color: #bdc3c7; cursor: pointer; text-align: left; font-size: 0.9rem; text-decoration: none; transition: all 0.15s; border-left: 3px solid transparent; }
-  .sidebar a:hover, .sidebar button.side-btn:hover { background: #34495e; color: #fff; border-left-color: #3498db; }
-  .sidebar a.active, .sidebar button.side-btn.active { background: #34495e; color: #fff; border-left-color: #3498db; font-weight: 600; }
-  .sidebar .side-btn.sub-btn { padding-left: 32px; font-size: 0.82rem; border-left-color: transparent; }
-  .sidebar .side-btn.sub-btn:hover, .sidebar .side-btn.sub-btn.active { border-left-color: #e67e22; }
-  .sidebar .side-btn.sub-btn.active { background: #34495e; color: #f39c12; font-weight: 600; }
-  .sidebar-details { width: 100%; }
-  .sidebar-details summary.side-summary { padding: 8px 16px 8px 20px; color: #bdc3c7; cursor: pointer; font-size: 0.88rem; list-style: none; display: flex; align-items: center; border-left: 3px solid transparent; user-select: none; transition: all 0.15s; }
-  .sidebar-details summary.side-summary:hover { background: #34495e; color: #fff; }
-  .sidebar-details summary.side-summary::before { content: "▶"; margin-right: 6px; font-size: 0.7rem; transition: transform 0.2s; }
-  .sidebar-details[open] summary.side-summary::before { content: "▼"; }
-  .sidebar .nav-gap { height: 1px; background: #3d5166; margin: 6px 16px; }
-  
-  /* ── 右侧主内容 ── */
-  .main-content { flex: 1; padding: 24px; max-width: 760px; margin: 0 auto; width: 100%; }
+:root {
+  --sidebar-width: 240px;
+  --bg: #f1f5f9;
+  --card-bg: #fff;
+  --text: #1e293b;
+  --text-mute: #64748b;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --border: #e2e8f0;
+  --sidebar-bg: #2c3e50;
+  --sidebar-text: #bdc3c7;
+  --sidebar-highlight: #3498db;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;display:flex;min-height:100vh}
+/* ── 左侧边栏 ── */
+.sidebar{width:var(--sidebar-width);min-width:var(--sidebar-width);background:var(--sidebar-bg);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;transition:transform .3s ease;z-index:100}
+.sidebar h1{font-size:1.1rem;font-weight:700;padding:20px 16px 12px;border-bottom:1px solid #3d5166;text-align:center}
+.sidebar .category{padding:8px 16px 2px;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#7f8c8d}
+.sidebar a,.sidebar button.side-btn{display:block;width:100%;padding:8px 16px 8px 20px;border:none;background:transparent;color:var(--sidebar-text);cursor:pointer;text-align:left;font-size:0.9rem;text-decoration:none;transition:all 0.15s;border-left:3px solid transparent}
+.sidebar a:hover,.sidebar button.side-btn:hover{background:#34495e;color:#fff;border-left-color:var(--sidebar-highlight)}
+.sidebar a.active,.sidebar button.side-btn.active{background:#34495e;color:#fff;border-left-color:var(--sidebar-highlight);font-weight:600}
+.sidebar .side-btn.sub-btn{padding-left:32px;font-size:0.82rem;border-left-color:transparent}
+.sidebar .side-btn.sub-btn:hover,.sidebar .side-btn.sub-btn.active{border-left-color:#e67e22}
+.sidebar .side-btn.sub-btn.active{background:#34495e;color:#f39c12;font-weight:600}
+.sidebar-details{width:100%}
+.sidebar-details summary.side-summary{padding:8px 16px 8px 20px;color:var(--sidebar-text);cursor:pointer;font-size:0.88rem;list-style:none;display:flex;align-items:center;border-left:3px solid transparent;user-select:none;transition:all 0.15s}
+.sidebar-details summary.side-summary:hover{background:#34495e;color:#fff}
+.sidebar-details summary.side-summary::before{content:"▶";margin-right:6px;font-size:0.7rem;transition:transform 0.2s}
+.sidebar-details[open] summary.side-summary::before{content:"▼"}
+.sidebar .nav-gap{height:1px;background:#3d5166;margin:6px 16px}
 
-  /* 背单词 */
-  .word-grid { display: flex; flex-direction: column; gap: 8px; max-height: 520px; overflow-y: auto; padding-right: 4px; }
-  .word-item { display: grid; grid-template-columns: 40px 1fr auto; gap: 10px; align-items: center; background: #f8f9fa; border-radius: 8px; padding: 10px 12px; }
-  .word-item .num { font-weight: 700; color: #888; font-size: 0.85rem; }
-  .word-item .en { font-weight: 600; font-size: 1.05rem; color: #2c3e50; }
-  .word-item input { border: 1px solid #ccc; border-radius: 4px; padding: 5px 8px; font-size: 0.95rem; width: 120px; }
-  .word-item.correct input { border-color: #27ae60; background: #eafaf1; }
-  .word-item.wrong input { border-color: #e74c3c; background: #fdecea; }
-  .word-item.correct .en, .word-item.correct .num { color: #27ae60; }
-  .word-item.wrong .en, .word-item.wrong .num { color: #e74c3c; }
-  .word-item .hint { font-size: 0.8rem; color: #888; min-width: 60px; }
-  .word-item.show-answer .hint { color: #27ae60; font-weight: 600; }
+/* ── 顶部导航栏 (移动端) ── */
+.top-nav{display:none;position:fixed;top:0;left:0;right:0;height:56px;background:var(--sidebar-bg);color:#fff;z-index:200;align-items:center;padding:0 16px;justify-content:space-between}
+.top-nav .menu-btn{background:transparent;border:none;color:#fff;font-size:1.5rem;cursor:pointer;padding:8px;border-radius:8px;transition:background .15s}
+.top-nav .menu-btn:hover{background:#34495e}
+.top-nav .nav-title{font-size:1rem;font-weight:700}
+.top-nav .spacer{width:44px}
 
-  /* 语法练习 - 知识点评分tab */
-  .topic-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-  .topic-tab { padding: 6px 14px; border: 1.5px solid #ccc; border-radius: 20px; background: #fff; cursor: pointer; font-size: 0.88rem; color: #555; transition: all 0.15s; }
-  .topic-tab:hover { border-color: #2c3e50; color: #2c3e50; }
-  .topic-tab.active { background: #2c3e50; border-color: #2c3e50; color: #fff; }
+/* 移动端遮罩 */
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99;opacity:0;transition:opacity .3s}
+.mobile-overlay.show{opacity:1}
 
-  /* 语法练习 */
-  .gram-grid { display: flex; flex-direction: column; gap: 12px; }
-  .gram-item { background: #f8f9fa; border-radius: 10px; padding: 14px 16px; }
-  .gram-item .sentence { font-size: 1.05rem; font-weight: 600; color: #2c3e50; margin-bottom: 10px; }
-  .gram-item .options { display: flex; gap: 8px; flex-wrap: wrap; }
-  .gram-item .opt-btn { padding: 6px 16px; border: 1.5px solid #ccc; border-radius: 20px; background: #fff; cursor: pointer; font-size: 0.95rem; transition: all 0.15s; }
-  .gram-item .opt-btn:hover { border-color: #2c3e50; }
-  .gram-item .opt-btn.selected { border-color: #2c3e50; background: #2c3e50; color: #fff; }
-  .gram-item .opt-btn.correct { border-color: #27ae60; background: #27ae60; color: #fff; }
-  .gram-item .opt-btn.wrong { border-color: #e74c3c; background: #e74c3c; color: #fff; }
-  .gram-item .opt-btn.show-correct { border-color: #27ae60; background: #d4edda; color: #27ae60; }
-  .gram-item .result-icon { font-size: 1.1rem; margin-left: 8px; vertical-align: middle; }
-  .gram-item.done { opacity: 0.85; }
+/* ── 右侧主内容 ── */
+.main-content{flex:1;padding:24px;max-width:760px;margin:0 auto;width:100%}
 
-  .topic-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-  .topic-tab { padding: 6px 14px; border-radius: 20px; border: 1.5px solid #ccc; background: #fff; cursor: pointer; font-size: 0.85rem; color: #555; transition: all 0.15s; }
-  .topic-tab:hover { border-color: #2c3e50; color: #2c3e50; }
-  .topic-tab.active { background: #2c3e50; border-color: #2c3e50; color: #fff; }
-  main { max-width: 100%; margin: 0; padding: 0; }
-  .section { display: none; }
-  .section.active { display: block; }
-  .card { background: #fff; border-radius: 10px; padding: 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-  h2 { font-size: 1.1rem; margin-bottom: 14px; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 8px; }
+/* 桌面端主体内容在移动端加个顶部间距 */
+@media (max-width:768px){
+  .main-content{padding:76px 16px 24px}
+}
 
-  /* 口算题 */
-  .qa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .qa-item { background: #f8f9fa; border-radius: 8px; padding: 12px; text-align: center; }
-  .qa-item span { font-size: 1.1rem; font-weight: 600; color: #2c3e50; }
-  .qa-item input { width: 60px; text-align: center; border: 1px solid #ccc; border-radius: 4px; padding: 4px; margin-left: 6px; font-size: 1rem; }
-  .qa-item.correct input { border-color: #27ae60; background: #eafaf1; }
-  .qa-item.wrong input { border-color: #e74c3c; background: #fdecea; }
-  .qa-item.correct span { color: #27ae60; }
-  .qa-item.wrong span { color: #e74c3c; }
-  .btn { background: #2c3e50; color: #fff; border: none; padding: 10px 24px; border-radius: 6px; cursor: pointer; font-size: 0.95rem; }
-  .btn:hover { background: #34495e; }
-  .btn+input { vertical-align: middle; margin-right: 8px; }
+/* 在移动端隐藏sidebar */
+@media (max-width:768px){
+  .sidebar{position:fixed;top:56px;left:0;height:calc(100vh - 56px);transform:translateX(-100%);z-index:99;width:80vw;min-width:280px}
+  .sidebar.open{transform:translateX(0)}
+  .top-nav{display:flex}
+}
 
-  /* 闪卡 */
-  .flashcard-wrap { perspective: 1000px; max-width: 400px; margin: 0 auto 16px; }
-  .flashcard { width: 100%; height: 180px; position: relative; transform-style: preserve-3d; transition: transform 0.5s; cursor: pointer; }
-  .flashcard.flipped { transform: rotateY(180deg); }
-  .flashcard-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 600; padding: 20px; text-align: center; }
-  .flashcard-front { background: linear-gradient(135deg, #2c3e50, #34495e); color: #fff; }
-  .flashcard-back { background: linear-gradient(135deg, #27ae60, #2ecc71); color: #fff; transform: rotateY(180deg); }
-  .flash-nav { display: flex; justify-content: center; gap: 12px; align-items: center; }
-  .flash-nav span { color: #888; font-size: 0.9rem; }
-  .flash-nav button { background: #eee; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; }
-  .flash-nav button:hover { background: #ddd; }
+/* 搜索区 */
+.search-section{background:var(--card-bg);border-radius:12px;padding:20px 24px;border:1px solid var(--border);margin-bottom:24px}
+.search-box{display:flex;gap:8px}
+.search-box input{flex:1;padding:10px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:1rem;outline:none;transition:border-color .2s}
+.search-box input:focus{border-color:var(--primary)}
+.search-btn{padding:10px 20px;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.95rem;transition:background .15s;white-space:nowrap}
+.search-btn:hover{background:var(--primary-hover)}
 
-  /* IELTS */
-  .ielts-list { list-style: none; }
-  .ielts-list li { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-  .ielts-list li:last-child { border-bottom: none; }
-  .ielts-list a { color: #2980b9; text-decoration: none; }
-  .ielts-list a:hover { text-decoration: underline; }
-  .tag { background: #e8f4fd; color: #2980b9; font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; }
+/* 搜索结果 */
+.search-results{display:none;background:var(--card-bg);border-radius:12px;padding:20px 24px;border:1px solid var(--border);margin-bottom:24px}
+.search-results.show{display:block}
+.search-results h3{font-size:1rem;color:var(--text-mute);margin-bottom:12px}
+.search-results .result-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.search-results .result-item:last-child{border-bottom:none}
+.search-results .result-item a{color:var(--primary);text-decoration:none;font-size:0.95rem;font-weight:600}
+.search-results .result-item a:hover{text-decoration:underline}
+.search-results .result-item .result-meta{font-size:0.8rem;color:var(--text-mute);margin-top:2px}
 
-  #result-bar { text-align: center; margin-top: 10px; font-weight: 600; color: #2c3e50; }
-  .score-good { color: #27ae60; }
-  .score-bad { color: #e74c3c; }
+/* 快速入口卡片 */
+.quick-cards{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.quick-card{display:flex;align-items:center;gap:10px;background:var(--card-bg);border:2px solid var(--border);border-radius:12px;padding:14px 24px;text-decoration:none;color:var(--text);font-size:1rem;font-weight:600;transition:all .15s;flex:1;min-width:130px;justify-content:center}
+.quick-card:hover{border-color:var(--primary);box-shadow:0 4px 12px rgba(37,99,235,0.1);transform:translateY(-2px)}
+.quick-card.active{border-color:var(--primary);background:#eff6ff;color:var(--primary)}
+.quick-card .qc-icon{font-size:1.5rem}
+.quick-card .qc-label{font-size:0.95rem}
 
-  /* 全对弹窗 */
-  #reward-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999; justify-content: center; align-items: center; flex-direction: column; gap: 24px; }
-  #reward-overlay.show { display: flex; }
-  .reward-burst { position: relative; width: 300px; height: 300px; display: flex; justify-content: center; align-items: center; }
-  .reward-burst::before {
-    content: ''; position: absolute; inset: -40px;
-    background: radial-gradient(circle, rgba(255,215,0,0.9) 0%, rgba(255,165,0,0.5) 35%, transparent 70%);
-    border-radius: 50%; animation: burstPulse 1.2s ease-in-out infinite;
-  }
-  .reward-burst::after {
-    content: ''; position: absolute; inset: -80px;
-    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
-    border-radius: 50%; animation: burstSpin 3s linear infinite;
-  }
-  @keyframes burstPulse {
-    0%, 100% { transform: scale(1); opacity: 0.9; }
-    50% { transform: scale(1.15); opacity: 1; }
-  }
-  @keyframes burstSpin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  .reward-img { position: relative; z-index: 1; width: 260px; height: 260px; object-fit: contain; animation: rewardPop 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards, rewardFloat 2s ease-in-out 0.6s infinite alternate; }
-  @keyframes rewardPop {
-    0% { transform: scale(0) rotate(-20deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
-  }
-  @keyframes rewardFloat {
-    from { transform: translateY(0); }
-    to { transform: translateY(-12px); }
-  }
-  .reward-text { position: relative; z-index: 1; color: #ffd700; font-size: 1.8rem; font-weight: 800; text-align: center; text-shadow: 0 0 20px rgba(255,215,0,0.8), 0 2px 4px rgba(0,0,0,0.5); animation: textGlow 1.5s ease-in-out infinite alternate; }
-  @keyframes textGlow {
-    from { text-shadow: 0 0 20px rgba(255,215,0,0.8), 0 2px 4px rgba(0,0,0,0.5); }
-    to { text-shadow: 0 0 40px rgba(255,215,0,1), 0 0 60px rgba(255,165,0,0.6), 0 2px 4px rgba(0,0,0,0.5); }
-  }
-  .reward-btn { position: relative; z-index: 1; background: transparent; border: 2px solid #ffd700; color: #ffd700; padding: 8px 28px; border-radius: 30px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.2s; }
-  .reward-btn:hover { background: #ffd700; color: #000; }
+/* 分类标题 */
+.section-title{font-size:1.1rem;margin-bottom:16px;color:var(--text);border-bottom:2px solid var(--border);padding-bottom:8px}
 
-  /* 首页 item 卡片 hover 效果 */
-  .gram-item, .word-item {
-    transition: transform .15s, box-shadow .15s;
-  }
-  .gram-item:hover, .word-item:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-  .opt-btn {
-    transition: all .15s, transform .1s;
-  }
+/* 全部资料卡片网格 */
+.cards-grid{background:var(--card-bg);border-radius:12px;padding:20px 24px;border:1px solid var(--border)}
+.cards-grid .section-title{margin-top:0;margin-bottom:16px}
+.card-item{display:flex;align-items:center;gap:16px;padding:14px 12px;border-radius:8px;transition:all .15s;cursor:pointer;border-bottom:1px solid var(--border)}
+.card-item:last-child{border-bottom:none}
+.card-item:hover{background:#f8fafc;box-shadow:0 2px 8px rgba(0,0,0,0.06);transform:translateX(2px)}
+.card-item .card-icon{font-size:1.5rem;width:48px;text-align:center;flex-shrink:0}
+.card-item .card-info{flex:1;min-width:0}
+.card-item .card-title{font-weight:600;color:var(--primary);text-decoration:none;font-size:0.95rem}
+.card-item .card-title:hover{text-decoration:underline}
+.card-item .card-meta{font-size:0.8rem;color:var(--text-mute);margin-top:2px}
+.card-item .card-action{flex-shrink:0}
+.card-item .card-btn{display:inline-block;padding:6px 14px;background:var(--primary);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:0.82rem;text-decoration:none;transition:background .15s}
+.card-item .card-btn:hover{background:var(--primary-hover)}
 
-  /* 首页介绍区 */
-  .hero-section { text-align: center; padding: 40px 20px 32px; }
-  .hero-title { font-size: 1.8rem; font-weight: 800; color: #1e293b; margin-bottom: 8px; }
-  .hero-subtitle { font-size: 1.1rem; color: #475569; }
-  .hero-desc { font-size: 0.9rem; color: #94a3b8; margin-top: 6px; }
-
-  /* 搜索区 */
-  .search-section { margin: 0 0 28px; }
-  .search-box { display: flex; gap: 8px; }
-  .search-box input { flex: 1; padding: 12px 18px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 1rem; background: #fff; outline: none; transition: border-color .2s; }
-  .search-box input:focus { border-color: #2563eb; }
-  .search-btn { padding: 12px 24px; background: #2563eb; color: #fff; border: none; border-radius: 12px; cursor: pointer; font-size: 0.95rem; font-weight: 600; white-space: nowrap; }
-  .search-btn:hover { background: #1d4ed8; }
-
-  /* 快速入口卡片 */
-  .quick-cards { display: flex; gap: 10px; margin-bottom: 32px; flex-wrap: wrap; }
-  .quick-card { display: flex; align-items: center; gap: 8px; padding: 12px 22px; background: #fff; border: 1.5px solid #e2e8f0; border-radius: 12px; text-decoration: none; color: #475569; font-weight: 600; font-size: 0.95rem; transition: all .15s; }
-  .quick-card:hover { border-color: #2563eb; color: #2563eb; box-shadow: 0 2px 8px rgba(37,99,235,0.1); transform: translateY(-1px); }
-  .quick-card.active { background: #2563eb; border-color: #2563eb; color: #fff; }
-  .qc-icon { font-size: 1.2rem; }
-  .qc-label { }
-
-  /* 搜索结果 */
-  .search-results { margin-bottom: 24px; }
-  .search-results:empty { display: none; }
-  .search-result-item { padding: 14px 18px; background: #fff; border-radius: 10px; margin-bottom: 8px; border: 1px solid #e2e8f0; transition: all .15s; }
-  .search-result-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); transform: translateY(-1px); }
-  .search-result-item a { text-decoration: none; color: #2563eb; font-weight: 600; font-size: 1rem; }
-  .search-result-item a:hover { text-decoration: underline; }
-  .search-result-item .sr-meta { font-size: 0.82rem; color: #94a3b8; margin-top: 4px; }
-
-  /* 全部资料卡片列表 */
-  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
-  .section-title { font-size: 1.15rem; font-weight: 700; color: #1e293b; grid-column: 1 / -1; margin-bottom: 4px; }
-  .unit-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; transition: box-shadow .15s, transform .15s; }
-  .unit-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-2px); }
-  .unit-card a { text-decoration: none; color: inherit; }
-  .unit-card .uc-subject { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 6px; }
-  .unit-card .uc-title { font-size: 1rem; font-weight: 700; color: #2563eb; margin-bottom: 4px; }
-  .unit-card .uc-desc { font-size: 0.85rem; color: #64748b; }
-  .unit-card .uc-meta { font-size: 0.8rem; color: #94a3b8; margin-top: 8px; display: flex; gap: 12px; }
-  .unit-card .uc-tag { display: inline-block; padding: 1px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; }
-  .unit-card .uc-tag.english { background: #dbeafe; color: #2563eb; }
-  .unit-card .uc-tag.math { background: #fef3c7; color: #d97706; }
-
-  /* 响应式 */
-  @media (max-width:600px) {
-    .hero-title { font-size: 1.3rem; }
-    .hero-section { padding: 24px 12px 20px; }
-    .search-box { flex-direction: column; }
-    .search-btn { width: 100%; }
-    .cards-grid { grid-template-columns: 1fr; }
-    .quick-cards { justify-content: center; }
-  }
-
+/* 首页介绍 Banner */
+.hero-section{background:linear-gradient(135deg,#2c3e50,#1a252f);border-radius:12px;padding:32px 28px;margin-bottom:24px;color:#fff;text-align:center}
+.hero-title{font-size:1.6rem;margin-bottom:8px;letter-spacing:0.5px}
+.hero-subtitle{font-size:1.05rem;margin-bottom:6px;color:#bdc3c7}
+.hero-desc{font-size:0.85rem;color:#7f8c8d}
 </style>
 </head>
 <body>
 
+<!-- ── 顶部导航栏 ── -->
+<nav class="top-nav">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <span class="nav-title">📚 学习素材站</span>
+  <span class="spacer"></span>
+</nav>
+
+<!-- ── 移动端遮罩 ── -->
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMenu()"></div>
+
 <!-- ── 左侧边栏 ── -->
-<div class="sidebar">
+<div class="sidebar" id="sidebar">
   <h1>📚 学习素材站</h1>
   <div class="category">📐 数学</div>
   <button class="side-btn active" onclick="show('math')">口算练习</button>
@@ -349,445 +261,281 @@ function genQuestions() {
   const qaGrid = document.getElementById('qaGrid');
   qaGrid.innerHTML = '';
   questions.length = 0;
-  answers = [];
-  document.getElementById('result-bar').textContent = '';
-  document.getElementById('result-bar').className = '';
-
-  for (let i = 0; i < 20; i++) {
-    const a = randInt(1, 5);
-    const b = randInt(1, 9);
-    questions.push({ a, b, product: a * b });
-    answers.push(null);
-
-    const item = document.createElement('div');
-    item.className = 'qa-item';
-    item.id = 'q' + i;
-    item.innerHTML = `<span>${a} × ${b} = </span><input type="number" id="i${i}" oninput="answers[${i}]=this.value">`;
-    qaGrid.appendChild(item);
+  answers.length = 0;
+  for (let i = 0; i < 18; i++) {
+    let a, b, op, q, ans;
+    let r = Math.floor(Math.random() * 3);
+    if (r === 0) { a = randInt(1, 12); b = randInt(1, 12); op = '×'; ans = a * b; q = a + ' ' + op + ' ' + b + ' = ?'; }
+    else if (r === 1) { a = randInt(1, 12) * randInt(1, 12); b = randInt(2, 12); ans = Math.round(a / b); q = a + ' ÷ ' + b + ' = ?'; while (a % b !== 0) { a = randInt(1, 12) * randInt(1, 12); b = randInt(2, 12); ans = a / b; q = a + ' ÷ ' + b + ' = ?'; } }
+    else { a = randInt(1, 20); b = randInt(1, 20); op = Math.random() > 0.5 ? '+' : '−'; ans = op === '+' ? a + b : a - b; q = a + ' ' + op + ' ' + b + ' = ?'; }
+    questions.push({ q, opts: [] });
+    answers.push({ ans, i });
+    const div = document.createElement('div');
+    div.className = 'qa-item';
+    div.id = 'qa-' + i;
+    div.innerHTML = '<span>' + q + '</span> <input type="number" id="input-' + i + '" placeholder="?"/>';
+    qaGrid.appendChild(div);
   }
 }
-
-const REWARD_POKEMON = [
-  { name: '烈空坐', img: 'https://img.pokemondb.net/artwork/large/rayquaza.jpg' },
-  { name: '洛奇亚', img: 'https://img.pokemondb.net/artwork/large/lugia.jpg' },
-  { name: '凤王', img: 'https://img.pokemondb.net/artwork/large/ho-oh.jpg' },
-  { name: '超梦', img: 'https://img.pokemondb.net/artwork/large/mewtwo.jpg' },
-  { name: '基格尔德', img: 'https://img.pokemondb.net/artwork/large/zacian-crowned.jpg' },
-  { name: '奈克洛兹玛', img: 'https://img.pokemondb.net/artwork/large/necrozma.jpg' },
-  { name: '捷克罗姆', img: 'https://img.pokemondb.net/artwork/large/zekrom.jpg' },
-  { name: '莱希拉姆', img: 'https://img.pokemondb.net/artwork/large/reshiram.jpg' },
-];
-
-function showReward() {
-  const p = REWARD_POKEMON[Math.floor(Math.random() * REWARD_POKEMON.length)];
-  document.getElementById('rewardImg').src = p.img;
-  document.getElementById('rewardText').textContent = p.name + ' 登场！';
-  document.getElementById('reward-overlay').classList.add('show');
-}
-function closeReward() {
-  document.getElementById('reward-overlay').classList.remove('show');
-}
-
 function checkAnswers() {
-  let correct = 0;
-  questions.forEach((q, i) => {
-    const item = document.getElementById('q' + i);
-    const input = document.getElementById('i' + i);
-    const userAns = parseInt(input.value);
+  let cr = 0;
+  answers.forEach(({ ans, i }, idx) => {
+    const inp = document.getElementById('input-' + i);
+    const val = parseInt(inp.value);
+    const item = document.getElementById('qa-' + i);
     item.classList.remove('correct', 'wrong');
-    if (!isNaN(userAns)) {
-      if (userAns === q.product) {
-        item.classList.add('correct');
-        correct++;
-      } else {
-        item.classList.add('wrong');
-      }
-    } else {
-      item.classList.add('wrong');
-    }
+    if (val === ans) { item.classList.add('correct'); cr++; }
+    else { item.classList.add('wrong'); }
   });
-  const total = questions.length;
-  const pct = Math.round(correct / total * 100);
+  const t = answers.length;
   const bar = document.getElementById('result-bar');
-  bar.textContent = `${correct} / ${total} 正确（${pct}%）`;
-  bar.className = pct >= 90 ? 'score-good' : 'score-bad';
-  if (correct === total) showReward();
+  bar.textContent = cr + ' / ' + t + ' 正确（' + Math.round(cr / t * 100) + '%）';
+  bar.style.color = cr === t ? '#27ae60' : cr / t >= 0.8 ? '#e67e22' : '#e74c3c';
 }
 
-// ── 闪卡 ──────────────────────────────────────────
-const flashCards = [
-  { front: 'vocabulary', back: 'n. 词汇；词汇量' },
-  { front: 'fluent', back: 'adj. 流利的；流畅的' },
-  { front: 'comprehensive', back: 'adj. 综合的；全面的' },
-  { front: 'persuade', back: 'v. 说服；使相信' },
-  { front: 'illustrate', back: 'v. 说明；阐明；给…加插图' },
-  { front: 'accumulate', back: 'v. 积累；积聚' },
-  { front: 'circumstance', back: 'n. 情况；环境；形势' },
-  { front: 'significant', back: 'adj. 重要的；意义重大的' },
-  { front: 'acknowledge', back: 'v. 承认；确认；表示感谢' },
-  { front: 'alternative', back: 'n. / adj. 替代；替代的；可供选择' },
-  { front: 'benefit', back: 'n. 利益；好处；v. 有益于' },
-  { front: 'participate', back: 'v. 参加；参与' },
-  { front: 'environment', back: 'n. 环境；周围状况' },
-  { front: 'economy', back: 'n. 经济；节约' },
-  { front: 'guarantee', back: 'v. / n. 保证；担保' },
-  { front: 'investigate', back: 'v. 调查；研究' },
-  { front: 'maintain', back: 'v. 维持；保持；坚持；维护' },
-  { front: 'requirement', back: 'n. 要求；必要条件；需求' },
-  { front: 'sufficient', back: 'adj. 足够的；充足的' },
-  { front: 'tendency', back: 'n. 倾向；趋势' },
+// ── 背单词 ──────────────────────────────────────────
+const vocab = [
+  { en: 'apple', zh: '苹果' },
+  { en: 'banana', zh: '香蕉' },
+  { en: 'cat', zh: '猫' },
+  { en: 'dog', zh: '狗' },
+  { en: 'elephant', zh: '大象' },
+  { en: 'fish', zh: '鱼' },
+  { en: 'giraffe', zh: '长颈鹿' },
+  { en: 'house', zh: '房子' },
+  { en: 'ice cream', zh: '冰淇淋' },
+  { en: 'juice', zh: '果汁' },
+  { en: 'kite', zh: '风筝' },
+  { en: 'lemon', zh: '柠檬' },
+  { en: 'monkey', zh: '猴子' },
+  { en: 'notebook', zh: '笔记本' },
+  { en: 'orange', zh: '橙子' },
+  { en: 'piano', zh: '钢琴' },
+  { en: 'queen', zh: '女王' },
+  { en: 'rabbit', zh: '兔子' },
+  { en: 'sun', zh: '太阳' },
+  { en: 'tiger', zh: '老虎' },
+  { en: 'umbrella', zh: '雨伞' },
+  { en: 'violin', zh: '小提琴' },
+  { en: 'watermelon', zh: '西瓜' },
+  { en: 'xylophone', zh: '木琴' },
+  { en: 'yogurt', zh: '酸奶' },
+  { en: 'zebra', zh: '斑马' }
 ];
-
-let fcIdx = 0;
+let currentVocab = -1;
 
 function renderCard() {
-  const c = flashCards[fcIdx];
-  document.getElementById('fcFront').textContent = c.front;
-  document.getElementById('fcBack').textContent = c.back;
-  document.getElementById('fcCount').textContent = `${fcIdx + 1} / ${flashCards.length}`;
-  document.getElementById('flashcard').classList.remove('flipped');
+  currentVocab = randInt(0, vocab.length - 1);
+  const v = vocab[currentVocab];
+  document.getElementById('word-en').textContent = v.en;
+  document.getElementById('word-zh').textContent = v.zh;
+  document.getElementById('word-input').value = '';
+  document.getElementById('word-input').dataset.answer = v.en.toLowerCase();
+  document.getElementById('word-input').focus();
+  document.getElementById('word-input').removeAttribute('readonly');
 }
-
-function flipCard() {
-  document.getElementById('flashcard').classList.toggle('flipped');
-}
-function prevCard() {
-  fcIdx = (fcIdx - 1 + flashCards.length) % flashCards.length;
-  renderCard();
-}
-function nextCard() {
-  fcIdx = (fcIdx + 1) % flashCards.length;
-  renderCard();
-}
-
-// ── 背单词 ───────────────────────────────────────
-const WORD_BANK = [
-  ["apple","苹果"],["banana","香蕉"],["orange","橙子"],["cat","猫"],["dog","狗"],
-  ["bird","鸟"],["fish","鱼"],["book","书"],["pen","笔"],["pencil","铅笔"],
-  ["bag","书包"],["chair","椅子"],["desk","书桌"],["bed","床"],["door","门"],
-  ["window","窗户"],["box","盒子"],["ball","球"],["cake","蛋糕"],["bread","面包"],
-  ["milk","牛奶"],["water","水"],["egg","鸡蛋"],["rice","米饭"],["hand","手"],
-  ["foot","脚"],["eye","眼睛"],["ear","耳朵"],["mouth","嘴巴"],["nose","鼻子"],
-  ["head","头"],["arm","手臂"],["leg","腿"],["body","身体"],["red","红色"],
-  ["blue","蓝色"],["green","绿色"],["yellow","黄色"],["white","白色"],["black","黑色"],
-  ["one","一"],["two","二"],["three","三"],["four","四"],["five","五"],
-  ["six","六"],["seven","七"],["eight","八"],["nine","九"],["ten","十"],
-  ["morning","早上"],["noon","中午"],["night","晚上"],["today","今天"],["moon","月亮"],
-  ["sun","太阳"],["star","星星"],["tree","树"],["flower","花"],["grass","草"],
-  ["river","河"],["house","房子"],["school","学校"],["teacher","老师"],["student","学生"],
-  ["friend","朋友"],["brother","兄弟"],["sister","姐妹"],["mother","妈妈"],["father","爸爸"],
-  ["boy","男孩"],["girl","女孩"],["baby","宝宝"],["rain","雨"],["snow","雪"],
-  ["wind","风"],["cloud","云"],["hot","热的"],["cold","冷的"],["big","大的"],
-  ["small","小的"],["long","长的"],["short","短的"],["tall","高的"],["new","新的"],
-  ["old","旧的"],["good","好的"],["bad","坏的"],["happy","开心的"],["sad","伤心的"],
-  ["hungry","饿的"],["thirsty","渴的"],["run","跑"],["walk","走"],["jump","跳"],
-  ["sit","坐"],["stand","站"],["open","打开"],["close","关闭"],["eat","吃"],
-  ["drink","喝"],["sleep","睡觉"],["read","读"],["write","写"],["draw","画"],
-  ["sing","唱歌"],["dance","跳舞"],["play","玩"],["work","工作"],["love","爱"],
-  ["this","这个"],["that","那个"],["here","这里"],["there","那里"],["yes","是"],["no","不"],
-  ["please","请"],["thank","谢谢"],["sorry","对不起"],["hello","你好"],["bye","再见"],
-];
-
-let vocabQuiz = [];
-
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function genVocab() {
-  const pool = shuffle(WORD_BANK).slice(0, 50);
-  vocabQuiz = pool;
-  const grid = document.getElementById('wordGrid');
-  grid.innerHTML = '';
-  document.getElementById('vocabResult').textContent = '';
-  pool.forEach(([en, cn], i) => {
-    const item = document.createElement('div');
-    item.className = 'word-item';
-    item.id = 'vw' + i;
-    item.innerHTML = `
-      <span class="num">${i + 1}.</span>
-      <span class="en">${en}</span>
-      <input type="text" id="vi${i}" placeholder="中文" oninput="document.getElementById('vw${i}').classList.remove('correct','wrong')">
-      <span class="hint" id="vh${i}"></span>`;
-    grid.appendChild(item);
-  });
-}
-
 function checkVocab() {
-  let correct = 0;
-  vocabQuiz.forEach(([en, cn], i) => {
-    const item = document.getElementById('vw' + i);
-    const input = document.getElementById('vi' + i);
-    const hint = document.getElementById('vh' + i);
-    const user = input.value.trim();
-    item.classList.remove('correct', 'wrong', 'show-answer');
-    hint.textContent = '';
-    if (user === cn) {
-      item.classList.add('correct');
-      correct++;
-    } else if (user === '') {
-      item.classList.add('wrong');
-      hint.textContent = cn;
-      hint.style.color = '#e74c3c';
-      item.classList.add('show-answer');
-    } else {
-      item.classList.add('wrong');
-      hint.textContent = cn;
-      hint.style.color = '#e74c3c';
-      item.classList.add('show-answer');
-    }
-  });
-  const pct = Math.round(correct / vocabQuiz.length * 100);
-  const bar = document.getElementById('vocabResult');
-  bar.textContent = `${correct} / ${vocabQuiz.length} 正确（${pct}%）`;
-  bar.className = pct >= 90 ? 'score-good' : 'score-bad';
-  bar.style.cssText = 'font-weight:600;margin-left:12px;' + (pct >= 90 ? 'color:#27ae60' : 'color:#e74c3c');
+  const inp = document.getElementById('word-input');
+  const val = inp.value.trim().toLowerCase();
+  const ans = inp.dataset.answer;
+  const icon = document.getElementById('vocab-icon');
+  if (val === ans) { icon.textContent = '✅'; inp.setAttribute('readonly', true); }
+  else { icon.textContent = '❌'; inp.setAttribute('readonly', true); }
+}
+function nextVocab() {
+  renderCard();
+  document.getElementById('vocab-icon').textContent = ' ';
 }
 
-// ── 语法练习 ─────────────────────────────────────
-const GRAMMAR_BANK = [
-  { q: 'I ___ a student.', opts: ['am', 'is', 'are'], ans: 'am' },
-  { q: 'She ___ a girl.', opts: ['am', 'is', 'are'], ans: 'is' },
-  { q: 'He ___ a boy.', opts: ['am', 'is', 'are'], ans: 'is' },
-  { q: 'They ___ friends.', opts: ['am', 'is', 'are'], ans: 'are' },
-  { q: 'We ___ in the classroom.', opts: ['am', 'is', 'are'], ans: 'are' },
-  { q: 'It ___ a cat.', opts: ['am', 'is', 'are'], ans: 'is' },
-  { q: 'You ___ my friend.', opts: ['am', 'is', 'are'], ans: 'are' },
-  { q: '___ is my book.', opts: ['This', 'These', 'Those'], ans: 'This' },
-  { q: '___ are my pencils.', opts: ['This', 'These', 'Those'], ans: 'These' },
-  { q: '___ is far away.', opts: ['That', 'These', 'Those'], ans: 'That' },
-  { q: '___ are near here.', opts: ['This', 'Those', 'That'], ans: 'Those' },
-  { q: 'I have ___ apple.', opts: ['a', 'an'], ans: 'an' },
-  { q: 'She is ___ nice girl.', opts: ['a', 'an'], ans: 'a' },
-  { q: 'He is ___ honest boy.', opts: ['a', 'an'], ans: 'an' },
-  { q: 'It is ___ big bag.', opts: ['a', 'an'], ans: 'a' },
-  { q: '___ is my mother. She is a teacher.', opts: ['He', 'She', 'It'], ans: 'She' },
-  { q: '___ is my father. He is tall.', opts: ['He', 'She', 'It'], ans: 'He' },
-  { q: 'The bird ___ in the sky.', opts: ['sit', 'sits', 'sat'], ans: 'sits' },
-  { q: '___ a book on the desk.', opts: ['There is', 'There are'], ans: 'There is' },
-  { q: '___ many books on the desk.', opts: ['There is', 'There are'], ans: 'There are' },
-  { q: '___ you happy today?', opts: ['Is', 'Are', 'Am'], ans: 'Are' },
-  { q: '___ it a dog?', opts: ['Is', 'Are', 'Do'], ans: 'Is' },
-  { q: 'I ___ eat breakfast every morning.', opts: ['eats', 'eat', 'ate'], ans: 'eat' },
-  { q: 'She ___ to school by bus.', opts: ['go', 'goes', 'went'], ans: 'goes' },
-  { q: 'The sky is ___.', opts: ['blue', 'run', 'eat'], ans: 'blue' },
-  { q: 'I have ___ fingers.', opts: ['two', 'first', 'one'], ans: 'two' },
-  { q: 'My name ___ Tom.', opts: ['is', 'are', 'am'], ans: 'is' },
-  { q: 'These ___ my shoes.', opts: ['is', 'are', 'am'], ans: 'are' },
-  { q: '___ is the first day of the week.', opts: ['Monday', 'Saturday', 'Friday'], ans: 'Monday' },
-  { q: 'There ___ a pen and two books.', opts: ['is', 'are', 'am'], ans: 'is' },
+// ── 语法练习 ──────────────────────────────────────────
+const gramData = [
+  { topic: 'am/is/are', q: 'She ___ a teacher.', opts: ['am', 'is', 'are'], ans: 'is' },
+  { topic: 'a/an/the', q: 'I saw ___ elephant.', opts: ['a', 'an', 'the'], ans: 'an' },
+  { topic: 'can', q: 'He ___ swim very fast.', opts: ['can', 'can\'t', 'could'], ans: 'can' },
+  { topic: 'and/but', q: 'I like apples ___ oranges.', opts: ['and', 'but', 'or'], ans: 'and' },
+  { topic: 'this/that/these/those', q: '___ are my books.', opts: ['This', 'That', 'These', 'Those'], ans: 'These' },
+  { topic: 'in/on/under', q: 'The cat is ___ the table.', opts: ['in', 'on', 'under'], ans: 'under' },
+  { topic: 'Prepositions', q: 'The school is ___ left.', opts: ['in', 'on', 'at', 'to'], ans: 'on' },
+  { topic: 'Simple present', q: 'He ___ to school every day.', opts: ['go', 'goes', 'going'], ans: 'goes' },
+  { topic: 'do/does', q: '___ she like apples?', opts: ['Do', 'Does', 'Is'], ans: 'Does' },
+  { topic: 'Common expression', q: 'I want ___ go home.', opts: ['to', 'for', 'in'], ans: 'to' },
 ];
 
-let gramQuiz = [];
+let currentTopic = 'all';
 
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function genGrammar() {
-  gramQuiz = shuffle(GRAMMAR_BANK).slice(0, 10);
+function renderGrammar() {
   const grid = document.getElementById('gramGrid');
   grid.innerHTML = '';
-  document.getElementById('gramResult').textContent = '';
-  gramQuiz.forEach((item, idx) => {
+  const filtered = currentTopic === 'all' ? gramData : gramData.filter(d => d.topic === currentTopic);
+  const items = filtered.length === 0 ? gramData.slice(0, 5) : filtered;
+  items.forEach((item, i) => {
     const div = document.createElement('div');
     div.className = 'gram-item';
-    div.id = 'gi' + idx;
-    const shuffledOpts = shuffle(item.opts);
-    div.innerHTML = `
-      <div class="sentence">${idx + 1}. ${item.q}</div>
-      <div class="options">
-        ${shuffledOpts.map(opt => `<button class="opt-btn" onclick="selectOpt(${idx}, this, '${opt}')">${opt}</button>`).join('')}
-      </div>`;
+    div.id = 'gram-' + i;
+    let html = '<div class="sentence">' + item.q + '</div><div class="options">';
+    const shuffled = [...item.opts].sort(() => Math.random() - 0.5);
+    shuffled.forEach(o => { html += '<button class="opt-btn" onclick="selectOpt(' + i + ', this,\'' + o + '\')">' + o + '</button>'; });
+    html += '<span class="result-icon" id="gr-' + i + '"></span></div>';
+    div.innerHTML = html;
     grid.appendChild(div);
   });
 }
-
-function selectOpt(idx, btn, val) {
-  const item = document.getElementById('gi' + idx);
-  if (item.classList.contains('done')) return;
-  item.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  btn.dataset.selected = val;
+function selectOpt(i, b, v) {
+  const c = document.getElementById('gram-' + i);
+  c.querySelectorAll('.opt-btn').forEach(x => { x.classList.remove('selected'); x.dataset.selected = ''; });
+  b.classList.add('selected'); b.dataset.selected = v;
 }
-
 function checkGrammar() {
-  let correct = 0;
-  gramQuiz.forEach((item, idx) => {
-    const itemEl = document.getElementById('gi' + idx);
-    const selected = itemEl.querySelector('.opt-btn.selected');
-    itemEl.classList.add('done');
-    itemEl.querySelectorAll('.opt-btn').forEach(btn => {
-      btn.disabled = true;
-      if (btn.textContent.trim() === item.ans) {
-        btn.classList.add(btn === selected ? 'correct' : 'show-correct');
-      } else if (btn === selected) {
-        btn.classList.add('wrong');
-      }
-    });
-    if (selected && selected.textContent.trim() === item.ans) correct++;
+  const items = currentTopic === 'all' ? gramData : gramData.filter(d => d.topic === currentTopic);
+  const data = items.length === 0 ? gramData.slice(0, 5) : items;
+  let cr = 0;
+  data.forEach((item, i) => {
+    const c = document.getElementById('gram-' + i);
+    const bs = c.querySelectorAll('.opt-btn');
+    const ss = c.querySelector('.opt-btn.selected');
+    const ic = document.getElementById('gr-' + i);
+    bs.forEach(b => { b.disabled = true; if (b.textContent.trim() === item.ans) b.classList.add(b === ss ? 'correct' : 'show-correct'); else if (b === ss) b.classList.add('wrong'); });
+    if (ss && ss.textContent.trim() === item.ans) { ic.textContent = '✅'; cr++; } else { ic.textContent = '❌'; }
   });
-  const total = gramQuiz.length;
-  const pct = Math.round(correct / total * 100);
-  const bar = document.getElementById('gramResult');
-  bar.textContent = `${correct} / ${total} 正确（${pct}%）`;
-  bar.style.color = pct >= 90 ? '#27ae60' : pct >= 70 ? '#e67e22' : '#e74c3c';
+  const t = data.length;
+  const bar = document.getElementById('gram-score');
+  bar.textContent = cr + ' / ' + t + ' 正确（' + Math.round(cr / t * 100) + '%）';
+  bar.style.color = cr === t ? '#27ae60' : cr / t >= 0.8 ? '#e67e22' : '#e74c3c';
 }
 
-// ── 导航 ──────────────────────────────────────────
-function show(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
-}
-
-// 初始化
-genQuestions();
-renderCard();
-genVocab();
-genGrammar();
-
-// 如果URL有hash，自动切换到对应语法分类
-(function() {
-  const hash = location.hash.replace('#', '');
-  if (hash && hash !== 'all') {
-    const tab = document.querySelector('.topic-tab[data-topic="' + hash + '"]');
-    if (tab) tab.click();
-  }
-})();
-
-  // ── 所有学习单元数据 ──────────────────────────
-  const units = [
-  { id: 1, file: "p2-unit-1.html", title: "Unit 1 - is/am/are", desc: "Be动词：is, am, are的用法区别", subject: "english" },
-  { id: 2, file: "p2-unit-2.html", title: "Unit 2 - a/an/the", desc: "冠词a, an, the的用法", subject: "english" },
-  { id: 3, file: "p2-unit-3.html", title: "Unit 3 - can", desc: "情态动词can的用法", subject: "english" },
-  { id: 4, file: "p2-unit-4.html", title: "Unit 4 - and/but", desc: "连词and, but的用法", subject: "english" },
-  { id: 5, file: "p2-unit-5.html", title: "Unit 5 - this/that/these/those", desc: "指示代词this, that, these, those", subject: "english" },
-  { id: 6, file: "p2-unit-6.html", title: "Unit 6 - in/on/under", desc: "介词in, on, under的用法", subject: "english" },
-  { id: 7, file: "p2-unit-7.html", title: "Unit 7 - Prepositions of place", desc: "地点介词总结", subject: "english" },
-  { id: 8, file: "p2-unit-8.html", title: "Unit 8 - Simple present tense", desc: "一般现在时", subject: "english" },
-  { id: 9, file: "p2-unit-9.html", title: "Unit 9 - do/does", desc: "助动词do/does的用法", subject: "english" },
-  { id: 10, file: "p2-unit-10.html", title: "Unit 10 - Common expressions", desc: "日常用语表达：like to, want to, need to等", subject: "english" },
-  { id: 11, file: "p2-unit-11.html", title: "Unit 11 - I/me/my/mine", desc: "代词I, me, my, mine的用法", subject: "english" },
-  { id: 12, file: "p2-unit-12.html", title: "Unit 12 - Nouns", desc: "名词：可数/不可数、单复数", subject: "english" },
-  { id: 13, file: "p2-unit-13.html", title: "Unit 13 - Ordinal numbers", desc: "序数词：first, second, third等", subject: "english" },
-  { id: 14, file: "p2-unit-14.html", title: "Unit 14 - Adjectives", desc: "形容词的用法", subject: "english" },
-  { id: 15, file: "p2-unit-15.html", title: "Unit 15 - Opposites", desc: "反义词：big/small, hot/cold等", subject: "english" },
-  { id: 16, file: "p2-unit-16.html", title: "Unit 16 - Question words: Wh-", desc: "疑问词：who, what, when, where, why", subject: "english" },
-  { id: 17, file: "p2-unit-17.html", title: "Unit 17 - Question words: How", desc: "疑问词：how的用法", subject: "english" },
-  { id: 18, file: "p2-unit-18.html", title: "Unit 18 - Imperatives", desc: "祈使句的用法", subject: "english" },
-  { id: 19, file: "p2-unit-19.html", title: "Unit 19 - Comprehension: Rules", desc: "阅读理解：规则类", subject: "english" },
-  { id: 20, file: "p2-unit-20.html", title: "Unit 20 - Comprehension: Letters", desc: "阅读理解：书信类", subject: "english" },
-  { id: 30+i, file: "p2-math-unit-1.html", title: "U1 - 加与减", desc: "100以内的加减法", subject: "math" },
-  { id: 30+i, file: "p2-math-unit-2.html", title: "U2 - 乘法", desc: "1-9的乘法表学习", subject: "math" },
-  { id: 30+i, file: "p2-math-unit-3.html", title: "U3 - 除法", desc: "基本除法运算", subject: "math" },
-  { id: 30+i, file: "p2-math-unit-4.html", title: "U4 - 图形的认识", desc: "常见平面图形识别", subject: "math" },
-  { id: 30+i, file: "p2-math-unit-5.html", title: "U5 - 长度", desc: "长度认识和测量", subject: "math" },
-  { id: 30+i, file: "p2-math-unit-6.html", title: "U6 - 四边形", desc: "四边形的特征和分类", subject: "math" },
-  { id: 30+i, file: "p2-math-unit-7.html", title: "U7 - 立体图形", desc: "立体图形认识", subject: "math" },
-  { id: 30+i, file: "p2-math-unit-8.html", title: "U8 - 方向", desc: "方向识别和描述", subject: "math" },
+// ── 搜索功能 ──────────────────────────────────────────
+const searchData = [
+  { name: 'P2 Unit 1 - is/am/are', url: 'p2-unit-1.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 2 - a/an/the', url: 'p2-unit-2.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 3 - can', url: 'p2-unit-3.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 4 - and/but', url: 'p2-unit-4.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 5 - this/that/these/those', url: 'p2-unit-5.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 6 - in/on/under', url: 'p2-unit-6.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 7 - Prepositions of place', url: 'p2-unit-7.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 8 - Simple present tense', url: 'p2-unit-8.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 9 - do/does', url: 'p2-unit-9.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 10 - Common expressions', url: 'p2-unit-10.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 11 - I/me/my/mine', url: 'p2-unit-11.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 12 - Nouns', url: 'p2-unit-12.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 13 - Ordinal numbers', url: 'p2-unit-13.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 14 - Adjectives', url: 'p2-unit-14.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 15 - Opposites', url: 'p2-unit-15.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 16 - Question words: Wh-', url: 'p2-unit-16.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 17 - Question words: How', url: 'p2-unit-17.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 18 - Imperatives', url: 'p2-unit-18.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 19 - Comprehension(1): Rules', url: 'p2-unit-19.html', subject: '英文', type: '知识点' },
+  { name: 'P2 Unit 20 - Comprehension(2): Letters', url: 'p2-unit-20.html', subject: '英文', type: '知识点' },
+  { name: 'P2 知识点总览', url: 'hk-p2-english-kp.html', subject: '英文', type: '总览' },
+  { name: '语法知识', url: 'hk-english-grammar.html', subject: '英文', type: '语法' },
+  { name: '语法练习题', url: 'grammar-exercises.html', subject: '英文', type: '练习' },
+  { name: '小测6复习(L1)', url: 'quiz-6-revision.html', subject: '英文', type: '复习' },
+  { name: '小测6复习(L2)', url: 'quiz-6-revision-level2.html', subject: '英文', type: '复习' },
+  { name: 'P2 数学 Unit 1 - 加与减', url: 'p2-math-unit-1.html', subject: '数学', type: '知识点' },
+  { name: 'P2 数学 Unit 2 - 乘法', url: 'p2-math-unit-2.html', subject: '数学', type: '知识点' },
+  { name: 'P2 数学 Unit 3 - 除法', url: 'p2-math-unit-3.html', subject: '数学', type: '知识点' },
+  { name: 'P2 数学 Unit 4 - 图形的认识', url: 'p2-math-unit-4.html', subject: '数学', type: '知识点' },
+  { name: 'P2 数学 Unit 5 - 长度', url: 'p2-math-unit-5.html', subject: '数学', type: '知识点' },
+  { name: 'P2 数学 Unit 6 - 四边形', url: 'p2-math-unit-6.html', subject: '数学', type: '知识点' },
+  { name: 'P2 数学 Unit 7 - 立体图形', url: 'p2-math-unit-7.html', subject: '数学', type: '知识点' },
+  { name: 'P2 数学 Unit 8 - 方向', url: 'p2-math-unit-8.html', subject: '数学', type: '知识点' },
 ];
 
-  // ── 搜索 ──────────────────────────────────────
-  function doSearch(query) {
-    q = query.trim().toLowerCase();
-    const results = document.getElementById('searchResults');
-    const allCards = document.getElementById('allCards');
-    
-    if (!q) {
-      results.innerHTML = '';
-      allCards.style.display = '';
-      document.querySelectorAll('.quick-card').forEach(c => c.classList.remove('active'));
-      document.querySelector('.quick-card[data-subject="all"]')?.classList.add('active');
-      return;
-    }
-    
-    const matches = units.filter(u =>
-      u.title.toLowerCase().includes(q) || u.desc.toLowerCase().includes(q)
-    );
-    
+function doSearch(query) {
+  const q = query.toLowerCase().trim();
+  const results = document.getElementById('searchResults');
+  const allCards = document.getElementById('allCards');
+  
+  if (!q) {
+    results.classList.remove('show');
+    allCards.style.display = 'block';
+    return;
+  }
+  
+  const matches = searchData.filter(item =>
+    item.name.toLowerCase().includes(q) ||
+    item.subject.includes(q) ||
+    item.type.includes(q)
+  );
+  
+  if (matches.length === 0) {
+    results.innerHTML = '<h3>🔍 未找到相关结果</h3>';
+    results.classList.add('show');
     allCards.style.display = 'none';
-    if (matches.length === 0) {
-      results.innerHTML = '<p style="text-align:center;color:#94a3b8;padding:40px;">没有找到相关单元 😅</p>';
-      return;
+    return;
+  }
+  
+  let html = '<h3>🔍 搜索结果 (' + matches.length + '项)</h3>';
+  matches.forEach(item => {
+    html += '<div class="result-item">';
+    html += '<a href="' + item.url + '">' + item.name + '</a>';
+    html += '<div class="result-meta">' + item.subject + ' · ' + item.type + '</div>';
+    html += '</div>';
+  });
+  results.innerHTML = html;
+  results.classList.add('show');
+  allCards.style.display = 'none';
+}
+
+// ── 生成全部卡片列表 ──────────────────────────
+function renderAllCards() {
+  const container = document.getElementById('allCards');
+  let html = '<h2 class="section-title">📖 全部学习单元</h2>';
+  searchData.forEach(item => {
+    const icon = item.subject === '数学' ? '📐' : '📖';
+    html += '<div class="card-item">';
+    html += '<div class="card-icon">' + icon + '</div>';
+    html += '<div class="card-info">';
+    html += '<a href="' + item.url + '" class="card-title">' + item.name + '</a>';
+    html += '<div class="card-meta">' + item.subject + ' · ' + item.type + '</div>';
+    html += '</div>';
+    html += '<div class="card-action"><a href="' + item.url + '" class="card-btn">前往</a></div>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+
+// ── 快速筛选 ──────────────────────────────────
+function filterBySubject(subject) {
+  const allCards = document.getElementById('allCards');
+  const items = allCards.querySelectorAll('.card-item');
+  
+  document.querySelectorAll('.quick-card').forEach(c => c.classList.remove('active'));
+  const btn = document.querySelector(`.quick-card[onclick*="'${subject}'"]`);
+  if (btn) btn.classList.add('active');
+  
+  items.forEach(item => {
+    const meta = item.querySelector('.card-meta').textContent;
+    if (subject === 'math' && meta.includes('数学')) {
+      item.style.display = 'flex';
+    } else if (subject === 'english' && meta.includes('英文')) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'flex';
     }
-    
-    results.innerHTML = matches.map(u => {
-      const tagClass = u.subject === 'english' ? 'english' : 'math';
-      const tagLabel = u.subject === 'english' ? '📖 英文' : '📐 数学';
-      return \`<div class="search-result-item">
-        <a href="\${u.file}">\${u.title}</a>
-        <div class="sr-meta">
-          <span class="uc-tag \${tagClass}">\${tagLabel}</span>
-          <span style="margin-left:8px;">\${u.desc}</span>
-        </div>
-      </div>\`;
-    }).join('');
-  }
+  });
+  
+  const sectionTitle = allCards.querySelector('.section-title');
+  sectionTitle.textContent = '📖 ' + (subject === 'math' ? '数学' : '英文') + ' 学习单元';
+}
 
-  // ── 筛选 ──────────────────────────────────────
-  function filterBySubject(subject) {
-    document.querySelectorAll('.quick-card').forEach(c => c.classList.remove('active'));
-    const btn = document.querySelector(\`.quick-card[onclick*="'\${subject}'"]\`);
-    if (btn) btn.classList.add('active');
-    
-    const allCards = document.getElementById('allCards');
-    let html = '<h2 class="section-title">📖 ' +
-      (subject === 'math' ? '数学' : '英文') + ' 学习单元</h2>';
-    
-    const filtered = units.filter(u => u.subject === subject);
-    filtered.forEach(u => {
-      const tagClass = u.subject === 'english' ? 'english' : 'math';
-      const tagLabel = u.subject === 'english' ? '📖 英文' : '📐 数学';
-      html += \`<div class="unit-card">
-        <a href="\${u.file}">
-          <div class="uc-subject">\${tagLabel}</div>
-          <div class="uc-title">\${u.title}</div>
-          <div class="uc-desc">\${u.desc}</div>
-          <div class="uc-meta">
-            <span class="uc-tag \${tagClass}">\${tagLabel}</span>
-          </div>
-        </a>
-      </div>\`;
-    });
-    allCards.innerHTML = html;
-    document.getElementById('searchResults').innerHTML = '';
-    document.getElementById('searchInput').value = '';
-  }
+// ── 移动端菜单 ──────────────────────────────────
+function toggleMenu() {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('mobileOverlay');
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('show');
+}
 
-  // ── 初始化全部卡片 ────────────────────────────
-  function renderAllCards() {
-    const allCards = document.getElementById('allCards');
-    let html = '<h2 class="section-title">📖 全部学习单元</h2>';
-    units.forEach(u => {
-      const tagClass = u.subject === 'english' ? 'english' : 'math';
-      const tagLabel = u.subject === 'english' ? '📖 英文' : '📐 数学';
-      html += \`<div class="unit-card">
-        <a href="\${u.file}">
-          <div class="uc-subject">\${tagLabel}</div>
-          <div class="uc-title">\${u.title}</div>
-          <div class="uc-desc">\${u.desc}</div>
-          <div class="uc-meta">
-            <span class="uc-tag \${tagClass}">\${tagLabel}</span>
-          </div>
-        </a>
-      </div>\`;
-    });
-    allCards.innerHTML = html;
-  }
-  renderAllCards();
+function closeMenu() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('mobileOverlay').classList.remove('show');
+}
 
+// ── 初始化 ──────────────────────────────────────
+genQuestions();
+renderCard();
+renderGrammar();
+renderAllCards();
 </script>
 </body>
 </html>
