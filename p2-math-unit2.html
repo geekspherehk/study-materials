@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2 Maths Unit 2 - 加法和減法</title>
+<meta name="description" content="P2數學 加法和減法｜香港小學二年級｜兩位數進位加法、退位減法、加減應用題">
+<meta name="keywords" content="P2數學,香港小學二年級數學,加法,減法,進位,退位,香港小學數學">
+<meta property="og:title" content="P2 Maths Unit 2 - 加法和減法 | 小書蟲乐园">
+<meta property="og:description" content="P2數學 加法和減法｜香港小學二年級｜兩位數進位加法、退位減法、加減應用題">
+<meta property="og:type" content="website">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.example{background:#f8fafc;border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.example:last-child{margin-bottom:0}
+.example .en{color:#2563eb;font-weight:600;margin-bottom:2px}
+.example .zh{color:#64748b;font-size:0.82rem}
+.rule{font-size:0.85rem;margin-bottom:10px;padding-left:10px;border-left:3px solid #2563eb}
+.video-link{margin:12px 0 16px}
+.video-link a{display:inline-block;background:#fb7299;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:background .2s}
+.video-link a:hover{background:#f56c8a}
+.ex-item{padding:12px 0;border-bottom:1px solid #f1f5f9}
+.ex-item:last-child{border-bottom:none}
+.ex-item p{font-weight:600;margin-bottom:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt-btn{padding:8px 24px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
+.opt-btn:hover{border-color:#2563eb}
+.opt-btn.selected{border-color:#2563eb;background:#2563eb;color:#fff}
+.opt-btn.correct{border-color:#27ae60;background:#27ae60;color:#fff}
+.opt-btn.wrong{border-color:#e74c3c;background:#e74c3c;color:#fff}
+.opt-btn.show-correct{border-color:#27ae60;background:#d4edda;color:#27ae60}
+.result-icon{margin-left:8px;font-size:1.1rem}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem}
+.btn:hover{background:#34495e}
+.btn-green{background:#27ae60}
+.btn-green:hover{background:#1e8449}
+.score-bar{margin-top:12px;text-align:center;font-weight:600;color:#2c3e50}
+.back-link{display:inline-block;margin-top:16px;color:#2563eb;text-decoration:none;font-size:0.9rem}
+.back-link:hover{text-decoration:underline}
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+@media (max-width:480px){body{padding:12px}.card{padding:14px 16px}h1{font-size:1.2rem}}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>➕ 加法和減法</h1>
+  <p class="subtitle">P2 數學 · 兩位數進位加法、退位減法、應用題（香港小學二年級）</p>
+
+  <div class="card">
+    <span class="tag" style="background:#ffe4b5;color:#92400e">進位加法</span>
+    <div class="card-title">📌 兩位數加法（進位）</div>
+    <div class="rule">個位相加滿10，向十位進1：</div>
+    <div class="example">
+      <div class="en">📝 47 + 28 = ?</div>
+      <div class="zh">7+8=15（進1寫5），4+2+1=7 → 75</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 56 + 37 = ?</div>
+      <div class="zh">6+7=13（進1寫3），5+3+1=9 → 93</div>
+    </div>
+    <div class="video-link"><a href="https://www.youtube.com/results?search_query=%E9%80%B2%E4%BD%8D%E5%8A%A0%E6%B3%95+%E9%99%84%E4%BD%8D+%E5%B0%8F%E5%AD%A6%E4%BA%8C%E5%B9%B4%E7%BA%A7" target="_blank" rel="noopener">▶ YouTube 搜尋：進位加法</a></div>
+  </div>
+
+  <div class="card">
+    <span class="tag" style="background:#c7d2fe;color:#3730a3">退位減法</span>
+    <div class="card-title">📌 兩位數減法（退位）</div>
+    <div class="rule">個位不夠減，向十位借1當10：</div>
+    <div class="example">
+      <div class="en">📝 62 - 28 = ?</div>
+      <div class="zh">2不夠減8，借1變12-8=4，十位5-2=3 → 34</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 84 - 56 = ?</div>
+      <div class="zh">4不夠減6，借1變14-6=8，十位7-5=2 → 28</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag" style="background:#bbf7d0;color:#166534">應用題</span>
+    <div class="card-title">📌 加減應用題</div>
+    <div class="example">
+      <div class="en">📝 果籃裡有38個蘋果和25個橙，共有水果多少個？</div>
+      <div class="zh">38+25=63（個）</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 錢包原有75元，買書用了48元，還剩多少元？</div>
+      <div class="zh">75-48=27（元）</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag" style="background:#fecaca;color:#991b1b">✏️ 練習</span>
+    <div class="card-title">📌 試一試！（點擊選項作答）</div>
+    <div id="ex-area"></div>
+    <div style="margin-top:12px"><button class="btn btn-green" onclick="checkAnswers()">✅ 核對答案</button></div>
+    <div class="score-bar" id="score" style="display:none"></div>
+  </div>
+
+  <div class="nav-buttons">
+    <div class="nav-left"><a href="p2-math-unit1.html" class="nav-btn">&larr; <span class="nav-text">上一個</span></a></div>
+    <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主頁</a></div>
+    <div class="nav-right"><a href="p2-math-unit3.html" class="nav-btn"><span class="nav-text">下一單元</span> &rarr;</a></div>
+  </div>
+</div>
+
+<script>
+const EXERCISES = [
+  { q: '38 + 25 = ?', opts: ['53', '63', '513', '55'], ans: '63' },
+  { q: '72 - 18 = ?', opts: ['54', '64', '66', '90'], ans: '54' },
+  { q: '56 + 39 = ?', opts: '85 95 915 89'.split(' '), ans: '95' },
+  { q: '小明有46元，買筆用去28元，還剩多少元？', opts: '18 28 74 22'.split(' '), ans: '18' },
+  { q: '一班有37人，二班有36人，兩班共有多少人？', opts: '63 71 73 63'.split(' '), ans: '73' },
+  { q: '90 - 34 - 25 = ?', opts: '31 41 21 129'.split(' '), ans: '31' },
+];
+
+let answered = false;
+
+function renderExercises() {
+  const a = document.getElementById('ex-area');
+  EXERCISES.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.className = 'ex-item';
+    let h = '<p>' + (i + 1) + '. ' + item.q + '</p><div class="opts">';
+    item.opts.forEach(o => {
+      h += '<button class="opt-btn" data-i="' + i + '" data-v="' + o + '" onclick="selectOpt(this)">' + o + '</button>';
+    });
+    h += '<span class="result-icon" id="ri-' + i + '"></span>  </div></div>';
+    d.innerHTML = h;
+    a.appendChild(d);
+  });
+}
+
+function selectOpt(btn) {
+  if (answered) return;
+  const i = btn.dataset.i;
+  document.querySelectorAll('.opt-btn[data-i="' + i + '"]').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function checkAnswers() {
+  if (answered) return;
+  answered = true;
+  let cr = 0;
+  EXERCISES.forEach((item, i) => {
+    const ss = document.querySelector('.opt-btn.selected[data-i="' + i + '"]');
+    const ic = document.getElementById('ri-' + i);
+    if (ss && ss.dataset.v === item.ans) { ic.textContent = '✅'; cr++; } else { ic.textContent = '❌'; }
+  });
+  const t = EXERCISES.length;
+  const bar = document.getElementById('score');
+  bar.style.display = 'block';
+  bar.textContent = cr + ' / ' + t + ' 正確 (' + Math.round(cr / t * 100) + '%)';
+  bar.style.color = cr === t ? '#27ae60' : cr / t >= 0.8 ? '#e67e22' : '#e74c3c';
+}
+
+renderExercises();
+</script>
+</body>
+</html>
