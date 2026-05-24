@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>学习素材站 - 香港小學二年級英文與數學練習</title>
+<title>小书虫乐园 - 香港小學二年級英文與數學練習</title>
 <!-- SEO meta -->
-<meta name="description" content="香港小學二年級學習資源｜P2英文語法練習（is/am/are, a/an/the, can等20個單元）＋ P2數學練習（加減法、乘法表、時間、長度、立體圖形等8個單元）｜含互動題目與即時批改">
-<meta name="keywords" content="香港小學二年級, P2英文, P2數學, 小二練習, 小二英文, 小二數學, 語法練習, 中文試卷, 香港小學教育">
+<meta name="description" content="小书虫乐园｜香港小學二年級學習資源｜P2英文語法練習（is/am/are, a/an/the, can等20個單元）＋ P2數學練習（加減法、乘法表、時間、長度、立體圖形等8個單元）｜含互動題目與即時批改">
+<meta name="keywords" content="小书虫乐园, 香港小學二年級, P2英文, P2數學, 小二練習, 小二英文, 小二數學, 語法練習, 中文試卷, 香港小學教育">
 <meta name="author" content="GeeksphereHK">
-<meta property="og:title" content="学习素材站 - 香港小學二年級英文與數學練習">
-<meta property="og:description" content="香港小學二年級學習資源｜P2英文語法練習＋P2數學練習｜含互動題目與即時批改">
+<meta property="og:title" content="小书虫乐园 - 香港小學二年級英文與數學練習">
+<meta property="og:description" content="小书虫乐园｜香港小學二年級學習資源｜P2英文語法練習＋P2數學練習｜含互動題目與即時批改">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://geekspherehk.github.io/study-materials/">
 <meta property="og:locale" content="zh_HK">
@@ -117,11 +117,22 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .card-item .card-btn{display:inline-block;padding:6px 14px;background:var(--primary);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:0.82rem;text-decoration:none;transition:background .15s}
 .card-item .card-btn:hover{background:var(--primary-hover)}
 
-/* 首页介绍 Banner */
-.hero-section{background:linear-gradient(135deg,#2c3e50,#1a252f);border-radius:12px;padding:32px 28px;margin-bottom:24px;color:#fff;text-align:center}
-.hero-title{font-size:1.6rem;margin-bottom:8px;letter-spacing:0.5px}
-.hero-subtitle{font-size:1.05rem;margin-bottom:6px;color:#bdc3c7}
-.hero-desc{font-size:0.85rem;color:#7f8c8d}
+<!-- 首页介绍 Banner -->
+.hero-section{background:linear-gradient(135deg,#667eea,#764ba2),url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" opacity="0.08"><circle cx="150" cy="80" r="40" fill="white"/><circle cx="280" cy="60" r="25" fill="white"/><circle cx="1050" cy="180" r="50" fill="white"/><circle cx="1120" cy="90" r="20" fill="white"/><circle cx="800" cy="240" r="30" fill="white"/><circle cx="600" cy="50" r="18" fill="white"/><circle cx="400" cy="200" r="22" fill="white"/><circle cx="480" cy="100" r="15" fill="white"/><rect x="30" y="140" width="12" height="80" rx="6" fill="white"/><rect x="50" y="160" width="12" height="60" rx="6" fill="white"/><rect x="70" y="130" width="12" height="100" rx="6" fill="white"/><rect x="90" y="150" width="12" height="70" rx="6" fill="white"/><rect x="110" y="170" width="12" height="50" rx="6" fill="white"/><circle cx="180" cy="160" r="8" fill="white"/><circle cx="230" cy="140" r="6" fill="white"/><circle cx="350" cy="170" r="10" fill="white"/><circle cx="700" cy="100" r="7" fill="white"/><circle cx="900" cy="80" r="12" fill="white"/><circle cx="980" cy="150" r="9" fill="white"/><circle cx="1080" cy="200" r="6" fill="white"/><circle cx="1160" cy="120" r="8" fill="white"/><rect x="950" y="100" width="8" height="50" rx="4" fill="white"/><rect x="700" y="80" width="8" height="40" rx="4" fill="white"/></svg>');background-size:cover;background-position:center;border-radius:16px;padding:28px 24px 32px;margin-bottom:24px;color:#fff;text-align:center;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(102,126,234,0.25)}
+.hero-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(102,126,234,0.6),rgba(118,75,162,0.5));border-radius:16px}
+.hero-title{font-size:1.8rem;font-weight:800;margin-bottom:6px;position:relative;z-index:1;letter-spacing:0.5px}
+.hero-icon{font-size:3rem;display:block;margin-bottom:8px;position:relative;z-index:1}
+.hero-bookworm{display:inline-block;position:relative;z-index:1;font-size:1.4rem;margin-bottom:10px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2))}
+.hero-subtitle{font-size:1.05rem;margin-bottom:4px;position:relative;z-index:1;color:rgba(255,255,255,0.9)}
+.hero-desc{font-size:0.85rem;color:rgba(255,255,255,0.7);position:relative;z-index:1}
+
+/* 响应式调整 */
+@media(max-width:768px){
+  .hero-section{padding:24px 20px}
+  .hero-title{font-size:1.3rem}
+  .hero-icon{font-size:2.2rem}
+  .hero-bookworm{font-size:1.1rem}
+}
 </style>
 </head>
 <body>
@@ -197,13 +208,34 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 <div class="main-content">
 <main>
 
-  <!-- 首页介绍 -->
-  <div id="home" class="section active">
-    <div class="hero-section">
-      <h1 class="hero-title">📚 学习素材站</h1>
-      <p class="hero-subtitle">一站式全科学习资料查阅与练习平台</p>
-      <p class="hero-desc">持续更新课件、试卷、笔记、习题素材 · 所有内容免费使用</p>
+  <!-- 首页介绍 Banner -->
+  <div class="hero-section">
+    <span class="hero-icon">🐛📚</span>
+    <div class="hero-bookworm">
+      <pre style="margin:0;font-size:0.5rem;line-height:1.2;letter-spacing:2px;color:rgba(255,255,255,0.5);filter:drop-shadow(0 1px 3px rgba(0,0,0,0.3));background:transparent">
+        ,-.
+       / / |
+      / /-'
+     / /--.
+    /_/   |
+   (____)'
+      ||
+      ||
+      ||
+   ,-'''''-.
+  /         \
+ |  ┌─────┐ |
+ |  │ 📚  │ |
+ |  └─────┘ |
+  \         /
+   '-...-'
+      </pre>
+      <span style="font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.8);display:block;margin-top:-6px;">小书虫</span>
     </div>
+    <h1 class="hero-title">小书虫乐园</h1>
+    <p class="hero-subtitle">✨ 一站式全科学习资料查阅与练习平台 ✨</p>
+    <p class="hero-desc">持续更新香港小学二年级英文、数学学习资源 · 所有内容免费使用</p>
+  </div>
 
     <!-- 搜索区 -->
     <div class="search-section">
