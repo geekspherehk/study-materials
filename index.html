@@ -193,9 +193,9 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
     <a href="p2-unit-19.html" class="side-btn sub-btn">Unit 19 - Comprehension(1): Rules</a>
     <a href="p2-unit-20.html" class="side-btn sub-btn">Unit 20 - Comprehension(2): Letters</a>
   </details>
-   183|  <button class="side-btn" onclick="show('gram')">📝 语法练习</button>
-   184|  <div class="nav-gap"></div>
-   185|</div>
+  <button class="side-btn" onclick="show('vocab')">📝 背单词</button>
+  <div class="nav-gap"></div>
+</div>
 
 <!-- ── 右侧主内容 ── -->
 <div class="main-content">
@@ -249,15 +249,6 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
           <button onclick="checkVocab()" style="padding:10px 24px;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:1rem;margin-right:8px;">✓ 检查</button>
           <button onclick="nextVocab()" style="padding:10px 24px;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:1rem;">→ 下一个</button>
         </div>
-      </div>
-    </div>
-
-    <!-- 语法练习 (隐藏，点击侧边栏切换) -->
-    <div id="gram" class="section">
-      <div style="background:var(--card-bg);border-radius:12px;padding:24px;border:1px solid var(--border)">
-        <h2 style="margin-bottom:16px;">📝 语法练习</h2>
-        <div id="gramGrid"></div>
-        <div id="gram-score" style="margin-top:12px;font-size:1.1rem;font-weight:600;text-align:center;"></div>
       </div>
     </div>
   </div>
@@ -371,62 +362,6 @@ function nextVocab() {
   document.getElementById('vocab-icon').textContent = ' ';
 }
 
-// ── 语法练习 ──────────────────────────────────────────
-const gramData = [
-  { topic: 'am/is/are', q: 'She ___ a teacher.', opts: ['am', 'is', 'are'], ans: 'is' },
-  { topic: 'a/an/the', q: 'I saw ___ elephant.', opts: ['a', 'an', 'the'], ans: 'an' },
-  { topic: 'can', q: 'He ___ swim very fast.', opts: ['can', 'can\'t', 'could'], ans: 'can' },
-  { topic: 'and/but', q: 'I like apples ___ oranges.', opts: ['and', 'but', 'or'], ans: 'and' },
-  { topic: 'this/that/these/those', q: '___ are my books.', opts: ['This', 'That', 'These', 'Those'], ans: 'These' },
-  { topic: 'in/on/under', q: 'The cat is ___ the table.', opts: ['in', 'on', 'under'], ans: 'under' },
-  { topic: 'Prepositions', q: 'The school is ___ left.', opts: ['in', 'on', 'at', 'to'], ans: 'on' },
-  { topic: 'Simple present', q: 'He ___ to school every day.', opts: ['go', 'goes', 'going'], ans: 'goes' },
-  { topic: 'do/does', q: '___ she like apples?', opts: ['Do', 'Does', 'Is'], ans: 'Does' },
-  { topic: 'Common expression', q: 'I want ___ go home.', opts: ['to', 'for', 'in'], ans: 'to' },
-];
-
-let currentTopic = 'all';
-
-function renderGrammar() {
-  const grid = document.getElementById('gramGrid');
-  grid.innerHTML = '';
-  const filtered = currentTopic === 'all' ? gramData : gramData.filter(d => d.topic === currentTopic);
-  const items = filtered.length === 0 ? gramData.slice(0, 5) : filtered;
-  items.forEach((item, i) => {
-    const div = document.createElement('div');
-    div.className = 'gram-item';
-    div.id = 'gram-' + i;
-    let html = '<div class="sentence">' + item.q + '</div><div class="options">';
-    const shuffled = [...item.opts].sort(() => Math.random() - 0.5);
-    shuffled.forEach(o => { html += '<button class="opt-btn" onclick="selectOpt(' + i + ', this,\'' + o + '\')">' + o + '</button>'; });
-    html += '<span class="result-icon" id="gr-' + i + '"></span></div>';
-    div.innerHTML = html;
-    grid.appendChild(div);
-  });
-}
-function selectOpt(i, b, v) {
-  const c = document.getElementById('gram-' + i);
-  c.querySelectorAll('.opt-btn').forEach(x => { x.classList.remove('selected'); x.dataset.selected = ''; });
-  b.classList.add('selected'); b.dataset.selected = v;
-}
-function checkGrammar() {
-  const items = currentTopic === 'all' ? gramData : gramData.filter(d => d.topic === currentTopic);
-  const data = items.length === 0 ? gramData.slice(0, 5) : items;
-  let cr = 0;
-  data.forEach((item, i) => {
-    const c = document.getElementById('gram-' + i);
-    const bs = c.querySelectorAll('.opt-btn');
-    const ss = c.querySelector('.opt-btn.selected');
-    const ic = document.getElementById('gr-' + i);
-    bs.forEach(b => { b.disabled = true; if (b.textContent.trim() === item.ans) b.classList.add(b === ss ? 'correct' : 'show-correct'); else if (b === ss) b.classList.add('wrong'); });
-    if (ss && ss.textContent.trim() === item.ans) { ic.textContent = '✅'; cr++; } else { ic.textContent = '❌'; }
-  });
-  const t = data.length;
-  const bar = document.getElementById('gram-score');
-  bar.textContent = cr + ' / ' + t + ' 正确（' + Math.round(cr / t * 100) + '%）';
-  bar.style.color = cr === t ? '#27ae60' : cr / t >= 0.8 ? '#e67e22' : '#e74c3c';
-}
-
 // ── 搜索功能 ──────────────────────────────────────────
 const searchData = [
   { name: 'P2 Unit 1 - is/am/are', url: 'p2-unit-1.html', subject: '英文', type: '知识点' },
@@ -449,7 +384,6 @@ const searchData = [
   { name: 'P2 Unit 18 - Imperatives', url: 'p2-unit-18.html', subject: '英文', type: '知识点' },
   { name: 'P2 Unit 19 - Comprehension(1): Rules', url: 'p2-unit-19.html', subject: '英文', type: '知识点' },
   { name: 'P2 Unit 20 - Comprehension(2): Letters', url: 'p2-unit-20.html', subject: '英文', type: '知识点' },
-  { name: '语法练习题', url: 'grammar-exercises.html', subject: '英文', type: '练习' },
   { name: '小测6复习(L1)', url: 'quiz-6-revision.html', subject: '英文', type: '复习' },
   { name: '小测6复习(L2)', url: 'quiz-6-revision-level2.html', subject: '英文', type: '复习' },
 ];
@@ -540,8 +474,7 @@ function closeMenu() {
 
 // ── 初始化 ──────────────────────────────────────
 renderCard();
-renderGrammar();
-renderAllCards();
+  renderAllCards();
 </script>
 </body>
 </html>
