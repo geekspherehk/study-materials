@@ -1,202 +1,218 @@
-<!DOCTYPE html>
-<html lang="zh-HK">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>長度（米、厘米）- P2數學</title>
-<meta name="description" content="P2數學 長度單位米和厘米｜香港小學二年級長度換算‧比較‧加減計算">
-<meta name="keywords" content="P2數學,香港小學二年級,長度,米,厘米,長度換算,長度計算">
-<meta property="og:title" content="P2數學 - 長度（米、厘米）">
-<meta property="og:description" content="P2數學 長度單位米和厘米｜香港小學二年級長度換算‧比較‧加減計算">
-<meta property="og:type" content="website">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
-h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
-h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
-.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
-.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
-.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
-.lesson ul{padding-left:20px}
-.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
-.lesson .example span{color:#7ee787}
-#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
-.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
-.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
-.btns{display:flex;flex-wrap:wrap;gap:8px}
-.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
-.btns button:not(:disabled):hover{background:#30363d;color:#fff}
-.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
-.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
-.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
-.btns button:disabled{opacity:0.5;cursor:default}
-.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
-.back{padding:8px 24px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
-.back:hover{background:#30363d}
-.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+     1|<!DOCTYPE html>
+     2|<html lang="zh-HK">
+     3|<head>
+     4|<meta charset="UTF-8">
+     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6|<title>長度（米、厘米）- P2數學</title>
+     7|<meta name="description" content="P2數學 長度單位米和厘米｜香港小學二年級長度換算‧比較‧加減計算">
+     8|<meta name="keywords" content="P2數學,香港小學二年級,長度,米,厘米,長度換算,長度計算">
+     9|<meta property="og:title" content="P2數學 - 長度（米、厘米）">
+    10|<meta property="og:description" content="P2數學 長度單位米和厘米｜香港小學二年級長度換算‧比較‧加減計算">
+    11|<meta property="og:type" content="website">
+    12|<style>
+    13|*{margin:0;padding:0;box-sizing:border-box}
+    14|body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+    15|h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+    16|h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+    17|.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+    18|.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+    19|.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+    20|.lesson ul{padding-left:20px}
+    21|.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+    22|.lesson .example span{color:#7ee787}
+    23|#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+    24|.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+    25|.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+    26|.btns{display:flex;flex-wrap:wrap;gap:8px}
+    27|.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+    28|.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+    29|.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+    30|.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+    31|.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+    32|.btns button:disabled{opacity:0.5;cursor:default}
+    33|.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+    34|.back{padding:8px 24px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+    35|.back:hover{background:#30363d}
+    36|.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+    37|
+    38|/* 导航按钮 */
+    39|.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+    40|.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+    41|.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+    42|.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+    43|.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+    44|.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+    45|.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+    46|.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+    47|.nav-home:hover{background:#2563eb;border-color:#2563eb}
+    48|/* 卡片增强 */
+    49|.card{transition:box-shadow .2s,transform .15s}
+    50|.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+    51|/* 移动端优化 */
+    52|@media (max-width:480px){
+    53|  body{padding:12px}
+    54|  .card{padding:14px 16px}
+    55|  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+    56|  .nav-btn{padding:10px 12px;font-size:0.8rem}
+    57|  .nav-text{max-width:60px}
+    58|  .nav-buttons{gap:4px}
+    59|}
+    60|@media (max-width:360px){
+    61|  .nav-text{display:none}
+    62|}
+    63|
+  /* 移动端响应式 */
+  @media (max-width:768px) {
+    body{flex-direction:column;padding:12px}
+    .main-wrapper{width:100%;padding:0}
+    .card{padding:14px 16px}
+    .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+    .nav-buttons{flex-wrap:wrap;gap:4px}
+    .nav-buttons .nav-btn{padding:8px 10px;font-size:0.78rem;flex:1 1 auto;min-width:0}
+    .qa-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:400px){
+    .nav-buttons .nav-btn{padding:6px 8px;font-size:0.7rem;}
+  }
 
-/* 导航按钮 */
-.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
-.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
-.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
-.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
-.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
-.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
-.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
-.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
-.nav-home:hover{background:#2563eb;border-color:#2563eb}
-/* 卡片增强 */
-.card{transition:box-shadow .2s,transform .15s}
-.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-/* 移动端优化 */
-@media (max-width:480px){
-  body{padding:12px}
-  .card{padding:14px 16px}
-  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
-  .nav-btn{padding:10px 12px;font-size:0.8rem}
-  .nav-text{max-width:60px}
-  .nav-buttons{gap:4px}
-}
-@media (max-width:360px){
-  .nav-text{display:none}
-}
 </style>
-
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"CreativeWork","name":"图形认识","description":"正方形、長方形、三角形、圓形（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
-</script>
-</head>
-<body>
-
-<a class="back" href="index.html">← 返回主頁</a>
-<h1>📏 長度（米、厘米）</h1>
-
-<div class="lesson">
-<h3>📖 學習重點</h3>
-<ul>
-<li>認識長度單位：米（m）和厘米（cm）</li>
-<li>米和厘米的換算</li>
-<li>用尺子量長度</li>
-<li>長度的加減計算</li>
-<li>生活中的長度</li>
-</ul>
-</div>
-
-<div class="lesson">
-<h3>📏 認識長度單位</h3>
-<div class="example"><b>1 米（1 m）</b> — 大約是教室門的高度<br>
-<span>💡 常用來量較長的東西</span></div>
-<div class="example"><b>1 厘米（1 cm）</b> — 大約是指甲的寬度<br>
-<span>💡 常用來量較短的東西</span></div>
-<div class="example"><b>1 米 = 100 厘米</b><br>
-<span>💡 記住：米（大單位）→ ×100 → 厘米（小單位）</span></div>
-</div>
-
-<div class="lesson">
-<h3>📏 單位換算</h3>
-<div class="example">2 米 = <span>200</span> 厘米<br>
-<span>→ 因為 1 米 = 100 厘米，2 米 = 2 × 100 = 200 厘米</span></div>
-<div class="example">3 米 50 厘米 = <span>350</span> 厘米<br>
-<span>→ 3 米 = 300 厘米，300 + 50 = 350 厘米</span></div>
-<div class="example">450 厘米 = <span>4</span> 米 <span>50</span> 厘米<br>
-<span>→ 450 ÷ 100 = 4 餘 50</span></div>
-</div>
-
-<div class="lesson">
-<h3>📏 長度比較</h3>
-<div class="example">比較大小：1 米 20 厘米 ○ 130 厘米<br>
-<span>→ 1 米 20 厘米 = 120 厘米，120 < 130，所以 1 米 20 厘米 < 130 厘米</span></div>
-<div class="example">比較大小：200 厘米 ○ 2 米<br>
-<span>→ 200 厘米 = 2 米，所以 200 厘米 = 2 米</span></div>
-</div>
-
-<div class="lesson">
-<h3>📏 長度的加減</h3>
-<div class="example">3 米 + 2 米 = <span>5</span> 米</div>
-<div class="example">50 厘米 + 30 厘米 = <span>80</span> 厘米 = <span>0</span> 米 <span>80</span> 厘米</div>
-<div class="example">1 米 50 厘米 + 2 米 30 厘米 = <span>3</span> 米 <span>80</span> 厘米</div>
-<div class="example">3 米 - 1 米 20 厘米 = <span>1</span> 米 <span>80</span> 厘米<br>
-<span>→ 3 米 = 2 米 100 厘米，100 - 20 = 80 厘米，2 - 1 = 1 米</span></div>
-</div>
-
-<h2>📝 練習題</h2>
-<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
-<div id="score">0 / 0 正確</div>
-
-<script>
-const EXERCISES = [
-  // 單位換算
-  {q:"1 米 = ___ 厘米", opts:["10","50","100","1000"], ans:"100"},
-  {q:"200 厘米 = ___ 米", opts:["2","20","200","0.2"], ans:"2"},
-  {q:"3 米 = ___ 厘米", opts:["30","300","3000","3"], ans:"300"},
-  {q:"500 厘米 = ___ 米", opts:["50","5","500","0.5"], ans:"5"},
-  {q:"2 米 50 厘米 = ___ 厘米", opts:["250","2050","2005","25"], ans:"250"},
-  {q:"350 厘米 = ___ 米 ___ 厘米", opts:["3米50厘","35米","3米5厘","30米50厘"], ans:"3米50厘"},
-  // 長度比較
-  {q:"哪個更長？ 1 米 20 厘米 還是 130 厘米",
-    opts:["1米20釐米","130厘米","一樣長","無法比較"], ans:"130厘米"},
-  {q:"哪個更長？ 200 厘米 還是 2 米",
-    opts:["200厘米","2米","一樣長","無法比較"], ans:"一樣長"},
-  // 長度計算
-  {q:"3 米 + 2 米 = ___ 米", opts:["1","5","6","4"], ans:"5"},
-  {q:"50 厘米 + 30 厘米 = ___ 厘米", opts:["20","90","80","70"], ans:"80"},
-  {q:"1 米 50 厘米 + 2 米 30 厘米 = ___",
-    opts:["3米80厘","3米60厘","4米80厘","3米20厘"], ans:"3米80厘"},
-  {q:"3 米 - 1 米 20 厘米 = ___",
-    opts:["2米20厘","1米80厘","2米80厘","1米20厘"], ans:"1米80厘"},
-  // 應用題
-  {q:"一條繩子長 2 米 50 厘米，另一條長 1 米 80 厘米，兩條繩子共長多少？",
-    opts:["4米30厘","3米30厘","4米20厘","3米"], ans:"4米30厘"},
-  {q:"書桌長 120 厘米，椅子長 50 厘米。書桌比椅子長多少？",
-    opts:["170厘米","60厘米","70厘米","80厘米"], ans:"70厘米"},
-  {q:"教室門高 2 米，小明身高 1 米 30 厘米，門比小明高多少？",
-    opts:["70厘米","80厘米","1米","60厘米"], ans:"70厘米"},
-  {q:"一張紙長 30 厘米，寬 20 厘米。周長是多少？",
-    opts:["50厘米","60厘米","100厘米","600厘米"], ans:"100厘米"},
-];
-let correct=0;
-function renderExercises(){
-  const container=document.getElementById('exercises');
-  if(!container) return;container.innerHTML='';
-  EXERCISES.forEach((item,i)=>{
-    const div=document.createElement('div');div.className='exercise';
-    div.style.background=i%2===0?'#151b23':'#161b22';
-    div.style.border='1px solid #30363d';
-    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
-    div.appendChild(h4);
-    const btnDiv=document.createElement('div');btnDiv.className='btns';
-    item.opts.forEach(opt=>{
-      const btn=document.createElement('button');btn.textContent=opt;
-      btn.onclick=()=>{
-        const s=btnDiv.querySelector('.selected');if(s) return;
-        btn.classList.add('selected');
-        const btns=btnDiv.querySelectorAll('button');
-        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
-        const icon=document.createElement('p');
-        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
-        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
-        div.appendChild(icon);
-        const bar=document.getElementById('score');
-        const t=EXERCISES.length;
-        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
-        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
-      };
-      btnDiv.appendChild(btn);
-    });
-    div.appendChild(btnDiv);container.appendChild(div);
-  });
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  const sec=document.createElement('div');sec.id='exercises';
-  document.querySelector('body').appendChild(sec);
-  renderExercises();
-});
-</script>
-
-<div class="nav-buttons">
-  <div class="nav-left"><a href="p2-math-unit-3.html" class="nav-btn nav-prev">&larr; <span class="nav-text">数学 U3</span></a></div>
-  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
-  <div class="nav-right"><a href="p2-math-unit-5.html" class="nav-btn nav-next"><span class="nav-text">数学 U5</span> &rarr;</a></div>
-</div>
-</body>
-</html>
+    64|
+    65|<script type="application/ld+json">
+    66|{"@context":"https://schema.org","@type":"CreativeWork","name":"图形认识","description":"正方形、長方形、三角形、圓形（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
+    67|</script>
+    68|</head>
+    69|<body>
+    70|
+    71|<a class="back" href="index.html">← 返回主頁</a>
+    72|<h1>📏 長度（米、厘米）</h1>
+    73|
+    74|<div class="lesson">
+    75|<h3>📖 學習重點</h3>
+    76|<ul>
+    77|<li>認識長度單位：米（m）和厘米（cm）</li>
+    78|<li>米和厘米的換算</li>
+    79|<li>用尺子量長度</li>
+    80|<li>長度的加減計算</li>
+    81|<li>生活中的長度</li>
+    82|</ul>
+    83|</div>
+    84|
+    85|<div class="lesson">
+    86|<h3>📏 認識長度單位</h3>
+    87|<div class="example"><b>1 米（1 m）</b> — 大約是教室門的高度<br>
+    88|<span>💡 常用來量較長的東西</span></div>
+    89|<div class="example"><b>1 厘米（1 cm）</b> — 大約是指甲的寬度<br>
+    90|<span>💡 常用來量較短的東西</span></div>
+    91|<div class="example"><b>1 米 = 100 厘米</b><br>
+    92|<span>💡 記住：米（大單位）→ ×100 → 厘米（小單位）</span></div>
+    93|</div>
+    94|
+    95|<div class="lesson">
+    96|<h3>📏 單位換算</h3>
+    97|<div class="example">2 米 = <span>200</span> 厘米<br>
+    98|<span>→ 因為 1 米 = 100 厘米，2 米 = 2 × 100 = 200 厘米</span></div>
+    99|<div class="example">3 米 50 厘米 = <span>350</span> 厘米<br>
+   100|<span>→ 3 米 = 300 厘米，300 + 50 = 350 厘米</span></div>
+   101|<div class="example">450 厘米 = <span>4</span> 米 <span>50</span> 厘米<br>
+   102|<span>→ 450 ÷ 100 = 4 餘 50</span></div>
+   103|</div>
+   104|
+   105|<div class="lesson">
+   106|<h3>📏 長度比較</h3>
+   107|<div class="example">比較大小：1 米 20 厘米 ○ 130 厘米<br>
+   108|<span>→ 1 米 20 厘米 = 120 厘米，120 < 130，所以 1 米 20 厘米 < 130 厘米</span></div>
+   109|<div class="example">比較大小：200 厘米 ○ 2 米<br>
+   110|<span>→ 200 厘米 = 2 米，所以 200 厘米 = 2 米</span></div>
+   111|</div>
+   112|
+   113|<div class="lesson">
+   114|<h3>📏 長度的加減</h3>
+   115|<div class="example">3 米 + 2 米 = <span>5</span> 米</div>
+   116|<div class="example">50 厘米 + 30 厘米 = <span>80</span> 厘米 = <span>0</span> 米 <span>80</span> 厘米</div>
+   117|<div class="example">1 米 50 厘米 + 2 米 30 厘米 = <span>3</span> 米 <span>80</span> 厘米</div>
+   118|<div class="example">3 米 - 1 米 20 厘米 = <span>1</span> 米 <span>80</span> 厘米<br>
+   119|<span>→ 3 米 = 2 米 100 厘米，100 - 20 = 80 厘米，2 - 1 = 1 米</span></div>
+   120|</div>
+   121|
+   122|<h2>📝 練習題</h2>
+   123|<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+   124|<div id="score">0 / 0 正確</div>
+   125|
+   126|<script>
+   127|const EXERCISES = [
+   128|  // 單位換算
+   129|  {q:"1 米 = ___ 厘米", opts:["10","50","100","1000"], ans:"100"},
+   130|  {q:"200 厘米 = ___ 米", opts:["2","20","200","0.2"], ans:"2"},
+   131|  {q:"3 米 = ___ 厘米", opts:["30","300","3000","3"], ans:"300"},
+   132|  {q:"500 厘米 = ___ 米", opts:["50","5","500","0.5"], ans:"5"},
+   133|  {q:"2 米 50 厘米 = ___ 厘米", opts:["250","2050","2005","25"], ans:"250"},
+   134|  {q:"350 厘米 = ___ 米 ___ 厘米", opts:["3米50厘","35米","3米5厘","30米50厘"], ans:"3米50厘"},
+   135|  // 長度比較
+   136|  {q:"哪個更長？ 1 米 20 厘米 還是 130 厘米",
+   137|    opts:["1米20釐米","130厘米","一樣長","無法比較"], ans:"130厘米"},
+   138|  {q:"哪個更長？ 200 厘米 還是 2 米",
+   139|    opts:["200厘米","2米","一樣長","無法比較"], ans:"一樣長"},
+   140|  // 長度計算
+   141|  {q:"3 米 + 2 米 = ___ 米", opts:["1","5","6","4"], ans:"5"},
+   142|  {q:"50 厘米 + 30 厘米 = ___ 厘米", opts:["20","90","80","70"], ans:"80"},
+   143|  {q:"1 米 50 厘米 + 2 米 30 厘米 = ___",
+   144|    opts:["3米80厘","3米60厘","4米80厘","3米20厘"], ans:"3米80厘"},
+   145|  {q:"3 米 - 1 米 20 厘米 = ___",
+   146|    opts:["2米20厘","1米80厘","2米80厘","1米20厘"], ans:"1米80厘"},
+   147|  // 應用題
+   148|  {q:"一條繩子長 2 米 50 厘米，另一條長 1 米 80 厘米，兩條繩子共長多少？",
+   149|    opts:["4米30厘","3米30厘","4米20厘","3米"], ans:"4米30厘"},
+   150|  {q:"書桌長 120 厘米，椅子長 50 厘米。書桌比椅子長多少？",
+   151|    opts:["170厘米","60厘米","70厘米","80厘米"], ans:"70厘米"},
+   152|  {q:"教室門高 2 米，小明身高 1 米 30 厘米，門比小明高多少？",
+   153|    opts:["70厘米","80厘米","1米","60厘米"], ans:"70厘米"},
+   154|  {q:"一張紙長 30 厘米，寬 20 厘米。周長是多少？",
+   155|    opts:["50厘米","60厘米","100厘米","600厘米"], ans:"100厘米"},
+   156|];
+   157|let correct=0;
+   158|function renderExercises(){
+   159|  const container=document.getElementById('exercises');
+   160|  if(!container) return;container.innerHTML='';
+   161|  EXERCISES.forEach((item,i)=>{
+   162|    const div=document.createElement('div');div.className='exercise';
+   163|    div.style.background=i%2===0?'#151b23':'#161b22';
+   164|    div.style.border='1px solid #30363d';
+   165|    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+   166|    div.appendChild(h4);
+   167|    const btnDiv=document.createElement('div');btnDiv.className='btns';
+   168|    item.opts.forEach(opt=>{
+   169|      const btn=document.createElement('button');btn.textContent=opt;
+   170|      btn.onclick=()=>{
+   171|        const s=btnDiv.querySelector('.selected');if(s) return;
+   172|        btn.classList.add('selected');
+   173|        const btns=btnDiv.querySelectorAll('button');
+   174|        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+   175|        const icon=document.createElement('p');
+   176|        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+   177|        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+   178|        div.appendChild(icon);
+   179|        const bar=document.getElementById('score');
+   180|        const t=EXERCISES.length;
+   181|        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+   182|        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+   183|      };
+   184|      btnDiv.appendChild(btn);
+   185|    });
+   186|    div.appendChild(btnDiv);container.appendChild(div);
+   187|  });
+   188|}
+   189|document.addEventListener('DOMContentLoaded',()=>{
+   190|  const sec=document.createElement('div');sec.id='exercises';
+   191|  document.querySelector('body').appendChild(sec);
+   192|  renderExercises();
+   193|});
+   194|</script>
+   195|
+   196|<div class="nav-buttons">
+   197|  <div class="nav-left"><a href="p2-math-unit-3.html" class="nav-btn nav-prev">&larr; <span class="nav-text">数学 U3</span></a></div>
+   198|  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
+   199|  <div class="nav-right"><a href="p2-math-unit-5.html" class="nav-btn nav-next"><span class="nav-text">数学 U5</span> &rarr;</a></div>
+   200|</div>
+   201|</body>
+   202|</html>
+   203|

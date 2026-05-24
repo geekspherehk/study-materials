@@ -1,461 +1,476 @@
-<![CDATA[<!DOCTYPE html>
-<html lang="zh-HK">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>香港小二英语语法 - 12大语法模块讲解</title>
-  <meta name="description" content="香港小學二年級英文語法大全｜12大模塊：名詞·冠詞·代詞·形容詞·Be動詞·第三人稱單數·行為動詞·副詞·介詞·連詞·疑問詞·句型｜適合小二學生自學語法">
-  <meta name="keywords" content="香港小學二年級, P2英文, 英文語法, 香港小二英語, 語法講解, 小三英文預習">
-  <meta property="og:title" content="香港小二英语语法 - 12大语法模块讲解">
-  <meta property="og:description" content="香港小學二年級英文語法大全｜12大模塊講解，適合小二學生自學">
-  <meta property="og:locale" content="zh_HK">
-  <link rel="canonical" href="https://geekspherehk.github.io/study-materials/hk-english-grammar.html">
-  <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","name":"香港小二英语语法 - 12大语法模块讲解","description":"香港小學二年級英文語法大全｜12大模塊：名詞·冠詞·代詞·形容詞·Be動詞·第三人稱單數·行為動詞·副詞·介詞·連詞·疑問詞·句型｜適合小二學生自學語法","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
-</script>
-  <style>
-    :root {
-      --primary: #2563eb;
-      --bg: #f1f5f9;
-      --card: #ffffff;
-      --text: #1e293b;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --hover-bg: #e8f0fe;
-      --active-bg: #dbeafe;
-      --sidebar-w: 220px;
-      --tag-noun: #dbeafe;      --tag-noun-text: #1e40af;
-      --tag-verb: #dcfce7;      --tag-verb-text: #166534;
-      --tag-adj: #fef3c7;      --tag-adj-text: #92400e;
-      --tag-adv: #fce7f3;      --tag-adv-text: #9d174d;
-      --tag-prep: #e0e7ff;     --tag-prep-text: #3730a3;
-      --tag-pron: #ccfbf1;     --tag-pron-text: #115e59;
-      --tag-conj: #fee2e2;     --tag-conj-text: #991b1b;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    /* ── Layout ── */
-    .wrapper { display: flex; min-height: 100vh; }
-
-    /* ── Sidebar ── */
-    .sidebar {
-      width: var(--sidebar-w);
-      background: var(--card);
-      border-right: 1px solid var(--border);
-      padding: 20px 0;
-      position: sticky; top: 0; height: 100vh; overflow-y: auto;
-      flex-shrink: 0;
-    }
-    .sidebar .brand {
-      padding: 0 16px 16px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--primary);
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 8px;
-    }
-    .sidebar .brand small {
-      display: block;
-      font-weight: 400;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .nav-item {
-      display: flex; align-items: center; gap: 8px;
-      padding: 10px 16px;
-      cursor: pointer;
-      font-size: 0.88rem;
-      color: var(--text);
-      transition: background 0.12s, color 0.12s;
-      border: none; background: none; width: 100%; text-align: left;
-    }
-    .nav-item:hover { background: var(--hover-bg); }
-    .nav-item.active {
-      background: var(--active-bg);
-      color: var(--primary);
-      font-weight: 600;
-    }
-    .nav-item .dot {
-      width: 8px; height: 8px; border-radius: 99px;
-      flex-shrink: 0;
-    }
-
-    /* ── Content ── */
-    .content {
-      flex: 1;
-      padding: 32px 36px 80px;
-      max-width: 780px;
-    }
-    .content-header {
-      margin-bottom: 28px;
-    }
-    .content-header h1 {
-      font-size: 1.5rem;
-      color: var(--text);
-    }
-    .content-header p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    /* ── Topic sections ── */
-    .topic-section { display: none; }
-    .topic-section.active { display: block; }
-
-    .card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 20px 24px;
-      border: 1px solid var(--border);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    }
-    .card-title {
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-    .tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 2px 9px;
-      border-radius: 99px;
-      margin-bottom: 10px;
-    }
-    .example {
-      background: var(--bg);
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-bottom: 8px;
-      font-size: 0.92rem;
-    }
-    .example:last-child { margin-bottom: 0; }
-    .example .en {
-      color: var(--primary);
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-    .example .zh { color: var(--muted); font-size: 0.82rem; }
-    /* ── Video Link ── */
-    .video-link { margin: 12px 0 8px; }
-    .video-link a { display: inline-block; background: #fb7299; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background .2s; }
-    .video-link a:hover { background: #f56c8a; }
-    .video-embed { position: relative; width: 100%; padding-bottom: 56.25%; margin: 12px 0 16px; border-radius: 10px; overflow: hidden; }
-    .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-    .practice-link { margin-top: 16px; text-align: center; }
-    .practice-link a { display: inline-block; background: #27ae60; color: #fff; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background .2s; }
-    .practice-link a:hover { background: #1e8449; }
-    .rule {
-      font-size: 0.85rem;
-      margin-bottom: 10px;
-      padding-left: 10px;
-      border-left: 3px solid var(--primary);
-    }
-    .rule:last-child { margin-bottom: 0; }
-
-    /* ── Footer ── */
-    .footer {
-      margin-top: 36px;
-      text-align: center;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    /* ── Mobile ── */
-    @media (max-width: 640px) {
-      .wrapper { flex-direction: column; }
-      .sidebar {
-        width: 100%; height: auto; position: static;
-        border-right: none; border-bottom: 1px solid var(--border);
-        padding: 12px 0;
-        display: flex; flex-wrap: wrap; gap: 2px;
-      }
-      .sidebar .brand { display: none; }
-      .nav-item { width: auto; padding: 8px 12px; font-size: 0.82rem; }
-      .content { padding: 20px 16px 60px; }
-    }
-  
-/* 导航按钮 */
-.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
-.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
-.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
-.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
-.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
-.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
-.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
-.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
-.nav-home:hover{background:#2563eb;border-color:#2563eb}
-/* 卡片增强 */
-.card{transition:box-shadow .2s,transform .15s}
-.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-/* 移动端优化 */
-@media (max-width:480px){
-  body{padding:12px}
-  .card{padding:14px 16px}
-  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
-  .nav-btn{padding:10px 12px;font-size:0.8rem}
-  .nav-text{max-width:60px}
-  .nav-buttons{gap:4px}
-}
-@media (max-width:360px){
-  .nav-text{display:none}
-}
-</style>
-</head>
-<body>
-<div class="wrapper">
-
-  <!-- ── Sidebar Navigation ── -->
-  <nav class="sidebar" id="sidebar">
-    <div class="brand">
-      P2 Grammar
-      <small>香港小学二年级</small>
-    </div>
-    <button class="nav-item active" data-topic="nouns"        onclick="switchTopic('nouns')">        <span class="dot" style="background:var(--tag-noun-text)"></span>Nouns 名词</button>
-    <button class="nav-item"        data-topic="articles"     onclick="switchTopic('articles')">     <span class="dot" style="background:var(--tag-noun-text)"></span>Articles 冠词</button>
-    <button class="nav-item"        data-topic="pronouns"     onclick="switchTopic('pronouns')">     <span class="dot" style="background:var(--tag-pron-text)"></span>Pronouns 代词</button>
-    <button class="nav-item"        data-topic="adjectives"   onclick="switchTopic('adjectives')">   <span class="dot" style="background:var(--tag-adj-text)"></span>Adjectives 形容词</button>
-    <button class="nav-item"        data-topic="verb-be"      onclick="switchTopic('verb-be')">      <span class="dot" style="background:var(--tag-verb-text)"></span>Verb Be (am/is/are)</button>
-    <button class="nav-item"        data-topic="third-person" onclick="switchTopic('third-person')"> <span class="dot" style="background:var(--tag-verb-text)"></span>Third Person 第三人称单数</button>
-    <button class="nav-item"        data-topic="verb-action"  onclick="switchTopic('verb-action')">  <span class="dot" style="background:var(--tag-verb-text)"></span>Action Verbs 行为动词</button>
-    <button class="nav-item"        data-topic="adverbs"      onclick="switchTopic('adverbs')">      <span class="dot" style="background:var(--tag-adv-text)"></span>Adverbs 副词</button>
-    <button class="nav-item"        data-topic="prepositions" onclick="switchTopic('prepositions')"> <span class="dot" style="background:var(--tag-prep-text)"></span>Prepositions 介词</button>
-    <button class="nav-item"        data-topic="conjunctions" onclick="switchTopic('conjunctions')"> <span class="dot" style="background:var(--tag-conj-text)"></span>Conjunctions 连词</button>
-    <button class="nav-item"        data-topic="questions"    onclick="switchTopic('questions')">    <span class="dot" style="background:var(--tag-prep-text)"></span>Question Words 疑问词</button>
-    <button class="nav-item"        data-topic="sentences"    onclick="switchTopic('sentences')">    <span class="dot" style="background:var(--tag-verb-text)"></span>Sentences 句型</button>
-  </nav>
-
-  <!-- ── Main Content ── -->
-  <main class="content">
-    <div class="content-header">
-      <h1>Hong Kong Primary 2 English Grammar</h1>
-      <p>香港小学二年级英语语法知识点 · 点击左侧导航栏查看各模块</p>
-    </div>
-
-    <!-- ============== Nouns ============== -->
-    <div id="topic-nouns" class="topic-section active">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-noun);color:var(--tag-noun-text)">Nouns 名词</span>
-        <div class="card-title">Common & Proper Nouns</div>
-        <div class="example"><div class="en">a dog, a cat, a book, a school</div><div class="zh">普通名词（common noun）</div></div>
-        <div class="example"><div class="en">Tom, Mary, Hong Kong, Monday</div><div class="zh">专有名词（首字母大写）</div></div>
-        <div class="rule">规则：可数名词可加 a/an，或用复数形式</div>
-        <div class="rule">复数：加 -s（dogs, cats）；以 s/x/ch/sh 结尾加 -es（boxes, watches）</div>
-        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
-      </div>
-    </div>
-
-    <!-- ============== Articles ============== -->
-    <div id="topic-articles" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-noun);color:var(--tag-noun-text)">Articles 冠词</span>
-        <div class="card-title">a / an / the</div>
-        <div class="example"><div class="en">a dog, a university, a hot day</div><div class="zh">a + 辅音音标开头的词</div></div>
-        <div class="example"><div class="en">an apple, an egg, an old man</div><div class="zh">an + 元音音标开头的词</div></div>
-        <div class="example"><div class="en">the sun, the book on the desk</div><div class="zh">the = 特指，双方都知道的事物</div></div>
-        <div class="rule">口诀：a dog, an apple, the is special</div>
-        <div class="practice-link"><a href="grammar-exercises.html#articles" target="_blank" rel="noopener">️ 练习冠词 →</a></div>
-      </div>
-    </div>
-
-    <!-- ============== Pronouns ============== -->
-    <div id="topic-pronouns" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-pron);color:var(--tag-pron-text)">Pronouns 代词</span>
-        <div class="card-title">Subject & Object Pronouns</div>
-        <div class="example"><div class="en">I, you, he, she, it, we, they</div><div class="zh">主格（作主语）</div></div>
-        <div class="example"><div class="en">me, you, him, her, it, us, them</div><div class="zh">宾格（作宾语）</div></div>
-        <div class="example"><div class="en">He likes <u>her</u>. (NOT: He likes <u>she</u>.)</div><div class="zh">动词/介词后用宾格</div></div>
-        <div class="rule">This/That 是指示代词：This is... / That is...</div>
-        <div class="practice-link"><a href="grammar-exercises.html#pronouns" target="_blank" rel="noopener">️ 练习代词 →</a></div>
-      </div>
-    </div>
-
-    <!-- ============== Adjectives ============== -->
-    <div id="topic-adjectives" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-adj);color:var(--tag-adj-text)">Adjectives 形容词</span>
-        <div class="card-title">Descriptive & Comparing</div>
-        <div class="example"><div class="en">a big dog, a red apple, a happy boy</div><div class="zh">形容词 + 名词（形容词在前）</div></div>
-        <div class="example"><div class="en">The dog is <u>big</u>. The dog is <u>bigger</u> than me.</div><div class="zh">比较级：形容词 + -er / more...</div></div>
-        <div class="example"><div class="en">big → bigger → biggest</div><div class="zh">单音节词直接加 -er, -est</div></div>
-        <div class="rule">常见双音节词：happy → happier → happiest</div>
-        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
-      </div>
-    </div>
-
-    <!-- ============== Verb Be ============== -->
-    <div id="topic-verb-be" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
-        <div class="card-title">Verb "Be" (am / is / are)</div>
-        <div class="example"><div class="en">I <u>am</u> a student. I'm 8 years old.</div><div class="zh">I + am</div></div>
-        <div class="example"><div class="en">He/She/It <u>is</u> at school. She's happy.</div><div class="zh">He / She / It + is</div></div>
-        <div class="example"><div class="en">You/We/They <u>are</u> my friends.</div><div class="zh">You / We / They + are</div></div>
-        <div class="rule">否定：is not = isn't / are not = aren't</div>
-        <div class="practice-link"><a href="grammar-exercises.html#verb-be" target="_blank" rel="noopener">️ 练习 be 动词 →</a></div>
-      </div>
-    </div>
-
-    <!-- ============== Third Person Singular ============== -->
-    <div id="topic-third-person" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
-        <div class="card-title">第三人称单数 (He/She/It + verb-s)</div>
-        <div class="video-link">
-          <a href="https://www.bilibili.com/video/BV14N4y127Ji" target="_blank" rel="noopener">
-            📺 看视频讲解：X姐妹讲语法-第三人称单数（5分钟）→
-          </a>
-        </div>
-        <div class="video-embed">
-          <iframe src="https://player.bilibili.com/player.html?bvid=BV14N4y127Ji&autoplay=0&high_quality=1&danmaku=1" 
-            allowfullscreen="true" 
-            loading="lazy">
-          </iframe>
-        </div>
-        <div class="example"><div class="en">He <u>plays</u> football.</div><div class="zh">主语是 He/She/It 时，动词加 -s</div></div>
-        <div class="example"><div class="en">She <u>reads</u> a book.</div><div class="zh">一般动词直接加 -s（read → reads, like → likes）</div></div>
-        <div class="example"><div class="en">He <u>goes</u> to school by bus.</div><div class="zh">以 o/s/x/ch/sh 结尾 + -es（go → goes, wash → washes）</div></div>
-        <div class="example"><div class="en">She <u>studies</u> English every day.</div><div class="zh">辅音+y → 变 y 为 i 再加 -es（study → studies, fly → flies）</div></div>
-        <div class="example"><div class="en">He <u>has</u> a pet cat.</div><div class="zh">have → has（不规则变化）</div></div>
-        <div class="example"><div class="en">The sun <u>rises</u> in the east.</div><div class="zh">非人称单数主语同样适用（the sun, the dog, my father）</div></div>
-        <div class="rule">否定句用 doesn't + 动词原形：He doesn't <u>like</u> milk.</div>
-        <div class="rule">疑问句用 Does + 主语 + 动词原形：<u>Does</u> she <u>like</u> cats?</div>
-        <div class="practice-link">
-          <a href="grammar-exercises.html#third-person" target="_blank" rel="noopener">
-            ️ 去练习 →
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============== Action Verbs ============== -->
-    <div id="topic-verb-action" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
-        <div class="card-title">Action Verbs & Tenses</div>
-        <div class="example"><div class="en">I <u>play</u> football every day. (一般现在时)</div><div class="zh">主语 + 动词原形（第三人称单数加 -s）</div></div>
-        <div class="example"><div class="en">He <u>plays</u> football. She <u>goes</u> to school.</div><div class="zh">He/She/It 动词 + -s / -es</div></div>
-        <div class="example"><div class="en">I <u>walked</u> to school yesterday. (过去时)</div><div class="zh">规则动词 + -ed（walked, played, watched）</div></div>
-        <div class="rule">不规则过去时：go → went, eat → ate, see → saw</div>
-        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
-      </div>
-    </div>
-
-    <!-- ============== Adverbs ============== -->
-    <div id="topic-adverbs" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-adv);color:var(--tag-adv-text)">Adverbs 副词</span>
-        <div class="card-title">Time, Manner & Place</div>
-        <div class="example"><div class="en">I <u>always</u> do my homework. / I <u>usually</u> walk to school.</div><div class="zh">频率副词：always, usually, often, sometimes, never</div></div>
-        <div class="example"><div class="en">She sings <u>beautifully</u>. (方式副词)</div><div class="zh">形容词 + -ly = 方式副词</div></div>
-        <div class="example"><div class="en">I went <u>yesterday</u>. Sit <u>here</u>.</div><div class="zh">时间/地点副词</div></div>
-        <div class="rule">位置：动词 + 方式 + 地点 + 时间</div>
-        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
-      </div>
-    </div>
-
-    <!-- ============== Prepositions ============== -->
-    <div id="topic-prepositions" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-prep);color:var(--tag-prep-text)">Prepositions 介词</span>
-        <div class="card-title">Place & Time Prepositions</div>
-        <div class="example"><div class="en">The cat is <u>on</u> the table. / <u>in</u> the box. / <u>under</u> the chair.</div><div class="zh">地点：on, in, under, next to, between</div></div>
-        <div class="example"><div class="en">I wake up <u>at</u> 7 o'clock. / <u>in</u> the morning. / <u>on</u> Monday.</div><div class="zh">时间：at + 时刻 / in + 月/早/晚 / on + 星期/日期</div></div>
-        <div class="rule">at 具体时间点；in 大时间段；on 具体日期/星期</div>
-        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
-      </div>
-    </div>
-
-    <!-- ============== Conjunctions ============== -->
-    <div id="topic-conjunctions" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-conj);color:var(--tag-conj-text)">Conjunctions 连词</span>
-        <div class="card-title">and / but / because / so</div>
-        <div class="example"><div class="en">I like apples <u>and</u> bananas. (并列)</div><div class="zh">and = 和，表示并列关系</div></div>
-        <div class="example"><div class="en">He's short <u>but</u> strong. (转折)</div><div class="zh">but = 但是，表示转折</div></div>
-        <div class="example"><div class="en">I stayed home <u>because</u> it rained. (原因)</div><div class="zh">because = 因为，引导原因从句</div></div>
-        <div class="example"><div class="en">It rained, <u>so</u> I stayed home. (结果)</div><div class="zh">so = 所以，引导结果从句</div></div>
-        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
-      </div>
-    </div>
-
-    <!-- ============== Questions ============== -->
-    <div id="topic-questions" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-prep);color:var(--tag-prep-text)">Questions 疑问词</span>
-        <div class="card-title">Wh- Questions</div>
-        <div class="example"><div class="en"><u>What</u> is your name? — It's Tom.</div><div class="zh">What = 什么（问事物）</div></div>
-        <div class="example"><div class="en"><u>Where</u> do you live? — I live in Hong Kong.</div><div class="zh">Where = 哪里（问地点）</div></div>
-        <div class="example"><div class="en"><u>When</u> is your birthday? — It's in June.</div><div class="zh">When = 什么时候（问时间）</div></div>
-        <div class="example"><div class="en"><u>Who</u> is that? — It's my mother.</div><div class="zh">Who = 谁（问人物）</div></div>
-        <div class="example"><div class="en"><u>Why</u> are you sad? — Because I lost my book.</div><div class="zh">Why = 为什么（问原因）</div></div>
-        <div class="example"><div class="en"><u>How</u> are you? — I'm fine, thank you!</div><div class="zh">How = 怎么样（问状态/方式）</div></div>
-        <div class="practice-link"><a href="grammar-exercises.html#questions" target="_blank" rel="noopener">️ 练习疑问句 →</a></div>
-      </div>
-    </div>
-
-    <!-- ============== Sentences ============== -->
-    <div id="topic-sentences" class="topic-section">
-      <div class="card">
-        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Sentences 句型</span>
-        <div class="card-title">Basic Sentence Patterns</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;">
-          <div class="example"><div class="en" style="font-size:0.85rem;">S + V (主谓)</div><div class="zh">Birds fly. / He runs.</div></div>
-          <div class="example"><div class="en" style="font-size:0.85rem;">S + V + O (主谓宾)</div><div class="zh">I like apples. / She reads books.</div></div>
-          <div class="example"><div class="en" style="font-size:0.85rem;">S + Be + Adj (主系表)</div><div class="zh">She is kind. / They are happy.</div></div>
-        </div>
-        <div class="rule">陈述句 → 疑问句：Do/Does/Did + 主语 + 动词原形？</div>
-        <div class="rule">Yes/No 问句回答：Yes, 主语 + do/does. / No, 主语 + don't/doesn't.</div>
-        <div class="practice-link"><a href="grammar-exercises.html#questions" target="_blank" rel="noopener">️ 练习疑问句 →</a></div>
-      </div>
-    </div>
-
-    <div class="footer">Hong Kong Primary 2 English Grammar &middot; 香港小学二年级英语语法知识点</div>
-  </main>
-</div>
-
-<script>
-function switchTopic(id) {
-  // hide all
-  document.querySelectorAll('.topic-section').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-
-  // show selected
-  document.getElementById('topic-' + id).classList.add('active');
-  document.querySelector('.nav-item[data-topic="' + id + '"]').classList.add('active');
-}
-
-// URL hash support - auto switch topic from #hash
-(function() {
-  const hash = location.hash.replace('#', '');
-  if (hash) {
-    const el = document.getElementById('topic-' + hash);
-    if (el) switchTopic(hash);
+     1|<![CDATA[<!DOCTYPE html>
+     2|<html lang="zh-HK">
+     3|<head>
+     4|  <meta charset="UTF-8">
+     5|  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6|  <title>香港小二英语语法 - 12大语法模块讲解</title>
+     7|  <meta name="description" content="香港小學二年級英文語法大全｜12大模塊：名詞·冠詞·代詞·形容詞·Be動詞·第三人稱單數·行為動詞·副詞·介詞·連詞·疑問詞·句型｜適合小二學生自學語法">
+     8|  <meta name="keywords" content="香港小學二年級, P2英文, 英文語法, 香港小二英語, 語法講解, 小三英文預習">
+     9|  <meta property="og:title" content="香港小二英语语法 - 12大语法模块讲解">
+    10|  <meta property="og:description" content="香港小學二年級英文語法大全｜12大模塊講解，適合小二學生自學">
+    11|  <meta property="og:locale" content="zh_HK">
+    12|  <link rel="canonical" href="https://geekspherehk.github.io/study-materials/hk-english-grammar.html">
+    13|  <script type="application/ld+json">
+    14|{"@context":"https://schema.org","@type":"Article","name":"香港小二英语语法 - 12大语法模块讲解","description":"香港小學二年級英文語法大全｜12大模塊：名詞·冠詞·代詞·形容詞·Be動詞·第三人稱單數·行為動詞·副詞·介詞·連詞·疑問詞·句型｜適合小二學生自學語法","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
+    15|</script>
+    16|  <style>
+    17|    :root {
+    18|      --primary: #2563eb;
+    19|      --bg: #f1f5f9;
+    20|      --card: #ffffff;
+    21|      --text: #1e293b;
+    22|      --muted: #64748b;
+    23|      --border: #e2e8f0;
+    24|      --hover-bg: #e8f0fe;
+    25|      --active-bg: #dbeafe;
+    26|      --sidebar-w: 220px;
+    27|      --tag-noun: #dbeafe;      --tag-noun-text: #1e40af;
+    28|      --tag-verb: #dcfce7;      --tag-verb-text: #166534;
+    29|      --tag-adj: #fef3c7;      --tag-adj-text: #92400e;
+    30|      --tag-adv: #fce7f3;      --tag-adv-text: #9d174d;
+    31|      --tag-prep: #e0e7ff;     --tag-prep-text: #3730a3;
+    32|      --tag-pron: #ccfbf1;     --tag-pron-text: #115e59;
+    33|      --tag-conj: #fee2e2;     --tag-conj-text: #991b1b;
+    34|    }
+    35|    * { box-sizing: border-box; margin: 0; padding: 0; }
+    36|    body {
+    37|      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    38|      background: var(--bg);
+    39|      color: var(--text);
+    40|      line-height: 1.6;
+    41|    }
+    42|
+    43|    /* ── Layout ── */
+    44|    .wrapper { display: flex; min-height: 100vh; }
+    45|
+    46|    /* ── Sidebar ── */
+    47|    .sidebar {
+    48|      width: var(--sidebar-w);
+    49|      background: var(--card);
+    50|      border-right: 1px solid var(--border);
+    51|      padding: 20px 0;
+    52|      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    53|      flex-shrink: 0;
+    54|    }
+    55|    .sidebar .brand {
+    56|      padding: 0 16px 16px;
+    57|      font-weight: 700;
+    58|      font-size: 1.05rem;
+    59|      color: var(--primary);
+    60|      border-bottom: 1px solid var(--border);
+    61|      margin-bottom: 8px;
+    62|    }
+    63|    .sidebar .brand small {
+    64|      display: block;
+    65|      font-weight: 400;
+    66|      font-size: 0.75rem;
+    67|      color: var(--muted);
+    68|      margin-top: 2px;
+    69|    }
+    70|    .nav-item {
+    71|      display: flex; align-items: center; gap: 8px;
+    72|      padding: 10px 16px;
+    73|      cursor: pointer;
+    74|      font-size: 0.88rem;
+    75|      color: var(--text);
+    76|      transition: background 0.12s, color 0.12s;
+    77|      border: none; background: none; width: 100%; text-align: left;
+    78|    }
+    79|    .nav-item:hover { background: var(--hover-bg); }
+    80|    .nav-item.active {
+    81|      background: var(--active-bg);
+    82|      color: var(--primary);
+    83|      font-weight: 600;
+    84|    }
+    85|    .nav-item .dot {
+    86|      width: 8px; height: 8px; border-radius: 99px;
+    87|      flex-shrink: 0;
+    88|    }
+    89|
+    90|    /* ── Content ── */
+    91|    .content {
+    92|      flex: 1;
+    93|      padding: 32px 36px 80px;
+    94|      max-width: 780px;
+    95|    }
+    96|    .content-header {
+    97|      margin-bottom: 28px;
+    98|    }
+    99|    .content-header h1 {
+   100|      font-size: 1.5rem;
+   101|      color: var(--text);
+   102|    }
+   103|    .content-header p {
+   104|      font-size: 0.85rem;
+   105|      color: var(--muted);
+   106|      margin-top: 4px;
+   107|    }
+   108|
+   109|    /* ── Topic sections ── */
+   110|    .topic-section { display: none; }
+   111|    .topic-section.active { display: block; }
+   112|
+   113|    .card {
+   114|      background: var(--card);
+   115|      border-radius: 12px;
+   116|      padding: 20px 24px;
+   117|      border: 1px solid var(--border);
+   118|      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+   119|    }
+   120|    .card-title {
+   121|      font-size: 0.78rem;
+   122|      font-weight: 600;
+   123|      text-transform: uppercase;
+   124|      letter-spacing: 0.08em;
+   125|      color: var(--muted);
+   126|      margin-bottom: 14px;
+   127|    }
+   128|    .tag {
+   129|      display: inline-block;
+   130|      font-size: 0.72rem;
+   131|      font-weight: 600;
+   132|      padding: 2px 9px;
+   133|      border-radius: 99px;
+   134|      margin-bottom: 10px;
+   135|    }
+   136|    .example {
+   137|      background: var(--bg);
+   138|      border-radius: 8px;
+   139|      padding: 10px 14px;
+   140|      margin-bottom: 8px;
+   141|      font-size: 0.92rem;
+   142|    }
+   143|    .example:last-child { margin-bottom: 0; }
+   144|    .example .en {
+   145|      color: var(--primary);
+   146|      font-weight: 600;
+   147|      margin-bottom: 2px;
+   148|    }
+   149|    .example .zh { color: var(--muted); font-size: 0.82rem; }
+   150|    /* ── Video Link ── */
+   151|    .video-link { margin: 12px 0 8px; }
+   152|    .video-link a { display: inline-block; background: #fb7299; color: #fff; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: background .2s; }
+   153|    .video-link a:hover { background: #f56c8a; }
+   154|    .video-embed { position: relative; width: 100%; padding-bottom: 56.25%; margin: 12px 0 16px; border-radius: 10px; overflow: hidden; }
+   155|    .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+   156|    .practice-link { margin-top: 16px; text-align: center; }
+   157|    .practice-link a { display: inline-block; background: #27ae60; color: #fff; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: background .2s; }
+   158|    .practice-link a:hover { background: #1e8449; }
+   159|    .rule {
+   160|      font-size: 0.85rem;
+   161|      margin-bottom: 10px;
+   162|      padding-left: 10px;
+   163|      border-left: 3px solid var(--primary);
+   164|    }
+   165|    .rule:last-child { margin-bottom: 0; }
+   166|
+   167|    /* ── Footer ── */
+   168|    .footer {
+   169|      margin-top: 36px;
+   170|      text-align: center;
+   171|      font-size: 0.78rem;
+   172|      color: var(--muted);
+   173|    }
+   174|
+   175|    /* ── Mobile ── */
+   176|    @media (max-width: 640px) {
+   177|      .wrapper { flex-direction: column; }
+   178|      .sidebar {
+   179|        width: 100%; height: auto; position: static;
+   180|        border-right: none; border-bottom: 1px solid var(--border);
+   181|        padding: 12px 0;
+   182|        display: flex; flex-wrap: wrap; gap: 2px;
+   183|      }
+   184|      .sidebar .brand { display: none; }
+   185|      .nav-item { width: auto; padding: 8px 12px; font-size: 0.82rem; }
+   186|      .content { padding: 20px 16px 60px; }
+   187|    }
+   188|  
+   189|/* 导航按钮 */
+   190|.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+   191|.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+   192|.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+   193|.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+   194|.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+   195|.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+   196|.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+   197|.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+   198|.nav-home:hover{background:#2563eb;border-color:#2563eb}
+   199|/* 卡片增强 */
+   200|.card{transition:box-shadow .2s,transform .15s}
+   201|.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+   202|/* 移动端优化 */
+   203|@media (max-width:480px){
+   204|  body{padding:12px}
+   205|  .card{padding:14px 16px}
+   206|  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+   207|  .nav-btn{padding:10px 12px;font-size:0.8rem}
+   208|  .nav-text{max-width:60px}
+   209|  .nav-buttons{gap:4px}
+   210|}
+   211|@media (max-width:360px){
+   212|  .nav-text{display:none}
+   213|}
+   214|
+  /* 移动端响应式 */
+  @media (max-width:768px) {
+    body{flex-direction:column;padding:12px}
+    .main-wrapper{width:100%;padding:0}
+    .card{padding:14px 16px}
+    .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+    .nav-buttons{flex-wrap:wrap;gap:4px}
+    .nav-buttons .nav-btn{padding:8px 10px;font-size:0.78rem;flex:1 1 auto;min-width:0}
+    .qa-grid{grid-template-columns:1fr}
   }
-  // Listen for hash changes
-  window.addEventListener('hashchange', function() {
-    const h = location.hash.replace('#', '');
-    if (h && document.getElementById('topic-' + h)) switchTopic(h);
-  });
-})();
-</script>
+  @media (max-width:400px){
+    .nav-buttons .nav-btn{padding:6px 8px;font-size:0.7rem;}
+  }
 
-<div class="nav-buttons">
-  <div class="nav-left"><a href="hk-p2-english-kp.html" class="nav-btn nav-prev">&larr; <span class="nav-text">英文知识页</span></a></div>
-  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
-  <div class="nav-right"><a href="grammar-exercises.html" class="nav-btn nav-next"><span class="nav-text">语法练习题</span> &rarr;</a></div>
-</div>
-</body>
-</html>]]>
+</style>
+   215|</head>
+   216|<body>
+   217|<div class="wrapper">
+   218|
+   219|  <!-- ── Sidebar Navigation ── -->
+   220|  <nav class="sidebar" id="sidebar">
+   221|    <div class="brand">
+   222|      P2 Grammar
+   223|      <small>香港小学二年级</small>
+   224|    </div>
+   225|    <button class="nav-item active" data-topic="nouns"        onclick="switchTopic('nouns')">        <span class="dot" style="background:var(--tag-noun-text)"></span>Nouns 名词</button>
+   226|    <button class="nav-item"        data-topic="articles"     onclick="switchTopic('articles')">     <span class="dot" style="background:var(--tag-noun-text)"></span>Articles 冠词</button>
+   227|    <button class="nav-item"        data-topic="pronouns"     onclick="switchTopic('pronouns')">     <span class="dot" style="background:var(--tag-pron-text)"></span>Pronouns 代词</button>
+   228|    <button class="nav-item"        data-topic="adjectives"   onclick="switchTopic('adjectives')">   <span class="dot" style="background:var(--tag-adj-text)"></span>Adjectives 形容词</button>
+   229|    <button class="nav-item"        data-topic="verb-be"      onclick="switchTopic('verb-be')">      <span class="dot" style="background:var(--tag-verb-text)"></span>Verb Be (am/is/are)</button>
+   230|    <button class="nav-item"        data-topic="third-person" onclick="switchTopic('third-person')"> <span class="dot" style="background:var(--tag-verb-text)"></span>Third Person 第三人称单数</button>
+   231|    <button class="nav-item"        data-topic="verb-action"  onclick="switchTopic('verb-action')">  <span class="dot" style="background:var(--tag-verb-text)"></span>Action Verbs 行为动词</button>
+   232|    <button class="nav-item"        data-topic="adverbs"      onclick="switchTopic('adverbs')">      <span class="dot" style="background:var(--tag-adv-text)"></span>Adverbs 副词</button>
+   233|    <button class="nav-item"        data-topic="prepositions" onclick="switchTopic('prepositions')"> <span class="dot" style="background:var(--tag-prep-text)"></span>Prepositions 介词</button>
+   234|    <button class="nav-item"        data-topic="conjunctions" onclick="switchTopic('conjunctions')"> <span class="dot" style="background:var(--tag-conj-text)"></span>Conjunctions 连词</button>
+   235|    <button class="nav-item"        data-topic="questions"    onclick="switchTopic('questions')">    <span class="dot" style="background:var(--tag-prep-text)"></span>Question Words 疑问词</button>
+   236|    <button class="nav-item"        data-topic="sentences"    onclick="switchTopic('sentences')">    <span class="dot" style="background:var(--tag-verb-text)"></span>Sentences 句型</button>
+   237|  </nav>
+   238|
+   239|  <!-- ── Main Content ── -->
+   240|  <main class="content">
+   241|    <div class="content-header">
+   242|      <h1>Hong Kong Primary 2 English Grammar</h1>
+   243|      <p>香港小学二年级英语语法知识点 · 点击左侧导航栏查看各模块</p>
+   244|    </div>
+   245|
+   246|    <!-- ============== Nouns ============== -->
+   247|    <div id="topic-nouns" class="topic-section active">
+   248|      <div class="card">
+   249|        <span class="tag" style="background:var(--tag-noun);color:var(--tag-noun-text)">Nouns 名词</span>
+   250|        <div class="card-title">Common & Proper Nouns</div>
+   251|        <div class="example"><div class="en">a dog, a cat, a book, a school</div><div class="zh">普通名词（common noun）</div></div>
+   252|        <div class="example"><div class="en">Tom, Mary, Hong Kong, Monday</div><div class="zh">专有名词（首字母大写）</div></div>
+   253|        <div class="rule">规则：可数名词可加 a/an，或用复数形式</div>
+   254|        <div class="rule">复数：加 -s（dogs, cats）；以 s/x/ch/sh 结尾加 -es（boxes, watches）</div>
+   255|        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
+   256|      </div>
+   257|    </div>
+   258|
+   259|    <!-- ============== Articles ============== -->
+   260|    <div id="topic-articles" class="topic-section">
+   261|      <div class="card">
+   262|        <span class="tag" style="background:var(--tag-noun);color:var(--tag-noun-text)">Articles 冠词</span>
+   263|        <div class="card-title">a / an / the</div>
+   264|        <div class="example"><div class="en">a dog, a university, a hot day</div><div class="zh">a + 辅音音标开头的词</div></div>
+   265|        <div class="example"><div class="en">an apple, an egg, an old man</div><div class="zh">an + 元音音标开头的词</div></div>
+   266|        <div class="example"><div class="en">the sun, the book on the desk</div><div class="zh">the = 特指，双方都知道的事物</div></div>
+   267|        <div class="rule">口诀：a dog, an apple, the is special</div>
+   268|        <div class="practice-link"><a href="grammar-exercises.html#articles" target="_blank" rel="noopener">️ 练习冠词 →</a></div>
+   269|      </div>
+   270|    </div>
+   271|
+   272|    <!-- ============== Pronouns ============== -->
+   273|    <div id="topic-pronouns" class="topic-section">
+   274|      <div class="card">
+   275|        <span class="tag" style="background:var(--tag-pron);color:var(--tag-pron-text)">Pronouns 代词</span>
+   276|        <div class="card-title">Subject & Object Pronouns</div>
+   277|        <div class="example"><div class="en">I, you, he, she, it, we, they</div><div class="zh">主格（作主语）</div></div>
+   278|        <div class="example"><div class="en">me, you, him, her, it, us, them</div><div class="zh">宾格（作宾语）</div></div>
+   279|        <div class="example"><div class="en">He likes <u>her</u>. (NOT: He likes <u>she</u>.)</div><div class="zh">动词/介词后用宾格</div></div>
+   280|        <div class="rule">This/That 是指示代词：This is... / That is...</div>
+   281|        <div class="practice-link"><a href="grammar-exercises.html#pronouns" target="_blank" rel="noopener">️ 练习代词 →</a></div>
+   282|      </div>
+   283|    </div>
+   284|
+   285|    <!-- ============== Adjectives ============== -->
+   286|    <div id="topic-adjectives" class="topic-section">
+   287|      <div class="card">
+   288|        <span class="tag" style="background:var(--tag-adj);color:var(--tag-adj-text)">Adjectives 形容词</span>
+   289|        <div class="card-title">Descriptive & Comparing</div>
+   290|        <div class="example"><div class="en">a big dog, a red apple, a happy boy</div><div class="zh">形容词 + 名词（形容词在前）</div></div>
+   291|        <div class="example"><div class="en">The dog is <u>big</u>. The dog is <u>bigger</u> than me.</div><div class="zh">比较级：形容词 + -er / more...</div></div>
+   292|        <div class="example"><div class="en">big → bigger → biggest</div><div class="zh">单音节词直接加 -er, -est</div></div>
+   293|        <div class="rule">常见双音节词：happy → happier → happiest</div>
+   294|        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
+   295|      </div>
+   296|    </div>
+   297|
+   298|    <!-- ============== Verb Be ============== -->
+   299|    <div id="topic-verb-be" class="topic-section">
+   300|      <div class="card">
+   301|        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
+   302|        <div class="card-title">Verb "Be" (am / is / are)</div>
+   303|        <div class="example"><div class="en">I <u>am</u> a student. I'm 8 years old.</div><div class="zh">I + am</div></div>
+   304|        <div class="example"><div class="en">He/She/It <u>is</u> at school. She's happy.</div><div class="zh">He / She / It + is</div></div>
+   305|        <div class="example"><div class="en">You/We/They <u>are</u> my friends.</div><div class="zh">You / We / They + are</div></div>
+   306|        <div class="rule">否定：is not = isn't / are not = aren't</div>
+   307|        <div class="practice-link"><a href="grammar-exercises.html#verb-be" target="_blank" rel="noopener">️ 练习 be 动词 →</a></div>
+   308|      </div>
+   309|    </div>
+   310|
+   311|    <!-- ============== Third Person Singular ============== -->
+   312|    <div id="topic-third-person" class="topic-section">
+   313|      <div class="card">
+   314|        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
+   315|        <div class="card-title">第三人称单数 (He/She/It + verb-s)</div>
+   316|        <div class="video-link">
+   317|          <a href="https://www.bilibili.com/video/BV14N4y127Ji" target="_blank" rel="noopener">
+   318|            📺 看视频讲解：X姐妹讲语法-第三人称单数（5分钟）→
+   319|          </a>
+   320|        </div>
+   321|        <div class="video-embed">
+   322|          <iframe src="https://player.bilibili.com/player.html?bvid=BV14N4y127Ji&autoplay=0&high_quality=1&danmaku=1" 
+   323|            allowfullscreen="true" 
+   324|            loading="lazy">
+   325|          </iframe>
+   326|        </div>
+   327|        <div class="example"><div class="en">He <u>plays</u> football.</div><div class="zh">主语是 He/She/It 时，动词加 -s</div></div>
+   328|        <div class="example"><div class="en">She <u>reads</u> a book.</div><div class="zh">一般动词直接加 -s（read → reads, like → likes）</div></div>
+   329|        <div class="example"><div class="en">He <u>goes</u> to school by bus.</div><div class="zh">以 o/s/x/ch/sh 结尾 + -es（go → goes, wash → washes）</div></div>
+   330|        <div class="example"><div class="en">She <u>studies</u> English every day.</div><div class="zh">辅音+y → 变 y 为 i 再加 -es（study → studies, fly → flies）</div></div>
+   331|        <div class="example"><div class="en">He <u>has</u> a pet cat.</div><div class="zh">have → has（不规则变化）</div></div>
+   332|        <div class="example"><div class="en">The sun <u>rises</u> in the east.</div><div class="zh">非人称单数主语同样适用（the sun, the dog, my father）</div></div>
+   333|        <div class="rule">否定句用 doesn't + 动词原形：He doesn't <u>like</u> milk.</div>
+   334|        <div class="rule">疑问句用 Does + 主语 + 动词原形：<u>Does</u> she <u>like</u> cats?</div>
+   335|        <div class="practice-link">
+   336|          <a href="grammar-exercises.html#third-person" target="_blank" rel="noopener">
+   337|            ️ 去练习 →
+   338|          </a>
+   339|        </div>
+   340|      </div>
+   341|    </div>
+   342|
+   343|    <!-- ============== Action Verbs ============== -->
+   344|    <div id="topic-verb-action" class="topic-section">
+   345|      <div class="card">
+   346|        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Verbs 动词</span>
+   347|        <div class="card-title">Action Verbs & Tenses</div>
+   348|        <div class="example"><div class="en">I <u>play</u> football every day. (一般现在时)</div><div class="zh">主语 + 动词原形（第三人称单数加 -s）</div></div>
+   349|        <div class="example"><div class="en">He <u>plays</u> football. She <u>goes</u> to school.</div><div class="zh">He/She/It 动词 + -s / -es</div></div>
+   350|        <div class="example"><div class="en">I <u>walked</u> to school yesterday. (过去时)</div><div class="zh">规则动词 + -ed（walked, played, watched）</div></div>
+   351|        <div class="rule">不规则过去时：go → went, eat → ate, see → saw</div>
+   352|        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
+   353|      </div>
+   354|    </div>
+   355|
+   356|    <!-- ============== Adverbs ============== -->
+   357|    <div id="topic-adverbs" class="topic-section">
+   358|      <div class="card">
+   359|        <span class="tag" style="background:var(--tag-adv);color:var(--tag-adv-text)">Adverbs 副词</span>
+   360|        <div class="card-title">Time, Manner & Place</div>
+   361|        <div class="example"><div class="en">I <u>always</u> do my homework. / I <u>usually</u> walk to school.</div><div class="zh">频率副词：always, usually, often, sometimes, never</div></div>
+   362|        <div class="example"><div class="en">She sings <u>beautifully</u>. (方式副词)</div><div class="zh">形容词 + -ly = 方式副词</div></div>
+   363|        <div class="example"><div class="en">I went <u>yesterday</u>. Sit <u>here</u>.</div><div class="zh">时间/地点副词</div></div>
+   364|        <div class="rule">位置：动词 + 方式 + 地点 + 时间</div>
+   365|        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
+   366|      </div>
+   367|    </div>
+   368|
+   369|    <!-- ============== Prepositions ============== -->
+   370|    <div id="topic-prepositions" class="topic-section">
+   371|      <div class="card">
+   372|        <span class="tag" style="background:var(--tag-prep);color:var(--tag-prep-text)">Prepositions 介词</span>
+   373|        <div class="card-title">Place & Time Prepositions</div>
+   374|        <div class="example"><div class="en">The cat is <u>on</u> the table. / <u>in</u> the box. / <u>under</u> the chair.</div><div class="zh">地点：on, in, under, next to, between</div></div>
+   375|        <div class="example"><div class="en">I wake up <u>at</u> 7 o'clock. / <u>in</u> the morning. / <u>on</u> Monday.</div><div class="zh">时间：at + 时刻 / in + 月/早/晚 / on + 星期/日期</div></div>
+   376|        <div class="rule">at 具体时间点；in 大时间段；on 具体日期/星期</div>
+   377|        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
+   378|      </div>
+   379|    </div>
+   380|
+   381|    <!-- ============== Conjunctions ============== -->
+   382|    <div id="topic-conjunctions" class="topic-section">
+   383|      <div class="card">
+   384|        <span class="tag" style="background:var(--tag-conj);color:var(--tag-conj-text)">Conjunctions 连词</span>
+   385|        <div class="card-title">and / but / because / so</div>
+   386|        <div class="example"><div class="en">I like apples <u>and</u> bananas. (并列)</div><div class="zh">and = 和，表示并列关系</div></div>
+   387|        <div class="example"><div class="en">He's short <u>but</u> strong. (转折)</div><div class="zh">but = 但是，表示转折</div></div>
+   388|        <div class="example"><div class="en">I stayed home <u>because</u> it rained. (原因)</div><div class="zh">because = 因为，引导原因从句</div></div>
+   389|        <div class="example"><div class="en">It rained, <u>so</u> I stayed home. (结果)</div><div class="zh">so = 所以，引导结果从句</div></div>
+   390|        <div class="practice-link"><a href="grammar-exercises.html#mixed" target="_blank" rel="noopener">️ 综合练习 →</a></div>
+   391|      </div>
+   392|    </div>
+   393|
+   394|    <!-- ============== Questions ============== -->
+   395|    <div id="topic-questions" class="topic-section">
+   396|      <div class="card">
+   397|        <span class="tag" style="background:var(--tag-prep);color:var(--tag-prep-text)">Questions 疑问词</span>
+   398|        <div class="card-title">Wh- Questions</div>
+   399|        <div class="example"><div class="en"><u>What</u> is your name? — It's Tom.</div><div class="zh">What = 什么（问事物）</div></div>
+   400|        <div class="example"><div class="en"><u>Where</u> do you live? — I live in Hong Kong.</div><div class="zh">Where = 哪里（问地点）</div></div>
+   401|        <div class="example"><div class="en"><u>When</u> is your birthday? — It's in June.</div><div class="zh">When = 什么时候（问时间）</div></div>
+   402|        <div class="example"><div class="en"><u>Who</u> is that? — It's my mother.</div><div class="zh">Who = 谁（问人物）</div></div>
+   403|        <div class="example"><div class="en"><u>Why</u> are you sad? — Because I lost my book.</div><div class="zh">Why = 为什么（问原因）</div></div>
+   404|        <div class="example"><div class="en"><u>How</u> are you? — I'm fine, thank you!</div><div class="zh">How = 怎么样（问状态/方式）</div></div>
+   405|        <div class="practice-link"><a href="grammar-exercises.html#questions" target="_blank" rel="noopener">️ 练习疑问句 →</a></div>
+   406|      </div>
+   407|    </div>
+   408|
+   409|    <!-- ============== Sentences ============== -->
+   410|    <div id="topic-sentences" class="topic-section">
+   411|      <div class="card">
+   412|        <span class="tag" style="background:var(--tag-verb);color:var(--tag-verb-text)">Sentences 句型</span>
+   413|        <div class="card-title">Basic Sentence Patterns</div>
+   414|        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;">
+   415|          <div class="example"><div class="en" style="font-size:0.85rem;">S + V (主谓)</div><div class="zh">Birds fly. / He runs.</div></div>
+   416|          <div class="example"><div class="en" style="font-size:0.85rem;">S + V + O (主谓宾)</div><div class="zh">I like apples. / She reads books.</div></div>
+   417|          <div class="example"><div class="en" style="font-size:0.85rem;">S + Be + Adj (主系表)</div><div class="zh">She is kind. / They are happy.</div></div>
+   418|        </div>
+   419|        <div class="rule">陈述句 → 疑问句：Do/Does/Did + 主语 + 动词原形？</div>
+   420|        <div class="rule">Yes/No 问句回答：Yes, 主语 + do/does. / No, 主语 + don't/doesn't.</div>
+   421|        <div class="practice-link"><a href="grammar-exercises.html#questions" target="_blank" rel="noopener">️ 练习疑问句 →</a></div>
+   422|      </div>
+   423|    </div>
+   424|
+   425|    <div class="footer">Hong Kong Primary 2 English Grammar &middot; 香港小学二年级英语语法知识点</div>
+   426|  </main>
+   427|</div>
+   428|
+   429|<script>
+   430|function switchTopic(id) {
+   431|  // hide all
+   432|  document.querySelectorAll('.topic-section').forEach(el => el.classList.remove('active'));
+   433|  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+   434|
+   435|  // show selected
+   436|  document.getElementById('topic-' + id).classList.add('active');
+   437|  document.querySelector('.nav-item[data-topic="' + id + '"]').classList.add('active');
+   438|}
+   439|
+   440|// URL hash support - auto switch topic from #hash
+   441|(function() {
+   442|  const hash = location.hash.replace('#', '');
+   443|  if (hash) {
+   444|    const el = document.getElementById('topic-' + hash);
+   445|    if (el) switchTopic(hash);
+   446|  }
+   447|  // Listen for hash changes
+   448|  window.addEventListener('hashchange', function() {
+   449|    const h = location.hash.replace('#', '');
+   450|    if (h && document.getElementById('topic-' + h)) switchTopic(h);
+   451|  });
+   452|})();
+   453|</script>
+   454|
+   455|<div class="nav-buttons">
+   456|  <div class="nav-left"><a href="hk-p2-english-kp.html" class="nav-btn nav-prev">&larr; <span class="nav-text">英文知识页</span></a></div>
+   457|  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
+   458|  <div class="nav-right"><a href="grammar-exercises.html" class="nav-btn nav-next"><span class="nav-text">语法练习题</span> &rarr;</a></div>
+   459|</div>
+   460|</body>
+   461|</html>]]>

@@ -1,1120 +1,516 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>P2 Grammar Exercises 练习题</title>
-  <meta name="description" content="香港小學二年級英文語法練習題｜涵蓋be動詞、冠詞、指示代詞、人稱代詞、There is/are、疑問句等主題，適合小二學生鞏固語法知識">
-  <meta name="keywords" content="香港小學二年級, P2英文, 語法練習, 英文練習題, be動詞, a/an, 指示代詞, 人稱代詞, 疑問句, 小二下學期">
-  <meta property="og:title" content="P2 Grammar Exercises 語法練習">
-  <meta property="og:description" content="香港小學二年級英文語法練習題，包含be動詞、冠詞、指示代詞、人稱代詞等多個語法主題的綜合練習">
-  <meta property="og:locale" content="zh_HK">
-  <link rel="canonical" href="https://geekspherehk.github.io/study-materials/grammar-exercises.html">
-  <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","name":"P2 Grammar Exercises 語法練習","description":"香港小學二年級英文語法練習題｜涵蓋be動詞、冠詞、指示代詞、人稱代詞、There is/are、疑問句等主題","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
-</script>
-  <style>
-    :root {
-      --primary: #2563eb;
-      --bg: #f1f5f9;
-      --card: #ffffff;
-      --text: #1e293b;
-      --muted: #64748b;
-      --border: #e2e8f0;
-      --hover-bg: #e8f0fe;
-      --active-bg: #dbeafe;
-      --sidebar-w: 220px;
-      --correct: #16a34a;
-      --wrong: #dc2626;
-      --tag-noun-text: #1e40af;
-      --tag-verb-text: #166534;
-      --tag-adj-text: #92400e;
-      --tag-adv-text: #9d174d;
-      --tag-prep-text: #3730a3;
-      --tag-pron-text: #115e59;
-      --tag-conj-text: #991b1b;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    .wrapper { display: flex; min-height: 100vh; }
+     1|<!DOCTYPE html>
+     2|<html lang="zh-CN">
+     3|<head>
+     4|  <meta charset="UTF-8">
+     5|  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6|  <title>P2 Grammar Exercises 练习题</title>
+     7|  <meta name="description" content="香港小學二年級英文語法練習題｜涵蓋be動詞、冠詞、指示代詞、人稱代詞、There is/are、疑問句等主題，適合小二學生鞏固語法知識">
+     8|  <meta name="keywords" content="香港小學二年級, P2英文, 語法練習, 英文練習題, be動詞, a/an, 指示代詞, 人稱代詞, 疑問句, 小二下學期">
+     9|  <meta property="og:title" content="P2 Grammar Exercises 語法練習">
+    10|  <meta property="og:description" content="香港小學二年級英文語法練習題，包含be動詞、冠詞、指示代詞、人稱代詞等多個語法主題的綜合練習">
+    11|  <meta property="og:locale" content="zh_HK">
+    12|  <link rel="canonical" href="https://geekspherehk.github.io/study-materials/grammar-exercises.html">
+    13|  <script type="application/ld+json">
+    14|{"@context":"https://schema.org","@type":"Article","name":"P2 Grammar Exercises 語法練習","description":"香港小學二年級英文語法練習題｜涵蓋be動詞、冠詞、指示代詞、人稱代詞、There is/are、疑問句等主題","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
+    15|</script>
+    16|  <style>
+    17|    :root {
+    18|      --primary: #2563eb;
+    19|      --bg: #f1f5f9;
+    20|      --card: #ffffff;
+    21|      --text: #1e293b;
+    22|      --muted: #64748b;
+    23|      --border: #e2e8f0;
+    24|      --hover-bg: #e8f0fe;
+    25|      --active-bg: #dbeafe;
+    26|      --sidebar-w: 220px;
+    27|      --correct: #16a34a;
+    28|      --wrong: #dc2626;
+    29|      --tag-noun-text: #1e40af;
+    30|      --tag-verb-text: #166534;
+    31|      --tag-adj-text: #92400e;
+    32|      --tag-adv-text: #9d174d;
+    33|      --tag-prep-text: #3730a3;
+    34|      --tag-pron-text: #115e59;
+    35|      --tag-conj-text: #991b1b;
+    36|    }
+    37|    * { box-sizing: border-box; margin: 0; padding: 0; }
+    38|    body {
+    39|      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    40|      background: var(--bg);
+    41|      color: var(--text);
+    42|      line-height: 1.6;
+    43|    }
+    44|    .wrapper { display: flex; min-height: 100vh; }
+    45|
+    46|    /* ── Sidebar ── */
+    47|    .sidebar {
+    48|      width: var(--sidebar-w);
+    49|      background: var(--card);
+    50|      border-right: 1px solid var(--border);
+    51|      padding: 20px 0;
+    52|      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    53|      flex-shrink: 0;
+    54|    }
+    55|    .sidebar .brand {
+    56|      padding: 0 16px 16px;
+    57|      font-weight: 700;
+    58|      font-size: 1.05rem;
+    59|      color: var(--primary);
+    60|      border-bottom: 1px solid var(--border);
+    61|      margin-bottom: 8px;
+    62|    }
+    63|    .sidebar .brand small {
+    64|      display: block;
+    65|      font-weight: 400;
+    66|      font-size: 0.75rem;
+    67|      color: var(--muted);
+    68|      margin-top: 2px;
+    69|    }
+    70|    .nav-item {
+    71|      display: flex; align-items: center; gap: 8px;
+    72|      padding: 10px 16px;
+    73|      cursor: pointer;
+    74|      font-size: 0.88rem;
+    75|      color: var(--text);
+    76|      transition: background 0.12s, color 0.12s;
+    77|      border: none; background: none; width: 100%; text-align: left;
+    78|    }
+    79|    .nav-item:hover { background: var(--hover-bg); }
+    80|    .nav-item.active {
+    81|      background: var(--active-bg);
+    82|      color: var(--primary);
+    83|      font-weight: 600;
+    84|    }
+    85|    .nav-item .dot {
+    86|      width: 8px; height: 8px; border-radius: 99px;
+    87|      flex-shrink: 0;
+    88|    }
+    89|    .nav-item.wrong-tab {
+    90|      border-top: 1px solid var(--border);
+    91|      margin-top: 6px;
+    92|      padding-top: 12px;
+    93|    }
+    94|    .wrong-badge {
+    95|      margin-left: auto;
+    96|      background: var(--wrong);
+    97|      color: #fff;
+    98|      font-size: 0.7rem;
+    99|      border-radius: 99px;
+   100|      padding: 1px 7px;
+   101|      min-width: 20px;
+   102|      text-align: center;
+   103|    }
+   104|
+   105|    /* ── Content ── */
+   106|    .content {
+   107|      flex: 1;
+   108|      padding: 32px 36px 80px;
+   109|      max-width: 780px;
+   110|    }
+   111|    .content-header {
+   112|      margin-bottom: 28px;
+   113|    }
+   114|    .content-header h1 {
+   115|      font-size: 1.5rem;
+   116|      color: var(--text);
+   117|    }
+   118|    .content-header p {
+   119|      font-size: 0.85rem;
+   120|      color: var(--muted);
+   121|      margin-top: 4px;
+   122|    }
+   123|
+   124|    .topic-section { display: none; }
+   125|    .topic-section.active { display: block; }
+   126|
+   127|    .card {
+   128|      background: var(--card);
+   129|      border-radius: 12px;
+   130|      padding: 20px 24px;
+   131|      border: 1px solid var(--border);
+   132|      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+   133|      margin-bottom: 20px;
+   134|    }
+   135|    .card-title {
+   136|      font-size: 0.78rem;
+   137|      font-weight: 600;
+   138|      text-transform: uppercase;
+   139|      letter-spacing: 0.08em;
+   140|      color: var(--muted);
+   141|      margin-bottom: 14px;
+   142|    }
+   143|    .tag {
+   144|      display: inline-block;
+   145|      font-size: 0.72rem;
+   146|      font-weight: 600;
+   147|      padding: 2px 9px;
+   148|      border-radius: 99px;
+   149|      margin-bottom: 10px;
+   150|    }
+   151|
+   152|    /* ── Kid-friendly Knowledge Cards ── */
+   153|    .k-card {
+   154|      background: #fff8f0; border-radius: 12px; padding: 12px 14px;
+   155|      margin-bottom: 10px; border: 2px solid #fde68a;
+   156|      box-shadow: 0 2px 6px rgba(251,191,36,0.1);
+   157|    }
+   158|    .k-card:last-child { margin-bottom: 0; }
+   159|    .k-card-title {
+   160|      display: flex; align-items: center; gap: 6px;
+   161|      font-size: 0.88rem; font-weight: 700; margin-bottom: 8px;
+   162|    }
+   163|    .k-card .k-em { font-size: 1.2rem; }
+   164|    .k-row {
+   165|      display: flex; align-items: center; gap: 6px;
+   166|      padding: 5px 0; font-size: 0.85rem; line-height: 1.4;
+   167|      border-bottom: 1px dashed #fef3c7;
+   168|    }
+   169|    .k-row:last-child { border-bottom: none; }
+   170|    .k-row .k-icon { font-size: 1rem; flex-shrink: 0; }
+   171|    .k-en { font-weight: 600; color: #1e40af; }
+   172|    .k-zh { color: #6b7280; font-size: 0.78rem; }
+   173|    .k-label {
+   174|      display: inline-block; font-size: 0.65rem; font-weight: 700;
+   175|      padding: 1px 8px; border-radius: 99px; margin-right: 4px;
+   176|    }
+   177|    .label-blue { background: #dbeafe; color: #1e40af; }
+   178|    .label-green { background: #d1fae5; color: #065f46; }
+   179|    .label-red { background: #fee2e2; color: #991b1b; }
+   180|    .label-purple { background: #ede9fe; color: #5b21b6; }
+   181|    .label-orange { background: #fed7aa; color: #9a3412; }
+   182|    .label-pink { background: #fce7f3; color: #9d174d; }
+   183|
+   184|    .k-card.bg-blue { background: #eff6ff; border-color: #93c5fd; }
+   185|    .k-card.bg-green { background: #f0fdf4; border-color: #86efac; }
+   186|    .k-card.bg-red { background: #fef2f2; border-color: #fca5a5; }
+   187|    .k-card.bg-purple { background: #f5f3ff; border-color: #c4b5fd; }
+   188|    .k-card.bg-orange { background: #fff7ed; border-color: #fdba74; }
+   189|    .k-card.bg-pink { background: #fdf2f8; border-color: #f9a8d4; }
+   190|
+   191|    /* ── Section Divider Cards ── */
+   192|    .sec-card { margin-bottom: 16px; }
+   193|    .sec-card:last-child { margin-bottom: 0; }
+   194|    .sec-header {
+   195|      display: flex; align-items: center; gap: 8px;
+   196|      padding: 10px 18px;
+   197|      border-radius: 10px 10px 0 0;
+   198|      font-weight: 700; font-size: 0.88rem; letter-spacing: 0.04em;
+   199|    }
+   200|    .sec-header .icon { font-size: 1.1rem; }
+   201|    .sec-body {
+   202|      padding: 16px 18px;
+   203|      border: 1px solid var(--border);
+   204|      border-top: none;
+   205|      border-radius: 0 0 10px 10px;
+   206|      background: var(--card);
+   207|    }
+   208|    .sec-knowledge .sec-header { background: #ede9fe; color: #5b21b6; }
+   209|    .sec-knowledge .sec-body { border-color: #ddd6fe; padding: 12px 14px; }
+   210|    .sec-video .sec-header { background: #fce7f3; color: #9d174d; }
+   211|    .sec-video .sec-body { border-color: #fbcfe8; }
+   212|    .sec-exercise .sec-header { background: #dbeafe; color: #1e40af; }
+   213|    .sec-exercise .sec-body { border-color: #bfdbfe; }
+   214|    .ksub {
+   215|      font-size: 0.85rem; font-weight: 600;
+   216|      color: var(--muted); margin: 14px 0 8px;
+   217|      padding-bottom: 4px; border-bottom: 1px solid var(--border);
+   218|    }
+   219|    .ksub:first-child { margin-top: 0; }
+   220|
+   221|    /* ── Question ── */
+   222|    .question { display: none; margin-bottom: 16px; }
+   223|    .question.active { display: block; }
+   224|    .q-text {
+   225|      font-size: 1rem;
+   226|      font-weight: 600;
+   227|      margin-bottom: 12px;
+   228|      line-height: 1.5;
+   229|    }
+   230|    .q-num {
+   231|      color: var(--primary);
+   232|      font-weight: 700;
+   233|      margin-right: 6px;
+   234|    }
+   235|    .opts { display: flex; flex-direction: column; gap: 8px; }
+   236|    .opt {
+   237|      display: flex; align-items: center; gap: 10px;
+   238|      padding: 10px 14px;
+   239|      border: 2px solid var(--border);
+   240|      border-radius: 8px;
+   241|      cursor: pointer;
+   242|      font-size: 0.95rem;
+   243|      transition: background 0.12s, border-color 0.12s;
+   244|    }
+   245|    .opt:hover { border-color: var(--primary); background: var(--hover-bg); }
+   246|    .opt.disabled { pointer-events: none; opacity: 0.7; }
+   247|    .opt.correct { border-color: var(--correct); background: #f0fdf4; }
+   248|    .opt.wrong { border-color: var(--wrong); background: #fef2f2; }
+   249|    .opt.show-correct { border-color: var(--correct); background: #f0fdf4; }
+   250|    .opt-letter {
+   251|      width: 26px; height: 26px;
+   252|      display: flex; align-items: center; justify-content: center;
+   253|      border-radius: 50%;
+   254|      background: var(--bg);
+   255|      font-weight: 700; font-size: 0.85rem; color: var(--muted);
+   256|      flex-shrink: 0;
+   257|    }
+   258|    .opt.correct .opt-letter { background: var(--correct); color: #fff; }
+   259|    .opt.wrong .opt-letter { background: var(--wrong); color: #fff; }
+   260|    .opt.show-correct .opt-letter { background: var(--correct); color: #fff; }
+   261|
+   262|    /* ── Pagination ── */
+   263|    .pagination {
+   264|      display: flex;
+   265|      align-items: center;
+   266|      justify-content: center;
+   267|      gap: 10px;
+   268|      margin-top: 20px;
+   269|    }
+   270|    .page-btn {
+   271|      padding: 6px 16px;
+   272|      border: 1px solid var(--border);
+   273|      border-radius: 6px;
+   274|      background: var(--card);
+   275|      cursor: pointer;
+   276|      font-size: 0.85rem;
+   277|      transition: background 0.12s;
+   278|    }
+   279|    .page-btn:hover { background: var(--hover-bg); }
+   280|    .page-btn:disabled { opacity: 0.4; cursor: default; }
+   281|    .page-info {
+   282|      font-size: 0.85rem;
+   283|      color: var(--muted);
+   284|    }
+   285|    .q-dots {
+   286|      display: flex; gap: 6px; justify-content: center;
+   287|      margin-bottom: 16px;
+   288|    }
+   289|    .q-dot {
+   290|      width: 10px; height: 10px; border-radius: 50%;
+   291|      background: var(--border); cursor: pointer;
+   292|      transition: background 0.12s;
+   293|    }
+   294|    .q-dot.active { background: var(--primary); }
+   295|    .q-dot.answered { background: var(--correct); }
+   296|    .q-dot.wrong-dot { background: var(--wrong); }
+   297|    .q-dot.current-wrong { background: var(--wrong); }
+   298|
+   299|    .q-stats {
+   300|      text-align: center;
+   301|      font-size: 0.82rem;
+   302|      color: var(--muted);
+   303|      margin-bottom: 12px;
+   304|    }
+   305|    .wrong-count {
+   306|      margin-left: 4px;
+   307|      color: var(--wrong);
+   308|      font-weight: 600;
+   309|    }
+   310|
+   311|    /* ── Empty state ── */
+   312|    .empty-state {
+   313|      text-align: center;
+   314|      padding: 40px 20px;
+   315|      color: var(--muted);
+   316|    }
+   317|    .empty-state .emoji {
+   318|      font-size: 3rem;
+   319|      margin-bottom: 12px;
+   320|    }
+   321|    .empty-state p { font-size: 0.95rem; }
+   322|
+   323|    /* ── Footer ── */
+   324|    .footer {
+   325|      margin-top: 36px;
+   326|      text-align: center;
+   327|      font-size: 0.78rem;
+   328|      color: var(--muted);
+   329|    }
+   330|
+   331|    /* ── Mobile ── */
+   332|    @media (max-width: 640px) {
+   333|      .wrapper { flex-direction: column; }
+   334|      .sidebar {
+   335|        width: 100%; height: auto; position: static;
+   336|        border-right: none; border-bottom: 1px solid var(--border);
+   337|        padding: 12px 0;
+   338|        display: flex; flex-wrap: wrap; gap: 2px;
+   339|      }
+   340|      .sidebar .brand { display: none; }
+   341|      .nav-item { width: auto; padding: 8px 12px; font-size: 0.82rem; }
+   342|      .nav-item.wrong-tab { border-top: none; margin-top: 0; }
+   343|      .wrong-badge { margin-left: 0; }
+   344|      .content { padding: 20px 16px 60px; }
+   345|    }
+   346|  
+   347|/* 导航按钮 */
+   348|.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+   349|.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+   350|.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+   351|.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+   352|.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+   353|.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+   354|.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+   355|.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+   356|.nav-home:hover{background:#2563eb;border-color:#2563eb}
+   357|/* 卡片增强 */
+   358|.card{transition:box-shadow .2s,transform .15s}
+   359|.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+   360|/* 移动端优化 */
+   361|@media (max-width:480px){
+   362|  body{padding:12px}
+   363|  .card{padding:14px 16px}
+   364|  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+   365|  .nav-btn{padding:10px 12px;font-size:0.8rem}
+   366|  .nav-text{max-width:60px}
+   367|  .nav-buttons{gap:4px}
+   368|}
+   369|@media (max-width:360px){
+   370|  .nav-text{display:none}
+   371|}
+   372|
+  /* 移动端响应式 */
+  @media (max-width:768px) {
+    body{flex-direction:column;padding:12px}
+    .main-wrapper{width:100%;padding:0}
+    .card{padding:14px 16px}
+    .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+    .nav-buttons{flex-wrap:wrap;gap:4px}
+    .nav-buttons .nav-btn{padding:8px 10px;font-size:0.78rem;flex:1 1 auto;min-width:0}
+    .qa-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:400px){
+    .nav-buttons .nav-btn{padding:6px 8px;font-size:0.7rem;}
+  }
 
-    /* ── Sidebar ── */
-    .sidebar {
-      width: var(--sidebar-w);
-      background: var(--card);
-      border-right: 1px solid var(--border);
-      padding: 20px 0;
-      position: sticky; top: 0; height: 100vh; overflow-y: auto;
-      flex-shrink: 0;
-    }
-    .sidebar .brand {
-      padding: 0 16px 16px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--primary);
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 8px;
-    }
-    .sidebar .brand small {
-      display: block;
-      font-weight: 400;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-    .nav-item {
-      display: flex; align-items: center; gap: 8px;
-      padding: 10px 16px;
-      cursor: pointer;
-      font-size: 0.88rem;
-      color: var(--text);
-      transition: background 0.12s, color 0.12s;
-      border: none; background: none; width: 100%; text-align: left;
-    }
-    .nav-item:hover { background: var(--hover-bg); }
-    .nav-item.active {
-      background: var(--active-bg);
-      color: var(--primary);
-      font-weight: 600;
-    }
-    .nav-item .dot {
-      width: 8px; height: 8px; border-radius: 99px;
-      flex-shrink: 0;
-    }
-    .nav-item.wrong-tab {
-      border-top: 1px solid var(--border);
-      margin-top: 6px;
-      padding-top: 12px;
-    }
-    .wrong-badge {
-      margin-left: auto;
-      background: var(--wrong);
-      color: #fff;
-      font-size: 0.7rem;
-      border-radius: 99px;
-      padding: 1px 7px;
-      min-width: 20px;
-      text-align: center;
-    }
-
-    /* ── Content ── */
-    .content {
-      flex: 1;
-      padding: 32px 36px 80px;
-      max-width: 780px;
-    }
-    .content-header {
-      margin-bottom: 28px;
-    }
-    .content-header h1 {
-      font-size: 1.5rem;
-      color: var(--text);
-    }
-    .content-header p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .topic-section { display: none; }
-    .topic-section.active { display: block; }
-
-    .card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 20px 24px;
-      border: 1px solid var(--border);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-      margin-bottom: 20px;
-    }
-    .card-title {
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-    .tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 2px 9px;
-      border-radius: 99px;
-      margin-bottom: 10px;
-    }
-
-    /* ── Kid-friendly Knowledge Cards ── */
-    .k-card {
-      background: #fff8f0; border-radius: 12px; padding: 12px 14px;
-      margin-bottom: 10px; border: 2px solid #fde68a;
-      box-shadow: 0 2px 6px rgba(251,191,36,0.1);
-    }
-    .k-card:last-child { margin-bottom: 0; }
-    .k-card-title {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 0.88rem; font-weight: 700; margin-bottom: 8px;
-    }
-    .k-card .k-em { font-size: 1.2rem; }
-    .k-row {
-      display: flex; align-items: center; gap: 6px;
-      padding: 5px 0; font-size: 0.85rem; line-height: 1.4;
-      border-bottom: 1px dashed #fef3c7;
-    }
-    .k-row:last-child { border-bottom: none; }
-    .k-row .k-icon { font-size: 1rem; flex-shrink: 0; }
-    .k-en { font-weight: 600; color: #1e40af; }
-    .k-zh { color: #6b7280; font-size: 0.78rem; }
-    .k-label {
-      display: inline-block; font-size: 0.65rem; font-weight: 700;
-      padding: 1px 8px; border-radius: 99px; margin-right: 4px;
-    }
-    .label-blue { background: #dbeafe; color: #1e40af; }
-    .label-green { background: #d1fae5; color: #065f46; }
-    .label-red { background: #fee2e2; color: #991b1b; }
-    .label-purple { background: #ede9fe; color: #5b21b6; }
-    .label-orange { background: #fed7aa; color: #9a3412; }
-    .label-pink { background: #fce7f3; color: #9d174d; }
-
-    .k-card.bg-blue { background: #eff6ff; border-color: #93c5fd; }
-    .k-card.bg-green { background: #f0fdf4; border-color: #86efac; }
-    .k-card.bg-red { background: #fef2f2; border-color: #fca5a5; }
-    .k-card.bg-purple { background: #f5f3ff; border-color: #c4b5fd; }
-    .k-card.bg-orange { background: #fff7ed; border-color: #fdba74; }
-    .k-card.bg-pink { background: #fdf2f8; border-color: #f9a8d4; }
-
-    /* ── Section Divider Cards ── */
-    .sec-card { margin-bottom: 16px; }
-    .sec-card:last-child { margin-bottom: 0; }
-    .sec-header {
-      display: flex; align-items: center; gap: 8px;
-      padding: 10px 18px;
-      border-radius: 10px 10px 0 0;
-      font-weight: 700; font-size: 0.88rem; letter-spacing: 0.04em;
-    }
-    .sec-header .icon { font-size: 1.1rem; }
-    .sec-body {
-      padding: 16px 18px;
-      border: 1px solid var(--border);
-      border-top: none;
-      border-radius: 0 0 10px 10px;
-      background: var(--card);
-    }
-    .sec-knowledge .sec-header { background: #ede9fe; color: #5b21b6; }
-    .sec-knowledge .sec-body { border-color: #ddd6fe; padding: 12px 14px; }
-    .sec-video .sec-header { background: #fce7f3; color: #9d174d; }
-    .sec-video .sec-body { border-color: #fbcfe8; }
-    .sec-exercise .sec-header { background: #dbeafe; color: #1e40af; }
-    .sec-exercise .sec-body { border-color: #bfdbfe; }
-    .ksub {
-      font-size: 0.85rem; font-weight: 600;
-      color: var(--muted); margin: 14px 0 8px;
-      padding-bottom: 4px; border-bottom: 1px solid var(--border);
-    }
-    .ksub:first-child { margin-top: 0; }
-
-    /* ── Question ── */
-    .question { display: none; margin-bottom: 16px; }
-    .question.active { display: block; }
-    .q-text {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-    .q-num {
-      color: var(--primary);
-      font-weight: 700;
-      margin-right: 6px;
-    }
-    .opts { display: flex; flex-direction: column; gap: 8px; }
-    .opt {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 14px;
-      border: 2px solid var(--border);
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: background 0.12s, border-color 0.12s;
-    }
-    .opt:hover { border-color: var(--primary); background: var(--hover-bg); }
-    .opt.disabled { pointer-events: none; opacity: 0.7; }
-    .opt.correct { border-color: var(--correct); background: #f0fdf4; }
-    .opt.wrong { border-color: var(--wrong); background: #fef2f2; }
-    .opt.show-correct { border-color: var(--correct); background: #f0fdf4; }
-    .opt-letter {
-      width: 26px; height: 26px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%;
-      background: var(--bg);
-      font-weight: 700; font-size: 0.85rem; color: var(--muted);
-      flex-shrink: 0;
-    }
-    .opt.correct .opt-letter { background: var(--correct); color: #fff; }
-    .opt.wrong .opt-letter { background: var(--wrong); color: #fff; }
-    .opt.show-correct .opt-letter { background: var(--correct); color: #fff; }
-
-    /* ── Pagination ── */
-    .pagination {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
-    }
-    .page-btn {
-      padding: 6px 16px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: var(--card);
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: background 0.12s;
-    }
-    .page-btn:hover { background: var(--hover-bg); }
-    .page-btn:disabled { opacity: 0.4; cursor: default; }
-    .page-info {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-    .q-dots {
-      display: flex; gap: 6px; justify-content: center;
-      margin-bottom: 16px;
-    }
-    .q-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--border); cursor: pointer;
-      transition: background 0.12s;
-    }
-    .q-dot.active { background: var(--primary); }
-    .q-dot.answered { background: var(--correct); }
-    .q-dot.wrong-dot { background: var(--wrong); }
-    .q-dot.current-wrong { background: var(--wrong); }
-
-    .q-stats {
-      text-align: center;
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-    .wrong-count {
-      margin-left: 4px;
-      color: var(--wrong);
-      font-weight: 600;
-    }
-
-    /* ── Empty state ── */
-    .empty-state {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--muted);
-    }
-    .empty-state .emoji {
-      font-size: 3rem;
-      margin-bottom: 12px;
-    }
-    .empty-state p { font-size: 0.95rem; }
-
-    /* ── Footer ── */
-    .footer {
-      margin-top: 36px;
-      text-align: center;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    /* ── Mobile ── */
-    @media (max-width: 640px) {
-      .wrapper { flex-direction: column; }
-      .sidebar {
-        width: 100%; height: auto; position: static;
-        border-right: none; border-bottom: 1px solid var(--border);
-        padding: 12px 0;
-        display: flex; flex-wrap: wrap; gap: 2px;
-      }
-      .sidebar .brand { display: none; }
-      .nav-item { width: auto; padding: 8px 12px; font-size: 0.82rem; }
-      .nav-item.wrong-tab { border-top: none; margin-top: 0; }
-      .wrong-badge { margin-left: 0; }
-      .content { padding: 20px 16px 60px; }
-    }
-  
-/* 导航按钮 */
-.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
-.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
-.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
-.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
-.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
-.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
-.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
-.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
-.nav-home:hover{background:#2563eb;border-color:#2563eb}
-/* 卡片增强 */
-.card{transition:box-shadow .2s,transform .15s}
-.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-/* 移动端优化 */
-@media (max-width:480px){
-  body{padding:12px}
-  .card{padding:14px 16px}
-  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
-  .nav-btn{padding:10px 12px;font-size:0.8rem}
-  .nav-text{max-width:60px}
-  .nav-buttons{gap:4px}
-}
-@media (max-width:360px){
-  .nav-text{display:none}
-}
 </style>
-</head>
-<body>
-<div class="wrapper">
-
-  <!-- ── Sidebar ── -->
-  <nav class="sidebar" id="sidebar">
-    <div class="brand">
-      P2 Grammar Exercises
-      <small>香港小学二年级</small>
-    </div>
-    <button class="nav-item active" data-topic="nouns"        onclick="switchTopic('nouns')">        <span class="dot" style="background:#1e40af"></span>Nouns 名词</button>
-    <button class="nav-item"        data-topic="articles"     onclick="switchTopic('articles')">     <span class="dot" style="background:#1e40af"></span>Articles 冠词</button>
-    <button class="nav-item"        data-topic="pronouns"     onclick="switchTopic('pronouns')">     <span class="dot" style="background:#115e59"></span>Pronouns 代词</button>
-    <button class="nav-item"        data-topic="adjectives"   onclick="switchTopic('adjectives')">   <span class="dot" style="background:#92400e"></span>Adjectives 形容词</button>
-    <button class="nav-item"        data-topic="verb-be"      onclick="switchTopic('verb-be')">      <span class="dot" style="background:#166534"></span>Verb Be (am/is/are)</button>
-    <button class="nav-item"        data-topic="third-person" onclick="switchTopic('third-person')"> <span class="dot" style="background:#166534"></span>Third Person 第三人称</button>
-    <button class="nav-item"        data-topic="verb-action"  onclick="switchTopic('verb-action')">  <span class="dot" style="background:#166534"></span>Action Verbs 行为动词</button>
-    <button class="nav-item"        data-topic="adverbs"      onclick="switchTopic('adverbs')">      <span class="dot" style="background:#9d174d"></span>Adverbs 副词</button>
-    <button class="nav-item"        data-topic="prepositions" onclick="switchTopic('prepositions')"> <span class="dot" style="background:#3730a3"></span>Prepositions 介词</button>
-    <button class="nav-item"        data-topic="conjunctions" onclick="switchTopic('conjunctions')"> <span class="dot" style="background:#991b1b"></span>Conjunctions 连词</button>
-    <button class="nav-item"        data-topic="questions"    onclick="switchTopic('questions')">    <span class="dot" style="background:#3730a3"></span>Question Words 疑问词</button>
-    <button class="nav-item"        data-topic="sentences"    onclick="switchTopic('sentences')">    <span class="dot" style="background:#166534"></span>Sentences 句型</button>
-    <a href="quiz-6-revision.html" class="nav-item" style="text-decoration:none;border-top:1px solid var(--border);margin-top:6px;padding-top:12px;color:var(--text);">
-      <span class="dot" style="background:#7c3aed"></span>📝 Quiz 6 L1
-    </a>
-    <a href="quiz-6-revision-level2.html" class="nav-item" style="text-decoration:none;color:var(--text);">
-      <span class="dot" style="background:#dc2626"></span>✨ Quiz 6 L2
-    </a>
-    <button class="nav-item wrong-tab" data-topic="wrong"     onclick="switchTopic('wrong')">
-      <span class="dot" style="background:var(--wrong)"></span>错题本
-      <span class="wrong-badge" id="wrongBadge">0</span>
-    </button>
-  </nav>
-
-  <!-- ── Main Content ── -->
-  <main class="content" id="mainContent">
-    <div class="content-header">
-      <h1>P2 Grammar Exercises</h1>
-      <p>香港小学二年级英语语法练习题 · 点击选项查看答案</p>
-    </div>
-
-    <!-- Each topic gets its own topic-section -->
-    <div id="topic-nouns" class="topic-section active"></div>
-    <div id="topic-articles" class="topic-section"></div>
-    <div id="topic-pronouns" class="topic-section"></div>
-    <div id="topic-adjectives" class="topic-section"></div>
-    <div id="topic-verb-be" class="topic-section"></div>
-    <div id="topic-third-person" class="topic-section"></div>
-    <div id="topic-verb-action" class="topic-section"></div>
-    <div id="topic-adverbs" class="topic-section"></div>
-    <div id="topic-prepositions" class="topic-section"></div>
-    <div id="topic-conjunctions" class="topic-section"></div>
-    <div id="topic-questions" class="topic-section"></div>
-    <div id="topic-sentences" class="topic-section"></div>
-    <div id="topic-mixed" class="topic-section"></div>
-    <div id="topic-wrong" class="topic-section"></div>
-
-    <div class="footer">Hong Kong Primary 2 English Grammar Exercises</div>
-  </main>
-</div>
-
-<script>
-// ── VIDEO DATA (B站嵌入) ──
-const VIDEO_DATA = {
-  nouns:        { bvid: 'BV1De4y1S7j3', title: '名词变复数' },
-  articles:     { bvid: 'BV12t421W7zS', title: 'a/an/noun' },
-  pronouns:     { bvid: 'BV1KV41167tr', title: '人称代词（宾格）' },
-  adjectives:   { bvid: 'BV1NG4y1g7Jw', title: '形容词比较级和最高级' },
-  'verb-be':    { bvid: 'BV124411i7LM', title: 'be动词am, is, are用法' },
-  'third-person':{ bvid: 'BV1YR4y1B753', title: '动词三单用法' },
-  'verb-action':{ bvid: 'BV1q8411x7hx', title: '一般过去时-动词变过去式' },
-  adverbs:      { bvid: 'BV1Nu411D7Ht', title: '频率副词' },
-  prepositions: { bvid: 'BV1Ji421h7iP', title: '方位介词on/in/under' },
-  conjunctions: { bvid: 'BV1GFk1YfECY', title: '连词and/but/because' },
-  questions:    { bvid: 'BV133411e7yq', title: '特殊疑问句who/when/where' },
-  sentences:    { bvid: 'BV1hR4y1Q7sj', title: '句型转换-改一般疑问句' }
-};
-
-// ── KNOWLEDGE DATA (小朋友可爱版) ──
-const KNOWLEDGE_DATA = {
-  nouns: [
-    { title: '🐶 普通名词', items: ['📌 dog, cat, book, school', '➕ 前面可以加 a/an：a dog, a book', '💡 I see a cat. (第一次说用 a)'], bg: 'bg-blue' },
-    { title: '🏙️ 专有名词', items: ['📌 Tom, Hong Kong, Monday', '🔤 首字母要大写！', '✅ I live in Hong Kong. ❌ i live in hong kong.'], bg: 'bg-green' },
-    { title: '🐾 复数 (+s/+es)', items: ['➕ 加 s：dog → dogs, cat → cats', '🍱 -es：box→boxes, watch→watches', '🍬 y→ies：baby→babies, party→parties', '🌟 不规则：child→children, foot→feet'], bg: 'bg-orange' }
-  ],
-  articles: [
-    { title: '🅰️ a vs an', items: ['👍 a + 辅音发音：a dog, a hot dog', '👌 an + 元音发音：an apple, an egg', '🎵 口诀：a 狗狗🐶，an 苹果🍎'], bg: 'bg-purple' },
-    { title: '🎯 the 定冠词', items: ['🎪 特指对方知道的：the door', '🔄 再次提到：I saw a cat. The cat is black.', '🌍 独一无二：the sun, the moon'], bg: 'bg-blue' },
-    { title: '🚫 不用冠词', items: ['📚 泛指复数：Dogs are cute. (不是 The dogs)', '👤 人名前不加：Tom is my friend.'], bg: 'bg-pink' }
-  ],
-  pronouns: [
-    { title: '👑 主格 (谁)', items: ['👦 I / 👧 you / 🧑 he / 👩 she / 🐶 it', '👫 we / 🧑‍🤝‍🧑 they', '💡 放在动词前面：She is my teacher.'], bg: 'bg-blue' },
-    { title: '🎁 宾格 (谁被)', items: ['🎯 me, you, him, her, it, us, them', '💡 动词/介词后面用：He likes her.', '❌ NOT: He likes she.'], bg: 'bg-orange' },
-    { title: '📎 物主代词', items: ['📛 my / your / his / her / its / our / their', '➕ 后面必须跟名词：my book, her cat'], bg: 'bg-green' },
-    { title: '👉 指示代词', items: ['👆 This = 这个 (近) / These = 这些', '👇 That = 那个 (远) / Those = 那些'], bg: 'bg-purple' }
-  ],
-  adjectives: [
-    { title: '🏷️ 形容词放哪里？', items: ['📝 形容词 + 名词：a big dog, a red apple', '🔗 be + 形容词：The dog is big.', '📐 顺序：大小 + 颜色：a big black dog'], bg: 'bg-blue' },
-    { title: '📈 比较级 -er', items: ['➕ -er + than：big→bigger', '🔄 y→ier：happy→happier', '📏 A dog is bigger than a cat.'], bg: 'bg-orange' },
-    { title: '🏆 最高级 -est', items: ['➕ the + -est：big→the biggest', '🥇 She is the tallest girl in class.'], bg: 'bg-green' },
-    { title: '📊 more / most', items: ['📏 多音节词：more beautiful', '🌟 the most beautiful'], bg: 'bg-purple' }
-  ],
-  'verb-be': [
-    { title: '🎭 am / is / are 三兄弟', items: ['👤 I + am：I am a student.', '👤 He/She/It + is：She is happy.', '👥 You/We/They + are：They are friends.', '🎵 口诀：I am, you are, he/she/it is'], bg: 'bg-blue' },
-    { title: '🚫 否定句 (不是)', items: ['❌ is not = isn\'t：She isn\'t a teacher.', '❌ are not = aren\'t：They aren\'t home.', '❌ am not：I am not late.'], bg: 'bg-red' },
-    { title: '❓ 疑问句 (是吗？)', items: ['🤔 Is she happy? → Yes, she is.', '🤔 Are you ready? → Yes, I am.', '🤔 Is it raining? → Yes, it is.'], bg: 'bg-orange' }
-  ],
-  'third-person': [
-    { title: '➕ 动词加 -s', items: ['👤 He/She/It + 动词-s', '⚽ He plays football.', '📖 She reads a book.', '👀 It looks nice.'], bg: 'bg-blue' },
-    { title: '🍱 加 -es', items: ['🔚 动词结尾 o/s/x/ch/sh 加 -es', '🚌 He goes to school.', '🧼 She washes the dishes.', '📺 He watches TV.'], bg: 'bg-green' },
-    { title: '🍬 y → ies', items: ['🤓 study → studies', '🦅 fly → flies', '😢 cry → cries'], bg: 'bg-orange' },
-    { title: '🌟 have → has', items: ['🐱 He has a pet cat.', '🚫 否定：doesn\'t + 原形：He doesn\'t like milk.', '❓ 疑问：Does + 主语 + 原形？'], bg: 'bg-purple' }
-  ],
-  'verb-action': [
-    { title: '📅 现在时', items: ['🎯 I/You/We/They + 原形：I play.', '🎯 He/She/It + -s/-es：He plays.', '🍳 We eat breakfast at 7 am.'], bg: 'bg-blue' },
-    { title: '⏪ 过去时 +ed', items: ['➕ -ed：walk→walked, play→played', '🧊 e结尾加-d：like→liked', '🍬 y→ied：cry→cried', '📌 I walked to school yesterday.'], bg: 'bg-orange' },
-    { title: '⚡ 不规则过去时', items: ['🏃 go→went, eat→ate, see→saw', '🎁 have→had, do→did, make→made', 'Yesterday we went to the park.'], bg: 'bg-red' },
-    { title: '🔄 现在进行时', items: ['🖇️ am/is/are + verb-ing', '📖 I am reading. She is singing.', '🍼 The baby is crying now.'], bg: 'bg-purple' }
-  ],
-  adverbs: [
-    { title: '🔄 频率副词', items: ['📊 always(总是) > usually > often > sometimes > never(从不)', '📌 放动词前：I always brush my teeth.', '🚫 She never eats meat.'], bg: 'bg-blue' },
-    { title: '✨ 方式副词 -ly', items: ['➕ 形容词 + ly：beautiful→beautifully', '🎤 She sings beautifully.', '🏃 Run quickly!', '⚠️ good→well：He plays well.'], bg: 'bg-orange' },
-    { title: '📍 时间/地点', items: ['⏰ 时间：yesterday, today, now', '📍 地点：here, there, inside', '📐 顺序：动词+方式+地点+时间'], bg: 'bg-green' }
-  ],
-  prepositions: [
-    { title: '📍 方位介词', items: ['📦 on = 上面：The book is on the table.', '📦 in = 里面：Cat is in the box.', '📦 under = 下面：Dog is under the chair.', '📦 behind = 后面：Ball is behind the door.'], bg: 'bg-blue' },
-    { title: '⏰ 时间介词', items: ['🕐 at + 时间点：at 7 o\'clock, at night', '📅 in + 月/早/晚：in June, in the morning', '📆 on + 星期/日期：on Monday'], bg: 'bg-orange' }
-  ],
-  conjunctions: [
-    { title: '➕ and (和)', items: ['🍎 I like apples and bananas.', '🎤 She can sing and dance.', '👫 Tom and Jerry are friends.'], bg: 'bg-blue' },
-    { title: '🔄 but (但是)', items: ['💪 He is short but strong.', '🐱 I like dogs but not cats.', '😊 She is tired but happy.'], bg: 'bg-orange' },
-    { title: '🤔 because (因为)', items: ['☔ I stayed home because it rained.', '😢 He is sad because he lost his toy.', '⚠️ 不能和 so 一起用！'], bg: 'bg-purple' },
-    { title: '🎯 so (所以)', items: ['☔ It rained, so I stayed home.', '🍔 I was hungry, so I ate.', '😴 She was tired, so she went to bed.'], bg: 'bg-green' }
-  ],
-  questions: [
-    { title: '🤔 What / Where', items: ['❓ What = 什么：What is your name?', '📍 Where = 哪里：Where do you live?', '📖 Where is my book? → On the desk.'], bg: 'bg-blue' },
-    { title: '🕐 When / Who', items: ['📅 When = 什么时候：When is your birthday?', '👤 Who = 谁：Who is that? → My mother.'], bg: 'bg-orange' },
-    { title: '🧐 Why / How', items: ['🤷 Why = 为什么：Why are you sad?', '💪 How = 怎么样：How are you? → Fine.', '🚌 How do you go to school? → By bus.'], bg: 'bg-purple' },
-    { title: '❓ 问句结构', items: ['🤷 Do/Does + 主语 + 动词？', '👍 Do you like cats? → Yes, I do.', '👍 Does he play? → Yes, he does.'], bg: 'bg-green' }
-  ],
-  sentences: [
-    { title: '🐦 S+V (主+谓)', items: ['🐦 Birds fly. (鸟飞)', '🏃 She runs. (她跑)', '🌧️ It rains. (下雨了)'], bg: 'bg-blue' },
-    { title: '🍎 S+V+O (主+谓+宾)', items: ['🍎 I like apples. (我喜欢苹果)', '📖 She reads books. (她读书)', '⚽ He plays football. (他踢球)'], bg: 'bg-green' },
-    { title: '😊 S+Be+Adj', items: ['😊 She is kind. (她善良)', '🌤️ The sky is blue. (天蓝)', '😄 I am happy. (我开心)'], bg: 'bg-orange' },
-    { title: '🔄 陈述→疑问', items: ['🤔 You like cats. → Do you like cats?', '🤔 He likes dogs. → Does he like dogs?', '💡 Does后面动词要还原！likes→like'], bg: 'bg-purple' }
-  ]
-};
-
-// ── DATA: 12 topics × 5 questions ──
-const QUESTIONS = {
-  nouns: [
-    { q: 'Which word is a <b>common noun</b>?', opts: ['Tom', 'dog', 'Monday', 'Hong Kong'], ans: 'B' },
-    { q: 'Which word is a <b>proper noun</b>?', opts: ['cat', 'book', 'Mary', 'school'], ans: 'C' },
-    { q: 'What is the plural of <b>box</b>?', opts: ['boxs', 'boxes', 'boxies', 'box'], ans: 'B' },
-    { q: 'What is the plural of <b>baby</b>?', opts: ['babys', 'babies', 'babyes', 'baby'], ans: 'B' },
-    { q: 'Which one is a <b>proper noun</b>?', opts: ['teacher', 'pencil', 'China', 'table'], ans: 'C' }
-  ],
-  articles: [
-    { q: '___ apple a day keeps the doctor away.', opts: ['A', 'An', 'The', 'None'], ans: 'B' },
-    { q: 'I saw ___ elephant at the zoo.', opts: ['a', 'an', 'the', 'None'], ans: 'B' },
-    { q: 'She has ___ beautiful doll.', opts: ['a', 'an', 'the', 'None'], ans: 'A' },
-    { q: '___ sun is very hot today.', opts: ['A', 'An', 'The', 'None'], ans: 'C' },
-    { q: 'He is ___ university student.', opts: ['a', 'an', 'the', 'None'], ans: 'A' }
-  ],
-  pronouns: [
-    { q: '___ is my friend. (Tom)', opts: ['He', 'Him', 'His', 'Her'], ans: 'A' },
-    { q: 'Please give ___ the book. (I)', opts: ['I', 'my', 'me', 'mine'], ans: 'C' },
-    { q: '___ are playing in the park. (Tom and I)', opts: ['We', 'Us', 'They', 'Them'], ans: 'A' },
-    { q: 'Look at ___! (she)', opts: ['she', 'her', 'hers', 'she\'s'], ans: 'B' },
-    { q: '___ is a sunny day.', opts: ['He', 'She', 'It', 'They'], ans: 'C' }
-  ],
-  adjectives: [
-    { q: 'The elephant is ___ than the mouse.', opts: ['big', 'bigger', 'biggest', 'more big'], ans: 'B' },
-    { q: 'She is the ___ girl in our class.', opts: ['tall', 'taller', 'tallest', 'more tall'], ans: 'C' },
-    { q: 'I have a ___ dress.', opts: ['red beautiful', 'beautiful red', 'beautifully red', 'more beautiful'], ans: 'B' },
-    { q: 'Today is ___ than yesterday.', opts: ['hot', 'hotter', 'hottest', 'more hot'], ans: 'B' },
-    { q: 'This book is very ___.', opts: ['interest', 'interested', 'interesting', 'interests'], ans: 'C' }
-  ],
-  'verb-be': [
-    { q: 'I ___ a student.', opts: ['am', 'is', 'are', 'be'], ans: 'A' },
-    { q: 'She ___ happy today.', opts: ['am', 'is', 'are', 'be'], ans: 'B' },
-    { q: 'They ___ my friends.', opts: ['am', 'is', 'are', 'be'], ans: 'C' },
-    { q: 'The cat ___ on the sofa.', opts: ['am', 'is', 'are', 'be'], ans: 'B' },
-    { q: 'We ___ in the classroom.', opts: ['am', 'is', 'are', 'be'], ans: 'C' }
-  ],
-  'third-person': [
-    { q: 'He ___ (play) football every day.', opts: ['play', 'plays', 'playing', 'played'], ans: 'B' },
-    { q: 'She ___ (go) to school by bus.', opts: ['go', 'goes', 'going', 'went'], ans: 'B' },
-    { q: 'It ___ (have) a long tail.', opts: ['have', 'has', 'having', 'had'], ans: 'B' },
-    { q: 'My mother ___ (wash) the dishes.', opts: ['wash', 'washes', 'washing', 'washed'], ans: 'B' },
-    { q: 'He ___ (study) English every day.', opts: ['study', 'studys', 'studies', 'studying'], ans: 'C' }
-  ],
-  'verb-action': [
-    { q: 'I ___ (walk) to school yesterday.', opts: ['walk', 'walks', 'walked', 'walking'], ans: 'C' },
-    { q: 'She ___ (eat) an apple every morning.', opts: ['eat', 'eats', 'eating', 'ate'], ans: 'B' },
-    { q: 'We ___ (watch) TV last night.', opts: ['watch', 'watches', 'watched', 'watching'], ans: 'C' },
-    { q: 'They ___ (go) to the park last Sunday.', opts: ['go', 'goes', 'going', 'went'], ans: 'D' },
-    { q: 'The baby ___ (cry) now.', opts: ['cry', 'cries', 'is crying', 'cried'], ans: 'C' }
-  ],
-  adverbs: [
-    { q: 'I ___ brush my teeth before bed. (always)', opts: ['brush always', 'always brush', 'brushes always', 'always brushes'], ans: 'B' },
-    { q: 'She sings ___. (beautiful)', opts: ['beauty', 'beautiful', 'beautifully', 'more beautiful'], ans: 'C' },
-    { q: 'He ___ eats vegetables. (never)', opts: ['never eats', 'eats never', 'never eat', 'eat never'], ans: 'A' },
-    { q: 'We go to the library ___. (sometimes)', opts: ['sometimes we go', 'we go sometimes', 'we sometimes go', 'go we sometimes'], ans: 'C' },
-    { q: 'The turtle walks ___. (slow)', opts: ['slow', 'slowly', 'slower', 'slowest'], ans: 'B' }
-  ],
-  prepositions: [
-    { q: 'The book is ___ the desk.', opts: ['at', 'in', 'on', 'under'], ans: 'C' },
-    { q: 'I wake up ___ 7 o\'clock.', opts: ['at', 'in', 'on', 'by'], ans: 'A' },
-    { q: 'My birthday is ___ June.', opts: ['at', 'in', 'on', 'from'], ans: 'B' },
-    { q: 'The cat is hiding ___ the bed.', opts: ['at', 'on', 'under', 'in'], ans: 'C' },
-    { q: 'We have PE class ___ Monday.', opts: ['at', 'in', 'on', 'by'], ans: 'C' }
-  ],
-  conjunctions: [
-    { q: 'I like apples ___ bananas.', opts: ['but', 'because', 'and', 'so'], ans: 'C' },
-    { q: 'He is short ___ strong.', opts: ['and', 'but', 'because', 'so'], ans: 'B' },
-    { q: 'I stayed home ___ it rained.', opts: ['and', 'but', 'because', 'so'], ans: 'C' },
-    { q: 'It was hot, ___ I turned on the fan.', opts: ['and', 'but', 'because', 'so'], ans: 'D' },
-    { q: 'She was tired, ___ she went to bed early.', opts: ['and', 'but', 'because', 'so'], ans: 'D' }
-  ],
-  questions: [
-    { q: '___ is your name? — My name is Tom.', opts: ['What', 'Where', 'Who', 'How'], ans: 'A' },
-    { q: '___ do you live? — I live in Hong Kong.', opts: ['What', 'Where', 'When', 'Why'], ans: 'B' },
-    { q: '___ is that? — It\'s my mother.', opts: ['What', 'Where', 'Who', 'How'], ans: 'C' },
-    { q: '___ are you sad? — Because I lost my book.', opts: ['What', 'Where', 'Why', 'How'], ans: 'C' },
-    { q: '___ are you? — I\'m fine, thank you!', opts: ['What', 'Where', 'Who', 'How'], ans: 'D' }
-  ],
-  sentences: [
-    { q: 'Which is a correct sentence?', opts: ['Birds fly.', 'Birds flying.', 'Birds flies.', 'Birds is fly.'], ans: 'A' },
-    { q: 'Make a question: "You like cats."', opts: ['Like you cats?', 'Do you like cats?', 'You like cats?', 'Does you like cats?'], ans: 'B' },
-    { q: 'Which is correct?', opts: ['She is kind.', 'She kind.', 'She are kind.', 'She is kindly.'], ans: 'A' },
-    { q: '"He likes dogs." Change to question:', opts: ['He likes dogs?', 'Does he like dogs?', 'Do he like dogs?', 'Like he dogs?'], ans: 'B' },
-    { q: 'Which sentence pattern is "She reads books."?', opts: ['S+V', 'S+V+O', 'S+Be+Adj', 'S+V+O+O'], ans: 'B' }
-  ]
-};
-
-// ── State ──
-let wrongQuestions = JSON.parse(localStorage.getItem('p2grammarWrong') || '[]');
-let answeredState = {}; // { "topic-idx": "A" or null } — stores chosen option letter or null if not yet answered
-let currentPage = {};  // { "topic": 0 } — current question index per topic
-
-function initState() {
-  for (let topic in QUESTIONS) {
-    answeredState[topic] = new Array(QUESTIONS[topic].length).fill(null);
-    currentPage[topic] = 0;
-  }
-  // mixed pool is generated on the fly
-  updateWrongBadge();
-}
-initState();
-
-// ── Render ──
-function renderTopic(topic) {
-  const container = document.getElementById('topic-' + topic);
-  if (!container) return;
-
-  if (topic === 'wrong') {
-    renderWrong(container);
-    return;
-  }
-
-  let questions;
-  if (topic === 'mixed') {
-    questions = getMixedQuestions();
-  } else {
-    questions = QUESTIONS[topic] || [];
-  }
-
-  if (!questions.length) {
-    container.innerHTML = '<div class="empty-state"><div class="emoji">😊</div><p>No questions available.</p></div>';
-    container.classList.add('active');
-    return;
-  }
-
-  let html = '';
-
-  // Knowledge section (skip mixed & wrong)
-  if (KNOWLEDGE_DATA[topic]) {
-    html += '<div class="sec-card sec-knowledge">';
-    html += '<div class="sec-header"><span class="icon">📖</span>知识点讲解</div>';
-    html += '<div class="sec-body">';
-    const kd = KNOWLEDGE_DATA[topic];
-    for (let i = 0; i < kd.length; i++) {
-      html += '<div class="k-card ' + (kd[i].bg || 'bg-blue') + '">';
-      html += '<div class="k-card-title"><span class="k-em">' + kd[i].title.split(' ')[0] + '</span>' + kd[i].title.split(' ').slice(1).join(' ') + '</div>';
-      // Items
-      for (let j = 0; j < kd[i].items.length; j++) {
-        let item = kd[i].items[j];
-        let icon = item.substring(0, 2); // emoji
-        let text = item.substring(2);
-        html += '<div class="k-row"><span class="k-icon">' + icon + '</span><span>' + text + '</span></div>';
-      }
-      html += '</div>';
-    }
-    html += '</div></div>';
-  }
-
-  // ── Video section (skip mixed & wrong) ──
-  if (VIDEO_DATA[topic]) {
-    const v = VIDEO_DATA[topic];
-    html += '<div class="sec-card sec-video">';
-    html += '<div class="sec-header"><span class="icon">🎬</span>视频讲解</div>';
-    html += '<div class="sec-body">';
-    html += '<div class="video-embed" style="position:relative;width:100%;padding-bottom:56.25%;border-radius:10px;overflow:hidden;">';
-    html += '<iframe src="https://player.bilibili.com/player.html?bvid=' + v.bvid + '&autoplay=0&high_quality=1&danmaku=1" ';
-    html += 'style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allowfullscreen loading="lazy"></iframe>';
-    html += '</div>';
-    html += '<div style="text-align:center;margin-top:8px;font-size:0.82rem;color:var(--muted);">📺 ' + v.title + '</div>';
-    html += '</div></div>';
-  }
-
-  // ── Exercise section ──
-  html += '<div class="sec-card sec-exercise">';
-  html += '<div class="sec-header"><span class="icon">✏️</span>练习题</div>';
-  html += '<div class="sec-body">';
-
-  // Stats
-  html += '<div class="q-stats">';
-  const stateKey = topic;
-  let answeredCount = answeredState[stateKey].filter(x => x !== null).length;
-  html += '已答题: <span id="stats-answered-' + topic + '">' + answeredCount + '</span> / ' + questions.length;
-  html += ' · 错误: <span class="wrong-count" id="stats-wrong-' + topic + '">0</span>';
-  html += '</div>';
-
-  // Dots
-  html += '<div class="q-dots" id="dots-' + topic + '">';
-  for (let i = 0; i < questions.length; i++) {
-    html += '<span class="q-dot' + (i === 0 ? ' active' : '') + '" data-idx="' + i + '" onclick="goToQuestion(\'' + topic + '\',' + i + ')"></span>';
-  }
-  html += '</div>';
-
-  // Questions
-  for (let i = 0; i < questions.length; i++) {
-    html += renderQuestion(topic, questions[i], i, i === 0);
-  }
-
-  // Pagination
-  html += '<div class="pagination">';
-  html += '<button class="page-btn" id="prev-' + topic + '" onclick="prevQuestion(\'' + topic + '\')">◀ 上一题</button>';
-  html += '<span class="page-info" id="pageinfo-' + topic + '">1 / ' + questions.length + '</span>';
-  html += '<button class="page-btn" id="next-' + topic + '" onclick="nextQuestion(\'' + topic + '\')">下一题 ▶</button>';
-  html += '</div>';
-  // Reset all button
-  html += '<div style="text-align:center;margin-top:10px;">';
-  html += '<button class="redo-btn" onclick="resetTopic(\'' + topic + '\')" style="font-size:0.78rem;padding:4px 14px;border:1px solid var(--border);border-radius:4px;background:none;cursor:pointer;color:var(--muted);">🔄 重做本组全部</button>';
-  html += '</div>';
-
-  html += '</div></div>';
-
-  container.innerHTML = html;
-  container.classList.add('active');
-  updatePagination(topic);
-  updateStats(topic);
-}
-
-function renderQuestion(topic, qData, idx, active) {
-  const letters = ['A', 'B', 'C', 'D'];
-  let html = '<div class="question' + (active ? ' active' : '') + '" data-idx="' + idx + '" id="q-' + topic + '-' + idx + '">';
-  html += '<div class="q-text"><span class="q-num">' + (idx + 1) + '.</span>' + qData.q + '</div>';
-  html += '<div class="opts">';
-  for (let oi = 0; oi < qData.opts.length; oi++) {
-    const letter = letters[oi];
-    const chosen = answeredState[topic] ? answeredState[topic][idx] : null;
-    let extraClass = '';
-    if (chosen === letter) {
-      if (letter === qData.ans) extraClass = ' correct';
-      else extraClass = ' wrong';
-      // Also show correct answer if wrong
-    } else if (chosen !== null && letter === qData.ans && chosen !== letter) {
-      extraClass = ' show-correct';
-    }
-    const disabled = chosen !== null ? ' disabled' : '';
-    html += '<div class="opt' + extraClass + disabled + '" onclick="selectOption(\'' + topic + '\',' + idx + ',\'' + letter + '\')">';
-    html += '<span class="opt-letter">' + letter + '</span>';
-    html += '<span>' + qData.opts[oi] + '</span>';
-    if (chosen === letter && letter === qData.ans) {
-      html += ' <span style="color:var(--correct);margin-left:auto;">✓</span>';
-    } else if (chosen === letter && letter !== qData.ans) {
-      html += ' <span style="color:var(--wrong);margin-left:auto;">✗</span>';
-    }
-    html += '</div>';
-  }
-  html += '</div>';
-  // Redo button (only show if already answered)
-  if (answeredState[topic] && answeredState[topic][idx] !== null) {
-    html += '<div style="text-align:right;margin-top:8px;">';
-    html += '<button class="redo-btn" onclick="resetSingleQuestion(\'' + topic + '\',' + idx + ')" style="font-size:0.78rem;padding:3px 10px;border:1px solid var(--border);border-radius:4px;background:none;cursor:pointer;color:var(--muted);">🔄 重做此题</button>';
-    html += '</div>';
-  }
-  html += '</div>';
-  return html;
-}
-
-function renderWrong(container) {
-  if (wrongQuestions.length === 0) {
-    container.innerHTML = '<div class="card"><span class="tag" style="background:#fee2e2;color:#991b1b">错题本</span>'
-      + '<div class="card-title">Wrong Answers</div>'
-      + '<div class="empty-state"><div class="emoji">🎉</div><p>太棒了！你没有错题！</p></div></div>';
-    container.classList.add('active');
-    return;
-  }
-
-  let html = '<div class="card">';
-  html += '<span class="tag" style="background:#fee2e2;color:#991b1b">错题本</span>';
-  html += '<div class="card-title">Wrong Answers (' + wrongQuestions.length + ')</div>';
-
-  const letters = ['A', 'B', 'C', 'D'];
-  wrongQuestions.forEach((item, idx) => {
-    html += '<div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">';
-    html += '<div style="font-size:0.82rem;color:var(--muted);margin-bottom:4px;">';
-    html += '来自: ' + getTopicLabel(item.topic) + ' · 题号 ' + (item.idx + 1) + '</div>';
-    html += '<div style="font-weight:600;margin-bottom:8px;font-size:0.92rem;">' + item.q + '</div>';
-    html += '<div class="opts">';
-    for (let oi = 0; oi < item.opts.length; oi++) {
-      const letter = letters[oi];
-      let extraClass = '';
-      if (letter === item.ans) extraClass = ' correct';
-      else if (letter === item.chosen && letter !== item.ans) extraClass = ' wrong';
-      html += '<div class="opt disabled' + extraClass + '">';
-      html += '<span class="opt-letter">' + letter + '</span>';
-      html += '<span>' + item.opts[oi] + '</span>';
-      if (letter === item.ans) html += ' <span style="color:var(--correct);margin-left:auto;">✓</span>';
-      else if (letter === item.chosen) html += ' <span style="color:var(--wrong);margin-left:auto;">✗</span>';
-      html += '</div>';
-    }
-    html += '</div></div>';
-  });
-
-  html += '<div style="text-align:center;margin-top:12px;">';
-  html += '<button class="page-btn" onclick="clearWrong()" style="border-color:var(--wrong);color:var(--wrong);">清空错题本</button>';
-  html += '</div>';
-  html += '</div>';
-  container.innerHTML = html;
-  container.classList.add('active');
-}
-
-// ── Mixed questions ──
-function getMixedQuestions() {
-  const all = [];
-  for (let topic in QUESTIONS) {
-    QUESTIONS[topic].forEach((q, idx) => {
-      all.push({ ...q, _topic: topic, _idx: idx });
-    });
-  }
-  // Shuffle and take 10
-  const shuffled = [...all].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, 10);
-}
-
-// ── Actions ──
-function selectOption(topic, idx, letter) {
-  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
-  const qData = questions[idx];
-  if (!qData) return;
-
-  // If already answered with same answer, allow re-select (reset)
-  // If already answered with a different letter, reset and re-answer
-  if (answeredState[topic] && answeredState[topic][idx] !== null) {
-    if (answeredState[topic][idx] === letter) return; // same choice, no change
-    // User selected a different answer - redo
-    resetSingleQuestion(topic, idx);
-  }
-
-  // Save answer
-  answeredState[topic][idx] = letter;
-
-  // Update dots
-  updateDots(topic);
-
-  // Check if wrong
-  if (letter !== qData.ans) {
-    // Add to wrong questions if not already there
-    const exists = wrongQuestions.some(w => w.topic === topic && w.idx === idx && w.q === qData.q);
-    if (!exists) {
-      wrongQuestions.push({
-        topic: topic,
-        idx: idx,
-        q: qData.q,
-        opts: qData.opts,
-        ans: qData.ans,
-        chosen: letter
-      });
-      localStorage.setItem('p2grammarWrong', JSON.stringify(wrongQuestions));
-      updateWrongBadge();
-    }
-  }
-
-  // Re-render the question to show correct/wrong
-  const container = document.getElementById('q-' + topic + '-' + idx);
-  if (container) {
-    const letters = ['A', 'B', 'C', 'D'];
-    let html = '<div class="q-text"><span class="q-num">' + (idx + 1) + '.</span>' + qData.q + '</div>';
-    html += '<div class="opts">';
-    for (let oi = 0; oi < qData.opts.length; oi++) {
-      const l = letters[oi];
-      let extraClass = '';
-      if (l === qData.ans) extraClass = l === letter ? ' correct' : ' show-correct';
-      else if (l === letter && l !== qData.ans) extraClass = ' wrong';
-      html += '<div class="opt disabled' + extraClass + '">';
-      html += '<span class="opt-letter">' + l + '</span>';
-      html += '<span>' + qData.opts[oi] + '</span>';
-      if (l === qData.ans) html += ' <span style="color:var(--correct);margin-left:auto;">✓</span>';
-      else if (l === letter && l !== qData.ans) html += ' <span style="color:var(--wrong);margin-left:auto;">✗</span>';
-      html += '</div>';
-    }
-    html += '</div>';
-    container.innerHTML = html;
-  }
-
-  updateStats(topic);
-}
-
-function prevQuestion(topic) {
-  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
-  if (currentPage[topic] > 0) {
-    goToQuestion(topic, currentPage[topic] - 1);
-  }
-}
-
-function nextQuestion(topic) {
-  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
-  if (currentPage[topic] < questions.length - 1) {
-    goToQuestion(topic, currentPage[topic] + 1);
-  }
-}
-
-function goToQuestion(topic, idx) {
-  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
-  if (idx < 0 || idx >= questions.length) return;
-  currentPage[topic] = idx;
-
-  // Update question visibility
-  const container = document.getElementById('topic-' + topic);
-  if (!container) return;
-  container.querySelectorAll('.question').forEach(el => el.classList.remove('active'));
-  const target = document.getElementById('q-' + topic + '-' + idx);
-  if (target) target.classList.add('active');
-
-  updateDots(topic);
-  updatePagination(topic);
-}
-
-function updatePagination(topic) {
-  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
-  const info = document.getElementById('pageinfo-' + topic);
-  const prev = document.getElementById('prev-' + topic);
-  const next = document.getElementById('next-' + topic);
-  if (info) info.textContent = (currentPage[topic] + 1) + ' / ' + questions.length;
-  if (prev) prev.disabled = currentPage[topic] === 0;
-  if (next) next.disabled = currentPage[topic] >= questions.length - 1;
-}
-
-function updateDots(topic) {
-  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
-  const container = document.getElementById('dots-' + topic);
-  if (!container) return;
-  const dots = container.querySelectorAll('.q-dot');
-  dots.forEach((dot, i) => {
-    const chosen = answeredState[topic] ? answeredState[topic][i] : null;
-    dot.className = 'q-dot';
-    if (i === currentPage[topic]) dot.classList.add('active');
-    if (chosen !== null) {
-      // Check if correct
-      const q = questions[i];
-      if (q && chosen === q.ans) dot.classList.add('answered');
-      else dot.classList.add('wrong-dot');
-    }
-  });
-}
-
-function updateStats(topic) {
-  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
-  let answeredCount = 0;
-  let wrongCount = 0;
-  for (let i = 0; i < (questions ? questions.length : 0); i++) {
-    const chosen = answeredState[topic] ? answeredState[topic][i] : null;
-    if (chosen !== null) {
-      answeredCount++;
-      const q = questions[i];
-      if (q && chosen !== q.ans) wrongCount++;
-    }
-  }
-  const statsEl = document.getElementById('stats-answered-' + topic);
-  const wrongEl = document.getElementById('stats-wrong-' + topic);
-  if (statsEl) statsEl.textContent = answeredCount;
-  if (wrongEl) wrongEl.textContent = wrongCount;
-}
-
-function updateWrongBadge() {
-  const badge = document.getElementById('wrongBadge');
-  if (badge) badge.textContent = wrongQuestions.length;
-}
-
-function resetTopic(topic) {
-  if (!confirm('确定要重做本组全部题目吗？')) return;
-  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
-  if (!questions) return;
-  // Clear all answers for this topic
-  for (let i = 0; i < questions.length; i++) {
-    if (answeredState[topic] && answeredState[topic][i] !== null) {
-      // Remove from wrongQuestions
-      const qData = questions[i];
-      const existsIdx = wrongQuestions.findIndex(w => w.topic === topic && w.idx === i && w.q === qData.q);
-      if (existsIdx !== -1) wrongQuestions.splice(existsIdx, 1);
-    }
-  }
-  localStorage.setItem('p2grammarWrong', JSON.stringify(wrongQuestions));
-  updateWrongBadge();
-  answeredState[topic] = new Array(questions.length).fill(null);
-  currentPage[topic] = 0;
-  // Re-render
-  renderTopic(topic);
-}
-
-function resetSingleQuestion(topic, idx) {
-  // Remove from wrongQuestions
-  const questions = (topic === 'mixed') ? getMixedQuestions() : QUESTIONS[topic];
-  const qData = questions[idx];
-  const existsIdx = wrongQuestions.findIndex(w => w.topic === topic && w.idx === idx && w.q === qData.q);
-  if (existsIdx !== -1) wrongQuestions.splice(existsIdx, 1);
-  localStorage.setItem('p2grammarWrong', JSON.stringify(wrongQuestions));
-  updateWrongBadge();
-  // Clear answer state
-  answeredState[topic][idx] = null;
-  // Re-render the question
-  const container = document.getElementById('q-' + topic + '-' + idx);
-  if (container) {
-    const letters = ['A', 'B', 'C', 'D'];
-    let html = '<div class="q-text"><span class="q-num">' + (idx + 1) + '.</span>' + qData.q + '</div>';
-    html += '<div class="opts">';
-    for (let oi = 0; oi < qData.opts.length; oi++) {
-      html += '<div class="opt" onclick="selectOption(\'' + topic + '\',' + idx + ',\'' + letters[oi] + '\')">';
-      html += '<span class="opt-letter">' + letters[oi] + '</span>';
-      html += '<span>' + qData.opts[oi] + '</span>';
-      html += '</div>';
-    }
-    html += '</div></div>';
-    container.innerHTML = html;
-  }
-  updateStats(topic);
-  updateDots(topic);
-}
-
-function clearWrong() {
-  if (!confirm('确定清空所有错题吗？')) return;
-  wrongQuestions = [];
-  localStorage.setItem('p2grammarWrong', JSON.stringify(wrongQuestions));
-  updateWrongBadge();
-  switchTopic('wrong');
-}
-
-// ── Topic labels ──
-function getTopicLabel(topic) {
-  const labels = {
-    nouns: 'Nouns 名词',
-    articles: 'Articles 冠词',
-    pronouns: 'Pronouns 代词',
-    adjectives: 'Adjectives 形容词',
-    'verb-be': 'Verb Be (am/is/are)',
-    'third-person': 'Third Person 第三人称单数',
-    'verb-action': 'Action Verbs 行为动词',
-    adverbs: 'Adverbs 副词',
-    prepositions: 'Prepositions 介词',
-    conjunctions: 'Conjunctions 连词',
-    questions: 'Question Words 疑问词',
-    sentences: 'Sentences 句型',
-    mixed: '综合练习',
-    wrong: '错题本'
-  };
-  return labels[topic] || topic;
-}
-
-function getTopicSubtitle(topic) {
-  const subtitles = {
-    nouns: 'Common & Proper Nouns',
-    articles: 'a / an / the',
-    pronouns: 'Subject & Object Pronouns',
-    adjectives: 'Descriptive & Comparing',
-    'verb-be': 'am / is / are',
-    'third-person': 'He/She/It + verb-s',
-    'verb-action': 'Tenses & Actions',
-    adverbs: 'Frequency, Manner & Place',
-    prepositions: 'Place & Time',
-    conjunctions: 'and / but / because / so',
-    questions: 'Wh- Questions',
-    sentences: 'Basic Patterns',
-    mixed: '10 Random Questions',
-    wrong: 'Review Wrong Answers'
-  };
-  return subtitles[topic] || '';
-}
-
-// ── Switch topic ──
-function switchTopic(topic) {
-  // Hide all sections
-  document.querySelectorAll('.topic-section').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-
-  // If switching to wrong, reset answeredState for it (no persistent state)
-  if (topic === 'mixed') {
-    // fresh random every time
-    const stateKey = 'mixed';
-    answeredState[stateKey] = [];
-    currentPage[stateKey] = 0;
-  }
-
-  // Show selected
-  const target = document.getElementById('topic-' + topic);
-  if (target) {
-    renderTopic(topic);
-    target.classList.add('active');
-  }
-  const navItem = document.querySelector('.nav-item[data-topic="' + topic + '"]');
-  if (navItem) navItem.classList.add('active');
-}
-
-// ── Init on load ──
-window.addEventListener('DOMContentLoaded', function() {
-  // Restore answeredState from localStorage
-  const saved = localStorage.getItem('p2grammarState');
-  if (saved) {
-    try {
-      const parsed = JSON.parse(saved);
-      for (let key in parsed) {
-        if (answeredState[key]) {
-          answeredState[key] = parsed[key];
-        }
-      }
-    } catch(e) {}
-  }
-
-  renderTopic('nouns');
-  switchTopic('nouns');
-});
-
-// ── Save state periodically ──
-window.addEventListener('beforeunload', function() {
-  localStorage.setItem('p2grammarState', JSON.stringify(answeredState));
-});
-</script>
-
-<div class="nav-buttons">
-  <div class="nav-left"><a href="hk-english-grammar.html" class="nav-btn nav-prev">&larr; <span class="nav-text">英文语法总表</span></a></div>
-  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
-  <div class="nav-right"><a href="quiz-6-revision.html" class="nav-btn nav-next"><span class="nav-text">小测6复习(L1)</span> &rarr;</a></div>
-</div>
-</body>
-</html>
+   373|</head>
+   374|<body>
+   375|<div class="wrapper">
+   376|
+   377|  <!-- ── Sidebar ── -->
+   378|  <nav class="sidebar" id="sidebar">
+   379|    <div class="brand">
+   380|      P2 Grammar Exercises
+   381|      <small>香港小学二年级</small>
+   382|    </div>
+   383|    <button class="nav-item active" data-topic="nouns"        onclick="switchTopic('nouns')">        <span class="dot" style="background:#1e40af"></span>Nouns 名词</button>
+   384|    <button class="nav-item"        data-topic="articles"     onclick="switchTopic('articles')">     <span class="dot" style="background:#1e40af"></span>Articles 冠词</button>
+   385|    <button class="nav-item"        data-topic="pronouns"     onclick="switchTopic('pronouns')">     <span class="dot" style="background:#115e59"></span>Pronouns 代词</button>
+   386|    <button class="nav-item"        data-topic="adjectives"   onclick="switchTopic('adjectives')">   <span class="dot" style="background:#92400e"></span>Adjectives 形容词</button>
+   387|    <button class="nav-item"        data-topic="verb-be"      onclick="switchTopic('verb-be')">      <span class="dot" style="background:#166534"></span>Verb Be (am/is/are)</button>
+   388|    <button class="nav-item"        data-topic="third-person" onclick="switchTopic('third-person')"> <span class="dot" style="background:#166534"></span>Third Person 第三人称</button>
+   389|    <button class="nav-item"        data-topic="verb-action"  onclick="switchTopic('verb-action')">  <span class="dot" style="background:#166534"></span>Action Verbs 行为动词</button>
+   390|    <button class="nav-item"        data-topic="adverbs"      onclick="switchTopic('adverbs')">      <span class="dot" style="background:#9d174d"></span>Adverbs 副词</button>
+   391|    <button class="nav-item"        data-topic="prepositions" onclick="switchTopic('prepositions')"> <span class="dot" style="background:#3730a3"></span>Prepositions 介词</button>
+   392|    <button class="nav-item"        data-topic="conjunctions" onclick="switchTopic('conjunctions')"> <span class="dot" style="background:#991b1b"></span>Conjunctions 连词</button>
+   393|    <button class="nav-item"        data-topic="questions"    onclick="switchTopic('questions')">    <span class="dot" style="background:#3730a3"></span>Question Words 疑问词</button>
+   394|    <button class="nav-item"        data-topic="sentences"    onclick="switchTopic('sentences')">    <span class="dot" style="background:#166534"></span>Sentences 句型</button>
+   395|    <a href="quiz-6-revision.html" class="nav-item" style="text-decoration:none;border-top:1px solid var(--border);margin-top:6px;padding-top:12px;color:var(--text);">
+   396|      <span class="dot" style="background:#7c3aed"></span>📝 Quiz 6 L1
+   397|    </a>
+   398|    <a href="quiz-6-revision-level2.html" class="nav-item" style="text-decoration:none;color:var(--text);">
+   399|      <span class="dot" style="background:#dc2626"></span>✨ Quiz 6 L2
+   400|    </a>
+   401|    <button class="nav-item wrong-tab" data-topic="wrong"     onclick="switchTopic('wrong')">
+   402|      <span class="dot" style="background:var(--wrong)"></span>错题本
+   403|      <span class="wrong-badge" id="wrongBadge">0</span>
+   404|    </button>
+   405|  </nav>
+   406|
+   407|  <!-- ── Main Content ── -->
+   408|  <main class="content" id="mainContent">
+   409|    <div class="content-header">
+   410|      <h1>P2 Grammar Exercises</h1>
+   411|      <p>香港小学二年级英语语法练习题 · 点击选项查看答案</p>
+   412|    </div>
+   413|
+   414|    <!-- Each topic gets its own topic-section -->
+   415|    <div id="topic-nouns" class="topic-section active"></div>
+   416|    <div id="topic-articles" class="topic-section"></div>
+   417|    <div id="topic-pronouns" class="topic-section"></div>
+   418|    <div id="topic-adjectives" class="topic-section"></div>
+   419|    <div id="topic-verb-be" class="topic-section"></div>
+   420|    <div id="topic-third-person" class="topic-section"></div>
+   421|    <div id="topic-verb-action" class="topic-section"></div>
+   422|    <div id="topic-adverbs" class="topic-section"></div>
+   423|    <div id="topic-prepositions" class="topic-section"></div>
+   424|    <div id="topic-conjunctions" class="topic-section"></div>
+   425|    <div id="topic-questions" class="topic-section"></div>
+   426|    <div id="topic-sentences" class="topic-section"></div>
+   427|    <div id="topic-mixed" class="topic-section"></div>
+   428|    <div id="topic-wrong" class="topic-section"></div>
+   429|
+   430|    <div class="footer">Hong Kong Primary 2 English Grammar Exercises</div>
+   431|  </main>
+   432|</div>
+   433|
+   434|<script>
+   435|// ── VIDEO DATA (B站嵌入) ──
+   436|const VIDEO_DATA = {
+   437|  nouns:        { bvid: 'BV1De4y1S7j3', title: '名词变复数' },
+   438|  articles:     { bvid: 'BV12t421W7zS', title: 'a/an/noun' },
+   439|  pronouns:     { bvid: 'BV1KV41167tr', title: '人称代词（宾格）' },
+   440|  adjectives:   { bvid: 'BV1NG4y1g7Jw', title: '形容词比较级和最高级' },
+   441|  'verb-be':    { bvid: 'BV124411i7LM', title: 'be动词am, is, are用法' },
+   442|  'third-person':{ bvid: 'BV1YR4y1B753', title: '动词三单用法' },
+   443|  'verb-action':{ bvid: 'BV1q8411x7hx', title: '一般过去时-动词变过去式' },
+   444|  adverbs:      { bvid: 'BV1Nu411D7Ht', title: '频率副词' },
+   445|  prepositions: { bvid: 'BV1Ji421h7iP', title: '方位介词on/in/under' },
+   446|  conjunctions: { bvid: 'BV1GFk1YfECY', title: '连词and/but/because' },
+   447|  questions:    { bvid: 'BV133411e7yq', title: '特殊疑问句who/when/where' },
+   448|  sentences:    { bvid: 'BV1hR4y1Q7sj', title: '句型转换-改一般疑问句' }
+   449|};
+   450|
+   451|// ── KNOWLEDGE DATA (小朋友可爱版) ──
+   452|const KNOWLEDGE_DATA = {
+   453|  nouns: [
+   454|    { title: '🐶 普通名词', items: ['📌 dog, cat, book, school', '➕ 前面可以加 a/an：a dog, a book', '💡 I see a cat. (第一次说用 a)'], bg: 'bg-blue' },
+   455|    { title: '🏙️ 专有名词', items: ['📌 Tom, Hong Kong, Monday', '🔤 首字母要大写！', '✅ I live in Hong Kong. ❌ i live in hong kong.'], bg: 'bg-green' },
+   456|    { title: '🐾 复数 (+s/+es)', items: ['➕ 加 s：dog → dogs, cat → cats', '🍱 -es：box→boxes, watch→watches', '🍬 y→ies：baby→babies, party→parties', '🌟 不规则：child→children, foot→feet'], bg: 'bg-orange' }
+   457|  ],
+   458|  articles: [
+   459|    { title: '🅰️ a vs an', items: ['👍 a + 辅音发音：a dog, a hot dog', '👌 an + 元音发音：an apple, an egg', '🎵 口诀：a 狗狗🐶，an 苹果🍎'], bg: 'bg-purple' },
+   460|    { title: '🎯 the 定冠词', items: ['🎪 特指对方知道的：the door', '🔄 再次提到：I saw a cat. The cat is black.', '🌍 独一无二：the sun, the moon'], bg: 'bg-blue' },
+   461|    { title: '🚫 不用冠词', items: ['📚 泛指复数：Dogs are cute. (不是 The dogs)', '👤 人名前不加：Tom is my friend.'], bg: 'bg-pink' }
+   462|  ],
+   463|  pronouns: [
+   464|    { title: '👑 主格 (谁)', items: ['👦 I / 👧 you / 🧑 he / 👩 she / 🐶 it', '👫 we / 🧑‍🤝‍🧑 they', '💡 放在动词前面：She is my teacher.'], bg: 'bg-blue' },
+   465|    { title: '🎁 宾格 (谁被)', items: ['🎯 me, you, him, her, it, us, them', '💡 动词/介词后面用：He likes her.', '❌ NOT: He likes she.'], bg: 'bg-orange' },
+   466|    { title: '📎 物主代词', items: ['📛 my / your / his / her / its / our / their', '➕ 后面必须跟名词：my book, her cat'], bg: 'bg-green' },
+   467|    { title: '👉 指示代词', items: ['👆 This = 这个 (近) / These = 这些', '👇 That = 那个 (远) / Those = 那些'], bg: 'bg-purple' }
+   468|  ],
+   469|  adjectives: [
+   470|    { title: '🏷️ 形容词放哪里？', items: ['📝 形容词 + 名词：a big dog, a red apple', '🔗 be + 形容词：The dog is big.', '📐 顺序：大小 + 颜色：a big black dog'], bg: 'bg-blue' },
+   471|    { title: '📈 比较级 -er', items: ['➕ -er + than：big→bigger', '🔄 y→ier：happy→happier', '📏 A dog is bigger than a cat.'], bg: 'bg-orange' },
+   472|    { title: '🏆 最高级 -est', items: ['➕ the + -est：big→the biggest', '🥇 She is the tallest girl in class.'], bg: 'bg-green' },
+   473|    { title: '📊 more / most', items: ['📏 多音节词：more beautiful', '🌟 the most beautiful'], bg: 'bg-purple' }
+   474|  ],
+   475|  'verb-be': [
+   476|    { title: '🎭 am / is / are 三兄弟', items: ['👤 I + am：I am a student.', '👤 He/She/It + is：She is happy.', '👥 You/We/They + are：They are friends.', '🎵 口诀：I am, you are, he/she/it is'], bg: 'bg-blue' },
+   477|    { title: '🚫 否定句 (不是)', items: ['❌ is not = isn\'t：She isn\'t a teacher.', '❌ are not = aren\'t：They aren\'t home.', '❌ am not：I am not late.'], bg: 'bg-red' },
+   478|    { title: '❓ 疑问句 (是吗？)', items: ['🤔 Is she happy? → Yes, she is.', '🤔 Are you ready? → Yes, I am.', '🤔 Is it raining? → Yes, it is.'], bg: 'bg-orange' }
+   479|  ],
+   480|  'third-person': [
+   481|    { title: '➕ 动词加 -s', items: ['👤 He/She/It + 动词-s', '⚽ He plays football.', '📖 She reads a book.', '👀 It looks nice.'], bg: 'bg-blue' },
+   482|    { title: '🍱 加 -es', items: ['🔚 动词结尾 o/s/x/ch/sh 加 -es', '🚌 He goes to school.', '🧼 She washes the dishes.', '📺 He watches TV.'], bg: 'bg-green' },
+   483|    { title: '🍬 y → ies', items: ['🤓 study → studies', '🦅 fly → flies', '😢 cry → cries'], bg: 'bg-orange' },
+   484|    { title: '🌟 have → has', items: ['🐱 He has a pet cat.', '🚫 否定：doesn\'t + 原形：He doesn\'t like milk.', '❓ 疑问：Does + 主语 + 原形？'], bg: 'bg-purple' }
+   485|  ],
+   486|  'verb-action': [
+   487|    { title: '📅 现在时', items: ['🎯 I/You/We/They + 原形：I play.', '🎯 He/She/It + -s/-es：He plays.', '🍳 We eat breakfast at 7 am.'], bg: 'bg-blue' },
+   488|    { title: '⏪ 过去时 +ed', items: ['➕ -ed：walk→walked, play→played', '🧊 e结尾加-d：like→liked', '🍬 y→ied：cry→cried', '📌 I walked to school yesterday.'], bg: 'bg-orange' },
+   489|    { title: '⚡ 不规则过去时', items: ['🏃 go→went, eat→ate, see→saw', '🎁 have→had, do→did, make→made', 'Yesterday we went to the park.'], bg: 'bg-red' },
+   490|    { title: '🔄 现在进行时', items: ['🖇️ am/is/are + verb-ing', '📖 I am reading. She is singing.', '🍼 The baby is crying now.'], bg: 'bg-purple' }
+   491|  ],
+   492|  adverbs: [
+   493|    { title: '🔄 频率副词', items: ['📊 always(总是) > usually > often > sometimes > never(从不)', '📌 放动词前：I always brush my teeth.', '🚫 She never eats meat.'], bg: 'bg-blue' },
+   494|    { title: '✨ 方式副词 -ly', items: ['➕ 形容词 + ly：beautiful→beautifully', '🎤 She sings beautifully.', '🏃 Run quickly!', '⚠️ good→well：He plays well.'], bg: 'bg-orange' },
+   495|    { title: '📍 时间/地点', items: ['⏰ 时间：yesterday, today, now', '📍 地点：here, there, inside', '📐 顺序：动词+方式+地点+时间'], bg: 'bg-green' }
+   496|  ],
+   497|  prepositions: [
+   498|    { title: '📍 方位介词', items: ['📦 on = 上面：The book is on the table.', '📦 in = 里面：Cat is in the box.', '📦 under = 下面：Dog is under the chair.', '📦 behind = 后面：Ball is behind the door.'], bg: 'bg-blue' },
+   499|    { title: '⏰ 时间介词', items: ['🕐 at + 时间点：at 7 o\'clock, at night', '📅 in + 月/早/晚：in June, in the morning', '📆 on + 星期/日期：on Monday'], bg: 'bg-orange' }
+   500|  ],
+   501|

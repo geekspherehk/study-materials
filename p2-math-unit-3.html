@@ -1,199 +1,215 @@
-<!DOCTYPE html>
-<html lang="zh-HK">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>時間（時、分）- P2數學</title>
-<meta name="description" content="P2數學 時間認識與計算｜香港小學二年級讀時鐘‧時分換算‧時間應用題">
-<meta name="keywords" content="P2數學,香港小學二年級,時間,時鐘,時分換算,讀時鐘練習">
-<meta property="og:title" content="P2數學 - 時間（時、分）">
-<meta property="og:description" content="P2數學 時間認識與計算｜香港小學二年級讀時鐘‧時分換算‧時間應用題">
-<meta property="og:type" content="website">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
-h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
-h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
-.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
-.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
-.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
-.lesson ul{padding-left:20px}
-.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
-.lesson .example span{color:#7ee787}
-#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
-.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
-.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
-.btns{display:flex;flex-wrap:wrap;gap:8px}
-.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
-.btns button:not(:disabled):hover{background:#30363d;color:#fff}
-.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
-.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
-.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
-.btns button:disabled{opacity:0.5;cursor:default}
-.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
-.back{padding:8px 24px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
-.back:hover{background:#30363d}
-.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
-.clock{font-size:1.2em;font-weight:bold;text-align:center;background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:16px;margin:8px 0;color:#e6c384}
-.clock span{color:#7ee787}
+     1|<!DOCTYPE html>
+     2|<html lang="zh-HK">
+     3|<head>
+     4|<meta charset="UTF-8">
+     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6|<title>時間（時、分）- P2數學</title>
+     7|<meta name="description" content="P2數學 時間認識與計算｜香港小學二年級讀時鐘‧時分換算‧時間應用題">
+     8|<meta name="keywords" content="P2數學,香港小學二年級,時間,時鐘,時分換算,讀時鐘練習">
+     9|<meta property="og:title" content="P2數學 - 時間（時、分）">
+    10|<meta property="og:description" content="P2數學 時間認識與計算｜香港小學二年級讀時鐘‧時分換算‧時間應用題">
+    11|<meta property="og:type" content="website">
+    12|<style>
+    13|*{margin:0;padding:0;box-sizing:border-box}
+    14|body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+    15|h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+    16|h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+    17|.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+    18|.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+    19|.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+    20|.lesson ul{padding-left:20px}
+    21|.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+    22|.lesson .example span{color:#7ee787}
+    23|#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+    24|.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+    25|.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+    26|.btns{display:flex;flex-wrap:wrap;gap:8px}
+    27|.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+    28|.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+    29|.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+    30|.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+    31|.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+    32|.btns button:disabled{opacity:0.5;cursor:default}
+    33|.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+    34|.back{padding:8px 24px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+    35|.back:hover{background:#30363d}
+    36|.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+    37|.clock{font-size:1.2em;font-weight:bold;text-align:center;background:#0d1117;border:1px solid #30363d;border-radius:8px;padding:16px;margin:8px 0;color:#e6c384}
+    38|.clock span{color:#7ee787}
+    39|
+    40|/* 导航按钮 */
+    41|.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+    42|.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+    43|.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+    44|.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+    45|.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+    46|.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+    47|.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+    48|.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+    49|.nav-home:hover{background:#2563eb;border-color:#2563eb}
+    50|/* 卡片增强 */
+    51|.card{transition:box-shadow .2s,transform .15s}
+    52|.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+    53|/* 移动端优化 */
+    54|@media (max-width:480px){
+    55|  body{padding:12px}
+    56|  .card{padding:14px 16px}
+    57|  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+    58|  .nav-btn{padding:10px 12px;font-size:0.8rem}
+    59|  .nav-text{max-width:60px}
+    60|  .nav-buttons{gap:4px}
+    61|}
+    62|@media (max-width:360px){
+    63|  .nav-text{display:none}
+    64|}
+    65|
+  /* 移动端响应式 */
+  @media (max-width:768px) {
+    body{flex-direction:column;padding:12px}
+    .main-wrapper{width:100%;padding:0}
+    .card{padding:14px 16px}
+    .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+    .nav-buttons{flex-wrap:wrap;gap:4px}
+    .nav-buttons .nav-btn{padding:8px 10px;font-size:0.78rem;flex:1 1 auto;min-width:0}
+    .qa-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:400px){
+    .nav-buttons .nav-btn{padding:6px 8px;font-size:0.7rem;}
+  }
 
-/* 导航按钮 */
-.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
-.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
-.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
-.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
-.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
-.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
-.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
-.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
-.nav-home:hover{background:#2563eb;border-color:#2563eb}
-/* 卡片增强 */
-.card{transition:box-shadow .2s,transform .15s}
-.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-/* 移动端优化 */
-@media (max-width:480px){
-  body{padding:12px}
-  .card{padding:14px 16px}
-  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
-  .nav-btn{padding:10px 12px;font-size:0.8rem}
-  .nav-text{max-width:60px}
-  .nav-buttons{gap:4px}
-}
-@media (max-width:360px){
-  .nav-text{display:none}
-}
 </style>
-
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"CreativeWork","name":"除法","description":"除法的意義：整除、平均分配、應用題（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
-</script>
-</head>
-<body>
-
-<a class="back" href="index.html">← 返回主頁</a>
-<h1>🕐 時間（時、分）</h1>
-
-<div class="lesson">
-<h3>📖 學習重點</h3>
-<ul>
-<li>時鐘的認識：時針、分針、秒針</li>
-<li>讀取整點時間</li>
-<li>讀取半點時間（30分鐘）</li>
-<li>讀取幾時幾分</li>
-<li>時間的單位換算</li>
-</ul>
-</div>
-
-<div class="lesson">
-<h3>🕐 認識時鐘</h3>
-<div class="clock">時針（短針）：<span>指示幾點</span> ⏰ 分針（長針）：<span>指示幾分</span></div>
-<ul>
-<li><b>時針</b>（短針）：走一大格是 <b>1 小時</b></li>
-<li><b>分針</b>（長針）：走一大格是 <b>5 分鐘</b>，走一圈是 <b>60 分鐘</b></li>
-<li><b>1 小時 = 60 分鐘</b></li>
-</ul>
-</div>
-
-<div class="lesson">
-<h3>🕐 整點和半點</h3>
-<div class="example">整點範例：時針指向 <b>3</b>，分針指向 <b>12</b><br>
-<span>→ 3 點 → 3:00</span></div>
-<div class="example">半點範例：時針在 <b>3 和 4 之間</b>，分針指向 <b>6</b><br>
-<span>→ 3 點半 → 3:30</span></div>
-</div>
-
-<div class="lesson">
-<h3>🕐 幾時幾分</h3>
-<div class="example">時針在 <b>8 和 9 之間偏 8</b>，分針指向 <b>3</b><br>
-<span>→ 8:15（八點十五分 / 八點一刻）</span></div>
-<div class="example">時針在 <b>8 和 9 之間偏 9</b>，分針指向 <b>9</b><br>
-<span>→ 8:45（八點四十五分 / 八點三刻）</span></div>
-<div class="example">時針在 <b>10 和 11 之間</b>，分針指向 <b>5</b><br>
-<span>→ 10:25（十點二十五分）</span></div>
-</div>
-
-<div class="lesson">
-<h3>🔄 時間計算</h3>
-<div class="example">2 小時 = <span>120</span> 分鐘</div>
-<div class="example">3 小時 15 分鐘 = <span>195</span> 分鐘</div>
-<div class="example">150 分鐘 = <span>2</span> 小時 <span>30</span> 分鐘</div>
-</div>
-
-<h2>📝 練習題</h2>
-<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
-<div id="score">0 / 0 正確</div>
-
-<script>
-const EXERCISES = [
-  // 整點
-  {q:"時針指向 5，分針指向 12，是幾點？", opts:["5:00","5:30","5:15","5:45"], ans:"5:00"},
-  {q:"時針指向 9，分針指向 12，是幾點？", opts:["9:30","9:00","9:15","9:45"], ans:"9:00"},
-  // 半點
-  {q:"時針在 4 和 5 之間，分針指向 6，是幾點？", opts:["4:00","4:30","5:00","4:15"], ans:"4:30"},
-  {q:"時針在 11 和 12 之間，分針指向 6，是幾點？", opts:["12:00","11:15","11:30","11:45"], ans:"11:30"},
-  // 幾時幾分
-  {q:"時針在 2 和 3 之間偏 2，分針指向 3，是幾點？", opts:["2:03","2:15","2:20","2:30"], ans:"2:15"},
-  {q:"時針在 6 和 7 之間偏 7，分針指向 9，是幾點？", opts:["6:45","6:09","6:30","6:50"], ans:"6:45"},
-  {q:"時針在 7 和 8 之間，分針指向 4，是幾點？", opts:["7:04","7:40","7:20","7:30"], ans:"7:20"},
-  // 單位換算
-  {q:"1 小時 = ___ 分鐘", opts:["30","45","60","100"], ans:"60"},
-  {q:"2 小時 30 分鐘 = ___ 分鐘", opts:["150","130","180","120"], ans:"150"},
-  {q:"90 分鐘 = ___ 小時 ___ 分鐘", opts:["1小時30分","1小時15分","2小時","1小時45分"], ans:"1小時30分"},
-  {q:"3 小時 15 分鐘 = ___ 分鐘", opts:["185","175","195","180"], ans:"195"},
-  {q:"120 分鐘 = ___ 小時", opts:["1小時","2小時","3小時","4小時"], ans:"2小時"},
-  // 應用題
-  {q:"小明早上 8:00 上學，11:30 放學。他上了多久的課？",
-    opts:["2小時30分","3小時30分","3小時","4小時"], ans:"3小時30分"},
-  {q:"小美下午 2:15 開始做功課，做了 45 分鐘，幾點完成？",
-    opts:["2:45","3:00","3:15","3:30"], ans:"3:00"},
-  {q:"一節課是 35 分鐘，上了兩節課是多少分鐘？",
-    opts:["60分","65分","70分","75分"], ans:"70分"},
-  {q:"小華從家到學校要走 20 分鐘。他 7:45 出門，幾點到學校？",
-    opts:["8:05","8:00","7:55","8:15"], ans:"8:05"},
-];
-let correct=0;
-function renderExercises(){
-  const container=document.getElementById('exercises');
-  if(!container) return;container.innerHTML='';
-  EXERCISES.forEach((item,i)=>{
-    const div=document.createElement('div');div.className='exercise';
-    div.style.background=i%2===0?'#151b23':'#161b22';
-    div.style.border='1px solid #30363d';
-    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
-    div.appendChild(h4);
-    const btnDiv=document.createElement('div');btnDiv.className='btns';
-    item.opts.forEach(opt=>{
-      const btn=document.createElement('button');btn.textContent=opt;
-      btn.onclick=()=>{
-        const s=btnDiv.querySelector('.selected');if(s) return;
-        btn.classList.add('selected');
-        const btns=btnDiv.querySelectorAll('button');
-        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
-        const icon=document.createElement('p');
-        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
-        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
-        div.appendChild(icon);
-        const bar=document.getElementById('score');
-        const t=EXERCISES.length;
-        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
-        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
-      };
-      btnDiv.appendChild(btn);
-    });
-    div.appendChild(btnDiv);container.appendChild(div);
-  });
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  const sec=document.createElement('div');sec.id='exercises';
-  document.querySelector('body').appendChild(sec);
-  renderExercises();
-});
-</script>
-
-<div class="nav-buttons">
-  <div class="nav-left"><a href="p2-math-unit-2.html" class="nav-btn nav-prev">&larr; <span class="nav-text">数学 U2</span></a></div>
-  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
-  <div class="nav-right"><a href="p2-math-unit-4.html" class="nav-btn nav-next"><span class="nav-text">数学 U4</span> &rarr;</a></div>
-</div>
-</body>
-</html>
+    66|
+    67|<script type="application/ld+json">
+    68|{"@context":"https://schema.org","@type":"CreativeWork","name":"除法","description":"除法的意義：整除、平均分配、應用題（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
+    69|</script>
+    70|</head>
+    71|<body>
+    72|
+    73|<a class="back" href="index.html">← 返回主頁</a>
+    74|<h1>🕐 時間（時、分）</h1>
+    75|
+    76|<div class="lesson">
+    77|<h3>📖 學習重點</h3>
+    78|<ul>
+    79|<li>時鐘的認識：時針、分針、秒針</li>
+    80|<li>讀取整點時間</li>
+    81|<li>讀取半點時間（30分鐘）</li>
+    82|<li>讀取幾時幾分</li>
+    83|<li>時間的單位換算</li>
+    84|</ul>
+    85|</div>
+    86|
+    87|<div class="lesson">
+    88|<h3>🕐 認識時鐘</h3>
+    89|<div class="clock">時針（短針）：<span>指示幾點</span> ⏰ 分針（長針）：<span>指示幾分</span></div>
+    90|<ul>
+    91|<li><b>時針</b>（短針）：走一大格是 <b>1 小時</b></li>
+    92|<li><b>分針</b>（長針）：走一大格是 <b>5 分鐘</b>，走一圈是 <b>60 分鐘</b></li>
+    93|<li><b>1 小時 = 60 分鐘</b></li>
+    94|</ul>
+    95|</div>
+    96|
+    97|<div class="lesson">
+    98|<h3>🕐 整點和半點</h3>
+    99|<div class="example">整點範例：時針指向 <b>3</b>，分針指向 <b>12</b><br>
+   100|<span>→ 3 點 → 3:00</span></div>
+   101|<div class="example">半點範例：時針在 <b>3 和 4 之間</b>，分針指向 <b>6</b><br>
+   102|<span>→ 3 點半 → 3:30</span></div>
+   103|</div>
+   104|
+   105|<div class="lesson">
+   106|<h3>🕐 幾時幾分</h3>
+   107|<div class="example">時針在 <b>8 和 9 之間偏 8</b>，分針指向 <b>3</b><br>
+   108|<span>→ 8:15（八點十五分 / 八點一刻）</span></div>
+   109|<div class="example">時針在 <b>8 和 9 之間偏 9</b>，分針指向 <b>9</b><br>
+   110|<span>→ 8:45（八點四十五分 / 八點三刻）</span></div>
+   111|<div class="example">時針在 <b>10 和 11 之間</b>，分針指向 <b>5</b><br>
+   112|<span>→ 10:25（十點二十五分）</span></div>
+   113|</div>
+   114|
+   115|<div class="lesson">
+   116|<h3>🔄 時間計算</h3>
+   117|<div class="example">2 小時 = <span>120</span> 分鐘</div>
+   118|<div class="example">3 小時 15 分鐘 = <span>195</span> 分鐘</div>
+   119|<div class="example">150 分鐘 = <span>2</span> 小時 <span>30</span> 分鐘</div>
+   120|</div>
+   121|
+   122|<h2>📝 練習題</h2>
+   123|<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+   124|<div id="score">0 / 0 正確</div>
+   125|
+   126|<script>
+   127|const EXERCISES = [
+   128|  // 整點
+   129|  {q:"時針指向 5，分針指向 12，是幾點？", opts:["5:00","5:30","5:15","5:45"], ans:"5:00"},
+   130|  {q:"時針指向 9，分針指向 12，是幾點？", opts:["9:30","9:00","9:15","9:45"], ans:"9:00"},
+   131|  // 半點
+   132|  {q:"時針在 4 和 5 之間，分針指向 6，是幾點？", opts:["4:00","4:30","5:00","4:15"], ans:"4:30"},
+   133|  {q:"時針在 11 和 12 之間，分針指向 6，是幾點？", opts:["12:00","11:15","11:30","11:45"], ans:"11:30"},
+   134|  // 幾時幾分
+   135|  {q:"時針在 2 和 3 之間偏 2，分針指向 3，是幾點？", opts:["2:03","2:15","2:20","2:30"], ans:"2:15"},
+   136|  {q:"時針在 6 和 7 之間偏 7，分針指向 9，是幾點？", opts:["6:45","6:09","6:30","6:50"], ans:"6:45"},
+   137|  {q:"時針在 7 和 8 之間，分針指向 4，是幾點？", opts:["7:04","7:40","7:20","7:30"], ans:"7:20"},
+   138|  // 單位換算
+   139|  {q:"1 小時 = ___ 分鐘", opts:["30","45","60","100"], ans:"60"},
+   140|  {q:"2 小時 30 分鐘 = ___ 分鐘", opts:["150","130","180","120"], ans:"150"},
+   141|  {q:"90 分鐘 = ___ 小時 ___ 分鐘", opts:["1小時30分","1小時15分","2小時","1小時45分"], ans:"1小時30分"},
+   142|  {q:"3 小時 15 分鐘 = ___ 分鐘", opts:["185","175","195","180"], ans:"195"},
+   143|  {q:"120 分鐘 = ___ 小時", opts:["1小時","2小時","3小時","4小時"], ans:"2小時"},
+   144|  // 應用題
+   145|  {q:"小明早上 8:00 上學，11:30 放學。他上了多久的課？",
+   146|    opts:["2小時30分","3小時30分","3小時","4小時"], ans:"3小時30分"},
+   147|  {q:"小美下午 2:15 開始做功課，做了 45 分鐘，幾點完成？",
+   148|    opts:["2:45","3:00","3:15","3:30"], ans:"3:00"},
+   149|  {q:"一節課是 35 分鐘，上了兩節課是多少分鐘？",
+   150|    opts:["60分","65分","70分","75分"], ans:"70分"},
+   151|  {q:"小華從家到學校要走 20 分鐘。他 7:45 出門，幾點到學校？",
+   152|    opts:["8:05","8:00","7:55","8:15"], ans:"8:05"},
+   153|];
+   154|let correct=0;
+   155|function renderExercises(){
+   156|  const container=document.getElementById('exercises');
+   157|  if(!container) return;container.innerHTML='';
+   158|  EXERCISES.forEach((item,i)=>{
+   159|    const div=document.createElement('div');div.className='exercise';
+   160|    div.style.background=i%2===0?'#151b23':'#161b22';
+   161|    div.style.border='1px solid #30363d';
+   162|    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+   163|    div.appendChild(h4);
+   164|    const btnDiv=document.createElement('div');btnDiv.className='btns';
+   165|    item.opts.forEach(opt=>{
+   166|      const btn=document.createElement('button');btn.textContent=opt;
+   167|      btn.onclick=()=>{
+   168|        const s=btnDiv.querySelector('.selected');if(s) return;
+   169|        btn.classList.add('selected');
+   170|        const btns=btnDiv.querySelectorAll('button');
+   171|        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+   172|        const icon=document.createElement('p');
+   173|        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+   174|        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+   175|        div.appendChild(icon);
+   176|        const bar=document.getElementById('score');
+   177|        const t=EXERCISES.length;
+   178|        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+   179|        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+   180|      };
+   181|      btnDiv.appendChild(btn);
+   182|    });
+   183|    div.appendChild(btnDiv);container.appendChild(div);
+   184|  });
+   185|}
+   186|document.addEventListener('DOMContentLoaded',()=>{
+   187|  const sec=document.createElement('div');sec.id='exercises';
+   188|  document.querySelector('body').appendChild(sec);
+   189|  renderExercises();
+   190|});
+   191|</script>
+   192|
+   193|<div class="nav-buttons">
+   194|  <div class="nav-left"><a href="p2-math-unit-2.html" class="nav-btn nav-prev">&larr; <span class="nav-text">数学 U2</span></a></div>
+   195|  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
+   196|  <div class="nav-right"><a href="p2-math-unit-4.html" class="nav-btn nav-next"><span class="nav-text">数学 U4</span> &rarr;</a></div>
+   197|</div>
+   198|</body>
+   199|</html>
+   200|

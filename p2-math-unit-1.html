@@ -1,196 +1,212 @@
-<!DOCTYPE html>
-<html lang="zh-HK">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>100以內的加減法 - P2數學</title>
-<meta name="description" content="P2數學 100以內加減法練習｜香港小學二年級進位加法‧退位減法‧連加連減計算題">
-<meta name="keywords" content="P2數學,香港小學二年級,100以內加減法,進位加法,退位減法,數學練習">
-<meta property="og:title" content="P2數學 - 100以內的加減法">
-<meta property="og:description" content="P2數學 100以內加減法練習｜香港小學二年級進位加法‧退位減法‧連加連減計算題">
-<meta property="og:type" content="website">
-<style>
-/* ── reset ── */
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
-h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
-h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
-/* ── lesson cards ── */
-.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
-.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
-.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
-.lesson ul{padding-left:20px}
-.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
-.lesson .example span{color:#7ee787}
-/* ── exercise section ── */
-#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
-.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
-.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
-.btns{display:flex;flex-wrap:wrap;gap:8px}
-.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
-.btns button:not(:disabled):hover{background:#30363d;color:#fff}
-.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
-.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
-.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
-.btns button:disabled{opacity:0.5;cursor:default}
-.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
-/* ── layout ── */
-.back{padding:8px 24px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
-.back:hover{background:#30363d}
-.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+     1|<!DOCTYPE html>
+     2|<html lang="zh-HK">
+     3|<head>
+     4|<meta charset="UTF-8">
+     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6|<title>100以內的加減法 - P2數學</title>
+     7|<meta name="description" content="P2數學 100以內加減法練習｜香港小學二年級進位加法‧退位減法‧連加連減計算題">
+     8|<meta name="keywords" content="P2數學,香港小學二年級,100以內加減法,進位加法,退位減法,數學練習">
+     9|<meta property="og:title" content="P2數學 - 100以內的加減法">
+    10|<meta property="og:description" content="P2數學 100以內加減法練習｜香港小學二年級進位加法‧退位減法‧連加連減計算題">
+    11|<meta property="og:type" content="website">
+    12|<style>
+    13|/* ── reset ── */
+    14|*{margin:0;padding:0;box-sizing:border-box}
+    15|body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+    16|h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+    17|h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+    18|/* ── lesson cards ── */
+    19|.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+    20|.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+    21|.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+    22|.lesson ul{padding-left:20px}
+    23|.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+    24|.lesson .example span{color:#7ee787}
+    25|/* ── exercise section ── */
+    26|#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+    27|.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+    28|.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+    29|.btns{display:flex;flex-wrap:wrap;gap:8px}
+    30|.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+    31|.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+    32|.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+    33|.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+    34|.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+    35|.btns button:disabled{opacity:0.5;cursor:default}
+    36|.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+    37|/* ── layout ── */
+    38|.back{padding:8px 24px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+    39|.back:hover{background:#30363d}
+    40|.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+    41|
+    42|/* 导航按钮 */
+    43|.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+    44|.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+    45|.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+    46|.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+    47|.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+    48|.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+    49|.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+    50|.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+    51|.nav-home:hover{background:#2563eb;border-color:#2563eb}
+    52|/* 卡片增强 */
+    53|.card{transition:box-shadow .2s,transform .15s}
+    54|.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+    55|/* 移动端优化 */
+    56|@media (max-width:480px){
+    57|  body{padding:12px}
+    58|  .card{padding:14px 16px}
+    59|  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+    60|  .nav-btn{padding:10px 12px;font-size:0.8rem}
+    61|  .nav-text{max-width:60px}
+    62|  .nav-buttons{gap:4px}
+    63|}
+    64|@media (max-width:360px){
+    65|  .nav-text{display:none}
+    66|}
+    67|
+  /* 移动端响应式 */
+  @media (max-width:768px) {
+    body{flex-direction:column;padding:12px}
+    .main-wrapper{width:100%;padding:0}
+    .card{padding:14px 16px}
+    .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+    .nav-buttons{flex-wrap:wrap;gap:4px}
+    .nav-buttons .nav-btn{padding:8px 10px;font-size:0.78rem;flex:1 1 auto;min-width:0}
+    .qa-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:400px){
+    .nav-buttons .nav-btn{padding:6px 8px;font-size:0.7rem;}
+  }
 
-/* 导航按钮 */
-.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
-.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
-.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
-.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
-.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
-.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
-.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
-.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
-.nav-home:hover{background:#2563eb;border-color:#2563eb}
-/* 卡片增强 */
-.card{transition:box-shadow .2s,transform .15s}
-.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-/* 移动端优化 */
-@media (max-width:480px){
-  body{padding:12px}
-  .card{padding:14px 16px}
-  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
-  .nav-btn{padding:10px 12px;font-size:0.8rem}
-  .nav-text{max-width:60px}
-  .nav-buttons{gap:4px}
-}
-@media (max-width:360px){
-  .nav-text{display:none}
-}
 </style>
-
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"CreativeWork","name":"加与减","description":"100以內加減法：進位加法、退位減法（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
-</script>
-</head>
-<body>
-
-<a class="back" href="index.html">← 返回主頁</a>
-<h1>📐 100以內的加減法</h1>
-
-<div class="lesson">
-<h3>📖 學習重點</h3>
-<ul>
-<li>100以內的不進位加法（兩位數 + 兩位數）</li>
-<li>100以內的進位加法（個位相加滿十進一）</li>
-<li>100以內的不退位減法</li>
-<li>100以內的退位減法（個位不夠減，向十位借1）</li>
-<li>連加連減（兩步計算）</li>
-</ul>
-</div>
-
-<div class="lesson">
-<h3>🧮 加法：個位相加</h3>
-<div class="example">例子：23 + 45 = 68<br>
-<span>→ 個位：3 + 5 = 8，十位：2 + 4 = 6</span></div>
-<div class="example">例子：37 + 28 = 65（進位）<br>
-<span>→ 個位：7 + 8 = 15，寫5進1<br>
-→ 十位：3 + 2 + 1（進位）= 6</span></div>
-</div>
-
-<div class="lesson">
-<h3>🧮 減法：個位相減</h3>
-<div class="example">例子：78 - 45 = 33<br>
-<span>→ 個位：8 - 5 = 3，十位：7 - 4 = 3</span></div>
-<div class="example">例子：53 - 27 = 26（退位）<br>
-<span>→ 個位：3不夠減7，向十位借1，變成13 - 7 = 6<br>
-→ 十位：5被借1剩下4，4 - 2 = 2</span></div>
-</div>
-
-<div class="lesson">
-<h3>🧮 連加連減</h3>
-<div class="example">例子：25 + 14 + 30 = 69<br>
-<span>→ 先算 25 + 14 = 39，再算 39 + 30 = 69</span></div>
-<div class="example">例子：80 - 25 - 13 = 42<br>
-<span>→ 先算 80 - 25 = 55，再算 55 - 13 = 42</span></div>
-</div>
-
-<h2>📝 練習題</h2>
-<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
-<div id="score">0 / 0 正確</div>
-
-<script>
-const EXERCISES = [
-  // Q1-4: 不進位加法
-  {q:"23 + 45 = ?", opts:["68","78","65","58"], ans:"68"},
-  {q:"51 + 27 = ?", opts:["78","88","77","79"], ans:"78"},
-  {q:"34 + 52 = ?", opts:["86","85","96","76"], ans:"86"},
-  {q:"43 + 16 = ?", opts:["59","49","69","58"], ans:"59"},
-  // Q5-8: 進位加法
-  {q:"37 + 28 = ?", opts:["55","65","56","75"], ans:"65"},
-  {q:"46 + 38 = ?", opts:["84","74","94","85"], ans:"84"},
-  {q:"29 + 55 = ?", opts:["84","74","94","85"], ans:"84"},
-  {q:"68 + 27 = ?", opts:["95","85","105","96"], ans:"95"},
-  // Q9-12: 不退位減法
-  {q:"78 - 45 = ?", opts:["33","23","43","32"], ans:"33"},
-  {q:"96 - 42 = ?", opts:["54","64","44","55"], ans:"54"},
-  {q:"85 - 31 = ?", opts:["54","44","64","55"], ans:"54"},
-  {q:"59 - 26 = ?", opts:["33","43","23","32"], ans:"33"},
-  // Q13-16: 退位減法
-  {q:"53 - 27 = ?", opts:["26","36","34","24"], ans:"26"},
-  {q:"72 - 48 = ?", opts:["24","34","14","44"], ans:"24"},
-  {q:"61 - 35 = ?", opts:["26","36","34","24"], ans:"26"},
-  {q:"83 - 56 = ?", opts:["27","37","17","47"], ans:"27"},
-  // Q17-20: 連加連減
-  {q:"25 + 14 + 30 = ?", opts:["69","59","79","89"], ans:"69"},
-  {q:"12 + 33 + 44 = ?", opts:["89","79","99","69"], ans:"89"},
-  {q:"80 - 25 - 13 = ?", opts:["42","52","32","62"], ans:"42"},
-  {q:"95 - 34 - 21 = ?", opts:["40","50","30","60"], ans:"40"},
-];
-// ── render ──
-let correct=0;
-function renderExercises(){
-  const container=document.getElementById('exercises');
-  if(!container) return;
-  container.innerHTML='';
-  EXERCISES.forEach((item,i)=>{
-    const div=document.createElement('div');div.className='exercise';
-    div.style.background=i%2===0?'#151b23':'#161b22';
-    div.style.border='1px solid #30363d';
-    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
-    div.appendChild(h4);
-    const btnDiv=document.createElement('div');btnDiv.className='btns';
-    item.opts.forEach(opt=>{
-      const btn=document.createElement('button');
-      btn.textContent=opt;
-      btn.onclick=()=>{
-        const s=btnDiv.querySelector('.selected');
-        if(s) return;
-        btn.classList.add('selected');
-        const btns=btnDiv.querySelectorAll('button');
-        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
-        const icon=document.createElement('p');
-        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
-        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
-        div.appendChild(icon);
-        const bar=document.getElementById('score');
-        const t=EXERCISES.length;
-        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
-        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
-      };
-      btnDiv.appendChild(btn);
-    });
-    div.appendChild(btnDiv);container.appendChild(div);
-  });
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  const sec=document.createElement('div');sec.id='exercises';
-  document.querySelector('body').appendChild(sec);
-  renderExercises();
-});
-</script>
-
-<div class="nav-buttons">
-  <div class="nav-left"><a href="hk-p2-english-kp.html" class="nav-btn nav-prev">&larr; <span class="nav-text">英文知识页</span></a></div>
-  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
-  <div class="nav-right"><a href="p2-math-unit-2.html" class="nav-btn nav-next"><span class="nav-text">数学 U2</span> &rarr;</a></div>
-</div>
-</body>
-</html>
+    68|
+    69|<script type="application/ld+json">
+    70|{"@context":"https://schema.org","@type":"CreativeWork","name":"加与减","description":"100以內加減法：進位加法、退位減法（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
+    71|</script>
+    72|</head>
+    73|<body>
+    74|
+    75|<a class="back" href="index.html">← 返回主頁</a>
+    76|<h1>📐 100以內的加減法</h1>
+    77|
+    78|<div class="lesson">
+    79|<h3>📖 學習重點</h3>
+    80|<ul>
+    81|<li>100以內的不進位加法（兩位數 + 兩位數）</li>
+    82|<li>100以內的進位加法（個位相加滿十進一）</li>
+    83|<li>100以內的不退位減法</li>
+    84|<li>100以內的退位減法（個位不夠減，向十位借1）</li>
+    85|<li>連加連減（兩步計算）</li>
+    86|</ul>
+    87|</div>
+    88|
+    89|<div class="lesson">
+    90|<h3>🧮 加法：個位相加</h3>
+    91|<div class="example">例子：23 + 45 = 68<br>
+    92|<span>→ 個位：3 + 5 = 8，十位：2 + 4 = 6</span></div>
+    93|<div class="example">例子：37 + 28 = 65（進位）<br>
+    94|<span>→ 個位：7 + 8 = 15，寫5進1<br>
+    95|→ 十位：3 + 2 + 1（進位）= 6</span></div>
+    96|</div>
+    97|
+    98|<div class="lesson">
+    99|<h3>🧮 減法：個位相減</h3>
+   100|<div class="example">例子：78 - 45 = 33<br>
+   101|<span>→ 個位：8 - 5 = 3，十位：7 - 4 = 3</span></div>
+   102|<div class="example">例子：53 - 27 = 26（退位）<br>
+   103|<span>→ 個位：3不夠減7，向十位借1，變成13 - 7 = 6<br>
+   104|→ 十位：5被借1剩下4，4 - 2 = 2</span></div>
+   105|</div>
+   106|
+   107|<div class="lesson">
+   108|<h3>🧮 連加連減</h3>
+   109|<div class="example">例子：25 + 14 + 30 = 69<br>
+   110|<span>→ 先算 25 + 14 = 39，再算 39 + 30 = 69</span></div>
+   111|<div class="example">例子：80 - 25 - 13 = 42<br>
+   112|<span>→ 先算 80 - 25 = 55，再算 55 - 13 = 42</span></div>
+   113|</div>
+   114|
+   115|<h2>📝 練習題</h2>
+   116|<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+   117|<div id="score">0 / 0 正確</div>
+   118|
+   119|<script>
+   120|const EXERCISES = [
+   121|  // Q1-4: 不進位加法
+   122|  {q:"23 + 45 = ?", opts:["68","78","65","58"], ans:"68"},
+   123|  {q:"51 + 27 = ?", opts:["78","88","77","79"], ans:"78"},
+   124|  {q:"34 + 52 = ?", opts:["86","85","96","76"], ans:"86"},
+   125|  {q:"43 + 16 = ?", opts:["59","49","69","58"], ans:"59"},
+   126|  // Q5-8: 進位加法
+   127|  {q:"37 + 28 = ?", opts:["55","65","56","75"], ans:"65"},
+   128|  {q:"46 + 38 = ?", opts:["84","74","94","85"], ans:"84"},
+   129|  {q:"29 + 55 = ?", opts:["84","74","94","85"], ans:"84"},
+   130|  {q:"68 + 27 = ?", opts:["95","85","105","96"], ans:"95"},
+   131|  // Q9-12: 不退位減法
+   132|  {q:"78 - 45 = ?", opts:["33","23","43","32"], ans:"33"},
+   133|  {q:"96 - 42 = ?", opts:["54","64","44","55"], ans:"54"},
+   134|  {q:"85 - 31 = ?", opts:["54","44","64","55"], ans:"54"},
+   135|  {q:"59 - 26 = ?", opts:["33","43","23","32"], ans:"33"},
+   136|  // Q13-16: 退位減法
+   137|  {q:"53 - 27 = ?", opts:["26","36","34","24"], ans:"26"},
+   138|  {q:"72 - 48 = ?", opts:["24","34","14","44"], ans:"24"},
+   139|  {q:"61 - 35 = ?", opts:["26","36","34","24"], ans:"26"},
+   140|  {q:"83 - 56 = ?", opts:["27","37","17","47"], ans:"27"},
+   141|  // Q17-20: 連加連減
+   142|  {q:"25 + 14 + 30 = ?", opts:["69","59","79","89"], ans:"69"},
+   143|  {q:"12 + 33 + 44 = ?", opts:["89","79","99","69"], ans:"89"},
+   144|  {q:"80 - 25 - 13 = ?", opts:["42","52","32","62"], ans:"42"},
+   145|  {q:"95 - 34 - 21 = ?", opts:["40","50","30","60"], ans:"40"},
+   146|];
+   147|// ── render ──
+   148|let correct=0;
+   149|function renderExercises(){
+   150|  const container=document.getElementById('exercises');
+   151|  if(!container) return;
+   152|  container.innerHTML='';
+   153|  EXERCISES.forEach((item,i)=>{
+   154|    const div=document.createElement('div');div.className='exercise';
+   155|    div.style.background=i%2===0?'#151b23':'#161b22';
+   156|    div.style.border='1px solid #30363d';
+   157|    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+   158|    div.appendChild(h4);
+   159|    const btnDiv=document.createElement('div');btnDiv.className='btns';
+   160|    item.opts.forEach(opt=>{
+   161|      const btn=document.createElement('button');
+   162|      btn.textContent=opt;
+   163|      btn.onclick=()=>{
+   164|        const s=btnDiv.querySelector('.selected');
+   165|        if(s) return;
+   166|        btn.classList.add('selected');
+   167|        const btns=btnDiv.querySelectorAll('button');
+   168|        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+   169|        const icon=document.createElement('p');
+   170|        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+   171|        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+   172|        div.appendChild(icon);
+   173|        const bar=document.getElementById('score');
+   174|        const t=EXERCISES.length;
+   175|        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+   176|        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+   177|      };
+   178|      btnDiv.appendChild(btn);
+   179|    });
+   180|    div.appendChild(btnDiv);container.appendChild(div);
+   181|  });
+   182|}
+   183|document.addEventListener('DOMContentLoaded',()=>{
+   184|  const sec=document.createElement('div');sec.id='exercises';
+   185|  document.querySelector('body').appendChild(sec);
+   186|  renderExercises();
+   187|});
+   188|</script>
+   189|
+   190|<div class="nav-buttons">
+   191|  <div class="nav-left"><a href="hk-p2-english-kp.html" class="nav-btn nav-prev">&larr; <span class="nav-text">英文知识页</span></a></div>
+   192|  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
+   193|  <div class="nav-right"><a href="p2-math-unit-2.html" class="nav-btn nav-next"><span class="nav-text">数学 U2</span> &rarr;</a></div>
+   194|</div>
+   195|</body>
+   196|</html>
+   197|

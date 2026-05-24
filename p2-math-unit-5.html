@@ -1,205 +1,221 @@
-<!DOCTYPE html>
-<html lang="zh-HK">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>三角柱 - P2數學</title>
-<meta name="description" content="P2數學 三角柱（三棱柱）認識｜香港小學二年級立體圖形‧面棱頂點數量">
-<meta name="keywords" content="P2數學,香港小學二年級,三角柱,三棱柱,立體圖形,幾何">
-<meta property="og:title" content="P2數學 - 三角柱">
-<meta property="og:description" content="P2數學 三角柱（三棱柱）認識｜香港小學二年級立體圖形‧面棱頂點數量">
-<meta property="og:type" content="website">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
-h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
-h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
-.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
-.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
-.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
-.lesson ul{padding-left:20px}
-.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
-.lesson .example span{color:#7ee787}
-#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
-.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
-.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
-.btns{display:flex;flex-wrap:wrap;gap:8px}
-.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
-.btns button:not(:disabled):hover{background:#30363d;color:#fff}
-.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
-.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
-.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
-.btns button:disabled{opacity:0.5;cursor:default}
-.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
-.back{padding:8px 24px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
-.back:hover{background:#30363d}
-.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+     1|<!DOCTYPE html>
+     2|<html lang="zh-HK">
+     3|<head>
+     4|<meta charset="UTF-8">
+     5|<meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6|<title>三角柱 - P2數學</title>
+     7|<meta name="description" content="P2數學 三角柱（三棱柱）認識｜香港小學二年級立體圖形‧面棱頂點數量">
+     8|<meta name="keywords" content="P2數學,香港小學二年級,三角柱,三棱柱,立體圖形,幾何">
+     9|<meta property="og:title" content="P2數學 - 三角柱">
+    10|<meta property="og:description" content="P2數學 三角柱（三棱柱）認識｜香港小學二年級立體圖形‧面棱頂點數量">
+    11|<meta property="og:type" content="website">
+    12|<style>
+    13|*{margin:0;padding:0;box-sizing:border-box}
+    14|body{font-family:'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;line-height:1.6;padding:20px}
+    15|h1{color:#58a6ff;text-align:center;margin-bottom:20px;font-size:1.6em}
+    16|h2{color:#58a6ff;margin:20px 0 10px;font-size:1.2em}
+    17|.lesson{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:16px;margin-bottom:16px}
+    18|.lesson h3{color:#e6c384;margin-bottom:8px;font-size:1em}
+    19|.lesson p,.lesson li{color:#8b949e;font-size:0.9em;line-height:1.7}
+    20|.lesson ul{padding-left:20px}
+    21|.lesson .example{background:#0d1117;border:1px solid #30363d;border-radius:6px;padding:10px;margin:8px 0;font-size:0.95em;color:#e6c384}
+    22|.lesson .example span{color:#7ee787}
+    23|#score{text-align:center;font-size:1.1em;font-weight:bold;padding:10px;margin-bottom:12px;background:#161b22;border:1px solid #30363d;border-radius:6px}
+    24|.exercise{border-radius:8px;margin-bottom:12px;padding:16px}
+    25|.exercise h4{color:#58a6ff;margin-bottom:10px;font-size:1em}
+    26|.btns{display:flex;flex-wrap:wrap;gap:8px}
+    27|.btns button{padding:8px 16px;border-radius:6px;border:1px solid #30363d;cursor:pointer;font-size:0.9em;transition:all .2s}
+    28|.btns button:not(:disabled):hover{background:#30363d;color:#fff}
+    29|.btns button.correct{background:#2ea043;color:#fff;border-color:#2ea043}
+    30|.btns button.show-correct{background:#2ea043;color:#fff;border-color:#2ea043}
+    31|.btns button.wrong{background:#da3633;color:#fff;border-color:#da3633}
+    32|.btns button:disabled{opacity:0.5;cursor:default}
+    33|.exercise p{color:#8b949e;font-size:0.85em;margin-top:8px}
+    34|.back{padding:8px 24px;background:#21262d;color:#c9d1d9;text-decoration:none;border-radius:6px;display:inline-block;margin-bottom:16px;border:1px solid #30363d;font-size:0.9em}
+    35|.back:hover{background:#30363d}
+    36|.note{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;margin-bottom:16px;color:#8b949e;font-size:0.85em}
+    37|
+    38|/* 导航按钮 */
+    39|.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+    40|.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+    41|.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+    42|.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+    43|.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
+    44|.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
+    45|.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
+    46|.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
+    47|.nav-home:hover{background:#2563eb;border-color:#2563eb}
+    48|/* 卡片增强 */
+    49|.card{transition:box-shadow .2s,transform .15s}
+    50|.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+    51|/* 移动端优化 */
+    52|@media (max-width:480px){
+    53|  body{padding:12px}
+    54|  .card{padding:14px 16px}
+    55|  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+    56|  .nav-btn{padding:10px 12px;font-size:0.8rem}
+    57|  .nav-text{max-width:60px}
+    58|  .nav-buttons{gap:4px}
+    59|}
+    60|@media (max-width:360px){
+    61|  .nav-text{display:none}
+    62|}
+    63|
+  /* 移动端响应式 */
+  @media (max-width:768px) {
+    body{flex-direction:column;padding:12px}
+    .main-wrapper{width:100%;padding:0}
+    .card{padding:14px 16px}
+    .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
+    .nav-buttons{flex-wrap:wrap;gap:4px}
+    .nav-buttons .nav-btn{padding:8px 10px;font-size:0.78rem;flex:1 1 auto;min-width:0}
+    .qa-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:400px){
+    .nav-buttons .nav-btn{padding:6px 8px;font-size:0.7rem;}
+  }
 
-/* 导航按钮 */
-.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
-.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
-.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
-.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
-.nav-disabled{color:#94a3b8;cursor:not-allowed;opacity:0.5;border-color:#e2e8f0;background:#f8fafc}
-.nav-disabled:hover{background:#f8fafc;color:#94a3b8;border-color:#e2e8f0;box-shadow:none}
-.nav-text{overflow:hidden;text-overflow:ellipsis;max-width:calc(100px + 4vw)}
-.nav-home{background:#1e293b;color:#fff;border-color:#1e293b;padding:8px 16px}
-.nav-home:hover{background:#2563eb;border-color:#2563eb}
-/* 卡片增强 */
-.card{transition:box-shadow .2s,transform .15s}
-.card:hover{box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-/* 移动端优化 */
-@media (max-width:480px){
-  body{padding:12px}
-  .card{padding:14px 16px}
-  .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}
-  .nav-btn{padding:10px 12px;font-size:0.8rem}
-  .nav-text{max-width:60px}
-  .nav-buttons{gap:4px}
-}
-@media (max-width:360px){
-  .nav-text{display:none}
-}
 </style>
-
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"CreativeWork","name":"长度","description":"厘米和米：估測、測量、比較和計算（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
-</script>
-</head>
-<body>
-
-<a class="back" href="index.html">← 返回主頁</a>
-<h1>📐 三角柱</h1>
-
-<div class="lesson">
-<h3>📖 學習重點</h3>
-<ul>
-<li>認識三角柱（三棱柱）</li>
-<li>三角柱的特徵：面、邊、頂點</li>
-<li>生活中的三角柱</li>
-<li>三角柱的展開圖</li>
-<li>三角柱與其他立體圖形的區別</li>
-</ul>
-</div>
-
-<div class="lesson">
-<h3>📐 什麼是三角柱？</h3>
-<p>三角柱是由 <b>2 個三角形</b>和 <b>3 個長方形</b>組成的立體圖形。</p>
-<div class="example">
-<b>特徵：</b><br>
-<span>頂點（尖角）：6 個</span><br>
-<span>邊（棱）：9 條</span><br>
-<span>面（平面）：5 個（2 個三角形 + 3 個長方形）</span>
-</div>
-</div>
-
-<div class="lesson">
-<h3>📐 三角柱的組成</h3>
-<ul>
-<li><b>底面（上下）：</b>2 個大小相同、互相平行的三角形</li>
-<li><b>側面（周圍）：</b>3 個長方形</li>
-<li><b>棱（邊）：</b>2 組三角形的邊 + 3 條側棱</li>
-</ul>
-<div class="example">💡 三角柱有 <span>9 條棱</span>：上下兩個三角形各有 3 條邊，再加上 3 條側面的棱</div>
-<div class="example">💡 三角柱有 <span>6 個頂點</span>：上下兩個三角形各 3 個角</div>
-<div class="example">💡 三角柱有 <span>5 個面</span>：2 個三角形面 + 3 個長方形面</div>
-</div>
-
-<div class="lesson">
-<h3>🏠 生活中的三角柱</h3>
-<div class="example">🍫 <b>巧克力條</b> — 很多巧克力棒的形狀就是三角柱體</div>
-<div class="example">🏕️ <b>露營帳篷</b> — 帳篷的形狀像一個三角柱</div>
-<div class="example">🏗️ <b>橋樑結構</b> — 橋樑的支撐架有時做成三角柱形</div>
-<div class="example">📏 <b>三角尺</b> — 雖然是平面的三角形，但三角尺的厚度讓它接近一個扁平的三角柱</div>
-</div>
-
-<div class="lesson">
-<h3>📐 展開圖</h3>
-<p>三角柱的展開圖由 5 個面組成：</p>
-<div class="example">展開後可以看到：<br>
-<span>→ 中間一排 3 個長方形（側面）</span><br>
-<span>→ 上下各 1 個三角形（底面）</span><br>
-💡 把展開圖沿線摺起來，就能變回一個三角柱！</div>
-</div>
-
-<div class="lesson">
-<h3>🔍 三角柱 vs 長方體</h3>
-<div class="example"><b>三角柱</b>：底面是三角形，有 5 個面、9 條棱、6 個頂點</div>
-<div class="example"><b>長方體</b>：底面是長方形，有 6 個面、12 條棱、8 個頂點</div>
-</div>
-
-<h2>📝 練習題</h2>
-<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
-<div id="score">0 / 0 正確</div>
-
-<script>
-const EXERCISES = [
-  // 基本特徵
-  {q:"三角柱有幾個面？", opts:["4個","5個","6個","3個"], ans:"5個"},
-  {q:"三角柱有幾條棱（邊）？", opts:["6條","12條","9條","8條"], ans:"9條"},
-  {q:"三角柱有幾個頂點？", opts:["4個","6個","8個","10個"], ans:"6個"},
-  {q:"三角柱的底面是什麼形狀？", opts:["正方形","長方形","三角形","圓形"], ans:"三角形"},
-  {q:"三角柱的側面是什麼形狀？", opts:["三角形","正方形","長方形","圓形"], ans:"長方形"},
-  // 組成判斷
-  {q:"三角柱有幾個三角形面？", opts:["1個","2個","3個","4個"], ans:"2個"},
-  {q:"三角柱有幾個長方形面？", opts:["1個","2個","3個","0個"], ans:"3個"},
-  {q:"三角柱一共有多少個面？", opts:["3個","4個","5個","6個"], ans:"5個"},
-  // 與其他圖形比較
-  {q:"長方體有幾個面？", opts:["4個","5個","6個","8個"], ans:"6個"},
-  {q:"長方體有幾條棱？", opts:["8條","10條","12條","14條"], ans:"12條"},
-  {q:"長方體有幾個頂點？", opts:["4個","6個","8個","10個"], ans:"8個"},
-  {q:"三角柱比長方體少幾個面？", opts:["0個","1個","2個","3個"], ans:"1個"},
-  // 應用題
-  {q:"下列哪個不是三角柱？", opts:["巧克力條","帳篷","骰子","橋樑支撐架"], ans:"骰子"},
-  {q:"一個三角柱的所有頂點數加棱數等於多少？",
-    opts:["14","15","16","17"], ans:"15"},
-  {q:"一個三角柱的所有面數加頂點數等於多少？",
-    opts:["10","11","12","13"], ans:"11"},
-  {q:"三角柱的兩個底面是什麼關係？", opts:["一樣大","不一樣大","一個大一個小","沒有關係"], ans:"一樣大"},
-];
-let correct=0;
-function renderExercises(){
-  const container=document.getElementById('exercises');
-  if(!container) return;container.innerHTML='';
-  EXERCISES.forEach((item,i)=>{
-    const div=document.createElement('div');div.className='exercise';
-    div.style.background=i%2===0?'#151b23':'#161b22';
-    div.style.border='1px solid #30363d';
-    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
-    div.appendChild(h4);
-    const btnDiv=document.createElement('div');btnDiv.className='btns';
-    item.opts.forEach(opt=>{
-      const btn=document.createElement('button');btn.textContent=opt;
-      btn.onclick=()=>{
-        const s=btnDiv.querySelector('.selected');if(s) return;
-        btn.classList.add('selected');
-        const btns=btnDiv.querySelectorAll('button');
-        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
-        const icon=document.createElement('p');
-        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
-        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
-        div.appendChild(icon);
-        const bar=document.getElementById('score');
-        const t=EXERCISES.length;
-        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
-        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
-      };
-      btnDiv.appendChild(btn);
-    });
-    div.appendChild(btnDiv);container.appendChild(div);
-  });
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  const sec=document.createElement('div');sec.id='exercises';
-  document.querySelector('body').appendChild(sec);
-  renderExercises();
-});
-</script>
-
-<div class="nav-buttons">
-  <div class="nav-left"><a href="p2-math-unit-4.html" class="nav-btn nav-prev">&larr; <span class="nav-text">数学 U4</span></a></div>
-  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
-  <div class="nav-right"><a href="p2-math-unit-6.html" class="nav-btn nav-next"><span class="nav-text">数学 U6</span> &rarr;</a></div>
-</div>
-</body>
-</html>
+    64|
+    65|<script type="application/ld+json">
+    66|{"@context":"https://schema.org","@type":"CreativeWork","name":"长度","description":"厘米和米：估測、測量、比較和計算（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
+    67|</script>
+    68|</head>
+    69|<body>
+    70|
+    71|<a class="back" href="index.html">← 返回主頁</a>
+    72|<h1>📐 三角柱</h1>
+    73|
+    74|<div class="lesson">
+    75|<h3>📖 學習重點</h3>
+    76|<ul>
+    77|<li>認識三角柱（三棱柱）</li>
+    78|<li>三角柱的特徵：面、邊、頂點</li>
+    79|<li>生活中的三角柱</li>
+    80|<li>三角柱的展開圖</li>
+    81|<li>三角柱與其他立體圖形的區別</li>
+    82|</ul>
+    83|</div>
+    84|
+    85|<div class="lesson">
+    86|<h3>📐 什麼是三角柱？</h3>
+    87|<p>三角柱是由 <b>2 個三角形</b>和 <b>3 個長方形</b>組成的立體圖形。</p>
+    88|<div class="example">
+    89|<b>特徵：</b><br>
+    90|<span>頂點（尖角）：6 個</span><br>
+    91|<span>邊（棱）：9 條</span><br>
+    92|<span>面（平面）：5 個（2 個三角形 + 3 個長方形）</span>
+    93|</div>
+    94|</div>
+    95|
+    96|<div class="lesson">
+    97|<h3>📐 三角柱的組成</h3>
+    98|<ul>
+    99|<li><b>底面（上下）：</b>2 個大小相同、互相平行的三角形</li>
+   100|<li><b>側面（周圍）：</b>3 個長方形</li>
+   101|<li><b>棱（邊）：</b>2 組三角形的邊 + 3 條側棱</li>
+   102|</ul>
+   103|<div class="example">💡 三角柱有 <span>9 條棱</span>：上下兩個三角形各有 3 條邊，再加上 3 條側面的棱</div>
+   104|<div class="example">💡 三角柱有 <span>6 個頂點</span>：上下兩個三角形各 3 個角</div>
+   105|<div class="example">💡 三角柱有 <span>5 個面</span>：2 個三角形面 + 3 個長方形面</div>
+   106|</div>
+   107|
+   108|<div class="lesson">
+   109|<h3>🏠 生活中的三角柱</h3>
+   110|<div class="example">🍫 <b>巧克力條</b> — 很多巧克力棒的形狀就是三角柱體</div>
+   111|<div class="example">🏕️ <b>露營帳篷</b> — 帳篷的形狀像一個三角柱</div>
+   112|<div class="example">🏗️ <b>橋樑結構</b> — 橋樑的支撐架有時做成三角柱形</div>
+   113|<div class="example">📏 <b>三角尺</b> — 雖然是平面的三角形，但三角尺的厚度讓它接近一個扁平的三角柱</div>
+   114|</div>
+   115|
+   116|<div class="lesson">
+   117|<h3>📐 展開圖</h3>
+   118|<p>三角柱的展開圖由 5 個面組成：</p>
+   119|<div class="example">展開後可以看到：<br>
+   120|<span>→ 中間一排 3 個長方形（側面）</span><br>
+   121|<span>→ 上下各 1 個三角形（底面）</span><br>
+   122|💡 把展開圖沿線摺起來，就能變回一個三角柱！</div>
+   123|</div>
+   124|
+   125|<div class="lesson">
+   126|<h3>🔍 三角柱 vs 長方體</h3>
+   127|<div class="example"><b>三角柱</b>：底面是三角形，有 5 個面、9 條棱、6 個頂點</div>
+   128|<div class="example"><b>長方體</b>：底面是長方形，有 6 個面、12 條棱、8 個頂點</div>
+   129|</div>
+   130|
+   131|<h2>📝 練習題</h2>
+   132|<p class="note">💡 點擊你認為正確的答案。做完後會顯示得分。</p>
+   133|<div id="score">0 / 0 正確</div>
+   134|
+   135|<script>
+   136|const EXERCISES = [
+   137|  // 基本特徵
+   138|  {q:"三角柱有幾個面？", opts:["4個","5個","6個","3個"], ans:"5個"},
+   139|  {q:"三角柱有幾條棱（邊）？", opts:["6條","12條","9條","8條"], ans:"9條"},
+   140|  {q:"三角柱有幾個頂點？", opts:["4個","6個","8個","10個"], ans:"6個"},
+   141|  {q:"三角柱的底面是什麼形狀？", opts:["正方形","長方形","三角形","圓形"], ans:"三角形"},
+   142|  {q:"三角柱的側面是什麼形狀？", opts:["三角形","正方形","長方形","圓形"], ans:"長方形"},
+   143|  // 組成判斷
+   144|  {q:"三角柱有幾個三角形面？", opts:["1個","2個","3個","4個"], ans:"2個"},
+   145|  {q:"三角柱有幾個長方形面？", opts:["1個","2個","3個","0個"], ans:"3個"},
+   146|  {q:"三角柱一共有多少個面？", opts:["3個","4個","5個","6個"], ans:"5個"},
+   147|  // 與其他圖形比較
+   148|  {q:"長方體有幾個面？", opts:["4個","5個","6個","8個"], ans:"6個"},
+   149|  {q:"長方體有幾條棱？", opts:["8條","10條","12條","14條"], ans:"12條"},
+   150|  {q:"長方體有幾個頂點？", opts:["4個","6個","8個","10個"], ans:"8個"},
+   151|  {q:"三角柱比長方體少幾個面？", opts:["0個","1個","2個","3個"], ans:"1個"},
+   152|  // 應用題
+   153|  {q:"下列哪個不是三角柱？", opts:["巧克力條","帳篷","骰子","橋樑支撐架"], ans:"骰子"},
+   154|  {q:"一個三角柱的所有頂點數加棱數等於多少？",
+   155|    opts:["14","15","16","17"], ans:"15"},
+   156|  {q:"一個三角柱的所有面數加頂點數等於多少？",
+   157|    opts:["10","11","12","13"], ans:"11"},
+   158|  {q:"三角柱的兩個底面是什麼關係？", opts:["一樣大","不一樣大","一個大一個小","沒有關係"], ans:"一樣大"},
+   159|];
+   160|let correct=0;
+   161|function renderExercises(){
+   162|  const container=document.getElementById('exercises');
+   163|  if(!container) return;container.innerHTML='';
+   164|  EXERCISES.forEach((item,i)=>{
+   165|    const div=document.createElement('div');div.className='exercise';
+   166|    div.style.background=i%2===0?'#151b23':'#161b22';
+   167|    div.style.border='1px solid #30363d';
+   168|    const h4=document.createElement('h4');h4.textContent=`${i+1}. ${item.q}`;
+   169|    div.appendChild(h4);
+   170|    const btnDiv=document.createElement('div');btnDiv.className='btns';
+   171|    item.opts.forEach(opt=>{
+   172|      const btn=document.createElement('button');btn.textContent=opt;
+   173|      btn.onclick=()=>{
+   174|        const s=btnDiv.querySelector('.selected');if(s) return;
+   175|        btn.classList.add('selected');
+   176|        const btns=btnDiv.querySelectorAll('button');
+   177|        btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===btn?'correct':'show-correct');else if(b===btn)b.classList.add('wrong');});
+   178|        const icon=document.createElement('p');
+   179|        if(btn.textContent.trim()===item.ans){icon.textContent='✅ 答對了！';correct++;}
+   180|        else icon.textContent='❌ 答錯了，正確答案是 '+item.ans;
+   181|        div.appendChild(icon);
+   182|        const bar=document.getElementById('score');
+   183|        const t=EXERCISES.length;
+   184|        bar.textContent=correct+' / '+t+' 正確（'+Math.round(correct/t*100)+'%）';
+   185|        bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
+   186|      };
+   187|      btnDiv.appendChild(btn);
+   188|    });
+   189|    div.appendChild(btnDiv);container.appendChild(div);
+   190|  });
+   191|}
+   192|document.addEventListener('DOMContentLoaded',()=>{
+   193|  const sec=document.createElement('div');sec.id='exercises';
+   194|  document.querySelector('body').appendChild(sec);
+   195|  renderExercises();
+   196|});
+   197|</script>
+   198|
+   199|<div class="nav-buttons">
+   200|  <div class="nav-left"><a href="p2-math-unit-4.html" class="nav-btn nav-prev">&larr; <span class="nav-text">数学 U4</span></a></div>
+   201|  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
+   202|  <div class="nav-right"><a href="p2-math-unit-6.html" class="nav-btn nav-next"><span class="nav-text">数学 U6</span> &rarr;</a></div>
+   203|</div>
+   204|</body>
+   205|</html>
+   206|
