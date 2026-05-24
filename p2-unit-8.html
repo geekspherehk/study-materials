@@ -69,6 +69,38 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 @media (max-width:360px){
   .nav-text{display:none}
 }
+
+  /* 移动端响应式布局 */
+  body{flex-direction:column;padding:0}
+  .top-nav-bar{display:none} /* 桌面默认隐藏 */
+  .container{max-width:100%;padding:0 16px}
+  
+  @media(max-width:768px){
+    .top-nav-bar{display:flex;position:fixed;top:0;left:0;right:0;z-index:1000;height:48px;background:#fff;border-bottom:1px solid #e2e8f0;align-items:center;padding:0 12px;gap:10px}
+    .top-nav-bar .menu-btn{font-size:1.4rem;background:none;border:none;cursor:pointer;color:#1e293b;padding:4px 6px}
+    .top-nav-bar .nav-title{font-size:1rem;font-weight:700;color:#2563eb;flex:1;text-align:center}
+    .top-nav-bar .spacer{width:32px}
+    body{padding-top:48px}
+    .container{padding:0 12px}
+    .card{padding:14px 16px;border-radius:10px}
+    .nav-buttons{padding:12px 0;gap:8px}
+    .nav-btn{padding:8px 12px;font-size:0.8rem}
+    .nav-text{display:none}
+    .sidebar{display:none}
+  }
+  
+  @media(min-width:769px){
+    body{display:flex;flex-direction:row;padding:24px}
+    .sidebar{display:flex;width:220px;min-width:220px}
+    .sidebar h1{display:block}
+    .container{flex:1;max-width:760px;margin:0 auto;padding:0 24px}
+    .main-wrapper{display:flex;flex:1;max-width:960px;margin:0 auto;width:100%}
+  }
+  /* 导航按钮桌面端 */
+  @media(min-width:769px){
+    .nav-text{display:inline}
+  }
+
 </style>
 
 <script type="application/ld+json">
@@ -76,6 +108,13 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 </script>
 </head>
 <body>
+  <nav class="top-nav-bar">
+    <button class="menu-btn" onclick="document.getElementById('sidebar').classList.toggle('mobile-show');document.getElementById('mobileOverlay').classList.toggle('show')">☰</button>
+    <span class="nav-title">🐛 小书虫乐园</span>
+    <span class="spacer"></span>
+  </nav>
+  <div class="main-wrapper">
+
 <div class="container">
 <h1>⏰ Unit 8 - Simple present tense</h1>
 <p class="subtitle">P2 English · 一般现在时（香港小学二年级）</p>
@@ -109,7 +148,8 @@ function renderExercises(){
     let html='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';
     const shuffled=[...item.opts].sort(()=>Math.random()-0.5);
     shuffled.forEach(opt=>{html+='<button class="opt-btn" onclick="selectOpt('+i+',this,\\\''+opt+'\\\')">'+opt+'</button>';});
-    html+='<span class="result-icon" id="ri-'+i+'"></span></div>';div.innerHTML=html;area.appendChild(div);
+    html+='<span class="result-icon" id="ri-'+i+'"></span>  </div>
+</div>';div.innerHTML=html;area.appendChild(div);
   });
 }
 function selectOpt(idx,btn,val){const c=document.getElementById('ex-'+idx);c.querySelectorAll('.opt-btn').forEach(b=>{b.classList.remove('selected');b.dataset.selected='';});btn.classList.add('selected');btn.dataset.selected=val;}

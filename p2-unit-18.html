@@ -58,11 +58,50 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 @media (max-width:360px){
   .nav-text{display:none}
 }
+
+  /* 移动端响应式布局 */
+  body{flex-direction:column;padding:0}
+  .top-nav-bar{display:none} /* 桌面默认隐藏 */
+  .container{max-width:100%;padding:0 16px}
+  
+  @media(max-width:768px){
+    .top-nav-bar{display:flex;position:fixed;top:0;left:0;right:0;z-index:1000;height:48px;background:#fff;border-bottom:1px solid #e2e8f0;align-items:center;padding:0 12px;gap:10px}
+    .top-nav-bar .menu-btn{font-size:1.4rem;background:none;border:none;cursor:pointer;color:#1e293b;padding:4px 6px}
+    .top-nav-bar .nav-title{font-size:1rem;font-weight:700;color:#2563eb;flex:1;text-align:center}
+    .top-nav-bar .spacer{width:32px}
+    body{padding-top:48px}
+    .container{padding:0 12px}
+    .card{padding:14px 16px;border-radius:10px}
+    .nav-buttons{padding:12px 0;gap:8px}
+    .nav-btn{padding:8px 12px;font-size:0.8rem}
+    .nav-text{display:none}
+    .sidebar{display:none}
+  }
+  
+  @media(min-width:769px){
+    body{display:flex;flex-direction:row;padding:24px}
+    .sidebar{display:flex;width:220px;min-width:220px}
+    .sidebar h1{display:block}
+    .container{flex:1;max-width:760px;margin:0 auto;padding:0 24px}
+    .main-wrapper{display:flex;flex:1;max-width:960px;margin:0 auto;width:100%}
+  }
+  /* 导航按钮桌面端 */
+  @media(min-width:769px){
+    .nav-text{display:inline}
+  }
+
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CreativeWork","name":"Imperatives","description":"祈使句：肯定否定形式及禮貌用語（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
 </script>
-</head><body><div class="container">
+</head><body>
+  <nav class="top-nav-bar">
+    <button class="menu-btn" onclick="document.getElementById('sidebar').classList.toggle('mobile-show');document.getElementById('mobileOverlay').classList.toggle('show')">☰</button>
+    <span class="nav-title">🐛 小书虫乐园</span>
+    <span class="spacer"></span>
+  </nav>
+  <div class="main-wrapper">
+<div class="container">
 <h1>⚠️ Unit 18 - Imperatives</h1><p class="subtitle">P2 English · 祈使句（香港小学二年级）</p>
 <div class="card"><span class="tag" style="background:#fee2e2;color:#991b1b">Sentences 句型</span><div class="card-title">Giving Commands & Requests</div>
 <div class="video-link"><a href="https://www.youtube.com/results?search_query=imperatives+for+kids" target="_blank" rel="noopener">📺 点击搜索 YouTube 教学视频 →</a></div>
@@ -76,7 +115,8 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
   <div class="nav-right"><a href="p2-unit-19.html" class="nav-btn nav-next"><span class="nav-text">英文 U19</span> &rarr;</a></div>
 </div></div>
 <script>const EX=[{'q': '___ the door, please.', 'opts': ['Opening', 'Open', 'Opens'], 'ans': 'Open'}, {'q': '___ run in the hallway!', 'opts': ['No', 'Not', "Don't"], 'ans': "Don't"}, {'q': '___ down and listen.', 'opts': ['Sit', 'Sitting', 'Sits'], 'ans': 'Sit'}, {'q': '___ be quiet, please.', 'opts': ['Do', 'Please', 'Does'], 'ans': 'Please'}, {'q': '___ forget your homework!', 'opts': ['No', "Don't", 'Not'], 'ans': "Don't"}];
-function renderExercises(){const a=document.getElementById('ex-area');EX.forEach((item,i)=>{const d=document.createElement('div');d.className='ex-item';d.id='ex-'+i;let h='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';const sh=[...item.opts].sort(()=>Math.random()-0.5);sh.forEach(o=>{h+='<button class="opt-btn" onclick="s('+i+',this,\\\''+o+'\\\')">'+o+'</button>';});h+='<span class="result-icon" id="ri-'+i+'"></span></div>';d.innerHTML=h;a.appendChild(d);});}
+function renderExercises(){const a=document.getElementById('ex-area');EX.forEach((item,i)=>{const d=document.createElement('div');d.className='ex-item';d.id='ex-'+i;let h='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';const sh=[...item.opts].sort(()=>Math.random()-0.5);sh.forEach(o=>{h+='<button class="opt-btn" onclick="s('+i+',this,\\\''+o+'\\\')">'+o+'</button>';});h+='<span class="result-icon" id="ri-'+i+'"></span>  </div>
+</div>';d.innerHTML=h;a.appendChild(d);});}
 function selectOpt(i,b,v){const c=document.getElementById('ex-'+i);c.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('selected');x.dataset.selected='';});b.classList.add('selected');b.dataset.selected=v;}
 function checkAnswers(){let cr=0;EX.forEach((item,i)=>{const c=document.getElementById('ex-'+i);const bs=c.querySelectorAll('.opt-btn');const ss=c.querySelector('.opt-btn.selected');const ic=document.getElementById('ri-'+i);bs.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===ss?'correct':'show-correct');else if(b===ss)b.classList.add('wrong');});if(ss&&ss.textContent.trim()===item.ans){ic.textContent='✅';cr++;}else{ic.textContent='❌';}});const t=EX.length;const bar=document.getElementById('score');bar.textContent=cr+' / '+t+' 正确（'+Math.round(cr/t*100)+'%）';bar.style.color=cr===t?'#27ae60':cr/t>=0.8?'#e67e22':'#e74c3c';
   // 保存学习进度
