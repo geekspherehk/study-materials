@@ -144,33 +144,10 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
   <div class="nav-right"><a href="p2-unit-11.html" class="nav-btn nav-next"><span class="nav-text">英文 U11</span> &rarr;</a></div>
 </div>
 </div>
-<script>
-const EXERCISES = [{'q': '早上见到老师应该说：', 'opts': ['Goodbye', 'Good morning', "I'm sorry"], 'ans': 'Good morning'}, {'q': '别人说 Thank you，应该回答：', 'opts': ['Thank you too', "You're welcome", "I'm sorry"], 'ans': "You're welcome"}, {'q': '不小心碰到别人应该说：', 'opts': ["I'm sorry", 'Thank you', 'Excuse me'], 'ans': "I'm sorry"}, {'q': '向别人借东西时先说：', 'opts': ['Goodbye', 'Excuse me', 'Thank you'], 'ans': 'Excuse me'}, {'q': '放学和朋友分别时说：', 'opts': ['Good morning', 'Hello', 'Goodbye'], 'ans': 'Goodbye'}];
-function renderExercises(){
-  const area=document.getElementById('ex-area');
-  EXERCISES.forEach((item,i)=>{
-    const div=document.createElement('div');div.className='ex-item';div.id='ex-'+i;
-    let html='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';
-    const shuffled=[...item.opts].sort(()=>Math.random()-0.5);
-    shuffled.forEach(opt=>{html+='<button class="opt-btn" onclick="selectOpt('+i+',this,\\\''+opt+'\\\')">'+opt+'</button>';});
-    html+='<span class="result-icon" id="ri-'+i+'"></span>  </div>
-</div>';div.innerHTML=html;area.appendChild(div);
-  });
-}
-function selectOpt(idx,btn,val){const c=document.getElementById('ex-'+idx);c.querySelectorAll('.opt-btn').forEach(b=>{b.classList.remove('selected');b.dataset.selected='';});btn.classList.add('selected');btn.dataset.selected=val;}
-function checkAnswers(){
-  let correct=0;
-  EXERCISES.forEach((item,i)=>{
-    const c=document.getElementById('ex-'+i);const btns=c.querySelectorAll('.opt-btn');
-    const s=c.querySelector('.opt-btn.selected');const icon=document.getElementById('ri-'+i);
-    btns.forEach(b=>{b.disabled=true;if(b.textContent.trim()===item.ans)b.classList.add(b===s?'correct':'show-correct');else if(b===s)b.classList.add('wrong');});
-    if(s&&s.textContent.trim()===item.ans){icon.textContent='✅';correct++;}else{icon.textContent='❌';}
-  });
-  const t=EXERCISES.length;const bar=document.getElementById('score');
-  bar.textContent=correct+' / '+t+' 正确（'+Math.round(correct/t*100)+'%）';
-  bar.style.color=correct===t?'#27ae60':correct/t>=0.8?'#e67e22':'#e74c3c';
-}
-renderExercises();
-</script>
+<script>const EXERCISES=[{'q': '早上见到老师应该说：', 'opts': ['Goodbye', 'Good morning', "I'm sorry"], 'ans': 'Good morning'}, {'q': '别人说 Thank you，应该回答：', 'opts': ['Thank you too', "You're welcome", "I'm sorry"], 'ans': "You're welcome"}, {'q': '不小心碰到别人应该说：', 'opts': ["I'm sorry", 'Thank you', 'Excuse me'], 'ans': "I'm sorry"}, {'q': '向别人借东西时先说：', 'opts': ['Goodbye', 'Excuse me', 'Thank you'], 'ans': 'Excuse me'}, {'q': '放学和朋友分别时说：', 'opts': ['Good morning', 'Hello', 'Goodbye'], 'ans': 'Goodbye'}];
+function renderExercises(){const a=document.getElementById('ex-area');EXERCISES.forEach((item,i)=>{const d=document.createElement('div');d.className='ex-item';d.id='ex-'+i;let h='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';const sh=[...item.opts].sort(()=>Math.random()-0.5);sh.forEach(o=>{h+='<button class="opt-btn" data-i="'+i+'" data-v="'+o+'" onclick="selectOpt(this)">'+o+'</button>';});h+='<span class="result-icon" id="ri-'+i+'"></span>  </div></div>';d.innerHTML=h;a.appendChild(d);});}
+function selectOpt(b){const i=b.dataset.i;const v=b.dataset.v;const c=document.getElementById('ex-'+i);c.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('selected');x.dataset.selected='';});b.classList.add('selected');b.dataset.selected=v;}
+function checkAnswers(){let cr=0;EXERCISES.forEach((item,i)=>{const c=document.getElementById('ex-'+i);const bs=c.querySelectorAll('.opt-btn');const ss=c.querySelector('.opt-btn.selected');const ic=document.getElementById('ri-'+i);bs.forEach(b=>{b.disabled=true;if(b.dataset.v===item.ans)b.classList.add(b===ss?'correct':'show-correct');else if(b===ss)b.classList.add('wrong');});if(ss&&ss.dataset.v===item.ans){ic.textContent='✅';cr++;}else{ic.textContent='❌';}});const t=EXERCISES.length;const bar=document.getElementById('score');bar.textContent=cr+' / '+t+' 正确（'+Math.round(cr/t*100)+'%）';bar.style.color=cr===t?'#27ae60':cr/t>=0.8?'#e67e22':'#e74c3c';}
+renderExercises();</script>
 </body>
 </html>
