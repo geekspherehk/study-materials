@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2 口算题卡 — 小书虫乐园</title>
+<meta name="description" content="P2口算练习｜加法、减法、乘法、除法｜可自定义数字范围｜20题即时批改">
+<meta name="keywords" content="P2数学,口算,心算,加减法,乘法表,数学练习,小书虫乐园">
+<meta property="og:title" content="P2 口算题卡">
+<meta property="og:description" content="P2口算练习｜加法、减法、乘法、除法｜可自定义数字范围｜20题即时批改">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="style.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:800px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+/* ── 参数区 ── */
+.settings{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.settings label{font-size:0.88rem;font-weight:600;color:#1e293b;display:flex;align-items:center;gap:6px}
+.settings select,.settings input[type="number"]{padding:8px 12px;border:1.5px solid #cbd5e1;border-radius:8px;font-size:0.85rem;outline:none;background:#fff;transition:border-color .15s}
+.settings select:focus,.settings input[type="number"]:focus{border-color:#2563eb}
+.settings input[type="number"]{width:72px}
+.ops-group{display:flex;flex-wrap:wrap;gap:6px}
+.ops-group label{display:flex;align-items:center;gap:4px;padding:5px 12px;border:1.5px solid #cbd5e1;border-radius:8px;cursor:pointer;font-size:0.82rem;font-weight:500;transition:all .15s;background:#fff;user-select:none}
+.ops-group label:hover{border-color:#2563eb;color:#2563eb}
+.ops-group input[type="checkbox"]{display:none}
+.ops-group label:has(input:checked){background:#2563eb;color:#fff;border-color:#2563eb}
+/* ── 题目网格 ── */
+.qa-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(max-width:480px){.qa-grid{grid-template-columns:1fr}}
+.qa-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:10px;background:#fafbfc;font-size:1.1rem;font-weight:600;transition:all .15s}
+.qa-item.correct{background:#e6f7ed;border-color:#27ae60}
+.qa-item.wrong{background:#fdedec;border-color:#e74c3c}
+.qa-item span{white-space:nowrap}
+.qa-item input[type="number"]{width:64px;padding:6px 10px;border:1.5px solid #cbd5e1;border-radius:6px;font-size:1rem;outline:none;text-align:center;-moz-appearance:textfield}
+.qa-item input[type="number"]::-webkit-outer-spin-button,
+.qa-item input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.qa-item input[type="number"]:focus{border-color:#2563eb}
+.qa-item.correct input{border-color:#27ae60;background:#fff}
+.qa-item.wrong input{border-color:#e74c3c;background:#fff}
+.qa-item input[disabled]{background:#f1f5f9;opacity:0.8}
+/* ── 按钮和结果 ── */
+.btn-group{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:0.9rem;font-weight:600;transition:background .15s}
+.btn:hover{background:#34495e}
+.btn-green{background:#27ae60}.btn-green:hover{background:#1e8449}
+.btn-check{background:#2563eb}.btn-check:hover{background:#1d4ed8}
+.btn-check:disabled{opacity:0.5;cursor:not-allowed}
+.result-bar{text-align:center;font-size:1.1rem;font-weight:700;margin-top:8px;min-height:2em}
+.result-bar.success{color:#27ae60}.result-bar.partial{color:#e67e22}.result-bar.poor{color:#e74c3c}
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🧮 P2 口算题卡</h1>
+  <p class="subtitle">选择运算和数字范围，生成20道口算题 ✏️</p>
+
+  <div class="card">
+    <div class="card-title">⚙️ 参数设置</div>
+    <div class="settings">
+      <label>数字范围 <input type="number" id="rangeVal" value="20" min="1" max="999"></label>
+      <div class="ops-group">
+        <label><input type="checkbox" id="opAdd" checked> ＋ 加法</label>
+        <label><input type="checkbox" id="opSub" checked> − 减法</label>
+        <label><input type="checkbox" id="opMul"> × 乘法</label>
+        <label><input type="checkbox" id="opDiv"> ÷ 除法</label>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-green" onclick="generateQuestions()">🔄 生成题目</button>
+      <button class="btn btn-check" id="checkBtn" onclick="checkAnswers()">✓ 检查答案</button>
+    </div>
+  </div>
+
+  <div class="card" id="qaCard">
+    <div class="card-title">📝 20 道口算题</div>
+    <div class="qa-grid" id="qaGrid"></div>
+    <div class="result-bar" id="resultBar"></div>
+  </div>
+
+  <div class="nav-buttons">
+    <div class="nav-left">
+      <a href="p2-vocab.html" class="nav-btn">← 词汇闪卡</a>
+    </div>
+    <div class="nav-center">
+      <a href="index.html" class="nav-btn nav-home">🏠 首页</a>
+    </div>
+    <div class="nav-right" style="text-align:right">
+      <a href="index.html" class="nav-btn">📚 学习工具 →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function randInt(a, b) {
+  return Math.floor(Math.random() * (b - a + 1)) + a;
+}
+
+function gcd(a, b) {
+  while (b) { [a, b] = [b, a % b]; }
+  return a;
+}
+
+let currentAnswers = [];
+let submitted = false;
+
+function generateQuestions() {
+  submitted = false;
+  document.getElementById('checkBtn').disabled = false;
+  document.getElementById('checkBtn').textContent = '✓ 检查答案';
+  document.getElementById('resultBar').textContent = '';
+  document.getElementById('resultBar').className = 'result-bar';
+
+  const range = parseInt(document.getElementById('rangeVal').value) || 20;
+  const ops = [];
+  if (document.getElementById('opAdd').checked) ops.push('add');
+  if (document.getElementById('opSub').checked) ops.push('sub');
+  if (document.getElementById('opMul').checked) ops.push('mul');
+  if (document.getElementById('opDiv').checked) ops.push('div');
+
+  if (ops.length === 0) {
+    document.getElementById('resultBar').textContent = '⚠️ 请至少选择一种运算！';
+    document.getElementById('resultBar').className = 'result-bar poor';
+    return;
+  }
+
+  const grid = document.getElementById('qaGrid');
+  grid.innerHTML = '';
+  currentAnswers = [];
+
+  const count = 20;
+
+  for (let i = 0; i < count; i++) {
+    const op = ops[Math.floor(Math.random() * ops.length)];
+    let a, b, ans, q;
+
+    switch (op) {
+      case 'add': // 加法
+        a = randInt(0, range);
+        b = randInt(0, range);
+        ans = a + b;
+        q = a + ' + ' + b + ' = ?';
+        break;
+      case 'sub': // 减法（结果不为负）
+        a = randInt(0, range);
+        b = randInt(0, a);
+        ans = a - b;
+        q = a + ' − ' + b + ' = ?';
+        break;
+      case 'mul': // 乘法
+        {
+          // 限制因数范围，确保乘积不超出范围
+          let maxFactor = Math.min(range, 12);
+          a = randInt(0, maxFactor);
+          b = randInt(0, maxFactor);
+          // 避免乘积太大
+          while (a * b > range && maxFactor > 1) {
+            a = randInt(0, maxFactor);
+            b = randInt(0, maxFactor);
+          }
+          ans = a * b;
+          q = a + ' × ' + b + ' = ?';
+        }
+        break;
+      case 'div': // 除法（整除）
+        {
+          // 结果和除数都在合理范围
+          let quotient = randInt(1, Math.min(range, 12));
+          let divisor = randInt(1, Math.min(range, 12));
+          a = quotient * divisor;
+          // 确保被除数不超范围
+          while (a > range * 2) {
+            divisor = randInt(1, Math.min(range, 10));
+            quotient = Math.floor(range / divisor);
+            quotient = Math.max(1, quotient);
+            a = quotient * divisor;
+          }
+          b = divisor;
+          ans = quotient;
+          q = a + ' ÷ ' + b + ' = ?';
+        }
+        break;
+    }
+
+    currentAnswers.push(ans);
+
+    const div = document.createElement('div');
+    div.className = 'qa-item';
+    div.id = 'qa-' + i;
+    div.innerHTML = '<span data-i="' + i + '">' + q + '</span> <input type="number" id="input-' + i + '" placeholder="?" inputmode="numeric">';
+    grid.appendChild(div);
+  }
+}
+
+function checkAnswers() {
+  if (submitted) return;
+  submitted = true;
+  document.getElementById('checkBtn').disabled = true;
+  document.getElementById('checkBtn').textContent = '✅ 已提交';
+
+  let correct = 0;
+  const total = currentAnswers.length;
+
+  currentAnswers.forEach((ans, i) => {
+    const inp = document.getElementById('input-' + i);
+    const item = document.getElementById('qa-' + i);
+    if (!inp || !item) return;
+
+    const val = parseInt(inp.value);
+    item.classList.remove('correct', 'wrong');
+    inp.disabled = true;
+
+    if (!isNaN(val) && val === ans) {
+      item.classList.add('correct');
+      correct++;
+    } else {
+      item.classList.add('wrong');
+      // 显示正确答案
+      const span = item.querySelector('span');
+      span.textContent = span.textContent.replace('= ?', '= ' + ans);
+    }
+  });
+
+  const bar = document.getElementById('resultBar');
+  const pct = Math.round(correct / total * 100);
+  let cls = 'poor';
+  let emoji = '😔';
+  if (pct === 100) { cls = 'success'; emoji = '🎉'; }
+  else if (pct >= 80) { cls = 'partial'; emoji = '👍'; }
+  else if (pct >= 60) { emoji = '💪'; }
+  else { emoji = '📖'; }
+
+  bar.textContent = emoji + ' ' + correct + ' / ' + total + ' 正确（' + pct + '%）';
+  bar.className = 'result-bar ' + cls;
+}
+
+// 页面加载时自动生成一题
+generateQuestions();
+</script>
+</body>
+</html>
