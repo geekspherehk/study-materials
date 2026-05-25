@@ -243,6 +243,10 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
         <span class="qc-icon">📖</span>
         <span class="qc-label">英文</span>
       </a>
+      <a href="#" onclick="filterBySubject('math')" class="quick-card">
+        <span class="qc-icon">🧮</span>
+        <span class="qc-label">數學</span>
+      </a>
     </div>
 
     <!-- 搜索结果区 -->
@@ -404,9 +408,16 @@ const searchData = [
   { name: 'P2 数学 Unit 2 - 加法和減法', url: 'p2-math-unit2.html', subject: '數學', type: '知识点' },
   { name: 'P2 数学 Unit 3 - 乘法', url: 'p2-math-unit3.html', subject: '數學', type: '知识点' },
   { name: 'P2 数学 Unit 4 - 時間與日曆', url: 'p2-math-unit4.html', subject: '數學', type: '知识点' },
-  { name: 'P2 数学 Unit 5 - 長度和距離', url: 'p2-math-unit5.html', subject: '數學', type: '知识点' },
+  { name: 'P2 Unit 20 - Comprehension(2): Letters', url: 'p2-unit-20.html', subject: '英文', type: '知识点' },
   { name: '小测6复习(L1)', url: 'quiz-6-revision.html', subject: '英文', type: '复习' },
   { name: '小测6复习(L2)', url: 'quiz-6-revision-level2.html', subject: '英文', type: '复习' },
+  { name: 'P2 Math Unit 1 - 1000以內的數', url: 'p2-math-unit1.html', subject: '數學', type: '知识点' },
+  { name: 'P2 Math Unit 2 - 加法和減法', url: 'p2-math-unit2.html', subject: '數學', type: '知识点' },
+  { name: 'P2 Math Unit 3 - 乘法', url: 'p2-math-unit3.html', subject: '數學', type: '知识点' },
+  { name: 'P2 Math Unit 4 - 時間與日曆', url: 'p2-math-unit4.html', subject: '數學', type: '知识点' },
+  { name: 'P2 Math Unit 5 - 長度和距離', url: 'p2-math-unit5.html', subject: '數學', type: '知识点' },
+  { name: 'P2 Math Unit 6 - 立體圖形', url: 'p2-math-unit6.html', subject: '數學', type: '知识点' },
+  { name: 'P2 Math Unit 7 - 統計圖表', url: 'p2-math-unit7.html', subject: '數學', type: '知识点' },
 ];
 
 function doSearch(query) {
@@ -446,10 +457,12 @@ function doSearch(query) {
 }
 
 // ── 生成全部卡片列表 ──────────────────────────
-function renderAllCards() {
+function renderAllCards(filter) {
   const container = document.getElementById('allCards');
-  let html = '<h2 class="section-title">📖 全部学习单元</h2>';
-  searchData.forEach(item => {
+  const filtered = filter ? searchData.filter(item => item.subject === filter) : searchData;
+  const subjectLabel = filter === '英文' ? '📖 英文' : filter === '數學' ? '🧮 數學' : '📖 全部';
+  let html = '<h2 class="section-title">' + subjectLabel + ' 学习单元</h2>';
+  filtered.forEach(item => {
     const icon = '📖';
     html += '<div class="card-item">';
     html += '<div class="card-icon">' + icon + '</div>';
@@ -465,19 +478,16 @@ function renderAllCards() {
 
 // ── 快速筛选 ──────────────────────────────────
 function filterBySubject(subject) {
-  const allCards = document.getElementById('allCards');
-  const items = allCards.querySelectorAll('.card-item');
-  
   document.querySelectorAll('.quick-card').forEach(c => c.classList.remove('active'));
   const btn = document.querySelector(`.quick-card[onclick*="'${subject}'"]`);
   if (btn) btn.classList.add('active');
-  
-  items.forEach(item => {
-    item.style.display = 'flex';
-  });
-  
-  const sectionTitle = allCards.querySelector('.section-title');
-  sectionTitle.textContent = '📖 英文 学习单元';
+  if (subject === 'english') {
+    renderAllCards('英文');
+  } else if (subject === 'math') {
+    renderAllCards('數學');
+  } else {
+    renderAllCards();
+  }
 }
 
 // ── 移动端菜单 ──────────────────────────────────
