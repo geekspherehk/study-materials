@@ -120,4 +120,12 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 function renderExercises(){const a=document.getElementById('ex-area');EX.forEach((item,i)=>{const d=document.createElement('div');d.className='ex-item';d.id='ex-'+i;let h='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';const sh=[...item.opts].sort(()=>Math.random()-0.5);sh.forEach(o=>{h+='<button class="opt-btn" data-i="'+i+'" data-v="'+o+'" onclick="selectOpt(this)">'+o+'</button>';});h+='<span class="result-icon" id="ri-'+i+'"></span>  </div></div>';d.innerHTML=h;a.appendChild(d);});}
 function selectOpt(b){const i=b.dataset.i;const v=b.dataset.v;const c=document.getElementById('ex-'+i);c.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('selected');x.dataset.selected='';});b.classList.add('selected');b.dataset.selected=v;}
 function checkAnswers(){let cr=0;EX.forEach((item,i)=>{const c=document.getElementById('ex-'+i);const bs=c.querySelectorAll('.opt-btn');const ss=c.querySelector('.opt-btn.selected');const ic=document.getElementById('ri-'+i);bs.forEach(b=>{b.disabled=true;if(b.dataset.v===item.ans)b.classList.add(b===ss?'correct':'show-correct');else if(b===ss)b.classList.add('wrong');});if(ss&&ss.dataset.v===item.ans){ic.textContent='✅';cr++;}else{ic.textContent='❌';}});const t=EX.length;const bar=document.getElementById('score');bar.textContent=cr+' / '+t+' 正确（'+Math.round(cr/t*100)+'%）';bar.style.color=cr===t?'#27ae60':cr/t>=0.8?'#e67e22':'#e74c3c';}
-renderExercises();</script></body></html>
+renderExercises();</script>
+<!-- 不蒜子访问统计 -->
+<script async defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div style="text-align:center;font-size:0.75rem;color:#94a3b8;padding:8px 0">
+  本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 ·
+  访客数 <span id="busuanzi_value_site_uv"></span> 人 ·
+  当前页面浏览量 <span id="busuanzi_value_page_pv"></span> 次
+</div>
+</body></html>
