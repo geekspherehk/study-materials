@@ -263,7 +263,7 @@ function checkAnswers() {
   bar.textContent = emoji + ' ' + correct + ' / ' + total + ' 正确（' + pct + '%）';
   bar.className = 'result-bar ' + cls;
 
-  // 弹窗鼓励/表扬
+  // 弹窗鼓励
   let msg = '';
   const name = localStorage.getItem('studentName') || '同学';
   let character = '';
@@ -308,6 +308,8 @@ function checkAnswers() {
     const chars = ['😊 皮卡丘', '🐣 波克比', '🤖 哆啦A梦', '🍬 小蝶', '⭐ 胖丁'];
     character = chars[Math.floor(Math.random() * chars.length)];
   }
+  showResultDialog(character, msg, pct);
+}
 // 自定义弹窗
 function showResultDialog(character, msg, pct) {
   document.getElementById('modalConfetti').textContent = pct === 100 ? '🎊 ✨ 🎉 ✨ 🎊' : '';
