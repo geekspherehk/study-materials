@@ -158,14 +158,19 @@ function generateQuestions() {
         break;
       case 'mul': // 乘法
         {
-          // 限制因数范围，确保乘积不超出范围
-          let maxFactor = Math.min(range, 12);
-          a = randInt(0, maxFactor);
-          b = randInt(0, maxFactor);
-          // 避免乘积太大
-          while (a * b > range && maxFactor > 1) {
-            a = randInt(0, maxFactor);
-            b = randInt(0, maxFactor);
+          // 因数范围 2~12，排除 0、1，乘积不超 range
+          let maxF = Math.min(range, 12);
+          let minF = 2;
+          let tries = 0;
+          do {
+            a = randInt(minF, maxF);
+            b = randInt(minF, maxF);
+            tries++;
+          } while (a * b > range && tries < 50);
+          // 如果 range 太小（如 < 4），放宽乘积限制
+          if (a * b > range) {
+            a = randInt(minF, maxF);
+            b = randInt(minF, maxF);
           }
           ans = a * b;
           q = a + ' × ' + b + ' = ?';
