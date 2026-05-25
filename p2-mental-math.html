@@ -158,20 +158,11 @@ function generateQuestions() {
         break;
       case 'mul': // 乘法
         {
-          // 因数范围 2~12，排除 0、1，乘积不超 range
-          let maxF = Math.min(range, 12);
+          // 因数范围 2~9（P2 乘法表），跟数字范围解耦
           let minF = 2;
-          let tries = 0;
-          do {
-            a = randInt(minF, maxF);
-            b = randInt(minF, maxF);
-            tries++;
-          } while (a * b > range && tries < 50);
-          // 如果 range 太小（如 < 4），放宽乘积限制
-          if (a * b > range) {
-            a = randInt(minF, maxF);
-            b = randInt(minF, maxF);
-          }
+          let maxF = Math.min(9, Math.max(5, Math.floor(range / 2)));
+          a = randInt(minF, maxF);
+          b = randInt(minF, maxF);
           ans = a * b;
           q = a + ' × ' + b + ' = ?';
         }
