@@ -158,9 +158,9 @@ function generateQuestions() {
         break;
       case 'mul': // 乘法
         {
-          // 因数范围 2~9（P2 乘法表），跟数字范围解耦
+          // 因数范围 2~9（P2 乘法表），固定值，跟数字范围解耦
           let minF = 2;
-          let maxF = Math.min(9, Math.max(5, Math.floor(range / 2)));
+          let maxF = 9;
           a = randInt(minF, maxF);
           b = randInt(minF, maxF);
           ans = a * b;
