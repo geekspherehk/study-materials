@@ -57,6 +57,20 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
 .nav-home{background:#1e293b;color:#fff;border-color:#1e293b}
 .nav-home:hover{background:#2563eb;border-color:#2563eb}
+/* ── 自定义结果弹窗 ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;justify-content:center;align-items:center;animation:fadeIn .3s}
+.modal-overlay.show{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.modal-box{background:#fff;border-radius:20px;padding:32px 36px;max-width:400px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);animation:bounce .4s;position:relative}
+.modal-character{font-size:3.5rem;margin-bottom:8px;line-height:1.2}
+.modal-character .char-name{display:block;font-size:0.95rem;color:#64748b;font-weight:600;margin-top:2px}
+.modal-message{font-size:1.5rem;font-weight:700;color:#1e293b;line-height:1.6;margin-bottom:16px;padding:0 8px}
+.modal-score{font-size:2.2rem;font-weight:800;margin-bottom:16px}
+.modal-score.full{color:#27ae60}.modal-score.good{color:#2563eb}.modal-score.ok{color:#e67e22}.modal-score.low{color:#e74c3c}
+.modal-btn{background:#2c3e50;color:#fff;border:none;padding:12px 40px;border-radius:12px;cursor:pointer;font-size:1.1rem;font-weight:700;transition:background .15s}
+.modal-btn:hover{background:#34495e}
+.modal-confetti{font-size:1.2rem;margin-bottom:8px;letter-spacing:4px}
 </style>
 </head>
 <body>
@@ -97,6 +111,17 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
     <div class="nav-right" style="text-align:right">
       <a href="index.html" class="nav-btn">📚 学习工具 →</a>
     </div>
+  </div>
+</div>
+
+<!-- 自定义结果弹窗 -->
+<div class="modal-overlay" id="resultModal">
+  <div class="modal-box">
+    <div class="modal-confetti" id="modalConfetti"></div>
+    <div class="modal-character" id="modalCharacter"></div>
+    <div class="modal-message" id="modalMessage"></div>
+    <div class="modal-score" id="modalScore"></div>
+    <button class="modal-btn" onclick="closeModal()">👍 继续练习</button>
   </div>
 </div>
 
@@ -241,41 +266,65 @@ function checkAnswers() {
   // 弹窗鼓励/表扬
   let msg = '';
   const name = localStorage.getItem('studentName') || '同学';
+  let character = '';
   if (pct === 100) {
     const msgs = [
       '🎉 太棒了！满分！' + name + '你是口算小天才！',
       '🏆 全部正确！' + name + '太厉害了！继续保持！',
       '🌟 满分过关！' + name + '口算能力一流！',
-      '💯 完美！' + name + '老师给你点个大大的赞！'
+      '💯 完美！' + name + '给你点个大大的赞！'
     ];
     msg = msgs[Math.floor(Math.random() * msgs.length)];
+    const chars = ['🐱 皮卡丘', '🦄 紫悦', '🤖 哆啦A梦', '🐉 喷火龙', '🌟 宇宙公主'];
+    character = chars[Math.floor(Math.random() * chars.length)];
   } else if (pct >= 80) {
     const msgs = [
-      '👍 做得很好，' + name + '！只差一点点就满分了！',
-      '👏 ' + name + '真棒！正确率超过80%，继续加油！',
-      '💪 不错哦' + name + '，下次争取全对！',
-      '😊 ' + name + '已经很厉害了，再练练就能满分！'
+      '做得很好，' + name + '！只差一点点就满分了！',
+      '' + name + '真棒！正确率超过80%，继续加油！',
+      '不错哦' + name + '，下次争取全对！',
+      '' + name + '已经很厉害了，再练练就能满分！'
     ];
     msg = msgs[Math.floor(Math.random() * msgs.length)];
+    const chars = ['🐱 皮卡丘', '🐰 碧琪', '🤖 哆啦A梦', '🐢 杰尼龟', '🌙 小月'];
+    character = chars[Math.floor(Math.random() * chars.length)];
   } else if (pct >= 60) {
     const msgs = [
-      '💪 ' + name + '加油！多练几次就会越来越好！',
-      '📖 错了不要紧，' + name + '看看正确答案，下次一定行！',
-      '🤗 ' + name + '继续努力，进步空间很大哦！',
-      '✨ ' + name + '坚持练习就会越来越棒的！'
+      '' + name + '加油！多练几次就会越来越好！',
+      '错了不要紧，' + name + '看看正确答案，下次一定行！',
+      '' + name + '继续努力，进步空间很大哦！',
+      '' + name + '坚持练习就会越来越棒的！'
     ];
     msg = msgs[Math.floor(Math.random() * msgs.length)];
+    const chars = ['🐱 皮卡丘', '🐶 大雄', '🐸 妙蛙种子', '🍩 哆啦A梦', '🌈 云宝'];
+    character = chars[Math.floor(Math.random() * chars.length)];
   } else {
     const msgs = [
-      '😊 ' + name + '没关系，多练习几次就好了！',
-      '📚 错了的题目再看一遍，' + name + '下次一定进步！',
-      '💪 ' + name + '不要灰心，口算就是要多练！',
-      '🤗 加油' + name + '！每一次练习都在进步！'
+      '' + name + '没关系，多练习几次就好了！',
+      '错了的题目再看一遍，' + name + '下次一定进步！',
+      '' + name + '不要灰心，口算就是要多练！',
+      '加油' + name + '！每一次练习都在进步！'
     ];
     msg = msgs[Math.floor(Math.random() * msgs.length)];
+    const chars = ['😊 皮卡丘', '🐣 波克比', '🤖 哆啦A梦', '🍬 小蝶', '⭐ 胖丁'];
+    character = chars[Math.floor(Math.random() * chars.length)];
   }
-  // 延迟200ms弹窗，让用户先看到得分
-  setTimeout(() => alert(msg), 200);
+// 自定义弹窗
+function showResultDialog(character, msg, pct) {
+  document.getElementById('modalConfetti').textContent = pct === 100 ? '🎊 ✨ 🎉 ✨ 🎊' : '';
+  document.getElementById('modalCharacter').innerHTML = character;
+  document.getElementById('modalMessage').textContent = msg;
+  const scoreEl = document.getElementById('modalScore');
+  const pctText = '正确率 ' + pct + '%';
+  let cls = 'low';
+  if (pct === 100) cls = 'full';
+  else if (pct >= 80) cls = 'good';
+  else if (pct >= 60) cls = 'ok';
+  scoreEl.textContent = pctText;
+  scoreEl.className = 'modal-score ' + cls;
+  document.getElementById('resultModal').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('resultModal').classList.remove('show');
 }
 
 // 页面加载时自动生成一题
