@@ -101,10 +101,6 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 <div class="card"><div class="card-title">📝 练习题 — 选择正确答案</div><div id="ex-area"></div>
 <div style="margin-top:16px;text-align:center;"><button class="btn btn-green" onclick="checkAnswers()">提交答案</button><span id="score" class="score-bar"></span></div></div>
 
-<div class="nav-buttons">
-  <div class="nav-left"><span class="nav-btn nav-disabled">&larr; <span class="nav-text">已是第一页</span></span></div>
-  <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主页</a></div>
-  <div class="nav-right"><a href="p2-unit-2.html" class="nav-btn nav-next"><span class="nav-text">英文 U2</span> &rarr;</a></div></div>
 </div>
 <script>const EXERCISES=[{"q": "I ___ a student.", "opts": ["am", "is", "are"], "ans": "am"}, {"q": "She ___ a girl.", "opts": ["am", "is", "are"], "ans": "is"}, {"q": "He ___ a boy.", "opts": ["am", "is", "are"], "ans": "is"}, {"q": "They ___ friends.", "opts": ["am", "is", "are"], "ans": "are"}, {"q": "You ___ kind.", "opts": ["am", "is", "are"], "ans": "are"}, {"q": "It ___ a cat.", "opts": ["am", "is", "are"], "ans": "is"}, {"q": "We ___ happy.", "opts": ["am", "is", "are"], "ans": "are"}, {"q": "My name ___ Tom.", "opts": ["am", "is", "are"], "ans": "is"}, {"q": "The dogs ___ cute.", "opts": ["am", "is", "are"], "ans": "are"}, {"q": "I ___ eight years old.", "opts": ["am", "is", "are"], "ans": "am"}];
 function renderExercises(){const a=document.getElementById('ex-area');EXERCISES.forEach((item,i)=>{const d=document.createElement('div');d.className='ex-item';d.id='ex-'+i;let h='<p>'+(i+1)+'. '+item.q+'</p><div class="opts">';const sh=[...item.opts].sort(()=>Math.random()-0.5);sh.forEach(o=>{h+='<button class="opt-btn" data-i="'+i+'" data-v="'+o+'" onclick="selectOpt(this)">'+o+'</button>';});h+='<span class="result-icon" id="ri-'+i+'"></span>  </div></div>';d.innerHTML=h;a.appendChild(d);});}
