@@ -82,6 +82,18 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
     .nav-text{display:inline}
   }
 
+
+.related-links a{color:#2563eb;text-decoration:none;font-weight:600;font-size:0.9rem;padding:4px 10px;border-radius:6px;transition:background .15s}
+.related-links a:hover{background:#eff6ff;text-decoration:underline}
+.related-links .card-title{margin-bottom:8px}
+
+.share-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .15s}
+.share-wa{background:#25D366;color:#fff}
+.share-wa:hover{background:#128C7E}
+.share-fb{background:#1877F2;color:#fff}
+.share-fb:hover{background:#166FE5}
+.share-copy{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;cursor:pointer}
+.share-copy:hover{background:#e2e8f0}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"CreativeWork","name":"Question words: Wh-","description":"特殊疑問詞：What, Who, When, Where, Why的用法（香港小學二年級）","inLanguage":"zh-HK","author":{"@type":"Organization","name":"GeeksphereHK"}}
@@ -110,7 +122,42 @@ function renderExercises(){const a=document.getElementById('ex-area');EX.forEach
 function selectOpt(b){const i=b.dataset.i;const v=b.dataset.v;const c=document.getElementById('ex-'+i);c.querySelectorAll('.opt-btn').forEach(x=>{x.classList.remove('selected');x.dataset.selected='';});b.classList.add('selected');b.dataset.selected=v;}
 function checkAnswers(){let cr=0;EX.forEach((item,i)=>{const c=document.getElementById('ex-'+i);const bs=c.querySelectorAll('.opt-btn');const ss=c.querySelector('.opt-btn.selected');const ic=document.getElementById('ri-'+i);bs.forEach(b=>{b.disabled=true;if(b.dataset.v===item.ans)b.classList.add(b===ss?'correct':'show-correct');else if(b===ss)b.classList.add('wrong');});if(ss&&ss.dataset.v===item.ans){ic.textContent='✅';cr++;}else{ic.textContent='❌';}});const t=EX.length;const bar=document.getElementById('score');bar.textContent=cr+' / '+t+' 正确（'+Math.round(cr/t*100)+'%）';bar.style.color=cr===t?'#27ae60':cr/t>=0.8?'#e67e22':'#e74c3c';}
 renderExercises();</script>
-<!-- 不蒜子访问统计 -->
+<div class="card related-links">
+  <div class="card-title">📚 相關學習</div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px;justify-content:space-between;align-items:center">
+    <a href="p2-unit-15.html">← Unit 15</a> <span style="flex:1;text-align:center;font-weight:600;color:#64748b">英文單元</span> <a href="p2-unit-17.html">Unit 17 →</a>
+  </div>
+  <div style="margin-top:8px;font-size:0.85rem;color:#64748b;text-align:center">
+    📖 <a href="p2-vocab.html" style="color:#2563eb;text-decoration:none">詞彙閃卡</a>
+    &nbsp;·&nbsp;
+    🧮 <a href="p2-math-unit7.html" style="color:#2563eb;text-decoration:none">統計圖表</a>
+    &nbsp;·&nbsp;
+    📋 <a href="index.html" style="color:#2563eb;text-decoration:none">返回首頁</a>
+  </div>
+</div>
+
+
+<div class="card share-links">
+  <div class="card-title" style="margin-bottom:10px">📤 分享此頁</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+    <a href="https://api.whatsapp.com/send?text=小书虫乐园 - 香港小學二年級學習資源：https://geekspherehk.github.io/study-materials/p2-unit-16.html" target="_blank" rel="noopener" class="share-btn share-wa" title="Share to WhatsApp">💬 WhatsApp</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://geekspherehk.github.io/study-materials/p2-unit-16.html" target="_blank" rel="noopener" class="share-btn share-fb" title="Share to Facebook">📘 Facebook</a>
+    <a href="#" onclick="copyShareLink()" class="share-btn share-copy" title="複製鏈接">📋 複製鏈接</a>
+  </div>
+</div>
+<script>
+function copyShareLink() {
+  var url = window.location.href;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(function() {
+      var btn = document.querySelector('.share-copy');
+      var orig = btn.textContent;
+      btn.textContent = '✅ 已複製!';
+      setTimeout(function() { btn.textContent = orig; }, 2000);
+    });
+  }
+}
+</script><!-- 不蒜子访问统计 -->
 <script async defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div style="text-align:center;font-size:0.75rem;color:#94a3b8;padding:8px 0">
   本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 ·
