@@ -126,6 +126,7 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
     <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">核對後點擊「生成閃卡」開始背誦</p>
     <div id="resultTableContainer"></div>
     <div class="btn-group">
+      <button class="btn btn-primary btn-sm" onclick="autoTranslate()" id="translateBtn">🌐 一键翻译中文</button>
       <button class="btn btn-green" onclick="generateFlashcards()" id="generateBtn">🎴 生成閃卡</button>
       <button class="btn btn-danger btn-sm" onclick="clearAllWords()">🗑️ 清空所有</button>
     </div>
@@ -324,6 +325,51 @@ function clearAllWords() {
   ocrWords = [];
   document.getElementById('resultCard').style.display = 'none';
   document.getElementById('flashcardCard').style.display = 'none';
+}
+
+async function autoTranslate() {
+  const untranslated = ocrWords.filter(w => !w.zh);
+  if (untranslated.length === 0) {
+    alert('所有单词已有中文翻译！');
+    return;
+  }
+  
+  document.getElementById('translateBtn').disabled = true;
+  const statusBar = document.getElementById('statusBar');
+  statusBar.className = 'status-bar ocr-ing';
+  statusBar.style.display = 'block';
+  statusBar.innerHTML = '🌐 正在翻译 ' + untranslated.length + ' 个单词...';
+  
+  let success = 0;
+  let failed = 0;
+  let completed = 0;
+  const total = untranslated.length;
+  
+  for (const w of untranslated) {
+    const wordIdx = ocrWords.indexOf(w);
+    try {
+      const url = 'https://api.mymemory.translated.net/get?q=' + encodeURIComponent(w.en) + '&langpair=en|zh-CN';
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.responseStatus === 200 && data.responseData && data.responseData.translatedText) {
+        let zh = data.responseData.translatedText.trim().replace(/^["']|["']$/g, '');
+        ocrWords[wordIdx].zh = zh;
+        ocrWords[wordIdx].editing = false;
+        success++;
+      } else {
+        failed++;
+      }
+    } catch (e) {
+      failed++;
+    }
+    completed++;
+    statusBar.innerHTML = '🌐 正在翻译... (' + completed + '/' + total + ')';
+  }
+  
+  renderTable();
+  statusBar.className = 'status-bar ocr-done';
+  statusBar.innerHTML = '✅ 翻译完成！成功 ' + success + '/' + total + ' 个。请核对后生成闪卡。';
+  document.getElementById('translateBtn').disabled = false;
 }
 
 function generateFlashcards() {
