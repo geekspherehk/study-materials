@@ -70,15 +70,19 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .btn:disabled{opacity:0.5;cursor:not-allowed}
 .btn-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 
-/* 闪卡区 - 3x3网格 */
-.flashcard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:8px 0}
-.flashcard-item{position:relative;background:#fff;border:2px solid #e2e8f0;border-radius:12px;padding:18px 12px;text-align:center;cursor:pointer;transition:all .2s;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;user-select:none}
-.flashcard-item:hover{border-color:#2563eb;box-shadow:0 4px 12px rgba(37,99,235,0.12);transform:translateY(-2px)}
-.flashcard-item .fc-en{font-size:1.1rem;font-weight:700;color:#1e293b;margin-bottom:6px}
-.flashcard-item .fc-zh{font-size:0.9rem;color:#64748b;display:none}
-.flashcard-item .fc-badge{position:absolute;top:6px;right:8px;font-size:0.65rem;color:#94a3b8}
-.flashcard-item.flipped{border-color:#27ae60;background:#e6f7ed}
-.flashcard-item.flipped .fc-zh{display:block}
+/* 闪卡区 - 3x3网格 (3D翻转效果) */
+.flashcard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:8px 0;perspective:1000px}
+.flashcard-item{position:relative;cursor:pointer;min-height:130px;user-select:none}
+.flashcard-item .fc-card{position:relative;width:100%;height:130px;transition:transform .5s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d;border-radius:12px}
+.flashcard-item.flipped .fc-card{transform:rotateY(180deg)}
+.flashcard-item .fc-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;border-radius:12px;border:2px solid #e2e8f0;padding:14px 10px;background:#fff;transition:border-color .2s,box-shadow .2s}
+.flashcard-item .fc-face:hover{border-color:#2563eb;box-shadow:0 4px 12px rgba(37,99,235,0.12)}
+.flashcard-item .fc-front{z-index:2}
+.flashcard-item .fc-back{transform:rotateY(180deg);background:#f0fdf4;border-color:#4ade80}
+.flashcard-item .fc-en{font-size:1.1rem;font-weight:700;color:#1e293b;margin-bottom:4px;word-break:break-word}
+.flashcard-item .fc-zh{font-size:0.95rem;color:#16a34a;font-weight:600;word-break:break-word}
+.flashcard-item .fc-badge{position:absolute;top:8px;right:10px;font-size:0.65rem;color:#94a3b8;z-index:10;backface-visibility:hidden}
+.flashcard-item .fc-tap{position:absolute;bottom:8px;left:0;right:0;font-size:0.65rem;color:#cbd5e1;text-align:center;z-index:10;backface-visibility:hidden}
 
 /* 单词计数 */
 .word-count{font-size:0.85rem;color:#94a3b8;text-align:center;margin-top:8px}
@@ -115,7 +119,8 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 
 @media (max-width:600px){
   .flashcard-grid{grid-template-columns:repeat(2,1fr)}
-  .flashcard-item{min-height:90px;padding:14px 10px}
+  .flashcard-item{min-height:110px}
+  .flashcard-item .fc-card,.flashcard-item .fc-face{min-height:110px;height:110px}
   .flashcard-item .fc-en{font-size:0.95rem}
 }
 @media (max-width:480px){
@@ -589,12 +594,19 @@ function renderFlashcardGrid() {
   ocrWords.forEach((w, i) => {
     html += '<div class="flashcard-item" onclick="toggleFlashcard(' + i + ')" id="fc-item-' + i + '">'
       + '<span class="fc-badge">#' + (i + 1) + '</span>'
+      + '<div class="fc-card">'
+      + '<div class="fc-face fc-front">'
       + '<span class="fc-en">' + escHtml(w.en) + '</span>'
+      + '</div>'
+      + '<div class="fc-face fc-back">'
       + '<span class="fc-zh">' + escHtml(w.zh) + '</span>'
+      + '</div>'
+      + '</div>'
+      + '<span class="fc-tap">👆 點擊翻轉</span>'
       + '</div>';
   });
   grid.innerHTML = html;
-  document.getElementById('wordCount').textContent = '共 ' + ocrWords.length + ' 個單詞 · 點擊卡片翻開查看中文';
+  document.getElementById('wordCount').textContent = '共 ' + ocrWords.length + ' 個單詞 · 點擊卡片翻轉';
 }
 
 function toggleFlashcard(idx) {
