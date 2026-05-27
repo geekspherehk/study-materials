@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>拍照識別單詞 - 小书虫乐园</title>
+<meta name="description" content="拍照識別單詞表，自動生成閃卡。上傳單詞照片，OCR識別英文+中文，生成閃卡背單詞。">
+<meta name="keywords" content="OCR,拍照識別,背單詞,英文單詞,閃卡,學習工具,小學英文">
+<meta property="og:title" content="📷 拍照識別單詞 | 小書蟲樂園">
+<meta property="og:description" content="拍照上傳單詞表，自動OCR識別生成閃卡">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://geekspherehk.github.io/study-materials/p2-ocr-vocab.html">
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+
+/* 上传区 */
+.upload-area{border:2px dashed #ccc;border-radius:12px;padding:40px 20px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:16px}
+.upload-area:hover{border-color:#2563eb;background:#f8faff}
+.upload-area.dragover{border-color:#2563eb;background:#eff6ff}
+.upload-icon{font-size:3rem;margin-bottom:8px}
+.upload-text{color:#64748b;font-size:0.9rem}
+.upload-hint{color:#94a3b8;font-size:0.8rem;margin-top:4px}
+
+/* 预览 */
+.preview-area{display:none;margin-bottom:16px}
+.preview-area img{max-width:100%;border-radius:8px;border:1px solid #e2e8f0}
+.preview-area .action-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+
+/* OCR状态 */
+.status-bar{display:none;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:0.9rem}
+.status-bar.ocr-ing{background:#eff6ff;color:#2563eb;display:block}
+.status-bar.ocr-done{background:#e6f7ed;color:#1e8449;display:block}
+.status-bar.ocr-error{background:#fdedec;color:#c0392b;display:block}
+
+/* 结果表格 */
+.result-table{width:100%;border-collapse:collapse;margin-top:12px}
+.result-table th,.result-table td{padding:8px 12px;text-align:left;border-bottom:1px solid #e2e8f0;font-size:0.9rem}
+.result-table th{background:#f8fafc;font-weight:600;color:#475569}
+.result-table .word-en{font-weight:600;color:#2563eb}
+.result-table .word-zh{color:#64748b}
+.result-table .word-del{color:#e74c3c;cursor:pointer;font-size:1.1rem}
+.result-table .word-del:hover{color:#c0392b}
+.result-table tr:last-child td{border-bottom:none}
+
+/* 按钮 */
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;font-size:0.9rem;font-weight:600;transition:all .15s;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.btn:hover{background:#34495e}
+.btn-primary{background:#2563eb}
+.btn-primary:hover{background:#1d4ed8}
+.btn-green{background:#27ae60}
+.btn-green:hover{background:#1e8449}
+.btn-danger{background:#e74c3c}
+.btn-danger:hover{background:#c0392b}
+.btn-sm{padding:6px 14px;font-size:0.82rem}
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+.btn-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+/* 闪卡区 */
+.flashcard-area{display:none;text-align:center;padding:30px 20px}
+.flashcard-word{font-size:2.5rem;font-weight:800;color:#1e293b;margin-bottom:8px}
+.flashcard-meaning{font-size:1.3rem;color:#64748b;margin-bottom:20px;display:none}
+.flashcard-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* 单词计数 */
+.word-count{font-size:0.85rem;color:#94a3b8;text-align:center;margin-top:8px}
+
+/* 输入编辑 */
+.edit-input{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.edit-input input{padding:4px 8px;border:1px solid #ccc;border-radius:4px;font-size:0.9rem;outline:none;width:120px}
+.edit-input input:focus{border-color:#2563eb}
+.edit-confirm{color:#27ae60;cursor:pointer;font-size:1.1rem}
+.edit-cancel{color:#94a3b8;cursor:pointer;font-size:1.1rem}
+
+.nav-back{display:inline-block;margin-top:20px;color:#2563eb;text-decoration:none;font-size:0.9rem}
+.nav-back:hover{text-decoration:underline}
+
+@media (max-width:480px){
+  body{padding:12px}
+  .card{padding:14px 16px}
+  h1{font-size:1.2rem}
+  .flashcard-word{font-size:2rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📷 拍照識別單詞</h1>
+  <p class="subtitle">上傳單詞表照片，自動識別並生成閃卡</p>
+
+  <!-- 上传区域 -->
+  <div class="card">
+    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+      <div class="upload-icon">📸</div>
+      <div class="upload-text">點擊上傳圖片，或拖放圖片到此區域</div>
+      <div class="upload-hint">支援 JPG、PNG、WEBP</div>
+    </div>
+    <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFile(this.files[0])">
+  </div>
+
+  <!-- 预览区 -->
+  <div class="preview-area" id="previewArea">
+    <div class="card">
+      <img id="previewImg" src="" alt="预览">
+      <div class="action-row">
+        <button class="btn btn-primary" onclick="startOCR()" id="ocrBtn">🔍 開始識別</button>
+        <button class="btn" onclick="resetAll()">🔄 重新上傳</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 状态 -->
+  <div class="status-bar" id="statusBar"></div>
+
+  <!-- 结果区 -->
+  <div class="card" id="resultCard" style="display:none">
+    <div class="card-title">📋 識別結果</div>
+    <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">核對後點擊「生成閃卡」開始背誦</p>
+    <div id="resultTableContainer"></div>
+    <div class="btn-group">
+      <button class="btn btn-green" onclick="generateFlashcards()" id="generateBtn">🎴 生成閃卡</button>
+      <button class="btn btn-danger btn-sm" onclick="clearAllWords()">🗑️ 清空所有</button>
+    </div>
+  </div>
+
+  <!-- 闪卡区 -->
+  <div class="card" id="flashcardCard" style="display:none">
+    <div class="flashcard-area" id="flashcardArea">
+      <div class="word-count" id="wordCount"></div>
+      <div class="flashcard-word" id="fcWord">單詞</div>
+      <div class="flashcard-meaning" id="fcMeaning">釋義</div>
+      <div class="flashcard-btns">
+        <button class="btn btn-primary" onclick="flipCard()">👁️ 顯示 / 隱藏</button>
+        <button class="btn btn-green" onclick="nextCard()">→ 下一個</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:16px">
+    <a href="index.html" class="nav-back">← 返回首頁</a>
+  </div>
+</div>
+
+<script>
+let ocrWords = [];
+let currentIdx = -1;
+
+// 拖放支持
+const uploadArea = document.getElementById('uploadArea');
+uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+uploadArea.addEventListener('drop', e => {
+  e.preventDefault();
+  uploadArea.classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) handleFile(file);
+});
+
+function handleFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('previewImg').src = e.target.result;
+    document.getElementById('previewArea').style.display = 'block';
+    document.getElementById('ocrBtn').disabled = false;
+    document.getElementById('statusBar').className = 'status-bar';
+    document.getElementById('statusBar').style.display = 'none';
+    document.getElementById('resultCard').style.display = 'none';
+    document.getElementById('flashcardCard').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function startOCR() {
+  const img = document.getElementById('previewImg');
+  if (!img.src) return;
+
+  document.getElementById('ocrBtn').disabled = true;
+  const statusBar = document.getElementById('statusBar');
+  statusBar.className = 'status-bar ocr-ing';
+  statusBar.style.display = 'block';
+  statusBar.innerHTML = '⏳ OCR識別中，請稍候...';
+
+  try {
+    const result = await Tesseract.recognize(img.src, 'eng+chi_sim', {
+      logger: m => {
+        if (m.status === 'recognizing text') {
+          const pct = Math.round(m.progress * 100);
+          statusBar.innerHTML = '⏳ OCR識別中... ' + pct + '%';
+        }
+      }
+    });
+
+    const rawText = result.data.text;
+    const lines = rawText.split('\n').filter(l => l.trim());
+    
+    // 解析每一行，尝试提取 英文 → 中文
+    const parsed = [];
+    lines.forEach(line => {
+      line = line.trim();
+      // 尝试多种分隔符: tab, 空格, - → , — , |
+      let parts = null;
+      if (line.includes('\t')) parts = line.split('\t');
+      else if (line.includes('  ')) parts = line.split(/\\s{2,}/);
+      else if (line.includes(' → ')) parts = line.split(' → ');
+      else if (line.includes(' - ')) parts = line.split(' - ');
+      else if (line.includes('—')) parts = line.split('—');
+      else if (line.includes('|')) parts = line.split('|');
+      else if (line.includes(',')) parts = line.split(',');
+      
+      if (parts && parts.length >= 2) {
+        let en = parts[0].trim().replace(/^[\\d.\\s\\(\\)]+/, '').replace(/[\\s\\(\\)]+$/, '');
+        let zh = parts[1].trim().replace(/^[\\d.\\s\\(\\)]+/, '').replace(/[\\s\\(\\)]+$/, '');
+        if (en && zh && /[a-zA-Z]/.test(en) && /[\\u4e00-\\u9fff]/.test(zh)) {
+          parsed.push({ en, zh, editing: false });
+        }
+      } else {
+        // 单行——可能是英文+中文混在一起，尝试提取英文和中文
+        const enMatch = line.match(/([a-zA-Z]+(?:\\s+[a-zA-Z]+)*)/);
+        const zhMatch = line.match(/([\\u4e00-\\u9fff]+)/);
+        if (enMatch && zhMatch) {
+          const en = enMatch[1].trim();
+          const zh = zhMatch[1].trim();
+          if (en && zh && !/[0-9]/.test(en)) {
+            parsed.push({ en, zh, editing: false });
+          }
+        }
+      }
+    });
+
+    if (parsed.length === 0) {
+      statusBar.className = 'status-bar ocr-error';
+      statusBar.innerHTML = '⚠️ 未識別到單詞配對。請檢查圖片清晰度，或手動輸入下面原始文字。';
+      showRawResult(rawText);
+    } else {
+      ocrWords = parsed;
+      statusBar.className = 'status-bar ocr-done';
+      statusBar.innerHTML = '✅ 識別完成！找到 ' + parsed.length + ' 個單詞。請核對後生成閃卡。';
+      renderTable();
+    }
+  } catch (err) {
+    statusBar.className = 'status-bar ocr-error';
+    statusBar.innerHTML = '❌ OCR 識別出錯：' + err.message;
+  }
+  document.getElementById('ocrBtn').disabled = false;
+}
+
+function showRawText(text) {
+  // 备用：显示原始文本，让用户手动配对
+  const container = document.getElementById('resultTableContainer');
+  container.innerHTML = '<p style="color:#e74c3c;font-size:0.85rem;margin-bottom:8px">⚠️ 自動識別未能提取單詞，以下是OCR原始文字：</p>'
+    + '<pre style="background:#f8fafc;padding:12px;border-radius:8px;font-size:0.85rem;line-height:1.5;overflow-x:auto">'
+    + text + '</pre>';
+  document.getElementById('resultCard').style.display = 'block';
+}
+
+function renderTable() {
+  const container = document.getElementById('resultTableContainer');
+  let html = '<table class="result-table"><thead><tr><th>英文</th><th>中文</th><th>操作</th></tr></thead><tbody>';
+  ocrWords.forEach((w, i) => {
+    html += '<tr>'
+      + '<td class="word-en">' + escHtml(w.en) + '</td>'
+      + '<td class="word-zh">' + escHtml(w.zh) + '</td>'
+      + '<td><button class="btn btn-sm" onclick="editWord(' + i + ')">✏️</button> <span class="word-del" onclick="deleteWord(' + i + ')">✖</span></td>'
+      + '</tr>';
+  });
+  html += '</tbody></table>';
+  container.innerHTML = html;
+  document.getElementById('resultCard').style.display = 'block';
+}
+
+function editWord(idx) {
+  ocrWords[idx].editing = true;
+  renderTable();
+}
+
+function saveWord(idx) {
+  const row = document.querySelector('.result-table tbody tr:nth-child(' + (idx+1) + ')');
+  const enInput = row.querySelector('.edit-en').value.trim();
+  const zhInput = row.querySelector('.edit-zh').value.trim();
+  if (enInput && zhInput) {
+    ocrWords[idx].en = enInput;
+    ocrWords[idx].zh = zhInput;
+  }
+  ocrWords[idx].editing = false;
+  renderTable();
+}
+
+function cancelEdit(idx) {
+  ocrWords[idx].editing = false;
+  renderTable();
+}
+
+function deleteWord(idx) {
+  ocrWords.splice(idx, 1);
+  if (ocrWords.length === 0) {
+    document.getElementById('resultCard').style.display = 'none';
+    return;
+  }
+  renderTable();
+}
+
+function clearAllWords() {
+  if (ocrWords.length === 0) return;
+  if (!confirm('確定清空所有單詞？')) return;
+  ocrWords = [];
+  document.getElementById('resultCard').style.display = 'none';
+  document.getElementById('flashcardCard').style.display = 'none';
+}
+
+function generateFlashcards() {
+  if (ocrWords.length === 0) return;
+  document.getElementById('flashcardCard').style.display = 'block';
+  currentIdx = 0;
+  showFlashcard();
+}
+
+function showFlashcard() {
+  const w = ocrWords[currentIdx];
+  document.getElementById('fcWord').textContent = w.en;
+  document.getElementById('fcMeaning').textContent = w.zh;
+  document.getElementById('fcMeaning').style.display = 'none';
+  document.getElementById('wordCount').textContent = (currentIdx + 1) + ' / ' + ocrWords.length;
+  document.getElementById('flashcardArea').style.display = 'block';
+}
+
+function flipCard() {
+  const el = document.getElementById('fcMeaning');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+function nextCard() {
+  if (currentIdx < ocrWords.length - 1) {
+    currentIdx++;
+    showFlashcard();
+  } else {
+    alert('🎉 全部單詞已完成！');
+  }
+}
+
+function resetAll() {
+  ocrWords = [];
+  currentIdx = -1;
+  document.getElementById('previewArea').style.display = 'none';
+  document.getElementById('previewImg').src = '';
+  document.getElementById('statusBar').style.display = 'none';
+  document.getElementById('resultCard').style.display = 'none';
+  document.getElementById('flashcardCard').style.display = 'none';
+  document.getElementById('ocrBtn').disabled = false;
+}
+
+function escHtml(s) {
+  const div = document.createElement('div');
+  div.textContent = s;
+  return div.innerHTML;
+}
+</script>
+</body>
+</html>
