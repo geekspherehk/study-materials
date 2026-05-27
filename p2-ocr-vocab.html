@@ -15,7 +15,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
-.container{max-width:720px;margin:0 auto}
+.container{max-width:820px;margin:0 auto}
 h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
 .card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
@@ -70,11 +70,15 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .btn:disabled{opacity:0.5;cursor:not-allowed}
 .btn-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 
-/* 闪卡区 */
-.flashcard-area{display:none;text-align:center;padding:30px 20px}
-.flashcard-word{font-size:2.5rem;font-weight:800;color:#1e293b;margin-bottom:8px}
-.flashcard-meaning{font-size:1.3rem;color:#64748b;margin-bottom:20px;display:none}
-.flashcard-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+/* 闪卡区 - 3x3网格 */
+.flashcard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:8px 0}
+.flashcard-item{position:relative;background:#fff;border:2px solid #e2e8f0;border-radius:12px;padding:18px 12px;text-align:center;cursor:pointer;transition:all .2s;min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;user-select:none}
+.flashcard-item:hover{border-color:#2563eb;box-shadow:0 4px 12px rgba(37,99,235,0.12);transform:translateY(-2px)}
+.flashcard-item .fc-en{font-size:1.1rem;font-weight:700;color:#1e293b;margin-bottom:6px}
+.flashcard-item .fc-zh{font-size:0.9rem;color:#64748b;display:none}
+.flashcard-item .fc-badge{position:absolute;top:6px;right:8px;font-size:0.65rem;color:#94a3b8}
+.flashcard-item.flipped{border-color:#27ae60;background:#e6f7ed}
+.flashcard-item.flipped .fc-zh{display:block}
 
 /* 单词计数 */
 .word-count{font-size:0.85rem;color:#94a3b8;text-align:center;margin-top:8px}
@@ -94,21 +98,37 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
 
+/* 已保存闪卡集列表 */
+.saved-set-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:8px;transition:all .15s}
+.saved-set-item:hover{background:#f8fafc}
+.saved-set-item .set-info{flex:1}
+.saved-set-item .set-name{font-weight:600;font-size:0.95rem;color:#1e293b}
+.saved-set-item .set-meta{font-size:0.8rem;color:#94a3b8;margin-top:2px}
+.saved-set-item .set-actions{display:flex;gap:6px}
+.saved-set-item .set-actions button{background:transparent;border:1px solid #e2e8f0;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:0.82rem;transition:all .15s;color:#475569}
+.saved-set-item .set-actions button:hover{border-color:#2563eb;color:#2563eb}
+.saved-set-item .set-actions .del-set-btn{color:#e74c3c}
+.saved-set-item .set-actions .del-set-btn:hover{border-color:#e74c3c;color:#c0392b}
+
 .nav-back{display:inline-block;margin-top:20px;color:#2563eb;text-decoration:none;font-size:0.9rem}
 .nav-back:hover{text-decoration:underline}
 
+@media (max-width:600px){
+  .flashcard-grid{grid-template-columns:repeat(2,1fr)}
+  .flashcard-item{min-height:90px;padding:14px 10px}
+  .flashcard-item .fc-en{font-size:0.95rem}
+}
 @media (max-width:480px){
   body{padding:12px}
   .card{padding:14px 16px}
   h1{font-size:1.2rem}
-  .flashcard-word{font-size:2rem}
 }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>📷 單詞閃卡製作</h1>
-  <p class="subtitle">上傳照片或粘貼文字，自動生成閃卡</p>
+  <p class="subtitle">上傳照片或粘貼文字，自動生成閃卡。閃卡保存在瀏覽器端，可以反覆背誦。</p>
 
   <!-- Tab切换 -->
   <div class="tab-bar">
@@ -174,22 +194,26 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
     <div id="resultTableContainer"></div>
     <div class="btn-group">
       <button class="btn btn-primary btn-sm" onclick="autoTranslate()" id="translateBtn">🌐 一键翻译中文</button>
-      <button class="btn btn-green" onclick="generateFlashcards()" id="generateBtn">🎴 生成閃卡</button>
+      <button class="btn btn-green" onclick="generateFlashcards()" id="generateBtn">🎴 生成並保存閃卡</button>
       <button class="btn btn-danger btn-sm" onclick="clearAllWords()">🗑️ 清空所有</button>
     </div>
   </div>
 
-  <!-- 闪卡区 -->
+  <!-- 闪卡展示区 (3×3) -->
   <div class="card" id="flashcardCard" style="display:none">
-    <div class="flashcard-area" id="flashcardArea">
-      <div class="word-count" id="wordCount"></div>
-      <div class="flashcard-word" id="fcWord">單詞</div>
-      <div class="flashcard-meaning" id="fcMeaning">釋義</div>
-      <div class="flashcard-btns">
-        <button class="btn btn-primary" onclick="flipCard()">👁️ 顯示 / 隱藏</button>
-        <button class="btn btn-green" onclick="nextCard()">→ 下一個</button>
-      </div>
+    <div class="card-title" id="flashcardSetTitle">🎴 閃卡學習</div>
+    <div class="flashcard-grid" id="flashcardGrid"></div>
+    <div class="word-count" id="wordCount"></div>
+    <div style="text-align:center;margin-top:14px">
+      <button class="btn btn-sm" onclick="flipAll()" id="flipAllBtn">👁️ 全部翻開/隱藏</button>
     </div>
+  </div>
+
+  <!-- 已保存的闪卡集 -->
+  <div class="card" id="savedSetsCard">
+    <div class="card-title">💾 已保存的閃卡集</div>
+    <p style="font-size:0.85rem;color:#64748b;margin-bottom:10px">點擊「載入」查看之前保存的閃卡集，繼續背誦。</p>
+    <div id="savedSetsList"></div>
   </div>
 
   <div style="text-align:center;margin-top:16px">
@@ -199,7 +223,82 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 
 <script>
 let ocrWords = [];
-let currentIdx = -1;
+const STORAGE_KEY = 'p2_ocr_flashcard_sets';
+
+// ── 本地存储 ────────────────────────────────────
+function loadSavedSets() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+function saveSets(sets) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(sets));
+}
+
+function renderSavedSets() {
+  const container = document.getElementById('savedSetsList');
+  const sets = loadSavedSets();
+  if (sets.length === 0) {
+    container.innerHTML = '<p style="font-size:0.85rem;color:#94a3b8;text-align:center;padding:8px 0">還沒有保存的閃卡集。粘貼單詞生成閃卡後會自動保存。</p>';
+    return;
+  }
+  let html = '';
+  sets.forEach((set, idx) => {
+    html += '<div class="saved-set-item">'
+      + '<div class="set-info">'
+      + '<div class="set-name">📚 ' + escHtml(set.name) + '</div>'
+      + '<div class="set-meta">' + set.words.length + ' 個單詞 · ' + set.savedAt + '</div>'
+      + '</div>'
+      + '<div class="set-actions">'
+      + '<button onclick="loadSet(' + idx + ')">📖 載入</button>'
+      + '<button class="del-set-btn" onclick="deleteSet(' + idx + ')">🗑️ 刪除</button>'
+      + '</div>'
+      + '</div>';
+  });
+  container.innerHTML = html;
+}
+
+function loadSet(idx) {
+  const sets = loadSavedSets();
+  const set = sets[idx];
+  if (!set) return;
+  ocrWords = set.words.map(w => ({ en: w.en, zh: w.zh, editing: false }));
+  document.getElementById('flashcardSetTitle').textContent = '📚 ' + escHtml(set.name);
+  document.getElementById('flashcardCard').style.display = 'block';
+  renderFlashcardGrid();
+  const statusBar = document.getElementById('statusBar');
+  statusBar.className = 'status-bar ocr-done';
+  statusBar.style.display = 'block';
+  statusBar.innerHTML = '✅ 已載入「' + escHtml(set.name) + '」共 ' + ocrWords.length + ' 個單詞。';
+  window.scrollTo({ top: document.getElementById('flashcardCard').offsetTop - 20, behavior: 'smooth' });
+}
+
+function deleteSet(idx) {
+  if (!confirm('確定刪除這個閃卡集？')) return;
+  const sets = loadSavedSets();
+  sets.splice(idx, 1);
+  saveSets(sets);
+  renderSavedSets();
+}
+
+// ── 保存当前闪卡集 ───────────────────────────────
+function saveCurrentSet(setName) {
+  if (ocrWords.length === 0) return;
+  const sets = loadSavedSets();
+  const now = new Date();
+  const dateStr = now.getFullYear() + '-' + pad2(now.getMonth() + 1) + '-' + pad2(now.getDate())
+    + ' ' + pad2(now.getHours()) + ':' + pad2(now.getMinutes());
+  const words = ocrWords.map(w => ({ en: w.en, zh: w.zh }));
+  sets.unshift({ name: setName, words, savedAt: dateStr });
+  // 最多保留50个
+  while (sets.length > 50) sets.pop();
+  saveSets(sets);
+  renderSavedSets();
+}
+
+function pad2(n) { return n < 10 ? '0' + n : '' + n; }
 
 // ── Tab切换 ──
 function switchTab(tab) {
@@ -217,10 +316,8 @@ function parsePaste() {
   const lines = text.split('\n').filter(l => l.trim());
   const parsed = [];
   lines.forEach(line => {
-    // 移除行首编号/符号
     line = line.trim().replace(/^[\d.\s\(\)\-\•\*]+/, '').replace(/[\s\(\)]+$/, '');
     
-    // 尝试匹配「英文 中文」或「英文\t中文」
     const zhMatch = line.match(/^([a-zA-Z]+(?:\s+[a-zA-Z]+)*)\s+[\u4e00-\u9fff]/);
     if (zhMatch) {
       let en = zhMatch[1].trim();
@@ -231,7 +328,6 @@ function parsePaste() {
       }
     }
     
-    // 纯英文模式
     const enMatch = line.match(/([a-zA-Z]+(?:\s+[a-zA-Z]+)*)/);
     if (enMatch) {
       let en = enMatch[1].trim();
@@ -263,7 +359,6 @@ function parsePaste() {
 }
 
 // ── OCR ──────────────────────────────────────────
-// 拖放支持
 const uploadArea = document.getElementById('uploadArea');
 uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
 uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
@@ -461,45 +556,77 @@ async function autoTranslate() {
   document.getElementById('translateBtn').disabled = false;
 }
 
+// ── 生成闪卡 (保存 + 3x3展示) ────────────────────
 function generateFlashcards() {
   if (ocrWords.length === 0) return;
   const missing = ocrWords.filter(w => !w.zh);
   if (missing.length > 0) {
     if (!confirm('還有 ' + missing.length + ' 個單詞未填寫中文翻譯，確定生成閃卡嗎？')) return;
   }
+
+  // 让用户输入闪卡集名称
+  const setName = prompt('為這個閃卡集取一個名字：', new Date().toLocaleDateString('zh-HK') + ' 單詞表');
+  if (!setName) return;
+
+  document.getElementById('flashcardSetTitle').textContent = '📚 ' + escHtml(setName);
   document.getElementById('flashcardCard').style.display = 'block';
-  currentIdx = 0;
-  showFlashcard();
+  renderFlashcardGrid();
+
+  // 保存到 localStorage
+  saveCurrentSet(setName);
+
+  const statusBar = document.getElementById('statusBar');
+  statusBar.className = 'status-bar ocr-done';
+  statusBar.style.display = 'block';
+  statusBar.innerHTML = '✅ 已生成並保存「' + escHtml(setName) + '」共 ' + ocrWords.length + ' 個單詞！點擊卡片可翻開查看中文。';
+  window.scrollTo({ top: document.getElementById('flashcardCard').offsetTop - 20, behavior: 'smooth' });
 }
 
-function showFlashcard() {
-  const w = ocrWords[currentIdx];
-  document.getElementById('fcWord').textContent = w.en;
-  document.getElementById('fcMeaning').textContent = w.zh;
-  document.getElementById('fcMeaning').style.display = 'none';
-  document.getElementById('wordCount').textContent = (currentIdx + 1) + ' / ' + ocrWords.length;
-  document.getElementById('flashcardArea').style.display = 'block';
+// ── 3×3 闪卡网格 ──────────────────────────────
+function renderFlashcardGrid() {
+  const grid = document.getElementById('flashcardGrid');
+  let html = '';
+  ocrWords.forEach((w, i) => {
+    html += '<div class="flashcard-item" onclick="toggleFlashcard(' + i + ')" id="fc-item-' + i + '">'
+      + '<span class="fc-badge">#' + (i + 1) + '</span>'
+      + '<span class="fc-en">' + escHtml(w.en) + '</span>'
+      + '<span class="fc-zh">' + escHtml(w.zh) + '</span>'
+      + '</div>';
+  });
+  grid.innerHTML = html;
+  document.getElementById('wordCount').textContent = '共 ' + ocrWords.length + ' 個單詞 · 點擊卡片翻開查看中文';
 }
 
-function flipCard() {
-  const el = document.getElementById('fcMeaning');
-  el.style.display = el.style.display === 'none' ? 'block' : 'none';
-}
-
-function nextCard() {
-  if (currentIdx < ocrWords.length - 1) {
-    currentIdx++;
-    showFlashcard();
-  } else {
-    alert('🎉 全部單詞已完成！');
+function toggleFlashcard(idx) {
+  const item = document.getElementById('fc-item-' + idx);
+  if (item) {
+    item.classList.toggle('flipped');
   }
 }
 
+function flipAll() {
+  const items = document.querySelectorAll('.flashcard-item');
+  const allFlipped = items.length > 0 && Array.from(items).every(el => el.classList.contains('flipped'));
+  items.forEach(el => {
+    if (allFlipped) {
+      el.classList.remove('flipped');
+    } else {
+      el.classList.add('flipped');
+    }
+  });
+  const btn = document.getElementById('flipAllBtn');
+  btn.textContent = allFlipped ? '👁️ 全部翻開' : '👁️ 全部隱藏';
+}
+
+// ── 工具函数 ─────────────────────────────────────
 function escHtml(s) {
   const div = document.createElement('div');
   div.textContent = s;
   return div.innerHTML;
 }
+
+// ── 初始化 ───────────────────────────────────────
+renderSavedSets();
 </script>
 
 </body>
