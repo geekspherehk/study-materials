@@ -217,7 +217,21 @@ function parsePaste() {
   const lines = text.split('\n').filter(l => l.trim());
   const parsed = [];
   lines.forEach(line => {
+    // 移除行首编号/符号
     line = line.trim().replace(/^[\d.\s\(\)\-\•\*]+/, '').replace(/[\s\(\)]+$/, '');
+    
+    // 尝试匹配「英文 中文」或「英文\t中文」
+    const zhMatch = line.match(/^([a-zA-Z]+(?:\s+[a-zA-Z]+)*)\s+[\u4e00-\u9fff]/);
+    if (zhMatch) {
+      let en = zhMatch[1].trim();
+      let zh = line.substring(zhMatch[1].length).trim();
+      if (en && en.length > 0 && !/^\d+$/.test(en)) {
+        parsed.push({ en, zh, editing: false });
+        return;
+      }
+    }
+    
+    // 纯英文模式
     const enMatch = line.match(/([a-zA-Z]+(?:\s+[a-zA-Z]+)*)/);
     if (enMatch) {
       let en = enMatch[1].trim();
@@ -236,7 +250,15 @@ function parsePaste() {
   const statusBar = document.getElementById('statusBar');
   statusBar.className = 'status-bar ocr-done';
   statusBar.style.display = 'block';
-  statusBar.innerHTML = '✅ 解析完成！共 ' + parsed.length + ' 個單詞，可以一鍵翻譯或直接生成閃卡。';
+  
+  const hasZh = parsed.filter(w => w.zh).length;
+  let msg = '✅ 解析完成！共 ' + parsed.length + ' 個單詞。';
+  if (hasZh > 0) {
+    msg += ' 已識別 ' + hasZh + ' 個中文翻譯，可直接生成閃卡。';
+  } else {
+    msg += ' 可以一鍵翻譯或直接生成閃卡。';
+  }
+  statusBar.innerHTML = msg;
   renderTable();
 }
 
