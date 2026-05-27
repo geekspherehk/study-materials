@@ -202,48 +202,28 @@ async function startOCR() {
     const rawText = result.data.text;
     const lines = rawText.split('\n').filter(l => l.trim());
     
-    // 解析每一行，尝试提取 英文 → 中文
+    // 只有英文，没有中文——直接把每个英文单词/短语放进去，让用户填写中文
     const parsed = [];
     lines.forEach(line => {
-      line = line.trim();
-      // 尝试多种分隔符: tab, 空格, - → , — , |
-      let parts = null;
-      if (line.includes('\t')) parts = line.split('\t');
-      else if (line.includes('  ')) parts = line.split(/\\s{2,}/);
-      else if (line.includes(' → ')) parts = line.split(' → ');
-      else if (line.includes(' - ')) parts = line.split(' - ');
-      else if (line.includes('—')) parts = line.split('—');
-      else if (line.includes('|')) parts = line.split('|');
-      else if (line.includes(',')) parts = line.split(',');
-      
-      if (parts && parts.length >= 2) {
-        let en = parts[0].trim().replace(/^[\\d.\\s\\(\\)]+/, '').replace(/[\\s\\(\\)]+$/, '');
-        let zh = parts[1].trim().replace(/^[\\d.\\s\\(\\)]+/, '').replace(/[\\s\\(\\)]+$/, '');
-        if (en && zh && /[a-zA-Z]/.test(en) && /[\\u4e00-\\u9fff]/.test(zh)) {
-          parsed.push({ en, zh, editing: false });
-        }
-      } else {
-        // 单行——可能是英文+中文混在一起，尝试提取英文和中文
-        const enMatch = line.match(/([a-zA-Z]+(?:\\s+[a-zA-Z]+)*)/);
-        const zhMatch = line.match(/([\\u4e00-\\u9fff]+)/);
-        if (enMatch && zhMatch) {
-          const en = enMatch[1].trim();
-          const zh = zhMatch[1].trim();
-          if (en && zh && !/[0-9]/.test(en)) {
-            parsed.push({ en, zh, editing: false });
-          }
+      line = line.trim().replace(/^[\d.\s\(\)]+/, '').replace(/[\s\(\)]+$/, '');
+      // 提取英文字母（可能有数字编号要去掉）
+      const enMatch = line.match(/([a-zA-Z]+(?:\s+[a-zA-Z]+)*)/);
+      if (enMatch) {
+        let en = enMatch[1].trim();
+        if (en && en.length > 0 && !/^\d+$/.test(en)) {
+          parsed.push({ en, zh: '', editing: true });
         }
       }
     });
 
     if (parsed.length === 0) {
       statusBar.className = 'status-bar ocr-error';
-      statusBar.innerHTML = '⚠️ 未識別到單詞配對。請檢查圖片清晰度，或手動輸入下面原始文字。';
+      statusBar.innerHTML = '⚠️ 未識別到英文字詞。請檢查圖片清晰度。';
       showRawResult(rawText);
     } else {
       ocrWords = parsed;
       statusBar.className = 'status-bar ocr-done';
-      statusBar.innerHTML = '✅ 識別完成！找到 ' + parsed.length + ' 個單詞。請核對後生成閃卡。';
+      statusBar.innerHTML = '✅ OCR識別完成！找到 ' + parsed.length + ' 個英文單詞。請在中文列輸入翻譯，然後生成閃卡。';
       renderTable();
     }
   } catch (err) {
@@ -266,20 +246,48 @@ function renderTable() {
   const container = document.getElementById('resultTableContainer');
   let html = '<table class="result-table"><thead><tr><th>英文</th><th>中文</th><th>操作</th></tr></thead><tbody>';
   ocrWords.forEach((w, i) => {
+    let zhCell = '';
+    if (w.editing) {
+      zhCell = '<div class="edit-input">'
+        + '<input type="text" class="edit-zh-input" value="' + escHtml(w.zh) + '" placeholder="输入中文翻译" id="zh-' + i + '">'
+        + '<span class="edit-confirm" onclick="saveZh(' + i + ')">✓</span>'
+        + '<span class="edit-cancel" onclick="cancelEdit(' + i + ')">✗</span>'
+        + '</div>';
+    } else {
+      zhCell = escHtml(w.zh) || '<span style="color:#ccc">待输入</span>';
+    }
     html += '<tr>'
       + '<td class="word-en">' + escHtml(w.en) + '</td>'
-      + '<td class="word-zh">' + escHtml(w.zh) + '</td>'
+      + '<td class="word-zh">' + zhCell + '</td>'
       + '<td><button class="btn btn-sm" onclick="editWord(' + i + ')">✏️</button> <span class="word-del" onclick="deleteWord(' + i + ')">✖</span></td>'
       + '</tr>';
   });
   html += '</tbody></table>';
+  html += '<div style="margin-top:10px;font-size:0.85rem;color:#64748b">💡 點擊 ✏️ 可修改 · 輸入中文後點 ✓ 確認</div>';
   container.innerHTML = html;
   document.getElementById('resultCard').style.display = 'block';
+  // 自动聚焦到第一个未填中文的输入框
+  const firstEmpty = document.querySelector('.edit-zh-input');
+  if (firstEmpty) setTimeout(() => firstEmpty.focus(), 100);
+}
+
+function saveZh(idx) {
+  const input = document.getElementById('zh-' + idx);
+  if (input) {
+    const val = input.value.trim();
+    if (val) {
+      ocrWords[idx].zh = val;
+    }
+    ocrWords[idx].editing = false;
+    renderTable();
+  }
 }
 
 function editWord(idx) {
   ocrWords[idx].editing = true;
   renderTable();
+  const input = document.getElementById('zh-' + idx);
+  if (input) input.focus();
 }
 
 function saveWord(idx) {
@@ -295,7 +303,9 @@ function saveWord(idx) {
 }
 
 function cancelEdit(idx) {
-  ocrWords[idx].editing = false;
+  if (ocrWords[idx].zh) {
+    ocrWords[idx].editing = false;
+  }
   renderTable();
 }
 
@@ -318,6 +328,11 @@ function clearAllWords() {
 
 function generateFlashcards() {
   if (ocrWords.length === 0) return;
+  // 检查是否所有单词都有中文翻译
+  const missing = ocrWords.filter(w => !w.zh);
+  if (missing.length > 0) {
+    if (!confirm('還有 ' + missing.length + ' 個單詞未填寫中文翻譯，確定生成閃卡嗎？')) return;
+  }
   document.getElementById('flashcardCard').style.display = 'block';
   currentIdx = 0;
   showFlashcard();
