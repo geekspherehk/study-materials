@@ -35,6 +35,12 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .preview-area img{max-width:100%;border-radius:8px;border:1px solid #e2e8f0}
 .preview-area .action-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 
+/* 粘贴区 */
+.paste-area textarea{width:100%;min-height:180px;padding:12px;border:1.5px solid #e2e8f0;border-radius:8px;font-size:0.95rem;outline:none;resize:vertical;font-family:inherit;line-height:1.6;transition:border-color .2s}
+.paste-area textarea:focus{border-color:#2563eb}
+.paste-area .action-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.paste-hint{font-size:0.82rem;color:#94a3b8;margin-bottom:8px;line-height:1.5}
+
 /* OCR状态 */
 .status-bar{display:none;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:0.9rem}
 .status-bar.ocr-ing{background:#eff6ff;color:#2563eb;display:block}
@@ -80,6 +86,14 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .edit-confirm{color:#27ae60;cursor:pointer;font-size:1.1rem}
 .edit-cancel{color:#94a3b8;cursor:pointer;font-size:1.1rem}
 
+/* Tab切换 */
+.tab-bar{display:flex;gap:0;margin-bottom:16px;border-radius:10px;overflow:hidden;border:1px solid #e2e8f0}
+.tab-btn{flex:1;padding:10px 16px;border:none;background:#fff;cursor:pointer;font-size:0.88rem;font-weight:600;transition:all .15s;color:#64748b;text-align:center}
+.tab-btn:not(:last-child){border-right:1px solid #e2e8f0}
+.tab-btn.active{background:#2563eb;color:#fff}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
 .nav-back{display:inline-block;margin-top:20px;color:#2563eb;text-decoration:none;font-size:0.9rem}
 .nav-back:hover{text-decoration:underline}
 
@@ -93,26 +107,59 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 </head>
 <body>
 <div class="container">
-  <h1>📷 拍照識別單詞</h1>
-  <p class="subtitle">上傳單詞表照片，自動識別並生成閃卡</p>
+  <h1>📷 單詞閃卡製作</h1>
+  <p class="subtitle">上傳照片或粘貼文字，自動生成閃卡</p>
 
-  <!-- 上传区域 -->
-  <div class="card">
-    <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
-      <div class="upload-icon">📸</div>
-      <div class="upload-text">點擊上傳圖片，或拖放圖片到此區域</div>
-      <div class="upload-hint">支援 JPG、PNG、WEBP</div>
-    </div>
-    <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFile(this.files[0])">
+  <!-- Tab切换 -->
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('paste')" id="tab-paste">📝 粘貼文字</button>
+    <button class="tab-btn" onclick="switchTab('ocr')" id="tab-ocr">📸 拍照識別</button>
   </div>
 
-  <!-- 预览区 -->
-  <div class="preview-area" id="previewArea">
+  <!-- 粘贴面板 -->
+  <div class="tab-panel active" id="panel-paste">
     <div class="card">
-      <img id="previewImg" src="" alt="预览">
-      <div class="action-row">
-        <button class="btn btn-primary" onclick="startOCR()" id="ocrBtn">🔍 開始識別</button>
-        <button class="btn" onclick="resetAll()">🔄 重新上傳</button>
+      <div class="card-title">📝 粘貼單詞表</div>
+      <div class="paste-hint">
+        💡 <strong>推薦方式</strong>：用豆包、DeepSeek、ChatGPT 等 AI 工具拍照單詞表，然後用以下提示詞讓 AI 輸出：
+        <div style="background:#f1f5f9;padding:10px 14px;border-radius:8px;margin:8px 0;font-size:0.82rem;color:#475569;line-height:1.5">
+          將圖片中的英文單詞提取出來，每行一個，不要編號，例如：<br>
+          apple<br>
+          banana<br>
+          cat<br>
+          dog<br>
+          elephant
+        </div>
+        把 AI 輸出的結果粘貼到下面文字框中。
+      </div>
+      <div class="paste-area">
+        <textarea id="pasteInput" placeholder="在此粘貼英文單詞，每行一個&#10;例如：&#10;apple&#10;banana&#10;cat"></textarea>
+        <div class="action-row">
+          <button class="btn btn-primary" onclick="parsePaste()">📋 解析單詞</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OCR面板 -->
+  <div class="tab-panel" id="panel-ocr">
+    <div class="card">
+      <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+        <div class="upload-icon">📸</div>
+        <div class="upload-text">點擊上傳圖片，或拖放圖片到此區域</div>
+        <div class="upload-hint">支援 JPG、PNG、WEBP · 識別效果一般，推薦用粘貼方式</div>
+      </div>
+      <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFile(this.files[0])">
+    </div>
+
+    <!-- 预览区 -->
+    <div class="preview-area" id="previewArea">
+      <div class="card">
+        <img id="previewImg" src="" alt="预览">
+        <div class="action-row">
+          <button class="btn btn-primary" onclick="startOCR()" id="ocrBtn">🔍 開始識別</button>
+          <button class="btn" onclick="resetOCR()">🔄 重新上傳</button>
+        </div>
       </div>
     </div>
   </div>
@@ -122,8 +169,8 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 
   <!-- 结果区 -->
   <div class="card" id="resultCard" style="display:none">
-    <div class="card-title">📋 識別結果</div>
-    <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">核對後點擊「生成閃卡」開始背誦</p>
+    <div class="card-title">📋 單詞列表</div>
+    <p style="font-size:0.85rem;color:#64748b;margin-bottom:8px">核對後點擊「一鍵翻譯」或「生成閃卡」</p>
     <div id="resultTableContainer"></div>
     <div class="btn-group">
       <button class="btn btn-primary btn-sm" onclick="autoTranslate()" id="translateBtn">🌐 一键翻译中文</button>
@@ -154,6 +201,46 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 let ocrWords = [];
 let currentIdx = -1;
 
+// ── Tab切换 ──
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+// ── 粘贴 ──
+function parsePaste() {
+  const text = document.getElementById('pasteInput').value.trim();
+  if (!text) { alert('請先粘貼單詞！'); return; }
+  
+  const lines = text.split('\n').filter(l => l.trim());
+  const parsed = [];
+  lines.forEach(line => {
+    line = line.trim().replace(/^[\d.\s\(\)\-\•\*]+/, '').replace(/[\s\(\)]+$/, '');
+    const enMatch = line.match(/([a-zA-Z]+(?:\s+[a-zA-Z]+)*)/);
+    if (enMatch) {
+      let en = enMatch[1].trim();
+      if (en && en.length > 0 && !/^\d+$/.test(en)) {
+        parsed.push({ en, zh: '', editing: true });
+      }
+    }
+  });
+  
+  if (parsed.length === 0) {
+    alert('未識別到有效英文單詞，請檢查粘貼內容');
+    return;
+  }
+  
+  ocrWords = parsed;
+  const statusBar = document.getElementById('statusBar');
+  statusBar.className = 'status-bar ocr-done';
+  statusBar.style.display = 'block';
+  statusBar.innerHTML = '✅ 解析完成！共 ' + parsed.length + ' 個單詞，可以一鍵翻譯或直接生成閃卡。';
+  renderTable();
+}
+
+// ── OCR ──────────────────────────────────────────
 // 拖放支持
 const uploadArea = document.getElementById('uploadArea');
 uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
@@ -191,7 +278,7 @@ async function startOCR() {
   statusBar.innerHTML = '⏳ OCR識別中，請稍候...';
 
   try {
-    const result = await Tesseract.recognize(img.src, 'eng+chi_sim', {
+    const result = await Tesseract.recognize(img.src, 'eng', {
       logger: m => {
         if (m.status === 'recognizing text') {
           const pct = Math.round(m.progress * 100);
@@ -203,11 +290,9 @@ async function startOCR() {
     const rawText = result.data.text;
     const lines = rawText.split('\n').filter(l => l.trim());
     
-    // 只有英文，没有中文——直接把每个英文单词/短语放进去，让用户填写中文
     const parsed = [];
     lines.forEach(line => {
       line = line.trim().replace(/^[\d.\s\(\)]+/, '').replace(/[\s\(\)]+$/, '');
-      // 提取英文字母（可能有数字编号要去掉）
       const enMatch = line.match(/([a-zA-Z]+(?:\s+[a-zA-Z]+)*)/);
       if (enMatch) {
         let en = enMatch[1].trim();
@@ -219,30 +304,29 @@ async function startOCR() {
 
     if (parsed.length === 0) {
       statusBar.className = 'status-bar ocr-error';
-      statusBar.innerHTML = '⚠️ 未識別到英文字詞。請檢查圖片清晰度。';
-      showRawResult(rawText);
-    } else {
-      ocrWords = parsed;
-      statusBar.className = 'status-bar ocr-done';
-      statusBar.innerHTML = '✅ OCR識別完成！找到 ' + parsed.length + ' 個英文單詞。請在中文列輸入翻譯，然後生成閃卡。';
-      renderTable();
+      statusBar.innerHTML = '❌ 未識別到英文字詞。建議切換到「粘貼文字」方式，用 AI 工具提取單詞。';
+      document.getElementById('ocrBtn').disabled = false;
+      return;
     }
+
+    ocrWords = parsed;
+    statusBar.className = 'status-bar ocr-done';
+    statusBar.innerHTML = '✅ OCR識別完成！共 ' + parsed.length + ' 個單詞（識別效果有限，建議核對）。點擊「一鍵翻譯」填充中文。';
+    renderTable();
   } catch (err) {
     statusBar.className = 'status-bar ocr-error';
     statusBar.innerHTML = '❌ OCR 識別出錯：' + err.message;
+    document.getElementById('ocrBtn').disabled = false;
   }
   document.getElementById('ocrBtn').disabled = false;
 }
 
-function showRawText(text) {
-  // 备用：显示原始文本，让用户手动配对
-  const container = document.getElementById('resultTableContainer');
-  container.innerHTML = '<p style="color:#e74c3c;font-size:0.85rem;margin-bottom:8px">⚠️ 自動識別未能提取單詞，以下是OCR原始文字：</p>'
-    + '<pre style="background:#f8fafc;padding:12px;border-radius:8px;font-size:0.85rem;line-height:1.5;overflow-x:auto">'
-    + text + '</pre>';
-  document.getElementById('resultCard').style.display = 'block';
+function resetOCR() {
+  document.getElementById('previewArea').style.display = 'none';
+  document.getElementById('previewImg').src = '';
 }
 
+// ── 表格渲染 ────────────────────────────────────
 function renderTable() {
   const container = document.getElementById('resultTableContainer');
   let html = '<table class="result-table"><thead><tr><th>英文</th><th>中文</th><th>操作</th></tr></thead><tbody>';
@@ -267,7 +351,6 @@ function renderTable() {
   html += '<div style="margin-top:10px;font-size:0.85rem;color:#64748b">💡 點擊 ✏️ 可修改 · 輸入中文後點 ✓ 確認</div>';
   container.innerHTML = html;
   document.getElementById('resultCard').style.display = 'block';
-  // 自动聚焦到第一个未填中文的输入框
   const firstEmpty = document.querySelector('.edit-zh-input');
   if (firstEmpty) setTimeout(() => firstEmpty.focus(), 100);
 }
@@ -276,12 +359,15 @@ function saveZh(idx) {
   const input = document.getElementById('zh-' + idx);
   if (input) {
     const val = input.value.trim();
-    if (val) {
-      ocrWords[idx].zh = val;
-    }
+    if (val) ocrWords[idx].zh = val;
     ocrWords[idx].editing = false;
     renderTable();
   }
+}
+
+function cancelEdit(idx) {
+  if (ocrWords[idx].zh) ocrWords[idx].editing = false;
+  renderTable();
 }
 
 function editWord(idx) {
@@ -289,25 +375,6 @@ function editWord(idx) {
   renderTable();
   const input = document.getElementById('zh-' + idx);
   if (input) input.focus();
-}
-
-function saveWord(idx) {
-  const row = document.querySelector('.result-table tbody tr:nth-child(' + (idx+1) + ')');
-  const enInput = row.querySelector('.edit-en').value.trim();
-  const zhInput = row.querySelector('.edit-zh').value.trim();
-  if (enInput && zhInput) {
-    ocrWords[idx].en = enInput;
-    ocrWords[idx].zh = zhInput;
-  }
-  ocrWords[idx].editing = false;
-  renderTable();
-}
-
-function cancelEdit(idx) {
-  if (ocrWords[idx].zh) {
-    ocrWords[idx].editing = false;
-  }
-  renderTable();
 }
 
 function deleteWord(idx) {
@@ -374,7 +441,6 @@ async function autoTranslate() {
 
 function generateFlashcards() {
   if (ocrWords.length === 0) return;
-  // 检查是否所有单词都有中文翻译
   const missing = ocrWords.filter(w => !w.zh);
   if (missing.length > 0) {
     if (!confirm('還有 ' + missing.length + ' 個單詞未填寫中文翻譯，確定生成閃卡嗎？')) return;
@@ -407,22 +473,12 @@ function nextCard() {
   }
 }
 
-function resetAll() {
-  ocrWords = [];
-  currentIdx = -1;
-  document.getElementById('previewArea').style.display = 'none';
-  document.getElementById('previewImg').src = '';
-  document.getElementById('statusBar').style.display = 'none';
-  document.getElementById('resultCard').style.display = 'none';
-  document.getElementById('flashcardCard').style.display = 'none';
-  document.getElementById('ocrBtn').disabled = false;
-}
-
 function escHtml(s) {
   const div = document.createElement('div');
   div.textContent = s;
   return div.innerHTML;
 }
 </script>
+
 </body>
 </html>
