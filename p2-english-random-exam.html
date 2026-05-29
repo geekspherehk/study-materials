@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2 英文综合练习随机生成 - 小书虫乐园</title>
+<link rel="canonical" href="https://geekspherehk.github.io/study-materials/p2-english-random-exam.html">
+<meta name="description" content="P2英文综合练习随机生成｜每次刷新自动出题｜选择·填空·阅读·改错｜免费互动练习｜即做即改">
+<meta name="keywords" content="P2 English,香港小学二年级英文,小二英文综合练习,英文随机试卷,英文语法,免费学习资源,每次不同">
+<meta property="og:title" content="P2 英文综合练习随机生成 - 小书虫乐园">
+<meta property="og:description" content="P2英文综合练习随机生成｜每次刷新自动出题｜选择·填空·阅读·改错｜免费互动练习｜即做即改">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://geekspherehk.github.io/study-materials/p2-english-random-exam.html">
+<meta property="og:locale" content="zh_HK">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="P2 英文综合练习随机生成 - 小书虫乐园">
+<meta name="twitter:description" content="P2英文综合练习随机生成｜每次刷新自动出题｜选择·填空·阅读·改错｜免费互动练习｜即做即改">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LearningResource","name":"P2 英文综合练习随机生成 - 小书虫乐园","description":"P2英文综合练习随机生成试卷，涵盖小二全部知识点，每次刷新自动更换题目，包含选择、填空、阅读理解和改错题型，免费互动练习即做即改。","url":"https://geekspherehk.github.io/study-materials/p2-english-random-exam.html","inLanguage":"zh-HK","educationalLevel":"Primary 2 (香港小學二年級)","learningResourceType":["Assessment","Quiz"],"educationalSubject":"P2 英文","audience":{"@type":"EducationalAudience","educationalRole":"student"}}
+</script>
+<style>
+:root {
+  --primary: #2563eb;
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --hover-bg: #e8f0fe;
+  --active-bg: #dbeafe;
+  --correct: #16a34a;
+  --wrong: #dc2626;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 20px 16px 60px;
+}
+.container { max-width: 780px; margin: 0 auto; }
+
+/* ── Header ── */
+.header {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+}
+.header h1 {
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+.header h1 small {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.header p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ── Score Bar ── */
+.score-bar {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 2px solid var(--border);
+  margin-bottom: 20px;
+  text-align: center;
+}
+.score-bar .score-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.score-bar .score-text .num { color: var(--primary); font-size: 1.3rem; }
+.score-bar .score-text .total { color: var(--muted); }
+.progress-wrap {
+  width: 100%;
+  height: 14px;
+  background: #e2e8f0;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #3b82f6);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+
+/* ── Section Header ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 12px 12px 0 0;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  margin-top: 24px;
+}
+.section-header:first-child { margin-top: 0; }
+.section-header .icon { font-size: 1.3rem; }
+.section-body {
+  padding: 18px;
+  border: 2px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  background: var(--card);
+  margin-bottom: 4px;
+}
+
+/* Section Colors */
+.sec-choice .section-header { background: #dbeafe; color: #1e40af; border: 2px solid #bfdbfe; border-bottom: none; }
+.sec-choice .section-body { border-color: #bfdbfe; }
+.sec-fill .section-header { background: #d1fae5; color: #065f46; border: 2px solid #a7f3d0; border-bottom: none; }
+.sec-fill .section-body { border-color: #a7f3d0; }
+.sec-reading .section-header { background: #fef3c7; color: #92400e; border: 2px solid #fde68a; border-bottom: none; }
+.sec-reading .section-body { border-color: #fde68a; }
+.sec-proof .section-header { background: #fce7f3; color: #9d174d; border: 2px solid #fbcfe8; border-bottom: none; }
+.sec-proof .section-body { border-color: #fbcfe8; }
+
+/* ── Reading Passage ── */
+.reading-passage {
+  background: #fffbeb;
+  border: 2px solid #fde68a;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+.reading-passage .rp-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #92400e;
+  margin-bottom: 8px;
+}
+.reading-passage p {
+  font-size: 0.92rem;
+  color: #78350f;
+  margin-bottom: 6px;
+}
+.reading-passage p:last-child { margin-bottom: 0; }
+
+/* ── Question ── */
+.question {
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+.question:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+.q-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.q-text .q-num {
+  color: var(--primary);
+  font-weight: 700;
+  margin-right: 4px;
+}
+.q-text .blank {
+  display: inline-block;
+  min-width: 60px;
+  border-bottom: 2px dashed var(--primary);
+  margin: 0 2px;
+  color: var(--primary);
+  font-weight: 700;
+}
+.q-text .underline {
+  text-decoration: underline;
+  text-decoration-color: #dc2626;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+.fill-input {
+  display: inline-block;
+  width: 120px;
+  padding: 4px 8px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.fill-input:focus { border-color: var(--primary); }
+.fill-input.correct { border-color: var(--correct); background: #f0fdf4; }
+.fill-input.wrong { border-color: var(--wrong); background: #fef2f2; }
+
+.opts { display: flex; flex-direction: column; gap: 6px; }
+.opt {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 14px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  transition: background 0.12s, border-color 0.12s;
+}
+.opt:hover:not(.disabled) { border-color: var(--primary); background: var(--hover-bg); }
+.opt.disabled { pointer-events: none; opacity: 0.7; }
+.opt.correct { border-color: var(--correct); background: #f0fdf4; }
+.opt.wrong { border-color: var(--wrong); background: #fef2f2; }
+.opt.show-correct { border-color: var(--correct); background: #f0fdf4; }
+.opt-letter {
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--bg);
+  font-weight: 700; font-size: 0.85rem; color: var(--muted);
+  flex-shrink: 0;
+}
+.opt.correct .opt-letter { background: var(--correct); color: #fff; }
+.opt.wrong .opt-letter { background: var(--wrong); color: #fff; }
+.opt.show-correct .opt-letter { background: var(--correct); color: #fff; }
+.opt .emoji-result { margin-left: auto; font-size: 1.1rem; }
+
+.check-btn {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.15s;
+  margin-top: 4px;
+}
+.check-btn:hover { background: #1d4ed8; }
+.q-fill-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.q-fill-row .q-num { margin-right: 0; }
+
+/* ── Generate / Reset Buttons ── */
+.btn-wrap {
+  text-align: center;
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.gen-btn {
+  padding: 12px 32px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background 0.12s;
+}
+.gen-btn:hover { background: #1d4ed8; }
+.reset-btn {
+  padding: 12px 28px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: background 0.12s, border-color 0.12s;
+}
+.reset-btn:hover { border-color: var(--primary); background: var(--hover-bg); }
+
+.footer {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.related-links a{color:#2563eb;text-decoration:none;font-weight:600;font-size:0.9rem;padding:4px 10px;border-radius:6px;transition:background .15s}
+.related-links a:hover{background:#eff6ff;text-decoration:underline}
+.related-links .card-title{margin-bottom:8px}
+
+.share-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .15s}
+.share-wa{background:#25D366;color:#fff}
+.share-wa:hover{background:#128C7E}
+.share-fb{background:#1877F2;color:#fff}
+.share-fb:hover{background:#166FE5}
+.share-copy{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;cursor:pointer}
+.share-copy:hover{background:#e2e8f0}
+
+.gen-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  body { padding: 12px 10px 40px; }
+  .header { padding: 14px 16px; }
+  .header h1 { font-size: 1.2rem; }
+  .section-body { padding: 12px 14px; }
+  .q-text { font-size: 0.9rem; }
+  .opt { padding: 8px 12px; font-size: 0.88rem; }
+  .reading-passage { padding: 12px 14px; }
+  .fill-input { width: 100px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div id="app">
+  <!-- Header -->
+  <div class="header">
+    <h1>🎲 P2 English Random Exam <small>香港小学二年级英文综合练习 · 每次出题不同</small></h1>
+    <p>点击「生成新试卷」随机出题 · 每次刷新自动更换题目</p>
+  </div>
+
+  <!-- Score Bar -->
+  <div class="score-bar">
+    <div class="score-text">
+      Score 得分: <span class="num" id="scoreNum">0</span> <span class="total" id="totalText">/ 0</span>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Exam content rendered by JS -->
+  <div id="examContent"></div>
+
+  <!-- Buttons -->
+  <div class="btn-wrap">
+    <button class="gen-btn" onclick="generateExam()">🎲 生成新试卷</button>
+    <button class="reset-btn" onclick="resetAll()">🔄 重置重做</button>
+  </div>
+
+  <div class="footer">
+    <div class="related-links">
+      <div class="card-title">🔗 Related Links</div>
+      <a href="index.html">🏠 Home</a>
+      <a href="p2-english-comprehensive.html">📝 英文综合练习 (固定卷)</a>
+      <a href="p2-vocab.html">📚 Vocabulary Flashcards</a>
+    </div>
+    <p style="margin-top: 12px;">
+      <a href="https://api.whatsapp.com/send?text=小书虫乐园 - P2英文随机练习：https://geekspherehk.github.io/study-materials/p2-english-random-exam.html" target="_blank" rel="noopener" class="share-btn share-wa">💬 WhatsApp</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://geekspherehk.github.io/study-materials/p2-english-random-exam.html" target="_blank" rel="noopener" class="share-btn share-fb">📘 Facebook</a>
+      <button class="share-btn share-copy" onclick="navigator.clipboard.writeText('https://geekspherehk.github.io/study-materials/p2-english-random-exam.html');this.textContent='✅ Copied!'">📋 Copy Link</button>
+    </p>
+    <p>© 2025 小书虫乐园 · All exercises free to use</p>
+  </div>
+</div>
+</div>
+
+<script>
+// ========== QUESTION BANK ==========
+
+// ── MCQ Bank ──
+const mcqBank = [
+  // is/am/are
+  { q: 'My sister <span class="blank">_____</span> a teacher.', opts: ['are', 'is', 'am', 'be'], ans: 'b' },
+  { q: 'They <span class="blank">_____</span> my best friends.', opts: ['is', 'am', 'are', 'be'], ans: 'c' },
+  { q: '<span class="blank">_____</span> you happy today?', opts: ['Is', 'Am', 'Are', 'Be'], ans: 'c' },
+  { q: 'I <span class="blank">_____</span> a student at this school.', opts: ['are', 'is', 'be', 'am'], ans: 'd' },
+  // a/an/the
+  { q: 'She has <span class="blank">_____</span> orange umbrella.', opts: ['a', 'an', 'the', 'some'], ans: 'b' },
+  { q: 'There is <span class="blank">_____</span> book on the desk.', opts: ['an', 'the', 'a', 'some'], ans: 'c' },
+  { q: 'I saw <span class="blank">_____</span> elephant at the zoo.', opts: ['a', 'an', 'the', 'some'], ans: 'b' },
+  // can
+  { q: '<span class="blank">_____</span> you swim? — Yes, I can.', opts: ['Are', 'Do', 'Can', 'Is'], ans: 'c' },
+  { q: 'He <span class="blank">_____</span> play the piano very well.', opts: ['can', 'cans', 'is', 'are'], ans: 'a' },
+  // simple present
+  { q: 'She <span class="blank">_____</span> to school by bus every day.', opts: ['go', 'goes', 'going', 'went'], ans: 'b' },
+  { q: 'They <span class="blank">_____</span> lunch at school.', opts: ['has', 'haves', 'have', 'having'], ans: 'c' },
+  { q: 'The cat <span class="blank">_____</span> milk every morning.', opts: ['drink', 'drinks', 'drinking', 'drank'], ans: 'b' },
+  // do/does
+  { q: '<span class="blank">_____</span> he like ice cream?', opts: ['Do', 'Does', 'Are', 'Is'], ans: 'b' },
+  { q: '<span class="blank">_____</span> you have a pet?', opts: ['Does', 'Do', 'Are', 'Is'], ans: 'b' },
+  // Wh- words
+  { q: '<span class="blank">_____</span> is your birthday? — It is in June.', opts: ['What', 'When', 'Where', 'Who'], ans: 'b' },
+  { q: '<span class="blank">_____</span> pen is this? — It is mine.', opts: ['What', 'When', 'Whose', 'Where'], ans: 'c' },
+  { q: '<span class="blank">_____</span> do you go to school? — By bus.', opts: ['What', 'When', 'How', 'Where'], ans: 'c' },
+  // this/that/these/those
+  { q: '<span class="blank">_____</span> is my pencil here, and that is yours.', opts: ['These', 'This', 'Those', 'That'], ans: 'b' },
+  { q: '<span class="blank">_____</span> apples over there are red.', opts: ['This', 'That', 'These', 'Those'], ans: 'd' },
+  // prepositions
+  { q: 'The cat is <span class="blank">_____</span> the table.', opts: ['on', 'under', 'in', 'at'], ans: 'b' },
+  { q: 'The book is <span class="blank">_____</span> the shelf.', opts: ['in', 'on', 'at', 'under'], ans: 'b' },
+  // pronouns
+  { q: '<span class="blank">_____</span> are going to the park together.', opts: ['Me', 'We', 'Us', 'Our'], ans: 'b' },
+  { q: 'Please give <span class="blank">_____</span> the ball.', opts: ['I', 'me', 'my', 'mine'], ans: 'b' },
+  // and/but
+  { q: 'I like cats <span class="blank">_____</span> dogs.', opts: ['but', 'and', 'or', 'so'], ans: 'b' },
+  { q: 'She is tired <span class="blank">_____</span> she keeps working.', opts: ['and', 'so', 'or', 'but'], ans: 'd' },
+  // adjectives
+  { q: 'This is a <span class="blank">_____</span> book. Everyone loves it.', opts: ['bored', 'boring', 'exciting', 'excited'], ans: 'c' },
+  { q: 'The <span class="blank">_____</span> girl is my sister.', opts: ['tall', 'taller', 'tallest', 'tallness'], ans: 'a' },
+];
+
+// ── Fill-in Bank ──
+const fillBank = [
+  { q: 'I have <span class="blank">_____</span> apple. (a / an)', ans: 'an', w: 80 },
+  { q: 'This is <span class="blank">_____</span> orange book. (a / an)', ans: 'an', w: 80 },
+  { q: 'She <span class="blank">_____</span> (not / like) coffee. She likes tea.', ans: "doesn't like", w: 120 },
+  { q: '<span class="blank">_____</span> (not / run) in the classroom!', ans: "don't run", w: 110 },
+  { q: 'I <span class="blank">_____</span> (can / must) swim very well.', ans: 'can', w: 80 },
+  { q: 'He <span class="blank">_____</span> (go) to the park every Sunday.', ans: 'goes', w: 90 },
+  { q: 'They <span class="blank">_____</span> (have) two cats at home.', ans: 'have', w: 80 },
+  { q: 'My mother <span class="blank">_____</span> (cook) dinner every evening.', ans: 'cooks', w: 100 },
+  { q: 'We <span class="blank">_____</span> (be) happy to see you.', ans: 'are', w: 80 },
+  { q: 'She <span class="blank">_____</span> (read) a book now.', ans: 'is reading', w: 120 },
+  { q: 'This is the <span class="blank">_____</span> (big) cake I have ever seen!', ans: 'biggest', w: 100 },
+  { q: 'She is <span class="blank">_____</span> (tall) than her brother.', ans: 'taller', w: 100 },
+  { q: 'The book is on the <span class="blank">_____</span> (three) shelf.', ans: 'third', w: 90 },
+  { q: 'Tom and Jerry <span class="blank">_____</span> (have) lunch together every day.', ans: 'have', w: 90 },
+  { q: 'My sister <span class="blank">_____</span> (not / play) the piano.', ans: "doesn't play", w: 130 },
+];
+
+// ── Reading Passages Bank ──
+const readingBank = [
+  {
+    title: '📖 My Friend Lily',
+    passage: 'Lily is my best friend. She is seven years old. She has long black hair and big eyes. Lily likes to draw pictures. She draws many beautiful flowers. Every weekend, Lily and I go to the library. We read storybooks together. Lily wants to be an artist when she grows up.',
+    questions: [
+      { q: 'How old is Lily?', opts: ['Six', 'Seven', 'Eight', 'Nine'], ans: 'b' },
+      { q: 'What does Lily like to do?', opts: ['Sing', 'Dance', 'Draw', 'Cook'], ans: 'c' },
+      { q: 'Where do Lily and her friend go every weekend?', opts: ['Park', 'School', 'Library', 'Shop'], ans: 'c' },
+      { q: 'What does Lily want to be?', opts: ['Teacher', 'Doctor', 'Artist', 'Singer'], ans: 'c' },
+    ]
+  },
+  {
+    title: '📖 A Sunny Day',
+    passage: 'It is a sunny day. Tom and his family go to the beach. Tom\'s father puts up a big umbrella. Tom\'s mother lays out a blanket. Tom plays in the sand. He builds a big sandcastle. His little sister, Amy, collects seashells. They all have a wonderful time at the beach.',
+    questions: [
+      { q: 'What is the weather like?', opts: ['Rainy', 'Sunny', 'Cloudy', 'Windy'], ans: 'b' },
+      { q: 'What does Tom build in the sand?', opts: ['A house', 'A sandcastle', 'A bridge', 'A car'], ans: 'b' },
+      { q: 'What does Amy collect?', opts: ['Stones', 'Flowers', 'Seashells', 'Sticks'], ans: 'c' },
+      { q: 'How does the family feel?', opts: ['Bored', 'Tired', 'Happy', 'Sad'], ans: 'c' },
+    ]
+  },
+  {
+    title: '📖 Tom\'s Pet Rabbit',
+    passage: 'Tom has a pet rabbit. Its name is Snowy. Snowy has white fur and long ears. Snowy likes to eat carrots and lettuce. Every morning, Tom gives Snowy fresh water and food. Snowy can hop very fast. Tom loves to play with Snowy in the garden after school. They are good friends.',
+    questions: [
+      { q: 'What is the pet rabbit\'s name?', opts: ['Fluffy', 'Snowy', 'Hopper', 'Cottontail'], ans: 'b' },
+      { q: 'What colour is Snowy\'s fur?', opts: ['Brown', 'Grey', 'Black', 'White'], ans: 'd' },
+      { q: 'What does Snowy like to eat?', opts: ['Meat and fish', 'Carrots and lettuce', 'Bread and milk', 'Rice and beans'], ans: 'b' },
+      { q: 'Where does Tom play with Snowy?', opts: ['In the house', 'In the garden', 'In the park', 'In the school'], ans: 'b' },
+    ]
+  },
+  {
+    title: '📖 My School Day',
+    passage: 'Hello! My name is Ben. I go to school from Monday to Friday. I wake up at seven o\'clock. I have breakfast at half past seven. I walk to school with my friend Mike. School starts at eight thirty. We have many subjects — English, Chinese, Maths and PE. I like PE best because I love to run and play. School ends at three thirty. I go home and do my homework.',
+    questions: [
+      { q: 'What time does Ben wake up?', opts: ['6:30', '7:00', '7:30', '8:00'], ans: 'b' },
+      { q: 'How does Ben go to school?', opts: ['By bus', 'By car', 'He walks', 'By bike'], ans: 'c' },
+      { q: 'Which subject does Ben like best?', opts: ['English', 'Maths', 'Chinese', 'PE'], ans: 'd' },
+      { q: 'What time does school end?', opts: ['3:00', '3:30', '4:00', '4:30'], ans: 'b' },
+    ]
+  },
+  {
+    title: '📖 A Visit to the Farm',
+    passage: 'Last Sunday, my family went to a farm. We saw many animals. There were cows, sheep, horses and chickens. The cows were eating grass. The sheep were sleeping under a tree. I fed the chickens with some corn. My father rode a horse. My mother took many photos. We had a very happy day on the farm!',
+    questions: [
+      { q: 'When did the family go to the farm?', opts: ['Saturday', 'Sunday', 'Monday', 'Friday'], ans: 'b' },
+      { q: 'What were the cows doing?', opts: ['Sleeping', 'Eating grass', 'Running', 'Drinking water'], ans: 'b' },
+      { q: 'What did the writer feed the chickens?', opts: ['Bread', 'Rice', 'Corn', 'Seeds'], ans: 'c' },
+      { q: 'What did the father do?', opts: ['Took photos', 'Rode a horse', 'Fed animals', 'Slept'], ans: 'b' },
+    ]
+  }
+];
+
+// ── Error Correction Bank ──
+const proofBank = [
+  { q: 'She <span class="underline">don\'t</span> like apples.', opts: ['not', 'doesn\'t', 'don\'t not', 'do'], ans: 'b' },
+  { q: 'There is <span class="underline">many</span> children in the playground.', opts: ['much', 'Do not change', 'a lot', 'many of'], ans: 'b' },
+  { q: 'This is <span class="underline">a</span> orange.', opts: ['the', 'some', 'one', 'an'], ans: 'd' },
+  { q: 'I can <span class="underline">swims</span> very well.', opts: ['swimming', 'swims swam', 'swim', 'Do not change'], ans: 'c' },
+  { q: 'He <span class="underline">run</span> fast in the playground.', opts: ['runs fast', 'running fast', 'run fastly', 'Do not change'], ans: 'a' },
+  { q: 'She <span class="underline">go</span> to school by bus.', opts: ['goes', 'going', 'went', 'Do not change'], ans: 'a' },
+  { q: 'There <span class="underline">is</span> five books on the desk.', opts: ['am', 'are', 'be', 'Do not change'], ans: 'b' },
+  { q: 'He <span class="underline">can\'t</span> swims.', opts: ['can\'t swimming', 'can swim', 'can\'t swim', 'Do not change'], ans: 'c' },
+  { q: 'This <span class="underline">book</span> are very interesting.', opts: ['books is', 'book is', 'books are', 'Do not change'], ans: 'b' },
+  { q: 'My brother and I <span class="underline">likes</span> to play football.', opts: ['like', 'liked', 'liking', 'Do not change'], ans: 'a' },
+];
+
+// ========== HELPERS ==========
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function pick(arr, n) {
+  const shuffled = shuffle([...arr]);
+  return shuffled.slice(0, n);
+}
+
+// ========== SCORE & RENDER ==========
+
+let score = 0;
+let totalQuestions = 0;
+const answered = new Set();
+
+function updateScore() {
+  document.getElementById('scoreNum').textContent = score;
+  const total = totalQuestions || 1;
+  const pct = (score / total) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('totalText').textContent = '/ ' + totalQuestions;
+}
+
+function checkChoice(el, answer) {
+  const question = el.closest('.question');
+  const opts = question.querySelector('.opts');
+  if (!opts) return;
+  const correct = opts.dataset.answer;
+  if (question.dataset.answered) return;
+  question.dataset.answered = 'true';
+
+  const allOpts = question.querySelectorAll('.opt');
+  allOpts.forEach(o => o.classList.add('disabled'));
+
+  if (answer === correct) {
+    el.classList.add('correct');
+    el.querySelector('.emoji-result').textContent = '✅';
+    score++;
+  } else {
+    el.classList.add('wrong');
+    el.querySelector('.emoji-result').textContent = '❌';
+    allOpts.forEach(o => {
+      if (o.dataset.letter === correct) {
+        o.classList.add('show-correct');
+      }
+    });
+  }
+  updateScore();
+}
+
+function checkFill(qnum, answer) {
+  const input = document.getElementById('fill' + qnum);
+  if (!input || input.dataset.checked) return;
+  const val = input.value.trim().toLowerCase();
+  const ans = answer.toLowerCase();
+  if (val === ans) {
+    input.classList.add('correct');
+    input.classList.remove('wrong');
+    score++;
+  } else {
+    input.classList.add('wrong');
+    input.classList.remove('correct');
+  }
+  input.dataset.checked = 'true';
+  input.disabled = true;
+  updateScore();
+}
+
+function resetAll() {
+  score = 0;
+  document.querySelectorAll('[data-answered]').forEach(q => delete q.dataset.answered);
+  document.querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('correct', 'wrong', 'disabled', 'show-correct');
+    o.querySelector('.emoji-result').textContent = '';
+  });
+  document.querySelectorAll('.fill-input').forEach(inp => {
+    inp.classList.remove('correct', 'wrong');
+    inp.value = '';
+    inp.disabled = false;
+    delete inp.dataset.checked;
+  });
+  updateScore();
+}
+
+// ========== GENERATE EXAM ==========
+
+function generateExam() {
+  score = 0;
+  totalQuestions = 0;
+  const content = document.getElementById('examContent');
+  let html = '';
+  let qNum = 0;
+
+  // --- Section I: Multiple Choice (5 questions) ---
+  const mcqItems = pick(mcqBank, 5);
+  html += '<div class="section-header sec-choice"><span class="icon">A.</span> Multiple Choice 选择题</div>';
+  html += '<div class="section-body sec-choice">';
+  mcqItems.forEach((item, idx) => {
+    qNum++;
+    const letters = ['a', 'b', 'c', 'd'];
+    html += '<div class="question" id="q' + qNum + '">';
+    html += '<div class="q-text"><span class="q-num">' + qNum + '.</span> ' + item.q + '</div>';
+    html += '<div class="opts" data-answer="' + item.ans + '">';
+    item.opts.forEach((opt, oi) => {
+      html += '<div class="opt" data-letter="' + letters[oi] + '" onclick="checkChoice(this,\'' + letters[oi] + '\')">';
+      html += '<span class="opt-letter">' + letters[oi].toUpperCase() + '</span>';
+      html += opt;
+      html += '<span class="emoji-result"></span></div>';
+    });
+    html += '</div></div>';
+  });
+  html += '</div>';
+  totalQuestions += mcqItems.length;
+
+  // --- Section II: Fill in the Blanks (5 questions) ---
+  const fillItems = pick(fillBank, 5);
+  html += '<div class="section-header sec-fill"><span class="icon">B.</span> Fill in the Blanks 填空题</div>';
+  html += '<div class="section-body sec-fill">';
+  fillItems.forEach((item, idx) => {
+    qNum++;
+    html += '<div class="question" id="q' + qNum + '">';
+    html += '<div class="q-text q-fill-row"><span class="q-num">' + qNum + '.</span> ' + item.q + '</div>';
+    html += '<div class="q-fill-row">';
+    html += '<input class="fill-input" id="fill' + qNum + '" type="text" placeholder="输入答案" style="width:' + item.w + 'px" onkeydown="if(event.key===\'Enter\')checkFill(' + qNum + ',\'' + item.ans.replace(/'/g, "\\'") + '\')">';
+    html += '<button class="check-btn" onclick="checkFill(' + qNum + ',\'' + item.ans.replace(/'/g, "\\'") + '\')">✓ 检查</button>';
+    html += '</div></div>';
+  });
+  html += '</div>';
+  totalQuestions += fillItems.length;
+
+  // --- Section III: Reading Comprehension (4 questions from 1 passage) ---
+  const readingItem = pick(readingBank, 1)[0];
+  html += '<div class="section-header sec-reading"><span class="icon">C.</span> Reading Comprehension 阅读理解</div>';
+  html += '<div class="section-body sec-reading">';
+  html += '<div class="reading-passage">';
+  html += '<div class="rp-title">' + readingItem.title + '</div>';
+  html += '<p>' + readingItem.passage.replace(/\n/g, '</p><p>') + '</p>';
+  html += '</div>';
+  readingItem.questions.forEach((item, idx) => {
+    qNum++;
+    const letters = ['a', 'b', 'c', 'd'];
+    html += '<div class="question" id="q' + qNum + '">';
+    html += '<div class="q-text"><span class="q-num">' + qNum + '.</span> ' + item.q + '</div>';
+    html += '<div class="opts" data-answer="' + item.ans + '">';
+    item.opts.forEach((opt, oi) => {
+      html += '<div class="opt" data-letter="' + letters[oi] + '" onclick="checkChoice(this,\'' + letters[oi] + '\')">';
+      html += '<span class="opt-letter">' + letters[oi].toUpperCase() + '</span>';
+      html += opt;
+      html += '<span class="emoji-result"></span></div>';
+    });
+    html += '</div></div>';
+  });
+  html += '</div>';
+  totalQuestions += readingItem.questions.length;
+
+  // --- Section IV: Error Correction (5 questions) ---
+  const proofItems = pick(proofBank, 5);
+  html += '<div class="section-header sec-proof"><span class="icon">D.</span> Error Correction 改错题</div>';
+  html += '<div class="section-body sec-proof">';
+  proofItems.forEach((item, idx) => {
+    qNum++;
+    const letters = ['a', 'b', 'c', 'd'];
+    html += '<div class="question" id="q' + qNum + '">';
+    html += '<div class="q-text"><span class="q-num">' + qNum + '.</span> ' + item.q + '</div>';
+    html += '<div class="opts" data-answer="' + item.ans + '">';
+    item.opts.forEach((opt, oi) => {
+      html += '<div class="opt" data-letter="' + letters[oi] + '" onclick="checkChoice(this,\'' + letters[oi] + '\')">';
+      html += '<span class="opt-letter">' + letters[oi].toUpperCase() + '</span>';
+      html += opt;
+      html += '<span class="emoji-result"></span></div>';
+    });
+    html += '</div></div>';
+  });
+  html += '</div>';
+  totalQuestions += proofItems.length;
+
+  content.innerHTML = html;
+  resetAll();
+  updateScore();
+}
+
+// ── Auto-generate on load ──
+window.addEventListener('DOMContentLoaded', generateExam);
+</script>
+</body>
+</html>
