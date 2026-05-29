@@ -314,6 +314,43 @@ body {
   text-align: center;
 }
 
+/* ── Print Button ── */
+.print-btn {
+  padding: 12px 28px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background: var(--card);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #475569;
+  transition: background 0.12s, border-color 0.12s;
+}
+.print-btn:hover { border-color: #2563eb; background: #e8f0fe; }
+
+/* ── Print Styles ── */
+@media print {
+  body { background: #fff; padding: 0; }
+  .header, .score-bar, .btn-wrap, .footer, .share-btn, .related-links,
+  .check-btn, .share-copy { display: none !important; }
+  .section-body { border: 1px solid #ccc; break-inside: avoid; }
+  .section-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sec-choice .section-header { background: #dbeafe !important; }
+  .sec-fill .section-header { background: #d1fae5 !important; }
+  .sec-reading .section-header { background: #fef3c7 !important; }
+  .sec-proof .section-header { background: #fce7f3 !important; }
+  .reading-passage { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .opt { border: 1px solid #ccc; cursor: default; page-break-inside: avoid; }
+  .opt:hover { background: none; border-color: #ccc; }
+  .fill-input { border: none; border-bottom: 1.5px solid #333; background: transparent; outline: none; width: 100px; }
+  .fill-input:focus { border-color: #333; }
+  .q-text .blank { border-bottom: 1.5px solid #333; color: #333; }
+  .q-text .underline { text-decoration: underline; text-decoration-color: #666; }
+  .question { break-inside: avoid; }
+  .opt .emoji-result { display: none; }
+  .opt.disabled { opacity: 1; }
+}
+
 @media (max-width: 640px) {
   body { padding: 12px 10px 40px; }
   .header { padding: 14px 16px; }
@@ -352,6 +389,7 @@ body {
   <div class="btn-wrap">
     <button class="gen-btn" onclick="generateExam()">🎲 生成新试卷</button>
     <button class="reset-btn" onclick="resetAll()">🔄 重置重做</button>
+    <button class="print-btn" onclick="window.print()">🖨️ 打印试卷</button>
   </div>
 
   <div class="footer">
