@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2 中文综合练习随机生成 - 小书虫乐园</title>
+<link rel="canonical" href="https://geekspherehk.github.io/study-materials/p2-chinese-exam.html">
+<meta name="description" content="P2中文综合练习随机生成｜每次刷新自动出题｜选择题·填空题·阅读理解·改错题｜免费互动练习｜即做即改">
+<meta name="keywords" content="P2 中文,香港小学二年级中文,小二中文综合练习,中文随机试卷,字词练习,免费学习资源,每次不同">
+<meta property="og:title" content="P2 中文综合练习随机生成 - 小书虫乐园">
+<meta property="og:description" content="P2中文综合练习随机生成｜每次刷新自动出题｜选择题·填空题·阅读理解·改错题｜免费互动练习｜即做即改">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://geekspherehk.github.io/study-materials/p2-chinese-exam.html">
+<meta property="og:locale" content="zh_HK">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="P2 中文综合练习随机生成 - 小书虫乐园">
+<meta name="twitter:description" content="P2中文综合练习随机生成｜每次刷新自动出题｜选择题·填空题·阅读理解·改错题｜免费互动练习｜即做即改">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LearningResource","name":"P2 中文综合练习随机生成 - 小书虫乐园","description":"P2中文综合练习随机生成试卷，涵盖小二中文全部知识点，每次刷新自动更换题目，包含选择题、填空题、阅读理解和改错题型，免费互动练习即做即改。","url":"https://geekspherehk.github.io/study-materials/p2-chinese-exam.html","inLanguage":"zh-HK","educationalLevel":"Primary 2 (香港小學二年級)","learningResourceType":["Assessment","Quiz"],"educationalSubject":"P2 中文","audience":{"@type":"EducationalAudience","educationalRole":"student"}}
+</script>
+<style>
+:root {
+  --primary: #c0392b;
+  --primary-light: #e74c3c;
+  --bg: #fdf2f2;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --hover-bg: #fde8e8;
+  --active-bg: #fbd5d5;
+  --correct: #16a34a;
+  --wrong: #dc2626;
+  --section-h: #c0392b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 20px 16px 60px;
+}
+.container { max-width: 780px; margin: 0 auto; }
+
+/* Header */
+.header {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 20px 24px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-icon { font-size: 1.8rem; }
+.header h1 { font-size: 1.25rem; color: var(--section-h); }
+.header .subtitle { font-size: 0.85rem; color: var(--muted); }
+
+/* Score bar */
+.score-bar {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+.score-bar .score-num { font-weight: 700; color: var(--section-h); }
+
+/* Buttons */
+.btn-wrap { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all .15s;
+}
+.btn-primary { background: var(--section-h); color: #fff; }
+.btn-primary:hover { background: var(--primary-light); }
+.btn-outline { background: transparent; color: var(--section-h); border: 2px solid var(--section-h); }
+.btn-outline:hover { background: var(--hover-bg); }
+
+/* Section */
+.section {
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.section-title {
+  background: var(--section-h);
+  color: #fff;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.section-body { padding: 14px 18px; }
+
+/* Question */
+.question {
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed #e8e0e0;
+}
+.question:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.q-text { font-size: 0.95rem; margin-bottom: 6px; }
+.q-num { font-weight: 700; color: var(--section-h); margin-right: 4px; }
+.blank { color: var(--section-h); font-weight: 700; }
+
+/* Options for MCQ */
+.opts { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+.opt {
+  padding: 8px 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .12s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+.opt:hover { background: var(--hover-bg); border-color: #e2a0a0; }
+.opt.selected { border-color: var(--section-h); }
+.opt.correct { border-color: var(--correct); background: #f0fdf4; }
+.opt.wrong { border-color: var(--wrong); background: #fef2f2; }
+.opt.disabled { cursor: default; opacity: 0.85; }
+.opt-letter { width: 24px; height: 24px; border-radius: 50%; background: var(--border); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; flex-shrink: 0; color: var(--text); }
+.opt.correct .opt-letter { background: var(--correct); color: #fff; }
+.opt.wrong .opt-letter { background: var(--wrong); color: #fff; }
+.emoji-result { margin-left: auto; font-size: 1rem; }
+.show-correct { font-size: 0.8rem; color: var(--correct); margin-left: 6px; font-weight: 600; }
+
+/* Fill-in */
+.q-fill-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+.fill-input {
+  padding: 6px 10px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color .12s;
+}
+.fill-input:focus { border-color: var(--section-h); }
+.fill-input.correct { border-color: var(--correct); background: #f0fdf4; }
+.fill-input.wrong { border-color: var(--wrong); background: #fef2f2; }
+.check-btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  background: var(--section-h);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.check-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* Reading passage */
+.reading-passage {
+  background: #faf5f0;
+  border: 1px solid #e8ddd0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 14px;
+}
+.rp-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; color: #7f5c3c; }
+.rp-content { font-size: 0.9rem; line-height: 1.8; color: #3a2a1a; }
+
+/* Underline for error correction */
+.underline {
+  text-decoration: underline;
+  text-decoration-color: var(--wrong);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+
+/* Reset area */
+.reset-area { margin-top: 10px; }
+
+/* Footer */
+.footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 24px; padding: 12px; border-top: 1px solid var(--border); }
+
+/* Print */
+@media print {
+  .header, .score-bar, .btn-wrap, .reset-area, .footer, .check-btn { display: none !important; }
+  body { background: #fff; padding: 0; }
+  .section { break-inside: avoid; border: 1px solid #ccc; }
+  .section-title { background: #c0392b !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .opt { border: 1px solid #999; }
+  .opt.correct { border-color: var(--correct); }
+  .opt.wrong { border-color: var(--wrong); }
+  .fill-input { border: none; border-bottom: 2px solid #333; background: transparent !important; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-left">
+      <span class="header-icon">🀄</span>
+      <div>
+        <h1>P2 中文综合练习</h1>
+        <div class="subtitle">随机出题 · 即做即改</div>
+      </div>
+    </div>
+    <div class="btn-wrap">
+      <button class="btn btn-primary" onclick="generateExam()">🎲 生成新试卷</button>
+      <button class="btn btn-outline" onclick="window.print()">🖨️ 打印试卷</button>
+    </div>
+  </div>
+
+  <!-- Score -->
+  <div class="score-bar">
+    <span>📊 得分：<span class="score-num" id="scoreDisplay">0</span> / <span id="totalDisplay">0</span></span>
+    <span>📌 共 <span id="qCountDisplay">0</span> 题</span>
+  </div>
+
+  <!-- Exam content -->
+  <div id="examArea"></div>
+
+  <!-- Reset -->
+  <div class="reset-area">
+    <button class="btn btn-outline" onclick="resetChecks()" style="width:100%;">🔄 清除答案重新检查</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    🇭🇰 香港小學二年級中文綜合練習 · 隨機出題
+  </div>
+
+</div>
+
+<script>
+/* ======================================================
+   QUESTION BANKS
+   ====================================================== */
+
+/* ---- MCQ Bank (选择题) 25+ items ---- */
+const mcqBank = [
+  { q: '「美」字總共有多少畫？', opts: ['6畫', '8畫', '9畫', '10畫'], ans: 'c' },
+  { q: '以下哪個詞是「開心的」反義詞？', opts: ['快樂的', '難過的', '興奮的', '高興的'], ans: 'b' },
+  { q: '「花朵」中的「花」字是什麼部首？', opts: ['艸部', '木部', '虫部', '艹部'], ans: 'd' },
+  { q: '「媽媽在廚房＿＿晚飯。」空格裏應該填什麼？', opts:['做','坐','作','昨'],ans:'a'},
+  { q: '「弟弟＿＿了一塊蛋糕。」空格裏應該填什麼？', opts:['次','吃','吹','喝'],ans:'b'},
+  { q: '「這本書是＿＿的？」選出正確的疑問詞', opts:['誰','哪','什麼','怎麼'],ans:'a'},
+  { q: '「小鳥在樹上＿＿歌。」空格裏應該填什麼？', opts:['喝','吃','唱','吵'],ans:'c'},
+  { q: '「天氣非常冷。」中「非常」的意思是？', opts:['有點','很','不太','不'],ans:'b'},
+  { q: '「美麗」一詞中「美」的筆順是？', opts:['丶一丿一丨一一丿丶','丶丿一丨一一一丿丶','丿一丶丨一一丿丶','一丿丶丨一一丿丶'],ans:'a'},
+  { q: '以下哪個是量詞的正確用法？', opts:['一__牛→頭','一__筆→張','一__狗→條','一__花→隻'],ans:'a'},
+  { q: '「太陽從東邊升起來了。」這句話中的「升」是什麼意思？', opts:['降落','上升','打開','關閉'],ans:'b'},
+  { q: '「他跑得很快。」句中「得」的用法是？', opts:['得到','可以','用來連接動詞和補語','必須'],ans:'c'},
+  { q: '「大」和「小」的關係是？', opts:['同義詞','反義詞','形近字','量詞'],ans:'b'},
+  { q: '「春天來了，花園裏開滿了＿＿的花朵。」空格填什麼最合適？', opts:['鮮艷','模糊','安靜','吵鬧'],ans:'a'},
+  { q: '以下哪個字和「手」同一個部首？', opts:['脚','指','足','腿'],ans:'b'},
+  { q: '「他____上學遲到。」空格應填什麼？', opts:['常常','長長','場場','嘗嘗'],ans:'a'},
+  { q: '「風很大，樹枝被吹____了。」空格填什麼？', opts:['斷','短','段','端'],ans:'a'},
+  { q: '「這條魚很新鮮。」中「新鮮」的反義詞是？', opts:['美味','腐壞','活潑','漂亮'],ans:'b'},
+  { q: '下列哪個句子是正確的？', opts:['我吃蘋果喜歡。','我喜歡吃蘋果。','蘋果喜歡我吃。','喜歡吃蘋果我。'],ans:'b'},
+  { q: '「圖書館裏很安靜。」中的「安靜」是什麼意思？', opts:['吵鬧','熱鬧','沒有聲音','忙碌'],ans:'c'},
+  { q: '「他有___鉛筆。」空格應填什麼？', opts:['枝','本','把','條'],ans:'a'},
+  { q: '「小明非常開心。」可以換成哪個詞？', opts:['十分','有點','不太','從不'],ans:'a'},
+  { q: '以下哪組是近義詞？', opts:['寒冷—溫暖','漂亮—美麗','開心—難過','高大—矮小'],ans:'b'},
+  { q: '「陽光」中的「陽」是什麼部首？', opts:['日部','月部','土部','阝部'],ans:'d'},
+  { q: '「小狗在草地上跑來跑去。」這句話中共有幾個字？', opts:['8個','9個','10個','11個'],ans:'c'},
+  { q: '「我___你一起去公園。」空格應填什麼？', opts:['跟','根','很','狠'],ans:'a'},
+  { q: '「一___雨傘」正確的量詞是什麼？', opts:['把','張','個','條'],ans:'a'},
+  { q: '「圖畫」這個詞中哪個字表示圖案？', opts:['圖','畫','兩者都是','兩者都不是'],ans:'a'},
+  { q: '「高」和「矮」的關係是？', opts:['同音字','同義詞','反義詞','形近字'],ans:'c'},
+  { q: '「生日」的「生」字讀音是？', opts:['sheng1','seng1','shang1','sing1'],ans:'a'},
+];
+
+/* ---- Fill-in Bank (填空题) 20+ items ---- */
+const fillBank = [
+  {q:'今天的天空很____。',ans:'藍',w:80},
+  {q:'媽媽買了一件新衣____。',ans:'服',w:80},
+  {q:'小明每天____刷牙洗臉。',ans:'早上',w:100},
+  {q:'小鳥在天上____翔。',ans:'飛',w:80},
+  {q:'這個蘋果很____，非常好吃。',ans:'甜',w:80},
+  {q:'他____到了圖書館看書。',ans:'去',w:80},
+  {q:'請你把門關____。',ans:'上',w:80},
+  {q:'小貓的毛很柔____。',ans:'軟',w:80},
+  {q:'桌子上放着五____書。',ans:'本',w:80},
+  {q:'花園裏的花很____艷。',ans:'鮮',w:80},
+  {q:'我們應該____敬長輩。',ans:'尊',w:80},
+  {q:'春天到了，天氣變____了。',ans:'暖',w:80},
+  {q:'他用____毛筆寫字。',ans:'毛',w:80},
+  {q:'樹上____着很多鳥兒。',ans:'停',w:80},
+  {q:'我們要愛____公物。',ans:'護',w:80},
+  {q:'妹妹的臉色很紅____。',ans:'潤',w:80},
+  {q:'爸爸在____上看報紙。',ans:'沙發',w:100},
+  {q:'這輛車開得很快，像____一樣。',ans:'風',w:80},
+  {q:'____來了，樹上的葉子都黃了。',ans:'秋天',w:100},
+  {q:'他小心地走過____橋。',ans:'小',w:80},
+  {q:'奶奶的眼睛不好，要戴眼____。',ans:'鏡',w:80},
+  {q:'我____歡畫畫。',ans:'喜',w:80},
+  {q:'這朵花____得很漂亮。',ans:'開',w:80},
+];
+
+/* ---- Reading Bank (阅读理解) 6 passages ---- */
+const readingBank = [
+  {title:'春天來了',passage:'春天來了，天氣變得溫暖了。花園裏的花開了，有紅色的、黃色的、紫色的，非常漂亮。小鳥在樹上唱歌，蝴蝶在花間飛舞。小朋友們在公園裏放風箏，大家都很開心。',
+   questions:[
+    {q:'春天來了，天氣變得怎麼樣？',opts:['很冷','很溫暖','很熱','很涼'],ans:'b'},
+    {q:'花園裏的花有什麼顏色？',opts:['只有紅色','只有黃色','只有紫色','有紅、黃、紫色'],ans:'d'},
+    {q:'什麼在樹上唱歌？',opts:['蝴蝶','小朋友','小鳥','小貓'],ans:'c'},
+    {q:'小朋友們在公園裏做什麼？',opts:['放風箏','畫畫','看書','跑步'],ans:'a'},
+   ]},
+  {title:'小貓釣魚',passage:'一天早上，小貓和媽媽去河邊釣魚。小貓看見一隻蜻蜓飛過來，就去追蜻蜓。蜻蜓飛走了，小貓回來一看，媽媽已經釣到了好幾條大魚。小貓很慚愧，下定決心要專心釣魚。',
+   questions:[
+    {q:'小貓和誰去河邊釣魚？',opts:['爸爸','媽媽','哥哥','姐姐'],ans:'b'},
+    {q:'小貓去追什麼？',opts:['蝴蝶','蜻蜓','小鳥','樹葉'],ans:'b'},
+    {q:'媽媽釣到了什麼？',opts:['小魚','大魚','很多魚','一條魚'],ans:'c'},
+    {q:'最後小貓明白了什麼道理？',opts:['釣魚很簡單','蜻蜓很好玩','做事要專心','媽媽很厲害'],ans:'c'},
+   ]},
+  {title:'我的好朋友',passage:'我有一個好朋友叫小文。小文個子很高，眼睛大大的，笑起來很好看。我們每天一起上學，一起做功課，一起玩耍。有一次我生病了，小文放學後特地來我家看我，還給我帶了他最喜歡的圖書。我很感動。',
+   questions:[
+    {q:'我的好朋友叫什麼名字？',opts:['小明','小文','小華','小美'],ans:'b'},
+    {q:'小文長得怎麼樣？',opts:['個子很矮','眼睛很小','個子很高','很胖'],ans:'c'},
+    {q:'小文為"我"做了什麼？',opts:['給了我一塊糖','來我家看我','幫我做功課','送我一本書'],ans:'b'},
+    {q:'"我"對小文的行為有什麼感受？',opts:['很生氣','很感動','很難過','很驚訝'],ans:'b'},
+   ]},
+  {title:'彩虹',passage:'下雨之後，天空常常會出現彩虹。彩虹有七種顏色，分別是紅、橙、黃、綠、藍、靛、紫，非常美麗。彩虹像一座大大的橋。小朋友都很喜歡看彩虹，但彩虹很快就會消失。',
+   questions:[
+    {q:'彩虹在什麼時候出現？',opts:['天晴的時候','下雨之後','颳風的時候','晚上的時候'],ans:'b'},
+    {q:'彩虹有幾種顏色？',opts:['五種','六種','七種','八種'],ans:'c'},
+    {q:'彩虹像什麼？',opts:['一條綵帶','一座橋','一條小河','一把傘'],ans:'b'},
+    {q:'文中說彩虹會怎樣？',opts:['停留很久','很快消失','越來越亮','變成一個人'],ans:'b'},
+   ]},
+  {title:'小兔子乖乖',passage:'兔媽媽有三個孩子，一個叫紅眼睛，一個叫長耳朵，一個叫短尾巴。一天，兔媽媽要去拔蘿蔔，她對孩子們說：「你們要看好家，誰來叫門都不要開。」大灰狼來了，學兔媽媽唱歌。小兔子們聽出不是媽媽的聲音，沒有開門。兔媽媽回來了，小兔子們高興地開了門。',
+   questions:[
+    {q:'兔媽媽要去做什麼？',opts:['買菜','拔蘿蔔','打水','做衣服'],ans:'b'},
+    {q:'兔媽媽出門前對孩子們說什麼？',opts:['在家乖乖做功課','誰叫門都不要開','去院子裏玩','好好吃飯'],ans:'b'},
+    {q:'誰來叫門了？',opts:['灰狼','老虎','小狗','小貓'],ans:'a'},
+    {q:'小兔子們為什麼沒開門？',opts:['沒聽見','害怕','聽出不是媽媽的聲音','睡着了'],ans:'c'},
+   ]},
+  {title:'小馬過河',passage:'小馬要過河，它看見一頭牛在河邊吃草。小馬問：「牛伯伯，河裏的水深嗎？」老牛說：「水很淺，才到我的小腿。」一隻松鼠跑過來說：「水很深，會淹死你的！」小馬不知道該聽誰的。它回家問媽媽。媽媽說：「孩子，你要自己試一試才知道。」小馬小心地走進河裏，發現河水不深也不淺。',
+   questions:[
+    {q:'小馬在河邊看見了誰？',opts:['一頭牛和一隻松鼠','一隻小鳥','一隻小貓','一隻鴨子'],ans:'a'},
+    {q:'老牛說河水怎麼樣？',opts:['很深','很淺','不深不淺','很急'],ans:'b'},
+    {q:'松鼠說河水怎麼樣？',opts:['很淺','不深不淺','很深','很乾淨'],ans:'c'},
+    {q:'小馬的媽媽說了什麼？',opts:['聽老牛的話','聽松鼠的話','要自己試一試','不要過河'],ans:'c'},
+   ]},
+];
+
+/* ---- Error Correction Bank (改错题) 15+ items ---- */
+const proofBank = [
+  {q:'我今天〈心〉情很好。',opts:['心情','心情','心晴','Do not change'],ans:'a'},
+  {q:'小〈明〉是我的好朋友。',opts:['名','明','民','Do not change'],ans:'b'},
+  {q:'他在〈作〉業。',opts:['做','作','坐','Do not change'],ans:'a'},
+  {q:'妹妹穿着白色的〈連〉衣裙。',opts:['連','聯','連','Do not change'],ans:'a'},
+  {q:'媽媽〈在〉廚房做飯。',opts:['再','在','到','Do not change'],ans:'b'},
+  {q:'這朵花〈真〉漂亮。',opts:['真','正','很','Do not change'],ans:'a'},
+  {q:'他〈的〉書包是藍色的。',opts:['的','得','地','Do not change'],ans:'a'},
+  {q:'他〈向〉東邊走去。',opts:['像','向','想','Do not change'],ans:'b'},
+  {q:'小鳥在樹上〈唱〉歌。',opts:['唱','喝','吃','Do not change'],ans:'a'},
+  {q:'我喜歡〈喝〉牛奶。',opts:['吃','喝','吹','Do not change'],ans:'b'},
+  {q:'他很快〈的〉跑過來。',opts:['的','得','地','Do not change'],ans:'b'},
+  {q:'這條河裏的魚很〈多〉。',opts:['多','都','不','Do not change'],ans:'a'},
+  {q:'他〈在〉寫字。',opts:['再','在','到','Do not change'],ans:'b'},
+  {q:'我們〈再〉見。',opts:['再','在','到','Do not change'],ans:'a'},
+  {q:'這部電影很〈有〉意思。',opts:['由','有','又','Do not change'],ans:'b'},
+  {q:'〈它〉是一隻可愛的小狗。',opts:['他','他','它','Do not change'],ans:'c'},
+  {q:'我和同學一起〈作〉遊戲。',opts:['做','作','坐','Do not change'],ans:'a'},
+  {q:'弟弟的〈足〉球很新。',opts:['足','竹','族','Do not change'],ans:'a'},
+];
+
+/* ======================================================
+   HELPERS
+   ====================================================== */
+function pick(arr, n) {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled.slice(0, n);
+}
+
+/* ======================================================
+   STATE
+   ====================================================== */
+let score = 0;
+let total = 0;
+const answered = new Set();
+
+function updateScore() {
+  document.getElementById('scoreDisplay').textContent = score;
+  document.getElementById('totalDisplay').textContent = total;
+}
+
+/* ======================================================
+   GENERATE EXAM
+   ====================================================== */
+function generateExam() {
+  score = 0;
+  total = 0;
+  answered.clear();
+  updateScore();
+
+  const mcqList = pick(mcqBank, 6);
+  const fillList = pick(fillBank, 4);
+  const readingItem = pick(readingBank, 1)[0];
+  const proofList = pick(proofBank, 4);
+
+  total = mcqList.length + fillList.length + readingItem.questions.length + proofList.length;
+  document.getElementById('totalDisplay').textContent = total;
+  document.getElementById('qCountDisplay').textContent = total;
+
+  let qNum = 0;
+  let html = '';
+
+  /* === Section 1: 选择题 === */
+  html += '<div class="section"><div class="section-title">一、選擇題（選出正確答案）</div><div class="section-body">';
+  mcqList.forEach((item, idx) => {
+    qNum++;
+    const qid = 'mcq' + idx;
+    const letters = ['a','b','c','d'];
+    html += `<div class="question" id="q${qid}">
+      <div class="q-text"><span class="q-num">${qNum}.</span> ${item.q}</div>
+      <div class="opts" data-answer="${item.ans}" data-qid="${qid}">`;
+    item.opts.forEach((opt, oi) => {
+      const letter = letters[oi];
+      html += `<div class="opt" data-letter="${letter.toUpperCase()}" onclick="checkOpt(this,'${qid}')">
+        <span class="opt-letter">${letter.toUpperCase()}</span>${opt}<span class="emoji-result"></span>
+      </div>`;
+    });
+    html += '</div></div>';
+  });
+  html += '</div></div>';
+
+  /* === Section 2: 填空题 === */
+  html += '<div class="section"><div class="section-title">二、填空題（填上正確答案）</div><div class="section-body">';
+  fillList.forEach((item, idx) => {
+    qNum++;
+    const qid = 'fill' + idx;
+    html += `<div class="question" id="q${qid}">
+      <div class="q-text"><span class="q-num">${qNum}.</span> ${item.q.replace('____','<span class="blank">_____</span>')}</div>
+      <div class="q-fill-row">
+        <input class="fill-input" id="${qid}" type="text" placeholder="輸入答案" style="width:${item.w||80}px" onkeydown="if(event.key==='Enter')checkFill('${qid}','${item.ans}')">
+        <button class="check-btn" onclick="checkFill('${qid}','${item.ans}')">✓ 檢查</button>
+      </div>
+    </div>`;
+  });
+  html += '</div></div>';
+
+  /* === Section 3: 阅读理解 === */
+  html += `<div class="section"><div class="section-title">三、閱讀理解（閱讀短文，回答問題）</div><div class="section-body">`;
+  html += `<div class="reading-passage"><div class="rp-title">📄 ${readingItem.title}</div><div class="rp-content">${readingItem.passage}</div></div>`;
+  readingItem.questions.forEach((q, qi) => {
+    qNum++;
+    const qid = 'read' + qi;
+    const letters = ['a','b','c','d'];
+    html += `<div class="question" id="q${qid}">
+      <div class="q-text"><span class="q-num">${qNum}.</span> ${q.q}</div>
+      <div class="opts" data-answer="${q.ans}" data-qid="${qid}">`;
+    q.opts.forEach((opt, oi) => {
+      const letter = letters[oi];
+      html += `<div class="opt" data-letter="${letter.toUpperCase()}" onclick="checkOpt(this,'${qid}')">
+        <span class="opt-letter">${letter.toUpperCase()}</span>${opt}<span class="emoji-result"></span>
+      </div>`;
+    });
+    html += '</div></div>';
+  });
+  html += '</div></div>';
+
+  /* === Section 4: 改错题 === */
+  html += '<div class="section"><div class="section-title">四、改錯題（選出括號內的正確字）</div><div class="section-body">';
+  proofList.forEach((item, idx) => {
+    qNum++;
+    const qid = 'proof' + idx;
+    const letters = ['a','b','c','d'];
+    html += `<div class="question" id="q${qid}">
+      <div class="q-text"><span class="q-num">${qNum}.</span> ${item.q}</div>
+      <div class="opts" data-answer="${item.ans}" data-qid="${qid}">`;
+    item.opts.forEach((opt, oi) => {
+      const letter = letters[oi];
+      let label = opt;
+      if (opt === 'Do not change') label = '✓ 無需改動';
+      html += `<div class="opt" data-letter="${letter.toUpperCase()}" onclick="checkOpt(this,'${qid}')">
+        <span class="opt-letter">${letter.toUpperCase()}</span>${label}<span class="emoji-result"></span>
+      </div>`;
+    });
+    html += '</div></div>';
+  });
+  html += '</div></div>';
+
+  document.getElementById('examArea').innerHTML = html;
+}
+
+/* ======================================================
+   CHECK ANSWER
+   ====================================================== */
+function checkOpt(el, qid) {
+  if (answered.has(qid)) return;
+  const optsDiv = el.closest('.opts');
+  const correctAns = optsDiv.dataset.answer;
+  const chosen = el.dataset.letter.toLowerCase();
+
+  // Mark all opts disabled
+  optsDiv.querySelectorAll('.opt').forEach(o => o.classList.add('disabled'));
+  el.classList.add('selected');
+
+  if (chosen === correctAns) {
+    el.classList.add('correct');
+    el.querySelector('.emoji-result').textContent = '✅';
+    score++;
+  } else {
+    el.classList.add('wrong');
+    el.querySelector('.emoji-result').textContent = '❌';
+    // Show correct answer
+    optsDiv.querySelectorAll('.opt').forEach(o => {
+      if (o.dataset.letter.toLowerCase() === correctAns) {
+        o.classList.add('correct');
+        o.querySelector('.emoji-result').textContent = '✅';
+      }
+    });
+  }
+  answered.add(qid);
+  updateScore();
+}
+
+function checkFill(qid, ans) {
+  if (answered.has(qid)) return;
+  const input = document.getElementById(qid);
+  const val = input.value.trim();
+  if (!val) return;
+  answered.add(qid);
+  const btn = input.nextElementSibling;
+  btn.disabled = true;
+  if (val === ans) {
+    input.classList.add('correct');
+    score++;
+    input.value = '✓ ' + ans;
+  } else {
+    input.classList.add('wrong');
+    input.value = '✗ ' + val + '（正確：' + ans + '）';
+  }
+  updateScore();
+}
+
+function resetChecks() {
+  document.querySelectorAll('.opt').forEach(o => {
+    o.classList.remove('correct','wrong','selected','disabled');
+    o.querySelector('.emoji-result').textContent = '';
+  });
+  document.querySelectorAll('.fill-input').forEach(inp => {
+    inp.classList.remove('correct','wrong');
+    const btn = inp.nextElementSibling;
+    btn.disabled = false;
+  });
+  score = 0;
+  answered.clear();
+  updateScore();
+}
+
+/* Generate on load */
+document.addEventListener('DOMContentLoaded', generateExam);
+</script>
+</body>
+</html>
