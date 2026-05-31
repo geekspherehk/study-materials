@@ -107,12 +107,20 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 <body>
 <div class="container">
   <h1>🧮 P2 口算题卡</h1>
-  <p class="subtitle">选择运算和数字范围，做一道、再出下一道 ✏️</p>
+  <p class="subtitle">选择运算、数字范围和题数，做一道、再出下一道 ✏️</p>
 
   <div class="card" id="settingsCard">
     <div class="card-title">⚙️ 参数设置</div>
     <div class="settings">
       <label>数字范围 <input type="number" id="rangeVal" value="20" min="1" max="999"></label>
+      <label>题数 
+        <select id="countVal">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20" selected>20</option>
+        </select>
+      </label>
       <div class="ops-group">
         <label><input type="checkbox" id="opAdd" checked> ＋ 加法</label>
         <label><input type="checkbox" id="opSub" checked> − 减法</label>
@@ -251,6 +259,7 @@ function generateOneQuestion(ops, range) {
 
 function startGame() {
   const range = parseInt(document.getElementById('rangeVal').value) || 20;
+  totalCount = parseInt(document.getElementById('countVal').value) || 20;
   const ops = [];
   if (document.getElementById('opAdd').checked) ops.push('add');
   if (document.getElementById('opSub').checked) ops.push('sub');
