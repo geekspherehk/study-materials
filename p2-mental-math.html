@@ -33,20 +33,33 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .ops-group label:hover{border-color:#2563eb;color:#2563eb}
 .ops-group input[type="checkbox"]{display:none}
 .ops-group label:has(input:checked){background:#2563eb;color:#fff;border-color:#2563eb}
-/* ── 题目网格 ── */
-.qa-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-@media(max-width:480px){.qa-grid{grid-template-columns:1fr}}
-.qa-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:10px;background:#fafbfc;font-size:1.1rem;font-weight:600;transition:all .15s}
-.qa-item.correct{background:#e6f7ed;border-color:#27ae60}
-.qa-item.wrong{background:#fdedec;border-color:#e74c3c}
-.qa-item span{white-space:nowrap}
-.qa-item input[type="number"]{width:64px;padding:6px 10px;border:1.5px solid #cbd5e1;border-radius:6px;font-size:1rem;outline:none;text-align:center;-moz-appearance:textfield}
-.qa-item input[type="number"]::-webkit-outer-spin-button,
-.qa-item input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
-.qa-item input[type="number"]:focus{border-color:#2563eb}
-.qa-item.correct input{border-color:#27ae60;background:#fff}
-.qa-item.wrong input{border-color:#e74c3c;background:#fff}
-.qa-item input[disabled]{background:#f1f5f9;opacity:0.8}
+/* ── 单题模式 ── */
+.question-area{text-align:center;padding:30px 20px}
+.question-progress{font-size:0.85rem;color:#94a3b8;margin-bottom:16px}
+.question-text{font-size:2.2rem;font-weight:800;color:#1e293b;margin-bottom:24px;letter-spacing:2px}
+.answer-area{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:20px}
+.answer-area input[type="number"]{width:200px;max-width:80%;padding:16px 20px;border:2.5px solid #cbd5e1;border-radius:14px;font-size:1.6rem;outline:none;text-align:center;-moz-appearance:textfield;transition:border-color .2s;background:#fff}
+.answer-area input[type="number"]::-webkit-outer-spin-button,
+.answer-area input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.answer-area input[type="number"]:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.answer-area input.correct{border-color:#27ae60;background:#f0fdf4}
+.answer-area input.wrong{border-color:#e74c3c;background:#fef2f2}
+.answer-area input[disabled]{opacity:0.9}
+.submit-btn{background:#2563eb;color:#fff;border:none;padding:14px 48px;border-radius:12px;cursor:pointer;font-size:1.1rem;font-weight:700;transition:all .2s}
+.submit-btn:hover{background:#1d4ed8;transform:translateY(-1px)}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.answer-feedback{font-size:1.05rem;font-weight:600;min-height:2.4em;margin-top:4px}
+.answer-feedback.correct{color:#27ae60}
+.answer-feedback.wrong{color:#e74c3c}
+.next-btn{background:#27ae60;color:#fff;border:none;padding:14px 48px;border-radius:12px;cursor:pointer;font-size:1.1rem;font-weight:700;transition:all .2s;display:none}
+.next-btn:hover{background:#1e8449;transform:translateY(-1px)}
+.finish-card{text-align:center;padding:24px;display:none}
+.finish-card .big-emoji{font-size:3.5rem;margin-bottom:12px}
+.finish-card .finish-score{font-size:2rem;font-weight:800;margin-bottom:8px}
+.finish-card .finish-msg{font-size:1.1rem;color:#475569;margin-bottom:20px}
+.finish-card .btn{background:#2c3e50;color:#fff;border:none;padding:12px 32px;border-radius:10px;cursor:pointer;font-size:1rem;font-weight:700;transition:background .15s;margin:6px}
+.finish-card .btn:hover{background:#34495e}
+.finish-card .btn-green{background:#27ae60}.finish-card .btn-green:hover{background:#1e8449}
 /* ── 按钮和结果 ── */
 .btn-group{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0}
 .btn{background:#2c3e50;color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:0.9rem;font-weight:600;transition:background .15s}
@@ -62,25 +75,9 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
 .nav-home{background:#1e293b;color:#fff;border-color:#1e293b}
 .nav-home:hover{background:#2563eb;border-color:#2563eb}
-/* ── 自定义结果弹窗 ── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:999;justify-content:center;align-items:center;animation:fadeIn .3s}
-.modal-overlay.show{display:flex}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-.modal-box{background:#fff;border-radius:20px;padding:32px 36px;max-width:400px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);animation:bounce .4s;position:relative}
-.modal-character{font-size:3.5rem;margin-bottom:8px;line-height:1.2}
-.modal-character .char-name{display:block;font-size:0.95rem;color:#64748b;font-weight:600;margin-top:2px}
-.modal-message{font-size:1.5rem;font-weight:700;color:#1e293b;line-height:1.6;margin-bottom:16px;padding:0 8px}
-.modal-score{font-size:2.2rem;font-weight:800;margin-bottom:16px}
-.modal-score.full{color:#27ae60}.modal-score.good{color:#2563eb}.modal-score.ok{color:#e67e22}.modal-score.low{color:#e74c3c}
-.modal-btn{background:#2c3e50;color:#fff;border:none;padding:12px 40px;border-radius:12px;cursor:pointer;font-size:1.1rem;font-weight:700;transition:background .15s}
-.modal-btn:hover{background:#34495e}
-.modal-confetti{font-size:1.2rem;margin-bottom:8px;letter-spacing:4px}
-
 .related-links a{color:#2563eb;text-decoration:none;font-weight:600;font-size:0.9rem;padding:4px 10px;border-radius:6px;transition:background .15s}
 .related-links a:hover{background:#eff6ff;text-decoration:underline}
 .related-links .card-title{margin-bottom:8px}
-
 .share-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .15s}
 .share-wa{background:#25D366;color:#fff}
 .share-wa:hover{background:#128C7E}
@@ -102,9 +99,9 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 <body>
 <div class="container">
   <h1>🧮 P2 口算题卡</h1>
-  <p class="subtitle">选择运算和数字范围，生成20道口算题 ✏️</p>
+  <p class="subtitle">选择运算和数字范围，做一道、再出下一道 ✏️</p>
 
-  <div class="card">
+  <div class="card" id="settingsCard">
     <div class="card-title">⚙️ 参数设置</div>
     <div class="settings">
       <label>数字范围 <input type="number" id="rangeVal" value="20" min="1" max="999"></label>
@@ -116,15 +113,32 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
       </div>
     </div>
     <div class="btn-group">
-      <button class="btn btn-green" onclick="generateQuestions()">🔄 生成题目</button>
-      <button class="btn btn-check" id="checkBtn" onclick="checkAnswers()">✓ 检查答案</button>
+      <button class="btn btn-green" onclick="startGame()">🔄 开始答题</button>
     </div>
   </div>
 
-  <div class="card" id="qaCard">
-    <div class="card-title">📝 20 道口算题</div>
-    <div class="qa-grid" id="qaGrid"></div>
-    <div class="result-bar" id="resultBar"></div>
+  <div class="card" id="qaCard" style="display:none">
+    <div class="card-title" id="qaCardTitle">📝 口算练习</div>
+    <div class="question-area">
+      <div class="question-progress" id="progressText">第 1 / 20 题</div>
+      <div class="question-text" id="questionText">12 + 8 = ?</div>
+      <div class="answer-area">
+        <input type="number" id="answerInput" placeholder="输入答案" inputmode="numeric" autofocus>
+        <div class="answer-feedback" id="feedback"></div>
+        <button class="submit-btn" id="submitBtn" onclick="checkOneAnswer()">✓ 提交答案</button>
+        <button class="next-btn" id="nextBtn" onclick="nextQuestion()">➡️ 下一题</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card finish-card" id="finishCard">
+    <div class="big-emoji" id="finishEmoji">🎉</div>
+    <div class="finish-score" id="finishScore">18 / 20</div>
+    <div class="finish-msg" id="finishMsg">太棒了！你是口算小天才！</div>
+    <div>
+      <button class="btn btn-green" onclick="startGame()">🔄 再来一轮</button>
+      <button class="btn" onclick="backToSettings()">⚙️ 修改参数</button>
+    </div>
   </div>
 
   <div class="nav-buttons">
@@ -140,225 +154,6 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
   </div>
 </div>
 
-<!-- 自定义结果弹窗 -->
-<div class="modal-overlay" id="resultModal">
-  <div class="modal-box">
-    <div class="modal-confetti" id="modalConfetti"></div>
-    <div class="modal-character" id="modalCharacter"></div>
-    <div class="modal-message" id="modalMessage"></div>
-    <div class="modal-score" id="modalScore"></div>
-    <button class="modal-btn" onclick="closeModal()">👍 继续练习</button>
-  </div>
-</div>
-
-<script>
-function randInt(a, b) {
-  return Math.floor(Math.random() * (b - a + 1)) + a;
-}
-
-function gcd(a, b) {
-  while (b) { [a, b] = [b, a % b]; }
-  return a;
-}
-
-let currentAnswers = [];
-let submitted = false;
-
-function generateQuestions() {
-  submitted = false;
-  document.getElementById('checkBtn').disabled = false;
-  document.getElementById('checkBtn').textContent = '✓ 检查答案';
-  document.getElementById('resultBar').textContent = '';
-  document.getElementById('resultBar').className = 'result-bar';
-
-  const range = parseInt(document.getElementById('rangeVal').value) || 20;
-  const ops = [];
-  if (document.getElementById('opAdd').checked) ops.push('add');
-  if (document.getElementById('opSub').checked) ops.push('sub');
-  if (document.getElementById('opMul').checked) ops.push('mul');
-  if (document.getElementById('opDiv').checked) ops.push('div');
-
-  if (ops.length === 0) {
-    document.getElementById('resultBar').textContent = '⚠️ 请至少选择一种运算！';
-    document.getElementById('resultBar').className = 'result-bar poor';
-    return;
-  }
-
-  const grid = document.getElementById('qaGrid');
-  grid.innerHTML = '';
-  currentAnswers = [];
-
-  const count = 20;
-
-  for (let i = 0; i < count; i++) {
-    const op = ops[Math.floor(Math.random() * ops.length)];
-    let a, b, ans, q;
-
-    switch (op) {
-      case 'add': // 加法
-        a = randInt(0, range);
-        b = randInt(0, range);
-        ans = a + b;
-        q = a + ' + ' + b + ' = ?';
-        break;
-      case 'sub': // 减法（结果不为负）
-        a = randInt(0, range);
-        b = randInt(0, a);
-        ans = a - b;
-        q = a + ' − ' + b + ' = ?';
-        break;
-      case 'mul': // 乘法
-        {
-          // 因数范围 2~9（P2 乘法表），固定值，跟数字范围解耦
-          let minF = 2;
-          let maxF = 9;
-          a = randInt(minF, maxF);
-          b = randInt(minF, maxF);
-          ans = a * b;
-          q = a + ' × ' + b + ' = ?';
-        }
-        break;
-      case 'div': // 除法（整除）
-        {
-          // 结果和除数都在合理范围
-          let quotient = randInt(1, Math.min(range, 12));
-          let divisor = randInt(1, Math.min(range, 12));
-          a = quotient * divisor;
-          // 确保被除数不超范围
-          while (a > range * 2) {
-            divisor = randInt(1, Math.min(range, 10));
-            quotient = Math.floor(range / divisor);
-            quotient = Math.max(1, quotient);
-            a = quotient * divisor;
-          }
-          b = divisor;
-          ans = quotient;
-          q = a + ' ÷ ' + b + ' = ?';
-        }
-        break;
-    }
-
-    currentAnswers.push(ans);
-
-    const div = document.createElement('div');
-    div.className = 'qa-item';
-    div.id = 'qa-' + i;
-    div.innerHTML = '<span data-i="' + i + '">' + q + '</span> <input type="number" id="input-' + i + '" placeholder="?" inputmode="numeric">';
-    grid.appendChild(div);
-  }
-}
-
-function checkAnswers() {
-  if (submitted) return;
-  submitted = true;
-  document.getElementById('checkBtn').disabled = true;
-  document.getElementById('checkBtn').textContent = '✅ 已提交';
-
-  let correct = 0;
-  const total = currentAnswers.length;
-
-  currentAnswers.forEach((ans, i) => {
-    const inp = document.getElementById('input-' + i);
-    const item = document.getElementById('qa-' + i);
-    if (!inp || !item) return;
-
-    const val = parseInt(inp.value);
-    item.classList.remove('correct', 'wrong');
-    inp.disabled = true;
-
-    if (!isNaN(val) && val === ans) {
-      item.classList.add('correct');
-      correct++;
-    } else {
-      item.classList.add('wrong');
-      // 显示正确答案
-      const span = item.querySelector('span');
-      span.textContent = span.textContent.replace('= ?', '= ' + ans);
-    }
-  });
-
-  const bar = document.getElementById('resultBar');
-  const pct = Math.round(correct / total * 100);
-  let cls = 'poor';
-  let emoji = '😔';
-  if (pct === 100) { cls = 'success'; emoji = '🎉'; }
-  else if (pct >= 80) { cls = 'partial'; emoji = '👍'; }
-  else if (pct >= 60) { emoji = '💪'; }
-  else { emoji = '📖'; }
-
-  bar.textContent = emoji + ' ' + correct + ' / ' + total + ' 正确（' + pct + '%）';
-  bar.className = 'result-bar ' + cls;
-
-  // 弹窗鼓励
-  let msg = '';
-  const name = localStorage.getItem('studentName') || '同学';
-  let character = '';
-  if (pct === 100) {
-    const msgs = [
-      '🎉 太棒了！满分！' + name + '你是口算小天才！',
-      '🏆 全部正确！' + name + '太厉害了！继续保持！',
-      '🌟 满分过关！' + name + '口算能力一流！',
-      '💯 完美！' + name + '给你点个大大的赞！'
-    ];
-    msg = msgs[Math.floor(Math.random() * msgs.length)];
-    const chars = ['🐱 皮卡丘', '🦄 紫悦', '🤖 哆啦A梦', '🐉 喷火龙', '🌟 宇宙公主'];
-    character = chars[Math.floor(Math.random() * chars.length)];
-  } else if (pct >= 80) {
-    const msgs = [
-      '做得很好，' + name + '！只差一点点就满分了！',
-      '' + name + '真棒！正确率超过80%，继续加油！',
-      '不错哦' + name + '，下次争取全对！',
-      '' + name + '已经很厉害了，再练练就能满分！'
-    ];
-    msg = msgs[Math.floor(Math.random() * msgs.length)];
-    const chars = ['🐱 皮卡丘', '🐰 碧琪', '🤖 哆啦A梦', '🐢 杰尼龟', '🌙 小月'];
-    character = chars[Math.floor(Math.random() * chars.length)];
-  } else if (pct >= 60) {
-    const msgs = [
-      '' + name + '加油！多练几次就会越来越好！',
-      '错了不要紧，' + name + '看看正确答案，下次一定行！',
-      '' + name + '继续努力，进步空间很大哦！',
-      '' + name + '坚持练习就会越来越棒的！'
-    ];
-    msg = msgs[Math.floor(Math.random() * msgs.length)];
-    const chars = ['🐱 皮卡丘', '🐶 大雄', '🐸 妙蛙种子', '🍩 哆啦A梦', '🌈 云宝'];
-    character = chars[Math.floor(Math.random() * chars.length)];
-  } else {
-    const msgs = [
-      '' + name + '没关系，多练习几次就好了！',
-      '错了的题目再看一遍，' + name + '下次一定进步！',
-      '' + name + '不要灰心，口算就是要多练！',
-      '加油' + name + '！每一次练习都在进步！'
-    ];
-    msg = msgs[Math.floor(Math.random() * msgs.length)];
-    const chars = ['😊 皮卡丘', '🐣 波克比', '🤖 哆啦A梦', '🍬 小蝶', '⭐ 胖丁'];
-    character = chars[Math.floor(Math.random() * chars.length)];
-  }
-  showResultDialog(character, msg, pct);
-}
-// 自定义弹窗
-function showResultDialog(character, msg, pct) {
-  document.getElementById('modalConfetti').textContent = pct === 100 ? '🎊 ✨ 🎉 ✨ 🎊' : '';
-  document.getElementById('modalCharacter').innerHTML = character;
-  document.getElementById('modalMessage').textContent = msg;
-  const scoreEl = document.getElementById('modalScore');
-  const pctText = '正确率 ' + pct + '%';
-  let cls = 'low';
-  if (pct === 100) cls = 'full';
-  else if (pct >= 80) cls = 'good';
-  else if (pct >= 60) cls = 'ok';
-  scoreEl.textContent = pctText;
-  scoreEl.className = 'modal-score ' + cls;
-  document.getElementById('resultModal').classList.add('show');
-}
-function closeModal() {
-  document.getElementById('resultModal').classList.remove('show');
-}
-
-// 页面加载时自动生成一题
-generateQuestions();
-</script>
-
 <div class="card related-links">
   <div class="card-title">📚 相關學習</div>
   <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center">
@@ -368,7 +163,6 @@ generateQuestions();
     <a href="index.html" style="color:#2563eb;text-decoration:none">🏠 返回首頁</a>
   </div>
 </div>
-
 
 <div class="card share-links">
   <div class="card-title" style="margin-bottom:10px">📤 分享此頁</div>
@@ -390,7 +184,218 @@ function copyShareLink() {
     });
   }
 }
-</script><!-- 不蒜子访问统计 -->
+
+function randInt(a, b) {
+  return Math.floor(Math.random() * (b - a + 1)) + a;
+}
+
+// ── 游戏状态 ──
+let questions = [];
+let currentIndex = 0;
+let correctCount = 0;
+let totalCount = 20;
+let answered = false;
+
+function generateOneQuestion(ops, range) {
+  const op = ops[Math.floor(Math.random() * ops.length)];
+  let a, b, ans, q;
+  switch (op) {
+    case 'add':
+      a = randInt(0, range);
+      b = randInt(0, range);
+      ans = a + b;
+      q = a + ' + ' + b + ' = ?';
+      break;
+    case 'sub':
+      a = randInt(0, range);
+      b = randInt(0, a);
+      ans = a - b;
+      q = a + ' − ' + b + ' = ?';
+      break;
+    case 'mul':
+      {
+        let minF = 2, maxF = 9;
+        a = randInt(minF, maxF);
+        b = randInt(minF, maxF);
+        ans = a * b;
+        q = a + ' × ' + b + ' = ?';
+      }
+      break;
+    case 'div':
+      {
+        let quotient = randInt(1, Math.min(range, 12));
+        let divisor = randInt(1, Math.min(range, 12));
+        a = quotient * divisor;
+        while (a > range * 2) {
+          divisor = randInt(1, Math.min(range, 10));
+          quotient = Math.max(1, Math.floor(range / divisor));
+          a = quotient * divisor;
+        }
+        b = divisor;
+        ans = quotient;
+        q = a + ' ÷ ' + b + ' = ?';
+      }
+      break;
+  }
+  return { q, ans };
+}
+
+function startGame() {
+  const range = parseInt(document.getElementById('rangeVal').value) || 20;
+  const ops = [];
+  if (document.getElementById('opAdd').checked) ops.push('add');
+  if (document.getElementById('opSub').checked) ops.push('sub');
+  if (document.getElementById('opMul').checked) ops.push('mul');
+  if (document.getElementById('opDiv').checked) ops.push('div');
+
+  if (ops.length === 0) {
+    alert('⚠️ 请至少选择一种运算！');
+    return;
+  }
+
+  // 预设生成所有题目
+  questions = [];
+  for (let i = 0; i < totalCount; i++) {
+    questions.push(generateOneQuestion(ops, range));
+  }
+
+  currentIndex = 0;
+  correctCount = 0;
+  answered = false;
+
+  document.getElementById('settingsCard').style.display = 'none';
+  document.getElementById('finishCard').style.display = 'none';
+  document.getElementById('qaCard').style.display = 'block';
+
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = questions[currentIndex];
+  document.getElementById('questionText').textContent = q.q;
+  document.getElementById('progressText').textContent = '第 ' + (currentIndex + 1) + ' / ' + totalCount + ' 题';
+
+  const input = document.getElementById('answerInput');
+  input.value = '';
+  input.disabled = false;
+  input.className = '';
+  input.focus();
+  answered = false;
+
+  document.getElementById('submitBtn').style.display = 'inline-block';
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('feedback').className = 'answer-feedback';
+}
+
+function checkOneAnswer() {
+  if (answered) return;
+  const input = document.getElementById('answerInput');
+  const val = parseInt(input.value);
+  const feedback = document.getElementById('feedback');
+  const q = questions[currentIndex];
+
+  if (isNaN(val)) {
+    feedback.textContent = '⚠️ 请输入数字答案';
+    feedback.className = 'answer-feedback wrong';
+    return;
+  }
+
+  answered = true;
+  input.disabled = true;
+  document.getElementById('submitBtn').disabled = true;
+
+  if (val === q.ans) {
+    correctCount++;
+    input.className = 'correct';
+    feedback.textContent = '✅ 正确！';
+    feedback.className = 'answer-feedback correct';
+  } else {
+    input.className = 'wrong';
+    const questionText = document.getElementById('questionText');
+    questionText.textContent = q.q.replace('?', '= ' + q.ans);
+    feedback.textContent = '❌ 正确答案是 ' + q.ans;
+    feedback.className = 'answer-feedback wrong';
+  }
+
+  if (currentIndex < totalCount - 1) {
+    const nextBtn = document.getElementById('nextBtn');
+    nextBtn.style.display = 'inline-block';
+    nextBtn.textContent = '➡️ 下一题';
+    nextBtn.focus();
+  } else {
+    // 最后一题做完 -> 显示结果
+    document.getElementById('nextBtn').style.display = 'inline-block';
+    document.getElementById('nextBtn').textContent = '🎉 查看结果';
+  }
+}
+
+function nextQuestion() {
+  currentIndex++;
+
+  if (currentIndex >= totalCount) {
+    showFinishScreen();
+    return;
+  }
+
+  showQuestion();
+}
+
+function showFinishScreen() {
+  document.getElementById('qaCard').style.display = 'none';
+  const fc = document.getElementById('finishCard');
+  fc.style.display = 'block';
+
+  const pct = Math.round(correctCount / totalCount * 100);
+  const scoreEl = document.getElementById('finishScore');
+  scoreEl.textContent = correctCount + ' / ' + totalCount + ' 正确（' + pct + '%）';
+
+  const emoji = document.getElementById('finishEmoji');
+  const msgEl = document.getElementById('finishMsg');
+
+  if (pct === 100) {
+    emoji.textContent = '🎉🌟🎉';
+    msgEl.textContent = '满分！你是口算小天才！';
+  } else if (pct >= 80) {
+    emoji.textContent = '👍🌟';
+    msgEl.textContent = '做得很好！继续加油！';
+  } else if (pct >= 60) {
+    emoji.textContent = '💪📖';
+    msgEl.textContent = '继续努力，多练就会越来越好！';
+  } else {
+    emoji.textContent = '😊📚';
+    msgEl.textContent = '没关系，口算就是要多练！';
+  }
+
+  if (pct === 100) scoreEl.style.color = '#27ae60';
+  else if (pct >= 80) scoreEl.style.color = '#2563eb';
+  else if (pct >= 60) scoreEl.style.color = '#e67e22';
+  else scoreEl.style.color = '#e74c3c';
+}
+
+function backToSettings() {
+  document.getElementById('finishCard').style.display = 'none';
+  document.getElementById('qaCard').style.display = 'none';
+  document.getElementById('settingsCard').style.display = 'block';
+}
+
+// Enter 键提交/下一题
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('answerInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!answered) {
+        checkOneAnswer();
+      } else {
+        nextQuestion();
+      }
+    }
+  });
+});
+</script>
+
+<!-- 不蒜子访问统计 -->
 <script async defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <div style="text-align:center;font-size:0.75rem;color:#94a3b8;padding:8px 0">
   本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 ·
