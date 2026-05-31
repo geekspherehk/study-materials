@@ -62,9 +62,25 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .finish-list .correct{color:#27ae60}
 .finish-list .wrong{color:#e74c3c}
 .finish-card{text-align:center;padding:24px;display:none}
-.finish-card .big-emoji{font-size:3.5rem;margin-bottom:12px}
-.finish-card .finish-score{font-size:2rem;font-weight:800;margin-bottom:8px}
-.finish-card .finish-msg{font-size:1.1rem;color:#475569;margin-bottom:20px}
+.finish-card .finish-score{font-size:2rem;font-weight:800;margin-bottom:4px}
+.finish-card .finish-msg{font-size:1.05rem;color:#475569;margin-bottom:16px}
+/* ── 宝可梦卡牌 ── */
+.pokemon-card{margin:0 auto 16px;width:300px;border-radius:16px;overflow:hidden;border:3px solid #f0c060;background:linear-gradient(145deg,#fff8e7 0%,#ffe39a 100%);box-shadow:0 4px 20px rgba(0,0,0,0.15);position:relative;font-family:'Segoe UI',system-ui,sans-serif}
+.pokemon-card .pkm-header{background:linear-gradient(90deg,#f0c060,#e8a830);padding:8px 14px;display:flex;justify-content:space-between;align-items:center;color:#4a3000;font-weight:700;font-size:0.9rem}
+.pkm-hp{font-size:0.85rem;background:rgba(255,255,255,0.5);padding:2px 10px;border-radius:20px}
+.pkm-sprite{font-size:4rem;padding:12px 0 4px;line-height:1.2;background:radial-gradient(circle,rgba(255,255,200,0.6) 0%,transparent 70%)}
+.pkm-name{font-size:1.3rem;font-weight:800;color:#332200;margin-bottom:2px}
+.pkm-type{display:inline-block;padding:2px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;color:#fff;margin-bottom:10px}
+.type-grass{background:#78c850}.type-fire{background:#f08030}.type-water{background:#6890f0}.type-electric{background:#f8d030;color:#4a3000}
+.type-psychic{background:#f85888}.type-ice{background:#98d8d8;color:#4a3000}.type-dragon{background:#7038f8}
+.type-dark{background:#705848}.type-fairy{background:#ee99ac}.type-normal{background:#a8a878}
+.type-fighting{background:#c03028}.type-flying{background:#a890f0}.type-poison{background:#a040a0}
+.type-ground{background:#e0c068;color:#4a3000}.type-rock{background:#b8a038}.type-bug{background:#a8b820}
+.type-ghost{background:#705898}.type-steel{background:#b8b8d0}.type-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px 16px 14px}
+.pkm-stat{text-align:left;font-size:0.78rem;display:flex;justify-content:space-between;padding:2px 8px;background:rgba(255,255,255,0.5);border-radius:6px}
+.pkm-stat .stat-val{font-weight:700;color:#332200}
+.pkm-cp-label{text-align:center;font-size:0.65rem;color:#7a5000;font-weight:600;letter-spacing:1px;margin-top:-2px}
+.pkm-cp{text-align:center;font-size:1.8rem;font-weight:900;color:#d40000;text-shadow:0 1px 2px rgba(0,0,0,0.2);margin-bottom:4px}
 .finish-card .btn{background:#2c3e50;color:#fff;border:none;padding:12px 32px;border-radius:10px;cursor:pointer;font-size:1rem;font-weight:700;transition:background .15s;margin:6px}
 .finish-card .btn:hover{background:#34495e}
 .finish-card .btn-green{background:#27ae60}.finish-card .btn-green:hover{background:#1e8449}
@@ -148,9 +164,9 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
   </div>
 
   <div class="card finish-card" id="finishCard">
-    <div class="big-emoji" id="finishEmoji">🎉</div>
     <div class="finish-score" id="finishScore">18 / 20</div>
     <div class="finish-msg" id="finishMsg">太棒了！你是口算小天才！</div>
+    <div class="pokemon-card" id="pokemonCard"></div>
     <table class="finish-list" id="finishList"><tbody></tbody></table>
     <div>
       <button class="btn btn-green" onclick="startGame()">🔄 再来一轮</button>
@@ -322,6 +338,74 @@ function recordAndAdvance() {
   }
 }
 
+const pokemonDB = [
+  // ── CP 100-200（低分） ──
+  {name:'绿毛虫',emoji:'🐛',type:'bug',hp:40,atk:30,def:35,spd:45,cp:95,desc:'吐丝缠绕树枝，等待飞鸟路过时突袭。'},
+  {name:'独角虫',emoji:'🐛',type:'bug',hp:40,atk:35,def:30,spd:50,cp:100,desc:'头上的毒刺十分锐利，用来警戒敌人。'},
+  {name:'鲤鱼王',emoji:'🐟',type:'water',hp:20,atk:10,def:55,spd:80,cp:85,desc:'出了名的弱，只会溅水花和跃出水面。'},
+  {name:'小拉达',emoji:'🐀',type:'normal',hp:30,atk:56,def:35,spd:72,cp:120,desc:'牙齿会不断生长，必须不停啃咬硬物磨牙。'},
+  {name:'波波',emoji:'🐦',type:'flying',hp:40,atk:45,def:40,spd:56,cp:130,desc:'性格温顺，常在草地和森林里找虫子吃。'},
+  {name:'阿柏蛇',emoji:'🐍',type:'poison',hp:35,atk:60,def:44,spd:55,cp:140,desc:'蜷缩身体的时候会发出威吓的嘶嘶声。'},
+  // ── CP 200-350（中低分60~79%） ──
+  {name:'皮卡丘',emoji:'⚡',type:'electric',hp:35,atk:55,def:40,spd:90,cp:280,desc:'两颊有电力囊，受到惊吓时会释放电击。'},
+  {name:'小火龙',emoji:'🦎',type:'fire',hp:39,atk:52,def:43,spd:65,cp:270,desc:'尾巴的火焰代表它的生命力，熄灭就危险了。'},
+  {name:'杰尼龟',emoji:'🐢',type:'water',hp:44,atk:48,def:65,spd:43,cp:260,desc:'长长的脖子能从壳里弹出来喷射水流。'},
+  {name:'妙蛙种子',emoji:'🌱',type:'grass',hp:45,atk:49,def:49,spd:45,cp:280,desc:'背上的种子存储营养，越晒太阳越茁壮。'},
+  {name:'六尾',emoji:'🦊',type:'fire',hp:38,atk:41,def:40,spd:65,cp:245,desc:'出生时只有一条尾巴，随着长大而分裂。'},
+  {name:'胖丁',emoji:'🎈',type:'fairy',hp:115,atk:45,def:20,spd:20,cp:250,desc:'唱起催眠曲时身体会像气球一样鼓起来。'},
+  // ── CP 350-500（中高分80~99%） ──
+  {name:'卡蒂狗',emoji:'🐕',type:'fire',hp:55,atk:70,def:45,spd:60,cp:380,desc:'嗅觉灵敏并且非常忠诚，是优秀的警犬宝可梦。'},
+  {name:'凯西',emoji:'🦊',type:'psychic',hp:25,atk:20,def:15,spd:90,cp:360,desc:'整天都在睡觉，但超能力在梦中也在绽放。'},
+  {name:'鬼斯',emoji:'👻',type:'ghost',hp:30,atk:35,def:30,spd:80,cp:350,desc:'气体状的身体可以穿过任何缝隙来恶作剧。'},
+  {name:'墨海马',emoji:'🐉',type:'water',hp:30,atk:40,def:70,spd:60,cp:370,desc:'嘴能喷出高速水流击落飞行的猎物。'},
+  {name:'迷你龙',emoji:'🐍',type:'dragon',hp:41,atk:64,def:45,spd:50,cp:420,desc:'虽然弱小，但会不断蜕皮进化为强大的快龙。'},
+  {name:'伊布',emoji:'🦊',type:'normal',hp:55,atk:55,def:50,spd:55,cp:400,desc:'基因极不稳定，会因环境和石头改变进化形态。'},
+  // ── CP 500+（满分神兽） ──
+  {name:'喷火龙',emoji:'🐉',type:'fire',hp:78,atk:84,def:78,spd:100,cp:620,desc:'火焰足以熔化巨石，飞在1500米高空喷火。'},
+  {name:'水箭龟',emoji:'🐢',type:'water',hp:79,atk:83,def:100,spd:78,cp:590,desc:'背上的两门水炮可以精准命中30米外的目标。'},
+  {name:'妙蛙花',emoji:'🌿',type:'grass',hp:80,atk:82,def:83,spd:80,cp:580,desc:'背上的巨大花朵吸收阳光后能释放治愈香气。'},
+  {name:'雷丘',emoji:'⚡',type:'electric',hp:60,atk:90,def:55,spd:110,cp:560,desc:'电力聚集到一定程度会从尾巴放电到地面。'},
+  {name:'风速狗',emoji:'🐅',type:'fire',hp:90,atk:110,def:80,spd:95,cp:650,desc:'以时速100公里的速度狂奔，吼声如雷贯耳。'},
+  {name:'快龙',emoji:'🐉',type:'dragon',hp:91,atk:134,def:95,spd:80,cp:710,desc:'能在暴风雨中飞行，绕地球一圈只需16小时。'},
+];
+
+function pickPokemon(pct) {
+  let pool;
+  if (pct === 100) {
+    // 满分：只从高分池抽
+    pool = pokemonDB.filter(p => p.cp >= 550);
+  } else if (pct >= 80) {
+    pool = pokemonDB.filter(p => p.cp >= 350 && p.cp < 550);
+  } else if (pct >= 60) {
+    pool = pokemonDB.filter(p => p.cp >= 200 && p.cp < 350);
+  } else {
+    pool = pokemonDB.filter(p => p.cp < 200);
+  }
+  // 每个池至少保证有6只，如果不够就从相邻池补
+  if (pool.length === 0) pool = pokemonDB;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function buildPokemonCard(pkm) {
+  const typeClass = 'type-' + pkm.type;
+  return '<div class="pkm-header">'
+    + '<span>#' + String(pkm.cp).padStart(3,'0') + '</span>'
+    + '<span class="pkm-hp">❤️ HP ' + pkm.hp + '</span>'
+    + '</div>'
+    + '<div class="pkm-sprite">' + pkm.emoji + '</div>'
+    + '<div class="pkm-name">' + pkm.name + '</div>'
+    + '<span class="pkm-type ' + typeClass + '">' + pkm.type.toUpperCase() + '</span>'
+    + '<div class="pkm-cp-label">CP</div>'
+    + '<div class="pkm-cp">' + pkm.cp + '</div>'
+    + '<div class="pkm-stats">'
+    + '<div class="pkm-stat"><span>⚔️ 攻击</span><span class="stat-val">' + pkm.atk + '</span></div>'
+    + '<div class="pkm-stat"><span>🛡️ 防御</span><span class="stat-val">' + pkm.def + '</span></div>'
+    + '<div class="pkm-stat"><span>💨 速度</span><span class="stat-val">' + pkm.spd + '</span></div>'
+    + '<div class="pkm-stat"><span>📖 描述</span></div>'
+    + '</div>'
+    + '<div style="font-size:0.78rem;color:#5a3a00;padding:0 16px 14px;text-align:left;line-height:1.5">“' + pkm.desc + '”</div>';
+}
+
 function showFinishScreen() {
   document.getElementById('qaCard').style.display = 'none';
   const fc = document.getElementById('finishCard');
@@ -330,6 +414,10 @@ function showFinishScreen() {
   const pct = Math.round(correctCount / totalCount * 100);
   const scoreEl = document.getElementById('finishScore');
   scoreEl.textContent = correctCount + ' / ' + totalCount + ' 正确（' + pct + '%）';
+
+  // 生成宝可梦卡牌
+  const pkm = pickPokemon(pct);
+  document.getElementById('pokemonCard').innerHTML = buildPokemonCard(pkm);
 
   // 生成每题结果列表
   const tbody = document.querySelector('#finishList tbody');
@@ -346,29 +434,6 @@ function showFinishScreen() {
          + '<td class="q-ans ' + cls + '">' + icon + ' ' + ansDisplay + '</td></tr>';
   }
   tbody.innerHTML = html;
-
-  const emoji = document.getElementById('finishEmoji');
-  const msgEl = document.getElementById('finishMsg');
-
-  if (pct === 100) {
-    emoji.textContent = '🎉🌟🎉';
-    msgEl.textContent = '满分！你是口算小天才！';
-  } else if (pct >= 80) {
-    emoji.textContent = '👍🌟';
-    msgEl.textContent = '做得很好！继续加油！';
-  } else if (pct >= 60) {
-    emoji.textContent = '💪📖';
-    msgEl.textContent = '继续努力，多练就会越来越好！';
-  } else {
-    emoji.textContent = '😊📚';
-    msgEl.textContent = '没关系，口算就是要多练！';
-  }
-
-  if (pct === 100) scoreEl.style.color = '#27ae60';
-  else if (pct >= 80) scoreEl.style.color = '#2563eb';
-  else if (pct >= 60) scoreEl.style.color = '#e67e22';
-  else scoreEl.style.color = '#e74c3c';
-}
 
 function backToSettings() {
   document.getElementById('finishCard').style.display = 'none';
