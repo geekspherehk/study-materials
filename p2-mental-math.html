@@ -53,6 +53,14 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
 .answer-feedback.wrong{color:#e74c3c}
 .next-btn{background:#27ae60;color:#fff;border:none;padding:14px 48px;border-radius:12px;cursor:pointer;font-size:1.1rem;font-weight:700;transition:all .2s;display:none}
 .next-btn:hover{background:#1e8449;transform:translateY(-1px)}
+/* ── 结果详情列表 ── */
+.finish-list{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.9rem;text-align:center}
+.finish-list td{padding:8px 6px;border-bottom:1px solid #e2e8f0}
+.finish-list .q-num{color:#64748b;font-weight:600;width:44px}
+.finish-list .q-text{text-align:left;font-weight:500;color:#1e293b;padding-left:8px}
+.finish-list .q-ans{font-weight:600}
+.finish-list .correct{color:#27ae60}
+.finish-list .wrong{color:#e74c3c}
 .finish-card{text-align:center;padding:24px;display:none}
 .finish-card .big-emoji{font-size:3.5rem;margin-bottom:12px}
 .finish-card .finish-score{font-size:2rem;font-weight:800;margin-bottom:8px}
@@ -135,6 +143,7 @@ h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
     <div class="big-emoji" id="finishEmoji">🎉</div>
     <div class="finish-score" id="finishScore">18 / 20</div>
     <div class="finish-msg" id="finishMsg">太棒了！你是口算小天才！</div>
+    <table class="finish-list" id="finishList"><tbody></tbody></table>
     <div>
       <button class="btn btn-green" onclick="startGame()">🔄 再来一轮</button>
       <button class="btn" onclick="backToSettings()">⚙️ 修改参数</button>
@@ -312,6 +321,22 @@ function showFinishScreen() {
   const pct = Math.round(correctCount / totalCount * 100);
   const scoreEl = document.getElementById('finishScore');
   scoreEl.textContent = correctCount + ' / ' + totalCount + ' 正确（' + pct + '%）';
+
+  // 生成每题结果列表
+  const tbody = document.querySelector('#finishList tbody');
+  tbody.innerHTML = '';
+  let html = '';
+  for (let i = 0; i < questions.length; i++) {
+    const q = questions[i];
+    const isCorrect = q.userAnswer === q.ans;
+    const icon = isCorrect ? '✅' : '❌';
+    const cls = isCorrect ? 'correct' : 'wrong';
+    const ansDisplay = isCorrect ? q.ans : q.ans + ' （你答: ' + (q.userAnswer ?? '?') + '）';
+    html += '<tr><td class="q-num">' + (i + 1) + '</td>'
+         + '<td class="q-text">' + q.q.replace(' = ?', '') + '</td>'
+         + '<td class="q-ans ' + cls + '">' + icon + ' ' + ansDisplay + '</td></tr>';
+  }
+  tbody.innerHTML = html;
 
   const emoji = document.getElementById('finishEmoji');
   const msgEl = document.getElementById('finishMsg');
