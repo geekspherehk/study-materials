@@ -273,73 +273,35 @@ function startGame() {
 function showQuestion() {
   const q = questions[currentIndex];
   document.getElementById('questionText').textContent = q.q;
-  document.getElementById('progressText').textContent = '第 ' + (currentIndex + 1) + ' / ' + totalCount + ' 题';
+  document.getElementById('qaCardTitle').textContent = '第 ' + (currentIndex + 1) + ' / ' + totalCount + ' 题';
 
   const input = document.getElementById('answerInput');
   input.value = '';
-  input.disabled = false;
   input.className = '';
   input.focus();
   answered = false;
 
-  document.getElementById('submitBtn').style.display = 'inline-block';
-  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('submitBtn').style.display = 'none';
   document.getElementById('nextBtn').style.display = 'none';
   document.getElementById('feedback').textContent = '';
   document.getElementById('feedback').className = 'answer-feedback';
 }
 
-function checkOneAnswer() {
+function recordAndAdvance() {
   if (answered) return;
   const input = document.getElementById('answerInput');
   const val = parseInt(input.value);
-  const feedback = document.getElementById('feedback');
-  const q = questions[currentIndex];
-
-  if (isNaN(val)) {
-    feedback.textContent = '⚠️ 请输入数字答案';
-    feedback.className = 'answer-feedback wrong';
-    return;
-  }
-
+  if (isNaN(val)) return;
   answered = true;
-  input.disabled = true;
-  document.getElementById('submitBtn').disabled = true;
-
-  if (val === q.ans) {
-    correctCount++;
-    input.className = 'correct';
-    feedback.textContent = '✅ 正确！';
-    feedback.className = 'answer-feedback correct';
-  } else {
-    input.className = 'wrong';
-    const questionText = document.getElementById('questionText');
-    questionText.textContent = q.q.replace('?', '= ' + q.ans);
-    feedback.textContent = '❌ 正确答案是 ' + q.ans;
-    feedback.className = 'answer-feedback wrong';
-  }
-
-  if (currentIndex < totalCount - 1) {
-    const nextBtn = document.getElementById('nextBtn');
-    nextBtn.style.display = 'inline-block';
-    nextBtn.textContent = '➡️ 下一题';
-    nextBtn.focus();
-  } else {
-    // 最后一题做完 -> 显示结果
-    document.getElementById('nextBtn').style.display = 'inline-block';
-    document.getElementById('nextBtn').textContent = '🎉 查看结果';
-  }
-}
-
-function nextQuestion() {
+  const q = questions[currentIndex];
+  q.userAnswer = val;
+  if (val === q.ans) correctCount++;
   currentIndex++;
-
   if (currentIndex >= totalCount) {
     showFinishScreen();
-    return;
+  } else {
+    showQuestion();
   }
-
-  showQuestion();
 }
 
 function showFinishScreen() {
@@ -385,11 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('answerInput').addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      if (!answered) {
-        checkOneAnswer();
-      } else {
-        nextQuestion();
-      }
+      recordAndAdvance();
     }
   });
 });
