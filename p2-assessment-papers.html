@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>评估试卷下载 - 小书虫乐园</title>
+<meta name="description" content="小书虫乐园｜香港小學二年級評估卷下載｜小二數學、英文、中文評估卷｜PDF下載｜免費試卷">
+<meta name="keywords" content="小书虫乐园,評估卷,小二試卷,小二數學試卷,小二英文試卷,小學二年級評估卷,香港小學試卷,免費試卷下載">
+<meta name="author" content="GeeksphereHK">
+<meta property="og:title" content="评估试卷下载 - 小书虫乐园">
+<meta property="og:description" content="香港小學二年級評估卷下載｜小二數學、英文、中文評估卷｜PDF下載">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://geekspherehk.github.io/study-materials/p2-assessment-papers.html">
+<meta property="og:locale" content="zh_HK">
+<link rel="canonical" href="https://geekspherehk.github.io/study-materials/p2-assessment-papers.html">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9VYY1QD34J"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9VYY1QD34J');</script>
+<style>
+:root{--bg:#f1f5f9;--card-bg:#fff;--text:#1e293b;--text-mute:#64748b;--primary:#2563eb;--primary-hover:#1d4ed8;--border:#e2e8f0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:24px}
+.container{max-width:880px;margin:0 auto}
+
+/* 头部 */
+.header{background:var(--card-bg);border-radius:16px;padding:28px 24px;margin-bottom:24px;border:1px solid var(--border);text-align:center}
+.header h1{font-size:1.5rem;color:var(--text);margin-bottom:6px}
+.header p{color:var(--text-mute);font-size:0.85rem}
+.header .badge{display:inline-block;background:#2563eb;color:#fff;padding:3px 12px;border-radius:99px;font-size:0.75rem;font-weight:600;margin-top:8px}
+
+/* 筛选栏 */
+.filter-bar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.filter-btn{padding:6px 16px;border:1.5px solid var(--border);border-radius:20px;background:var(--card-bg);cursor:pointer;font-size:0.85rem;transition:all .15s;color:var(--text)}
+.filter-btn:hover{border-color:var(--primary);color:var(--primary)}
+.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* 卡片网格 */
+.papers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+
+.paper-card{background:var(--card-bg);border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:all .2s;display:flex;flex-direction:column}
+.paper-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.08);transform:translateY(-2px)}
+
+.paper-card .cover{width:100%;aspect-ratio:3/4;background:#f1f5f9;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--border)}
+.paper-card .cover img{width:100%;height:100%;object-fit:cover;display:block}
+.paper-card .cover .placeholder{color:#94a3b8;font-size:0.85rem;text-align:center;padding:20px}
+
+.paper-card .info{padding:12px 16px 14px;flex:1;display:flex;flex-direction:column}
+
+.paper-card .info .id-badge{display:inline-block;background:#eff6ff;color:var(--primary);font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px;letter-spacing:0.3px;font-family:monospace}
+.paper-card .info .title{font-size:0.95rem;font-weight:700;margin-bottom:4px;line-height:1.3}
+.paper-card .info .meta{font-size:0.78rem;color:var(--text-mute);margin-bottom:6px}
+.paper-card .info .tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:auto}
+.paper-card .info .tag{font-size:0.7rem;padding:2px 8px;border-radius:99px;background:#f1f5f9;color:var(--text-mute)}
+
+/* 空状态 */
+.empty-state{text-align:center;padding:60px 20px;color:var(--text-mute);grid-column:1/-1}
+.empty-state .icon{font-size:2.5rem;margin-bottom:12px}
+.empty-state p{font-size:0.9rem}
+
+/* 回到首页 */
+.back-link{display:inline-block;margin-top:24px;color:var(--primary);text-decoration:none;font-size:0.85rem}
+.back-link:hover{text-decoration:underline}
+
+/* 响应式 */
+@media(max-width:480px){
+  body{padding:16px}
+  .container{max-width:100%}
+  .papers-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .header h1{font-size:1.2rem}
+  .paper-card .info{padding:10px 12px 12px}
+  .paper-card .info .title{font-size:0.85rem}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 头部 -->
+  <div class="header">
+    <h1>📋 评估试卷下载</h1>
+    <p>香港小學二年級評估卷 · 持續更新中</p>
+    <span class="badge" id="totalBadge">共 0 份试卷</span>
+  </div>
+
+  <!-- 筛选 -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all" onclick="filterPapers('all')">📌 全部</button>
+    <button class="filter-btn" data-filter="數學" onclick="filterPapers('數學')">🧮 數學</button>
+    <button class="filter-btn" data-filter="英文" onclick="filterPapers('英文')">📖 英文</button>
+    <button class="filter-btn" data-filter="中文" onclick="filterPapers('中文')">🀄 中文</button>
+  </div>
+
+  <!-- 卡片网格 -->
+  <div class="papers-grid" id="papersGrid"></div>
+
+  <!-- 回到首页 -->
+  <a href="index.html" class="back-link">← 返回首页</a>
+
+</div>
+
+<script>
+// 每份评估卷数据结构
+const papers = [
+  {
+    id: 'PG-2026-MATH-001',
+    title: '二年级数学科第三段考试卷',
+    subject: '數學',
+    grade: '小二',
+    meta: '全卷七大题 · 38题 · 附答案',
+    cover: 'covers/PG-2026-MATH-001-cover.jpg',
+    tags: ['评估卷', '数学', '第三段考', '二年级'],
+    date: '2026-06-01'
+  }
+];
+
+// 渲染所有卡片
+function renderPapers(list) {
+  const grid = document.getElementById('papersGrid');
+  if (list.length === 0) {
+    grid.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>暂无试卷，敬请期待</p></div>';
+    document.getElementById('totalBadge').textContent = '共 0 份试卷';
+    return;
+  }
+  
+  let html = '';
+  list.forEach(p => {
+    // 科目emoji
+    const subjectEmoji = p.subject === '數學' ? '🧮' : p.subject === '英文' ? '📖' : '🀄';
+    
+    html += '<div class="paper-card">';
+    html += '  <div class="cover">';
+    // 检查封面图是否存在，不存在则显示占位
+    html += '    <img src="' + p.cover + '" alt="' + p.title + '" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<div class=placeholder>📄 封面加载中</div>\'">';
+    html += '  </div>';
+    html += '  <div class="info">';
+    html += '    <div class="id-badge">' + p.id + '</div>';
+    html += '    <div class="title">' + p.title + '</div>';
+    html += '    <div class="meta">' + p.grade + ' · ' + subjectEmoji + ' ' + p.subject + ' · ' + p.date + '</div>';
+    html += '    <div class="meta">' + p.meta + '</div>';
+    html += '    <div class="tags">' + p.tags.map(t => '<span class="tag">' + t + '</span>').join('') + '</div>';
+    html += '  </div>';
+    html += '</div>';
+  });
+  
+  grid.innerHTML = html;
+  document.getElementById('totalBadge').textContent = '共 ' + list.length + ' 份试卷';
+}
+
+// 筛选
+function filterPapers(subject) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector('.filter-btn[data-filter="' + subject + '"]').classList.add('active');
+  
+  if (subject === 'all') {
+    renderPapers(papers);
+  } else {
+    renderPapers(papers.filter(p => p.subject === subject));
+  }
+}
+
+// 初始化
+renderPapers(papers);
+</script>
+</body>
+</html>
