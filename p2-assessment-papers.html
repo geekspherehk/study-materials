@@ -56,6 +56,10 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .empty-state .icon{font-size:2.5rem;margin-bottom:12px}
 .empty-state p{font-size:0.9rem}
 
+/* 下载按钮 */
+.download-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:0.8rem;font-weight:600;text-decoration:none;transition:background .15s}
+.download-btn:hover{background:#1d4ed8}
+
 /* 回到首页 */
 .back-link{display:inline-block;margin-top:24px;color:var(--primary);text-decoration:none;font-size:0.85rem}
 .back-link:hover{text-decoration:underline}
@@ -108,7 +112,8 @@ const papers = [
     meta: '全卷七大题 · 38题 · 附答案',
     cover: 'covers/PG-2026-MATH-001-cover.jpg',
     tags: ['评估卷', '数学', '第三段考', '二年级'],
-    date: '2026-06-01'
+    date: '2026-06-01',
+    link: 'https://n38e2p3pfn.feishu.cn/file/TuSYbHXDLoU0Mvx532Uc8qLQnkd'
   }
 ];
 
@@ -137,12 +142,21 @@ function renderPapers(list) {
     html += '    <div class="meta">' + p.grade + ' · ' + subjectEmoji + ' ' + p.subject + ' · ' + p.date + '</div>';
     html += '    <div class="meta">' + p.meta + '</div>';
     html += '    <div class="tags">' + p.tags.map(t => '<span class="tag">' + t + '</span>').join('') + '</div>';
+    html += '    <div class="card-actions" style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">';
+    html += '      <a href="' + p.link + '" target="_blank" rel="noopener" class="download-btn" onclick="return trackDownload(\'' + p.id + '\')">⬇ 下载PDF</a>';
+    html += '    </div>';
     html += '  </div>';
     html += '</div>';
   });
   
   grid.innerHTML = html;
   document.getElementById('totalBadge').textContent = '共 ' + list.length + ' 份试卷';
+}
+
+// 下载统计（简单日志）
+function trackDownload(id) {
+  console.log('Download: ' + id);
+  return true; // 允许默认链接行为
 }
 
 // 筛选
