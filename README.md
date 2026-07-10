@@ -1,13 +1,11 @@
-# 📚 小书虫乐园 — 香港小学二年级学习资料
+# 🐛 小书虫 AI 视频工坊 — 兒童英語教育視頻生成平台
 
-[![GitHub Pages](https://img.shields.io/badge/hosting-GitHub%20Pages-blue.svg)](https://geekspherehk.github.io/study-materials/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-> 香港小学二年级（P2）英文语法与数学互动学习网站。包含20个英文语法单元、7个数学单元、词汇闪卡、口算题卡及小测复习。
+> 上传素材，AI 帮你生成专业教育视频。英语跟读视频 · 绘本动画 · 雅思口语跟读 · 词汇闪卡视频
 
 ## 🌐 在线访问
 
 - **主站**: https://geekspherehk.github.io/study-materials/
+- **学习资料站** (旧版): https://geekspherehk.github.io/study-materials/study-index.html
 
 ## 📖 内容概览
 
