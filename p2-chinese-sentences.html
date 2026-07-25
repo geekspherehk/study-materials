@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✍️ P2 中文句式扩写训练 | 小书虫乐园</title>
+<meta name="description" content="P2 中文句式扩写训练 - 小二句式扩写。5个专题，15道扩写题，含答案即时批改。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#fdf2f0;color:#2c3e50;line-height:1.6;padding:24px}
+.container{max-width:740px;margin:0 auto}
+h1{font-size:1.5rem;color:#c0392b;margin-bottom:4px;text-align:center}
+.subtitle{color:#e67e22;font-size:0.85rem;margin-bottom:24px;text-align:center}
+.card{background:#fff;border-radius:14px;padding:20px 24px;border:1px solid #f0d0cc;box-shadow:0 2px 8px rgba(192,57,43,0.06);margin-bottom:20px}
+.card-title{font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#c0392b;margin-bottom:14px;border-bottom:2px solid #fde8e6;padding-bottom:8px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:99px;margin-bottom:10px}
+.example-box{padding:14px 16px;background:#fefaf9;border-radius:10px;border-left:4px solid #e67e22;margin-bottom:14px}
+.example-box .ex-title{font-weight:700;font-size:0.9rem;color:#e67e22;margin-bottom:6px}
+.example-box .simple{color:#7f8c8d;font-size:0.9rem;margin-bottom:4px}
+.example-box .expanded{color:#c0392b;font-size:1.05rem;font-weight:600}
+.example-box .arrow{color:#e67e22;font-weight:700;margin:0 6px}
+.pattern-desc{font-size:0.92rem;color:#555;margin-bottom:12px;padding:8px 12px;background:#fef9e7;border-radius:8px;border-left:3px solid #f39c12}
+.q-item{padding:14px 16px;border:1px solid #f0d0cc;border-radius:10px;margin-bottom:12px;background:#fefaf9}
+.q-item .q-text{font-weight:600;margin-bottom:10px;font-size:0.95rem;color:#922b21}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:44px;min-height:40px;border:2px solid #f0d0cc;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500;color:#2c3e50}
+.opt-btn:hover{border-color:#c0392b;color:#c0392b;background:#fde8e6}
+.opt-btn.selected{border-color:#c0392b;background:#fde8e6;color:#c0392b;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.opt-btn:disabled{opacity:0.7;cursor:default}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn{background:#c0392b;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;font-size:0.95rem;margin-right:8px;margin-top:8px;transition:background .15s}
+.btn:hover{background:#a93226}
+.score-bar{margin-top:16px;font-weight:700;font-size:1rem;color:#27ae60;text-align:center}
+.nav-buttons{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:20px}
+.nav-btn{display:inline-block;padding:10px 20px;background:#c0392b;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#a93226}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>✍️ P2 中文句式扩写训练</h1>
+<p class="subtitle">小二中文 · 5个专题 · 15道扩写题 · 点击选项作答</p>
+
+<div id="topicContainer"></div>
+
+<div class="nav-buttons">
+  <a href="index.html" class="nav-btn">← 返回主页</a>
+</div>
+
+</div>
+
+<script>
+const TOPICS = [
+  {
+    title: '🌈 加入形容词',
+    desc: '在名词前面加上形容词，让事物变得更具体、更生动！例如："花" → "美丽的红色花朵"，加上颜色和样子，画面感就出来了。',
+    examples: [
+      { simple: '天上有一个太阳。', expanded: '天上有一个红红的太阳。' },
+      { simple: '草地上有花。', expanded: '草地上有五颜六色的花。' },
+      { simple: '小猫在睡觉。', expanded: '可爱的小猫在香香地睡觉。' }
+    ],
+    questions: [
+      { q: '哪一句是扩写了形容词的句子？', opts: ['鸟飞走了。', '一只美丽的小鸟飞走了。', '小鸟飞走了。', '鸟飞得很远。'], ans: '一只美丽的小鸟飞走了。' },
+      { q: '请选择扩写得最好的句子。"桌上有一个苹果。"', opts: ['桌上有一个红色的、甜甜的大苹果。', '桌上有一个苹果。', '桌上有一个大苹果。', '桌上有苹果。'], ans: '桌上有一个红色的、甜甜的大苹果。' },
+      { q: '哪一项是"星星"加上形容词的正确扩写？', opts: ['星星亮了', '星星很多', '闪闪发亮的小星星', '星星在天上'], ans: '闪闪发亮的小星星' }
+    ]
+  },
+  {
+    title: '⏰ 加入时间',
+    desc: '在句子里加上时间，让别人知道事情是什么时候发生的。例如："我去公园" → "星期天我去公园"，加了时间就更清楚了。',
+    examples: [
+      { simple: '我去上学。', expanded: '每天早上，我去上学。' },
+      { simple: '妈妈做饭。', expanded: '今天晚上，妈妈做饭。' },
+      { simple: '我们做运动。', expanded: '放学后，我们做运动。' }
+    ],
+    questions: [
+      { q: '哪一句加入了时间？', opts: ['小明在跑步。', '小明很快地跑步。', '早上，小明在跑步。', '小明和小红跑步。'], ans: '早上，小明在跑步。' },
+      { q: '把"爸爸看报纸"加入时间，哪个最好？', opts: ['爸爸早上看报纸。', '爸爸看报纸。', '爸爸在看报纸。', '爸爸和妈妈看报纸。'], ans: '爸爸早上看报纸。' },
+      { q: '请选出扩写后的句子。"我们去游泳。" → 加入时间', opts: ['我们去游泳了。', '星期天我们去游泳。', '我们去快乐地游泳。', '我们去游泳池游泳。'], ans: '星期天我们去游泳。' }
+    ]
+  },
+  {
+    title: '📍 加入地点',
+    desc: '在句子里加上地点，让别人知道事情发生在哪里。例如："他在看书" → "他在图书馆安静地看书"，加了地点就更具体了。',
+    examples: [
+      { simple: '同学们在跳绳。', expanded: '同学们在操场上快乐地跳绳。' },
+      { simple: '妈妈在买菜。', expanded: '妈妈在菜市场里认真地买菜。' },
+      { simple: '爷爷在散步。', expanded: '爷爷在公园里慢慢地散步。' }
+    ],
+    questions: [
+      { q: '哪一句加入了地点？', opts: ['小鸟在树上唱歌。', '小鸟唱歌。', '小鸟飞走了。', '小鸟很可爱。'], ans: '小鸟在树上唱歌。' },
+      { q: '扩写"弟弟在玩积木"，加入地点，哪个最好？', opts: ['弟弟在地板上快乐地玩积木。', '弟弟玩积木玩得很开心。', '弟弟玩积木。', '弟弟想玩积木。'], ans: '弟弟在地板上快乐地玩积木。' },
+      { q: '下面哪句扩写得最好？"小朋友在看书。"', opts: ['小朋友在看书。', '小朋友在图书馆安静地看书。', '小朋友在看书很久。', '小朋友喜欢看书。'], ans: '小朋友在图书馆安静地看书。' }
+    ]
+  },
+  {
+    title: '🤸 加入动作细节',
+    desc: '在动词前面加上副词，或者补充动作怎么做，让句子更生动。例如："他跑" → "他飞快地跑向终点"，写出了怎么跑、跑向哪里。',
+    examples: [
+      { simple: '鱼儿游。', expanded: '鱼儿在水里快乐地游来游去。' },
+      { simple: '他写字。', expanded: '他认真地一笔一画地写字。' },
+      { simple: '同学们鼓掌。', expanded: '同学们高兴地热烈鼓掌。' }
+    ],
+    questions: [
+      { q: '哪一句加入了动作细节？', opts: ['小狗跑了。', '小狗飞快地跑向主人。', '小狗跑走了。', '小狗在跑。'], ans: '小狗飞快地跑向主人。' },
+      { q: '扩写"妹妹跳舞"，加入动作细节，哪个最好？', opts: ['妹妹跳舞了。', '妹妹想跳舞。', '妹妹在舞台上轻轻地转圈跳舞。', '妹妹和姐姐跳舞。'], ans: '妹妹在舞台上轻轻地转圈跳舞。' },
+      { q: '"小明吃饭" → 加入动作细节，哪句最好？', opts: ['小明吃饭。', '小明大口大口地、开心地吃饭。', '小明中午吃饭。', '小明在家里吃饭。'], ans: '小明大口大口地、开心地吃饭。' }
+    ]
+  },
+  {
+    title: '💭 加入原因/感受',
+    desc: '在句子里加上做一件事的原因或人物的感受，让句子更有感情。例如："他哭了" → "他因为输了比赛伤心地哭了"，既说了原因也说了感受。',
+    examples: [
+      { simple: '妈妈生气了。', expanded: '妈妈因为我乱扔玩具而生气了。' },
+      { simple: '她笑了。', expanded: '她收到礼物后开心地笑了。' },
+      { simple: '我迟到了。', expanded: '因为我起晚了，所以今天上学迟到了。' }
+    ],
+    questions: [
+      { q: '哪一句加入了原因或感受？', opts: ['小明很伤心。', '因为考试没考好，小明很伤心。', '小明哭了。', '小明回家了。'], ans: '因为考试没考好，小明很伤心。' },
+      { q: '扩写"妹妹很高兴"，加入原因，哪个最好？', opts: ['妹妹很高兴。', '妹妹今天很高兴。', '因为得到了新玩具，妹妹高兴得跳了起来。', '妹妹在家里很高兴。'], ans: '因为得到了新玩具，妹妹高兴得跳了起来。' },
+      { q: '下面哪句扩写得最好？"爸爸很累。"', opts: ['爸爸很累。', '爸爸加班很晚，累得躺在沙发上睡着了。', '爸爸今天很累。', '爸爸累了就睡觉了。'], ans: '爸爸加班很晚，累得躺在沙发上睡着了。' }
+    ]
+  }
+];
+
+function renderAll() {
+  const container = document.getElementById('topicContainer');
+  container.innerHTML = '';
+
+  TOPICS.forEach((topic, ti) => {
+    // Topic card
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-title">${topic.title}</div>
+      <div class="pattern-desc">${topic.desc}</div>
+    `;
+
+    // Examples
+    topic.examples.forEach((ex, ei) => {
+      const exDiv = document.createElement('div');
+      exDiv.className = 'example-box';
+      exDiv.innerHTML = `
+        <div class="ex-title">例子 ${ei+1}</div>
+        <div class="simple">${ex.simple}</div>
+        <div class="expanded">➡ ${ex.expanded}</div>
+      `;
+      card.appendChild(exDiv);
+    });
+
+    container.appendChild(card);
+
+    // Questions card
+    const qCard = document.createElement('div');
+    qCard.className = 'card';
+    qCard.innerHTML = '<div class="card-title">📝 练习</div><div id="exerciseArea-'+ti+'"></div><div id="scoreBar-'+ti+'" class="score-bar"></div>';
+
+    const btnDiv = document.createElement('div');
+    const checkBtn = document.createElement('button');
+    checkBtn.className = 'btn';
+    checkBtn.textContent = '✅ 检查答案';
+    checkBtn.onclick = function() { checkAnswers(ti); };
+    const resetBtn = document.createElement('button');
+    resetBtn.className = 'btn';
+    resetBtn.textContent = '🔄 重新作答';
+    resetBtn.style.background = '#e67e22';
+    resetBtn.onclick = function() { resetQuestions(ti); };
+    btnDiv.appendChild(checkBtn);
+    btnDiv.appendChild(resetBtn);
+    qCard.appendChild(btnDiv);
+    container.appendChild(qCard);
+
+    renderQuestions(ti);
+  });
+}
+
+function renderQuestions(ti) {
+  const area = document.getElementById('exerciseArea-' + ti);
+  const topic = TOPICS[ti];
+  area.innerHTML = '';
+  topic.questions.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-item';
+    div.innerHTML = '<div class="q-text">' + (i+1) + '. ' + item.q + '</div><div class="opts">' +
+      item.opts.map(o => '<button class="opt-btn" data-t="'+ti+'" data-i="'+i+'" data-v="'+o.replace(/'/g,"\\'")+'" onclick="selectOpt(this)">'+o+'</button>').join('') +
+      '<span class="result-icon" id="ri-'+ti+'-'+i+'"></span></div>';
+    area.appendChild(div);
+  });
+}
+
+function selectOpt(el) {
+  const t = el.dataset.t;
+  const i = el.dataset.i;
+  document.querySelectorAll('.opt-btn[data-t="'+t+'"][data-i="'+i+'"]').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function checkAnswers(ti) {
+  const topic = TOPICS[ti];
+  let cr = 0;
+  topic.questions.forEach((item, i) => {
+    const ic = document.getElementById('ri-'+ti+'-'+i);
+    const sel = document.querySelector('.opt-btn[data-t="'+ti+'"][data-i="'+i+'"].selected');
+    if (sel && sel.dataset.v === item.ans) {
+      ic.textContent = '✅';
+      sel.classList.add('correct');
+      cr++;
+    } else {
+      ic.textContent = '❌';
+      if (sel) sel.classList.add('wrong');
+      document.querySelectorAll('.opt-btn[data-t="'+ti+'"][data-i="'+i+'"]').forEach(b => {
+        if (b.dataset.v === item.ans) b.classList.add('correct');
+      });
+    }
+  });
+  const bar = document.getElementById('scoreBar-'+ti);
+  const t = topic.questions.length;
+  const pct = Math.round(cr / t * 100);
+  let emoji = '😔';
+  if (pct === 100) emoji = '🎉';
+  else if (pct >= 80) emoji = '👍';
+  else if (pct >= 60) emoji = '💪';
+  bar.textContent = emoji + ' ' + cr + ' / ' + t + ' 正确 (' + pct + '%)';
+  bar.style.color = pct === 100 ? '#27ae60' : pct >= 80 ? '#e67e22' : '#e74c3c';
+  document.querySelectorAll('.opt-btn[data-t="'+ti+'"].selected').forEach(b => b.disabled = true);
+}
+
+function resetQuestions(ti) {
+  document.querySelectorAll('.opt-btn[data-t="'+ti+'"]').forEach(b => {
+    b.classList.remove('selected', 'correct', 'wrong');
+    b.disabled = false;
+  });
+  document.querySelectorAll('#exerciseArea-' + ti + ' .result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar-'+ti).textContent = '';
+}
+
+renderAll();
+</script>
+</body>
+</html>
