@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>限时口算挑战 🏆 | 小书虫乐园</title>
+<meta name="description" content="P2+P3 限时口算挑战。30秒/60秒计时模式，加减乘除混合，即做即改。">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px;text-align:center}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:20px;text-align:center}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin-bottom:16px}
+.controls label{font-size:0.95rem;font-weight:600;color:#475569}
+.controls select{padding:8px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:0.95rem;background:#fff;outline:none}
+.controls select:focus{border-color:#2563eb}
+.timer-display{text-align:center;font-size:3rem;font-weight:800;color:#2563eb;margin-bottom:8px;font-variant-numeric:tabular-nums}
+.timer-label{text-align:center;color:#64748b;font-size:0.85rem;margin-bottom:16px}
+.problem-area{text-align:center;padding:32px 20px}
+.problem-text{font-size:2.2rem;font-weight:700;margin-bottom:20px;letter-spacing:2px}
+.answer-input{padding:12px 24px;font-size:1.5rem;border:3px solid #e2e8f0;border-radius:12px;text-align:center;width:160px;outline:none;font-weight:600}
+.answer-input:focus{border-color:#2563eb}
+.answer-input.correct{border-color:#27ae60;background:#e6f7ed}
+.answer-input.wrong{border-color:#e74c3c;background:#fdedec}
+.result-area{text-align:center;margin-top:16px}
+.result-area .score{font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.result-area .detail{font-size:0.85rem;color:#64748b}
+.btn{display:inline-block;padding:12px 28px;background:#2c3e50;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:600;margin:4px;transition:background .15s}
+.btn:hover{background:#34495e}
+.btn.primary{background:#2563eb}
+.btn.primary:hover{background:#1d4ed8}
+.btn.danger{background:#e74c3c}
+.btn.danger:hover{background:#c0392b}
+.btn.success{background:#27ae60}
+.btn.success:hover{background:#219a52}
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+.btn-group{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.stats-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.stat-box{background:#f8fafc;border-radius:8px;padding:10px 20px;text-align:center;min-width:80px}
+.stat-box .num{font-size:1.3rem;font-weight:700;color:#2563eb}
+.stat-box .lbl{font-size:0.75rem;color:#64748b}
+.progress-bar{height:6px;background:#e2e8f0;border-radius:3px;overflow:hidden;margin-bottom:12px}
+.progress-bar .fill{height:100%;background:#2563eb;border-radius:3px;transition:width 0.3s;width:0%}
+.history-card{max-height:200px;overflow-y:auto;font-size:0.85rem}
+.history-card .row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #f1f5f9}
+.history-card .row .correct{color:#27ae60;font-weight:600}
+.history-card .row .wrong{color:#e74c3c;font-weight:600}
+.nav-buttons{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:20px}
+.nav-btn{display:inline-block;padding:10px 20px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#1d4ed8}
+@media(max-width:480px){.problem-text{font-size:1.6rem}.timer-display{font-size:2.2rem}}</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🏆 限时口算挑战</h1>
+<p class="subtitle">选择年级和时长，挑战你的口算速度！</p>
+
+<div class="card">
+  <div class="card-title">⚙️ 设置</div>
+  <div class="controls">
+    <label>年级：</label>
+    <select id="gradeSelect">
+      <option value="p2">P2 (小二)</option>
+      <option value="p3">P3 (小三)</option>
+    </select>
+    <label>时长：</label>
+    <select id="timeSelect">
+      <option value="30">30 秒 ⚡</option>
+      <option value="60" selected>60 秒 🔥</option>
+      <option value="90">90 秒 💪</option>
+    </select>
+    <label>运算：</label>
+    <select id="opSelect">
+      <option value="all">全部混合</option>
+      <option value="addsub">加减法</option>
+      <option value="mult">乘法</option>
+      <option value="div">除法</option>
+    </select>
+  </div>
+  <div class="btn-group">
+    <button class="btn primary" id="startBtn" onclick="startGame()">▶ 开始挑战</button>
+  </div>
+</div>
+
+<div class="card" id="gameCard" style="display:none">
+  <div class="card-title" id="cardTitle">⏱️ 挑战进行中...</div>
+  <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="num" id="correctCount">0</div><div class="lbl">✅ 正确</div></div>
+    <div class="stat-box"><div class="num" id="wrongCount">0</div><div class="lbl">❌ 错误</div></div>
+    <div class="stat-box"><div class="num" id="totalCount">0</div><div class="lbl">📊 总数</div></div>
+  </div>
+  <div class="timer-display" id="timerDisplay">60</div>
+  <div class="timer-label">剩余时间 (秒)</div>
+  <div class="problem-area">
+    <div class="problem-text" id="problemText">12 + 34 = ?</div>
+    <input class="answer-input" id="answerInput" type="number" placeholder="?" autofocus onkeydown="if(event.key==='Enter')checkAnswer()">
+  </div>
+  <div class="result-area">
+    <div class="score" id="feedbackText" style="min-height:1.6rem"></div>
+    <div class="detail" id="detailText"></div>
+  </div>
+  <div class="btn-group" id="gameButtons" style="display:none">
+    <button class="btn success" onclick="startGame()">🔄 再来一次</button>
+    <button class="btn" onclick="document.getElementById('gameCard').style.display='none'">← 返回设置</button>
+  </div>
+</div>
+
+<div class="card" id="historyCard" style="display:none">
+  <div class="card-title">📋 本局详细记录</div>
+  <div class="history-card" id="historyList"></div>
+</div>
+
+<div class="nav-buttons">
+  <a href="index.html" class="nav-btn">← 返回主页</a>
+</div>
+
+</div>
+
+<script>
+let timer = null;
+let timeLeft = 60;
+let totalTime = 60;
+let correct = 0;
+let wrong = 0;
+let total = 0;
+let curAns = 0;
+let history = [];
+let active = false;
+
+function genProblem() {
+  const grade = document.getElementById('gradeSelect').value;
+  const op = document.getElementById('opSelect').value;
+  let a, b, c, q, ans;
+  
+  function choose(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  
+  if (grade === 'p2') {
+    // P2: numbers up to 100, simple multiplication 1-9
+    if (op === 'mult' || (op === 'all' && Math.random() < 0.3)) {
+      a = Math.floor(Math.random() * 9) + 1;
+      b = Math.floor(Math.random() * 9) + 1;
+      ans = a * b;
+      q = a + ' × ' + b + ' = ?';
+    } else if (op === 'div' || (op === 'all' && Math.random() < 0.15)) {
+      b = Math.floor(Math.random() * 9) + 2;
+      a = b * (Math.floor(Math.random() * 9) + 1);
+      ans = a / b;
+      q = a + ' ÷ ' + b + ' = ?';
+    } else {
+      a = Math.floor(Math.random() * 50) + 1;
+      b = Math.floor(Math.random() * 50) + 1;
+      if (Math.random() < 0.5) {
+        ans = a + b; q = a + ' + ' + b + ' = ?';
+      } else {
+        if (a < b) { let t = a; a = b; b = t; }
+        ans = a - b; q = a + ' − ' + b + ' = ?';
+      }
+    }
+  } else {
+    // P3: larger numbers, multiply 2-digit by 1-digit, division with remainder
+    if (op === 'mult' || (op === 'all' && Math.random() < 0.25)) {
+      a = Math.floor(Math.random() * 90) + 10; // 10-99
+      b = Math.floor(Math.random() * 9) + 2; // 2-9
+      ans = a * b;
+      q = a + ' × ' + b + ' = ?';
+    } else if (op === 'div' || (op === 'all' && Math.random() < 0.2)) {
+      b = Math.floor(Math.random() * 9) + 2;
+      a = b * (Math.floor(Math.random() * 12) + 1);
+      ans = a / b;
+      q = a + ' ÷ ' + b + ' = ?';
+    } else {
+      a = Math.floor(Math.random() * 100) + 1;
+      b = Math.floor(Math.random() * 100) + 1;
+      if (Math.random() < 0.5) {
+        ans = a + b; q = a + ' + ' + b + ' = ?';
+      } else {
+        if (a < b) { let t = a; a = b; b = t; }
+        ans = a - b; q = a + ' − ' + b + ' = ?';
+      }
+    }
+  }
+  
+  document.getElementById('problemText').textContent = q;
+  curAns = ans;
+  document.getElementById('answerInput').value = '';
+  document.getElementById('answerInput').focus();
+  document.getElementById('answerInput').className = 'answer-input';
+  document.getElementById('feedbackText').textContent = '';
+}
+
+function checkAnswer() {
+  if (!active) return;
+  const inp = document.getElementById('answerInput');
+  const val = parseInt(inp.value);
+  if (isNaN(val)) return;
+  
+  total++;
+  if (val === curAns) {
+    correct++;
+    inp.className = 'answer-input correct';
+    document.getElementById('feedbackText').textContent = '✅ 正确！';
+    history.push({ q: document.getElementById('problemText').textContent, ans: curAns, user: val, ok: true });
+  } else {
+    wrong++;
+    inp.className = 'answer-input wrong';
+    document.getElementById('feedbackText').textContent = '❌ 正确答案是 ' + curAns;
+    history.push({ q: document.getElementById('problemText').textContent, ans: curAns, user: val, ok: false });
+  }
+  
+  document.getElementById('correctCount').textContent = correct;
+  document.getElementById('wrongCount').textContent = wrong;
+  document.getElementById('totalCount').textContent = total;
+  
+  setTimeout(genProblem, 400);
+}
+
+function startGame() {
+  // Stop any existing timer
+  if (timer) { clearInterval(timer); timer = null; }
+  
+  correct = 0; wrong = 0; total = 0;
+  history = [];
+  active = true;
+  
+  totalTime = parseInt(document.getElementById('timeSelect').value);
+  timeLeft = totalTime;
+  
+  document.getElementById('correctCount').textContent = '0';
+  document.getElementById('wrongCount').textContent = '0';
+  document.getElementById('totalCount').textContent = '0';
+  document.getElementById('timerDisplay').textContent = totalTime;
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('gameCard').style.display = 'block';
+  document.getElementById('historyCard').style.display = 'none';
+  document.getElementById('gameButtons').style.display = 'none';
+  document.getElementById('cardTitle').textContent = '⏱️ 挑战进行中...';
+  document.getElementById('startBtn').disabled = true;
+  
+  genProblem();
+  
+  timer = setInterval(() => {
+    timeLeft--;
+    document.getElementById('timerDisplay').textContent = timeLeft;
+    const pct = ((totalTime - timeLeft) / totalTime) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+    
+    if (timeLeft <= 5) {
+      document.getElementById('timerDisplay').style.color = '#e74c3c';
+    }
+    
+    if (timeLeft <= 0) {
+      clearInterval(timer); timer = null;
+      endGame();
+    }
+  }, 1000);
+}
+
+function endGame() {
+  active = false;
+  document.getElementById('startBtn').disabled = false;
+  document.getElementById('cardTitle').textContent = '🏁 挑战结束！';
+  document.getElementById('timerDisplay').textContent = '⏰';
+  document.getElementById('timerDisplay').style.color = '#2563eb';
+  
+  const rate = total > 0 ? Math.round(correct / total * 100) : 0;
+  let emoji = '😔';
+  if (rate === 100 && correct >= 10) emoji = '🏆';
+  else if (rate >= 90) emoji = '🌟';
+  else if (rate >= 75) emoji = '👏';
+  else if (rate >= 60) emoji = '💪';
+  
+  document.getElementById('feedbackText').textContent = emoji + ' ' + correct + '/' + total + ' 正确 (' + rate + '%)';
+  document.getElementById('detailText').textContent = totalTime + '秒內完成 ' + total + ' 题，正确率 ' + rate + '%';
+  document.getElementById('gameButtons').style.display = 'flex';
+  
+  // Show history
+  if (history.length > 0) {
+    const list = document.getElementById('historyList');
+    list.innerHTML = history.map(h => 
+      '<div class="row"><span>' + h.q.replace(' = ?', '') + ' = ' + h.ans + 
+      '</span><span class="' + (h.ok ? 'correct' : 'wrong') + '">' + 
+      (h.ok ? '✅ ' + h.user : '❌ 你答 ' + h.user) + '</span></div>'
+    ).join('');
+    document.getElementById('historyCard').style.display = 'block';
+  }
+}
+</script>
+</body>
+</html>
