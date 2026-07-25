@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✍️ P3 中文句式扩写训练 | 小书虫乐园</title>
+<meta name="description" content="P3 中文句式扩写训练 - 小三句式扩写。5个专题，15道进阶扩写题，含答案即时批改。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#fdf2f0;color:#2c3e50;line-height:1.6;padding:24px}
+.container{max-width:740px;margin:0 auto}
+h1{font-size:1.5rem;color:#c0392b;margin-bottom:4px;text-align:center}
+.subtitle{color:#e67e22;font-size:0.85rem;margin-bottom:24px;text-align:center}
+.card{background:#fff;border-radius:14px;padding:20px 24px;border:1px solid #f0d0cc;box-shadow:0 2px 8px rgba(192,57,43,0.06);margin-bottom:20px}
+.card-title{font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#c0392b;margin-bottom:14px;border-bottom:2px solid #fde8e6;padding-bottom:8px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:99px;margin-bottom:10px}
+.example-box{padding:14px 16px;background:#fefaf9;border-radius:10px;border-left:4px solid #e67e22;margin-bottom:14px}
+.example-box .ex-title{font-weight:700;font-size:0.9rem;color:#e67e22;margin-bottom:6px}
+.example-box .simple{color:#7f8c8d;font-size:0.9rem;margin-bottom:4px}
+.example-box .expanded{color:#c0392b;font-size:1.05rem;font-weight:600}
+.example-box .arrow{color:#e67e22;font-weight:700;margin:0 6px}
+.pattern-desc{font-size:0.92rem;color:#555;margin-bottom:12px;padding:8px 12px;background:#fef9e7;border-radius:8px;border-left:3px solid #f39c12}
+.q-item{padding:14px 16px;border:1px solid #f0d0cc;border-radius:10px;margin-bottom:12px;background:#fefaf9}
+.q-item .q-text{font-weight:600;margin-bottom:10px;font-size:0.95rem;color:#922b21}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:44px;min-height:40px;border:2px solid #f0d0cc;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500;color:#2c3e50}
+.opt-btn:hover{border-color:#c0392b;color:#c0392b;background:#fde8e6}
+.opt-btn.selected{border-color:#c0392b;background:#fde8e6;color:#c0392b;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.opt-btn:disabled{opacity:0.7;cursor:default}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn{background:#c0392b;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;font-size:0.95rem;margin-right:8px;margin-top:8px;transition:background .15s}
+.btn:hover{background:#a93226}
+.score-bar{margin-top:16px;font-weight:700;font-size:1rem;color:#27ae60;text-align:center}
+.nav-buttons{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:20px}
+.nav-btn{display:inline-block;padding:10px 20px;background:#c0392b;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#a93226}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>✍️ P3 中文句式扩写训练</h1>
+<p class="subtitle">小三中文 · 5个专题 · 15道进阶扩写题 · 点击选项作答</p>
+
+<div id="topicContainer"></div>
+
+<div class="nav-buttons">
+  <a href="index.html" class="nav-btn">← 返回主页</a>
+</div>
+
+</div>
+
+<script>
+const TOPICS = [
+  {
+    title: '🔗 用连接词扩写',
+    desc: '使用连接词（因为…所以…、虽然…但是…、不但…而且…、如果…就…）把两个短句连成一句，使表达更连贯、更有逻辑。',
+    examples: [
+      { simple: '今天下雨了。我没有去公园。', expanded: '因为今天下雨了，所以我没有去公园。' },
+      { simple: '他很努力。他考试没有考好。', expanded: '虽然他很努力，但是考试没有考好。' },
+      { simple: '她学习好。她体育也很好。', expanded: '她不但学习好，而且体育也很好。' }
+    ],
+    questions: [
+      { q: '哪一句正确地使用了连接词？', opts: ['因为我生病了，所以我请假了。', '因为我生病了，我请假了。', '我生病了，所以我请假了。', '因为生病了请假了。'], ans: '因为我生病了，所以我请假了。' },
+      { q: '把"小明很聪明。小明很懒惰。"用"虽然…但是…"连接，哪句正确？', opts: ['虽然小明很聪明，但是很懒惰。', '因为小明很聪明，所以很懒惰。', '小明不但聪明，而且懒惰。', '虽然很聪明，小明但是很懒惰。'], ans: '虽然小明很聪明，但是很懒惰。' },
+      { q: '下面哪句的连接词用得最恰当？', opts: ['因为妈妈叫我了，我就回家了。', '如果明天不下雨，我们就去动物园。', '虽然他很累了，但是他一直没有停下来。', '以上都对'], ans: '以上都对' }
+    ]
+  },
+  {
+    title: '🎨 加入比喻',
+    desc: '用"像、好像、仿佛、如同"等词，把一样东西比作另一样东西，让句子更加生动形象。例如："月亮" → "月亮像弯弯的小船"。',
+    examples: [
+      { simple: '天上的白云很白。', expanded: '天上的白云像棉花糖一样白。' },
+      { simple: '妹妹的脸很红。', expanded: '妹妹的脸蛋像红苹果一样红。' },
+      { simple: '他跑得很快。', expanded: '他跑得像风一样快。' }
+    ],
+    questions: [
+      { q: '哪一句使用了比喻？', opts: ['星星很闪亮。', '星星像钻石一样闪闪发光。', '星星在天上。', '星星有很多。'], ans: '星星像钻石一样闪闪发光。' },
+      { q: '扩写"湖水很平静"，用上比喻，哪个最好？', opts: ['湖水一点浪都没有。', '湖水像一面镜子，平静极了。', '湖水很平静很平静。', '湖水很安静。'], ans: '湖水像一面镜子，平静极了。' },
+      { q: '下面哪句比喻得最生动？', opts: ['她的笑容像阳光一样温暖。', '她笑了。', '她的笑容很好看。', '她笑得很开心。'], ans: '她的笑容像阳光一样温暖。' }
+    ]
+  },
+  {
+    title: '💓 描述心理活动',
+    desc: '在句子里添加人物的内心感受、想法、情绪变化，让读者更了解角色的心情。例如："他站在台上" → "他站在台上，心里像有只小兔子在蹦蹦跳，紧张极了。"',
+    examples: [
+      { simple: '她看着考试卷子。', expanded: '她看着考试卷子，心里忐忑不安，生怕考砸了。' },
+      { simple: '他走进比赛场地。', expanded: '他走进比赛场地，暗暗给自己打气："我一定可以的！"' },
+      { simple: '妈妈看到我的成绩。', expanded: '妈妈看到我的成绩，欣慰地想：孩子真的长大了！' }
+    ],
+    questions: [
+      { q: '哪一句描写了人物的心理活动？', opts: ['小明在教室里。', '小明心想：这道题好难啊，我该怎么做？', '小明在写作业。', '小明写完了作业。'], ans: '小明心想：这道题好难啊，我该怎么做？' },
+      { q: '扩写"小红在台上演讲"，加入心理活动，哪个最好？', opts: ['小红在台上演讲。', '小红在台上大声演讲。', '小红在台上紧张地想：大家一定要认真听我说啊！', '小红站在讲台上。'], ans: '小红在台上紧张地想：大家一定要认真听我说啊！' },
+      { q: '下面哪句的心理活动描写最生动？', opts: ['他想了很久。', '他心里想。', '他心里像打翻了五味瓶，既高兴又难过。', '他不太高兴。'], ans: '他心里像打翻了五味瓶，既高兴又难过。' }
+    ]
+  },
+  {
+    title: '📄 扩写成段落',
+    desc: '把一个简单的句子扩写成一个有3-5句话的小段落，补充细节、原因、感受等，使表达更丰富完整。',
+    examples: [
+      { simple: '今天是我的生日。', expanded: '今天是我的生日，我一大早就兴奋得睡不着了。爸爸妈妈为我准备了一个漂亮的蛋糕，上面插着九根蜡烛。晚上，全家人一起为我唱生日歌，我许了一个愿望，开心极了！' },
+      { simple: '周末我们去郊游。', expanded: '周末我们去郊游，天气特别晴朗。一路上我们唱着歌，有说有笑。到了郊外，我看到绿绿的草地和五颜六色的小花，还听到了小鸟叽叽喳喳地唱歌。这真是一次难忘的郊游！' },
+      { simple: '我学会了一项新本领。', expanded: '这个假期我学会了骑自行车。刚开始我总是摔跤，膝盖都摔破了。但是我没有放弃，每天坚持练习。终于，我能稳稳地骑上一段路了！我高兴地大喊："我学会啦！"妈妈也为我鼓掌。' }
+    ],
+    questions: [
+      { q: '哪一项是最好的段落扩写？', opts: ['外面下雨了。', '外面下起了倾盆大雨，豆大的雨点打在窗户上啪啪作响。我站在窗前，担心地想：妈妈没有带伞，怎么回家呢？', '外面下雨了，我待在家里。', '下雨了，很大的雨。'], ans: '外面下起了倾盆大雨，豆大的雨点打在窗户上啪啪作响。我站在窗前，担心地想：妈妈没有带伞，怎么回家呢？' },
+      { q: '扩写"我的小狗"，哪个段落最丰富？', opts: ['我家有狗。', '我家有一只叫豆豆的小狗，它全身毛茸茸的，像一团小毛球。每天我一回家，它就摇着尾巴跑过来舔我的手。我最喜欢带它去公园玩了！', '我的小狗很可爱。', '我家的小狗是白色的。'], ans: '我家有一只叫豆豆的小狗，它全身毛茸茸的，像一团小毛球。每天我一回家，它就摇着尾巴跑过来舔我的手。我最喜欢带它去公园玩了！' },
+      { q: '哪个段落最能体现"扩写"的效果？', opts: ['今天很热。今天有35度。', '今天天气非常热，太阳像火球一样挂在天上。小狗热得吐着舌头，树上的知了叫个不停。我赶紧躲进空调房，喝了一大杯冰水。', '今天天气很热，很热。', '今天天气热，我要喝水。'], ans: '今天天气非常热，太阳像火球一样挂在天上。小狗热得吐着舌头，树上的知了叫个不停。我赶紧躲进空调房，喝了一大杯冰水。' }
+    ]
+  },
+  {
+    title: '🌟 多角度描写',
+    desc: '从视觉（看到什么）、听觉（听到什么）、嗅觉（闻到什么）、触觉（摸到什么）等多个角度来描写同一个事物，让读者仿佛身临其境。',
+    examples: [
+      { simple: '花园很美。', expanded: '花园里百花盛开，有红色的玫瑰、紫色的薰衣草（视觉）。微风吹过，传来阵阵花香（嗅觉），蜜蜂在花丛中嗡嗡地飞着（听觉）。' },
+      { simple: '下雨了。', expanded: '雨哗啦啦地下着（听觉），雨点像珠子一样从天上落下来（视觉）。空气中有一股清新的泥土味（嗅觉），凉凉的雨丝飘在脸上，舒服极了（触觉）。' },
+      { simple: '在厨房里。', expanded: '厨房里飘来浓浓的饭菜香（嗅觉），锅里的菜滋滋地响着（听觉）。妈妈系着围裙在炒菜，锅里的青菜绿油油的（视觉）。' }
+    ],
+    questions: [
+      { q: '哪一句从多角度描写了事物？', opts: ['公园很多人。', '公园里，五颜六色的花在阳光下开放（视觉），孩子们的笑声在空中回荡（听觉），空气中飘着花香（嗅觉）。', '公园里有花有草。', '公园很大很漂亮。'], ans: '公园里，五颜六色的花在阳光下开放（视觉），孩子们的笑声在空中回荡（听觉），空气中飘着花香（嗅觉）。' },
+      { q: '扩写"海边真美"，从多角度描写，哪个最好？', opts: ['海边真美。', '大海蓝蓝的，沙滩黄黄的。', '我站在海边，看到碧蓝的海水一望无际（视觉），听到海浪拍打沙滩的声音（听觉），吹着咸咸的海风（嗅觉），脚下是软软的沙子（触觉）。', '海边有海浪。'], ans: '我站在海边，看到碧蓝的海水一望无际（视觉），听到海浪拍打沙滩的声音（听觉），吹着咸咸的海风（嗅觉），脚下是软软的沙子（触觉）。' },
+      { q: '下面的描寫缺少了哪個角度？"秋天的果園裡，紅色的蘋果掛滿枝頭，空氣中飄著果香。"', opts: ['視覺', '聽覺', '嗅覺', '觸覺'], ans: '聽覺' }
+    ]
+  }
+];
+
+function renderAll() {
+  const container = document.getElementById('topicContainer');
+  container.innerHTML = '';
+
+  TOPICS.forEach((topic, ti) => {
+    // Topic card
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-title">${topic.title}</div>
+      <div class="pattern-desc">${topic.desc}</div>
+    `;
+
+    // Examples
+    topic.examples.forEach((ex, ei) => {
+      const exDiv = document.createElement('div');
+      exDiv.className = 'example-box';
+      exDiv.innerHTML = `
+        <div class="ex-title">例子 ${ei+1}</div>
+        <div class="simple">${ex.simple}</div>
+        <div class="expanded">➡ ${ex.expanded}</div>
+      `;
+      card.appendChild(exDiv);
+    });
+
+    container.appendChild(card);
+
+    // Questions card
+    const qCard = document.createElement('div');
+    qCard.className = 'card';
+    qCard.innerHTML = '<div class="card-title">📝 练习</div><div id="exerciseArea-'+ti+'"></div><div id="scoreBar-'+ti+'" class="score-bar"></div>';
+
+    const btnDiv = document.createElement('div');
+    const checkBtn = document.createElement('button');
+    checkBtn.className = 'btn';
+    checkBtn.textContent = '✅ 检查答案';
+    checkBtn.onclick = function() { checkAnswers(ti); };
+    const resetBtn = document.createElement('button');
+    resetBtn.className = 'btn';
+    resetBtn.textContent = '🔄 重新作答';
+    resetBtn.style.background = '#e67e22';
+    resetBtn.onclick = function() { resetQuestions(ti); };
+    btnDiv.appendChild(checkBtn);
+    btnDiv.appendChild(resetBtn);
+    qCard.appendChild(btnDiv);
+    container.appendChild(qCard);
+
+    renderQuestions(ti);
+  });
+}
+
+function renderQuestions(ti) {
+  const area = document.getElementById('exerciseArea-' + ti);
+  const topic = TOPICS[ti];
+  area.innerHTML = '';
+  topic.questions.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-item';
+    div.innerHTML = '<div class="q-text">' + (i+1) + '. ' + item.q + '</div><div class="opts">' +
+      item.opts.map(o => '<button class="opt-btn" data-t="'+ti+'" data-i="'+i+'" data-v="'+o.replace(/'/g,"\\'")+'" onclick="selectOpt(this)">'+o+'</button>').join('') +
+      '<span class="result-icon" id="ri-'+ti+'-'+i+'"></span></div>';
+    area.appendChild(div);
+  });
+}
+
+function selectOpt(el) {
+  const t = el.dataset.t;
+  const i = el.dataset.i;
+  document.querySelectorAll('.opt-btn[data-t="'+t+'"][data-i="'+i+'"]').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function checkAnswers(ti) {
+  const topic = TOPICS[ti];
+  let cr = 0;
+  topic.questions.forEach((item, i) => {
+    const ic = document.getElementById('ri-'+ti+'-'+i);
+    const sel = document.querySelector('.opt-btn[data-t="'+ti+'"][data-i="'+i+'"].selected');
+    if (sel && sel.dataset.v === item.ans) {
+      ic.textContent = '✅';
+      sel.classList.add('correct');
+      cr++;
+    } else {
+      ic.textContent = '❌';
+      if (sel) sel.classList.add('wrong');
+      document.querySelectorAll('.opt-btn[data-t="'+ti+'"][data-i="'+i+'"]').forEach(b => {
+        if (b.dataset.v === item.ans) b.classList.add('correct');
+      });
+    }
+  });
+  const bar = document.getElementById('scoreBar-'+ti);
+  const t = topic.questions.length;
+  const pct = Math.round(cr / t * 100);
+  let emoji = '😔';
+  if (pct === 100) emoji = '🎉';
+  else if (pct >= 80) emoji = '👍';
+  else if (pct >= 60) emoji = '💪';
+  bar.textContent = emoji + ' ' + cr + ' / ' + t + ' 正确 (' + pct + '%)';
+  bar.style.color = pct === 100 ? '#27ae60' : pct >= 80 ? '#e67e22' : '#e74c3c';
+  document.querySelectorAll('.opt-btn[data-t="'+ti+'"].selected').forEach(b => b.disabled = true);
+}
+
+function resetQuestions(ti) {
+  document.querySelectorAll('.opt-btn[data-t="'+ti+'"]').forEach(b => {
+    b.classList.remove('selected', 'correct', 'wrong');
+    b.disabled = false;
+  });
+  document.querySelectorAll('#exerciseArea-' + ti + ' .result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar-'+ti).textContent = '';
+}
+
+renderAll();
+</script>
+</body>
+</html>
