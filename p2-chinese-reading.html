@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📖 P2 中文阅读理解 | 小书虫乐园</title>
+<meta name="description" content="P2 中文阅读理解 - 小二中文阅读练习。5篇短文，每篇4道理解题，共20题。含答案即时批改。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#fdf2f0;color:#2c3e50;line-height:1.6;padding:24px}
+.container{max-width:740px;margin:0 auto}
+h1{font-size:1.5rem;color:#c0392b;margin-bottom:4px;text-align:center}
+.subtitle{color:#e67e22;font-size:0.85rem;margin-bottom:24px;text-align:center}
+.card{background:#fff;border-radius:14px;padding:20px 24px;border:1px solid #f0d0cc;box-shadow:0 2px 8px rgba(192,57,43,0.06);margin-bottom:20px}
+.card-title{font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#c0392b;margin-bottom:14px;border-bottom:2px solid #fde8e6;padding-bottom:8px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:99px;margin-bottom:10px}
+.passage{padding:18px;background:#fefaf9;border-radius:10px;border-left:5px solid #c0392b;margin-bottom:16px}
+.passage p{margin-bottom:10px;font-size:1.05rem;line-height:1.9}
+.passage p:last-child{margin-bottom:0}
+.q-item{padding:14px 16px;border:1px solid #f0d0cc;border-radius:10px;margin-bottom:12px;background:#fefaf9}
+.q-item .q-text{font-weight:600;margin-bottom:10px;font-size:0.95rem;color:#922b21}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:44px;min-height:40px;border:2px solid #f0d0cc;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500;color:#2c3e50}
+.opt-btn:hover{border-color:#c0392b;color:#c0392b;background:#fde8e6}
+.opt-btn.selected{border-color:#c0392b;background:#fde8e6;color:#c0392b;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn{background:#c0392b;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;font-size:0.95rem;margin-right:8px;margin-top:8px;transition:background .15s}
+.btn:hover{background:#a93226}
+.score-bar{margin-top:16px;font-weight:700;font-size:1rem;color:#27ae60;text-align:center}
+.nav-buttons{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:20px}
+.nav-btn{display:inline-block;padding:10px 20px;background:#c0392b;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#a93226}
+.difficulty{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;margin-bottom:4px}
+.difficulty .star{color:#f39c12;font-size:0.9rem}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📖 P2 中文阅读理解</h1>
+<p class="subtitle">小二中文 · 5篇短文 · 20道理解题 · 点击选项作答</p>
+
+<div id="passageContainer"></div>
+
+<div class="nav-buttons">
+  <a href="index.html" class="nav-btn">← 返回主页</a>
+</div>
+
+</div>
+
+<script>
+const PASSAGES = [
+  {
+    title: '我的好朋友',
+    difficulty: 2,
+    text: '我有一个好朋友，他的名字叫小明。小明今年八岁，和我一样大。我们一起上学，一起放学回家。小明很聪明，每次考试都考得很好。他也很喜欢帮助别人。有一次，我忘记了带铅笔，小明就把他的铅笔借给我用。我很喜欢和小明做朋友。',
+    questions: [
+      { q: '这篇短文主要讲什么？', opts: ['小明的学习成绩', '我的朋友小明', '上学的路', '借铅笔的故事'], ans: '我的朋友小明' },
+      { q: '小明今年几岁？', opts: ['七岁', '八岁', '九岁', '十岁'], ans: '八岁' },
+      { q: '作者忘记带什么的时候，小明帮助了他？', opts: ['书', '书包', '铅笔', '橡皮'], ans: '铅笔' },
+      { q: '为什么作者喜欢和小明做朋友？', opts: ['因为小明有钱', '因为小明很聪明而且喜欢帮助别人', '因为小明有很多玩具', '因为小明住得很近'], ans: '因为小明很聪明而且喜欢帮助别人' }
+    ]
+  },
+  {
+    title: '小兔子的故事',
+    difficulty: 2,
+    text: '森林里住着一只小兔子，它的名字叫白白。白白的毛白白的，耳朵长长的，眼睛红红的，非常可爱。一天，白白到森林里找食物。它找到了一根胡萝卜，开心地跳了起来。它又走了一会儿，看到了一片青菜地。白白想：这些青菜够我吃好几天了！白白高高兴兴地回家了。',
+    questions: [
+      { q: '这篇短文主要讲什么？', opts: ['森林里的动物', '小白兔找食物', '胡萝卜和青菜', '小兔子的名字'], ans: '小白兔找食物' },
+      { q: '小兔子的名字是什么？', opts: ['小白', '雪雪', '白白', '毛毛'], ans: '白白' },
+      { q: '小兔子先找到了什么？', opts: ['青菜', '蘑菇', '胡萝卜', '水果'], ans: '胡萝卜' },
+      { q: '小兔子找到青菜后觉得怎样？', opts: ['很失望', '很担心', '很开心', '很累'], ans: '很开心' }
+    ]
+  },
+  {
+    title: '去公园玩',
+    difficulty: 2,
+    text: '星期天，天气很好，妈妈带我去公园玩。公园里有很多花，有红色的、黄色的、紫色的，好看极了。我还看到了很多小朋友在草地上跑来跑去。有的在放风筝，有的在踢球，还有的在荡秋千。我也去玩了一会儿滑梯，真开心啊！到了中午，我和妈妈一起回家。',
+    questions: [
+      { q: '这篇短文主要写什么？', opts: ['公园里的花', '星期天去公园玩', '放风筝', '滑滑梯'], ans: '星期天去公园玩' },
+      { q: '谁带作者去公园？', opts: ['爸爸', '妈妈', '奶奶', '老师'], ans: '妈妈' },
+      { q: '公园里的花有什么颜色？', opts: ['只有红色', '只有黄色', '有红色、黄色和紫色', '只有紫色'], ans: '有红色、黄色和紫色' },
+      { q: '作者在公园里玩了什么？', opts: ['放风筝', '踢球', '滑梯', '荡秋千'], ans: '滑梯' }
+    ]
+  },
+  {
+    title: '我家的小猫',
+    difficulty: 2,
+    text: '我家有一只小花猫，它的名字叫咪咪。咪咪有一身黄白相间的毛，摸起来软软的。它的眼睛圆圆的，晚上会发出绿色的光。咪咪最喜欢吃鱼了。每次妈妈买鱼回来，咪咪就喵喵地叫着跑到厨房门口等。吃完饭，咪咪喜欢在窗台上晒太阳，然后慢慢地睡着了。我非常喜欢我的小花猫。',
+    questions: [
+      { q: '这篇短文主要讲什么？', opts: ['妈妈买鱼', '猫捉老鼠', '我家的小花猫', '咪咪睡觉'], ans: '我家的小花猫' },
+      { q: '咪咪是什么颜色的？', opts: ['全白色', '黄白相间', '全黄色', '黑白相间'], ans: '黄白相间' },
+      { q: '咪咪最喜欢吃什么？', opts: ['青菜', '肉', '鱼', '米饭'], ans: '鱼' },
+      { q: '下面哪个不是咪咪做的事？', opts: ['在窗台上晒太阳', '喵喵叫要吃的', '到厨房门口等鱼', '到外面去捉老鼠'], ans: '到外面去捉老鼠' }
+    ]
+  },
+  {
+    title: '下雨了',
+    difficulty: 2,
+    text: '今天放学的时候，天空下起了大雨。我没有带雨伞，心里很着急。这时候，同学小红走过来说："我们一起打伞回家吧！"我高兴地说："谢谢你！"我们两个人打着伞一起走。小红把伞往我这边挪了挪，她的肩膀都淋湿了。我连忙说："你也打一点伞吧！"小红笑着说："没关系，我家快到了。"我觉得心里暖暖的。',
+    questions: [
+      { q: '这篇短文主要讲什么？', opts: ['下雨天没带伞', '同学之间互相帮助', '回家路上的风景', '雨伞的颜色'], ans: '同学之间互相帮助' },
+      { q: '放学时发生了什么事？', opts: ['出太阳了', '下起了大雨', '起风了', '下雪了'], ans: '下起了大雨' },
+      { q: '谁主动帮助了作者？', opts: ['老师', '妈妈', '小红', '小明'], ans: '小红' },
+      { q: '小红为了帮作者，自己的什么淋湿了？', opts: ['书包', '鞋子', '头发', '肩膀'], ans: '肩膀' }
+    ]
+  }
+];
+
+function renderStars(n) {
+  let s = '';
+  for (let i = 0; i < n; i++) s += '★';
+  for (let i = n; i < 3; i++) s += '☆';
+  return s;
+}
+
+function getDifficultyColor(d) {
+  if (d <= 1) return { bg: '#e6f7ed', color: '#1e8449', label: '简单' };
+  if (d === 2) return { bg: '#fef3c7', color: '#92400e', label: '中等' };
+  return { bg: '#fdedec', color: '#c0392b', label: '较难' };
+}
+
+function renderAll() {
+  const container = document.getElementById('passageContainer');
+  container.innerHTML = '';
+
+  PASSAGES.forEach((passage, pi) => {
+    const dc = getDifficultyColor(passage.difficulty);
+
+    // Passage card
+    const passageCard = document.createElement('div');
+    passageCard.className = 'card';
+    passageCard.innerHTML = `
+      <div class="card-title">📖 第${pi+1}篇 · ${passage.title}</div>
+      <span class="tag" style="background:${dc.bg};color:${dc.color};">${dc.label} <span class="star">${renderStars(passage.difficulty)}</span></span>
+      <div class="passage">
+        <p>${passage.text}</p>
+      </div>
+    `;
+    container.appendChild(passageCard);
+
+    // Questions card
+    const qCard = document.createElement('div');
+    qCard.className = 'card';
+    qCard.innerHTML = '<div class="card-title">📝 理解题</div><div id="exerciseArea-'+pi+'"></div><div id="scoreBar-'+pi+'" class="score-bar"></div>';
+
+    const btnDiv = document.createElement('div');
+    const checkBtn = document.createElement('button');
+    checkBtn.className = 'btn';
+    checkBtn.textContent = '✅ 检查答案';
+    checkBtn.onclick = function() { checkAnswers(pi); };
+    const resetBtn = document.createElement('button');
+    resetBtn.className = 'btn';
+    resetBtn.textContent = '🔄 重新作答';
+    resetBtn.style.background = '#e67e22';
+    resetBtn.onclick = function() { resetQuestions(pi); };
+    btnDiv.appendChild(checkBtn);
+    btnDiv.appendChild(resetBtn);
+    qCard.appendChild(btnDiv);
+    container.appendChild(qCard);
+
+    // Render questions
+    renderQuestions(pi);
+  });
+}
+
+function renderQuestions(pi) {
+  const area = document.getElementById('exerciseArea-' + pi);
+  const passage = PASSAGES[pi];
+  area.innerHTML = '';
+  passage.questions.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-item';
+    div.innerHTML = '<div class="q-text">' + (i+1) + '. ' + item.q + '</div><div class="opts">' +
+      item.opts.map(o => '<button class="opt-btn" data-p="'+pi+'" data-i="'+i+'" data-v="'+o.replace(/'/g,"\\'")+'" onclick="selectOpt(this)">'+o+'</button>').join('') +
+      '<span class="result-icon" id="ri-'+pi+'-'+i+'"></span></div>';
+    area.appendChild(div);
+  });
+}
+
+function selectOpt(el) {
+  const p = el.dataset.p;
+  const i = el.dataset.i;
+  document.querySelectorAll('.opt-btn[data-p="'+p+'"][data-i="'+i+'"]').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function checkAnswers(pi) {
+  const passage = PASSAGES[pi];
+  let cr = 0;
+  passage.questions.forEach((item, i) => {
+    const ic = document.getElementById('ri-'+pi+'-'+i);
+    const sel = document.querySelector('.opt-btn[data-p="'+pi+'"][data-i="'+i+'"].selected');
+    if (sel && sel.dataset.v === item.ans) {
+      ic.textContent = '✅';
+      sel.classList.add('correct');
+      cr++;
+    } else {
+      ic.textContent = '❌';
+      if (sel) sel.classList.add('wrong');
+      document.querySelectorAll('.opt-btn[data-p="'+pi+'"][data-i="'+i+'"]').forEach(b => {
+        if (b.dataset.v === item.ans) b.classList.add('correct');
+      });
+    }
+  });
+  const bar = document.getElementById('scoreBar-'+pi);
+  const t = passage.questions.length;
+  const pct = Math.round(cr / t * 100);
+  let emoji = '😔';
+  if (pct === 100) emoji = '🎉';
+  else if (pct >= 80) emoji = '👍';
+  else if (pct >= 60) emoji = '💪';
+  bar.textContent = emoji + ' ' + cr + ' / ' + t + ' 正确 (' + pct + '%)';
+  bar.style.color = pct === 100 ? '#27ae60' : pct >= 80 ? '#e67e22' : '#e74c3c';
+  document.querySelectorAll('.opt-btn[data-p="'+pi+'"].selected').forEach(b => b.disabled = true);
+}
+
+function resetQuestions(pi) {
+  document.querySelectorAll('.opt-btn[data-p="'+pi+'"]').forEach(b => {
+    b.classList.remove('selected', 'correct', 'wrong');
+    b.disabled = false;
+  });
+  document.querySelectorAll('#exerciseArea-' + pi + ' .result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar-'+pi).textContent = '';
+}
+
+renderAll();
+</script>
+</body>
+</html>

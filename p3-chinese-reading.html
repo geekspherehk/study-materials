@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📖 P3 中文阅读理解 | 小书虫乐园</title>
+<meta name="description" content="P3 中文阅读理解 - 小三中文阅读练习。5篇短文，每篇4道理解题，共20题。含答案即时批改。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#fdf2f0;color:#2c3e50;line-height:1.6;padding:24px}
+.container{max-width:740px;margin:0 auto}
+h1{font-size:1.5rem;color:#c0392b;margin-bottom:4px;text-align:center}
+.subtitle{color:#e67e22;font-size:0.85rem;margin-bottom:24px;text-align:center}
+.card{background:#fff;border-radius:14px;padding:20px 24px;border:1px solid #f0d0cc;box-shadow:0 2px 8px rgba(192,57,43,0.06);margin-bottom:20px}
+.card-title{font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#c0392b;margin-bottom:14px;border-bottom:2px solid #fde8e6;padding-bottom:8px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:99px;margin-bottom:10px}
+.passage{padding:18px;background:#fefaf9;border-radius:10px;border-left:5px solid #c0392b;margin-bottom:16px}
+.passage p{margin-bottom:10px;font-size:1.05rem;line-height:1.9}
+.passage p:last-child{margin-bottom:0}
+.q-item{padding:14px 16px;border:1px solid #f0d0cc;border-radius:10px;margin-bottom:12px;background:#fefaf9}
+.q-item .q-text{font-weight:600;margin-bottom:10px;font-size:0.95rem;color:#922b21}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:44px;min-height:40px;border:2px solid #f0d0cc;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500;color:#2c3e50}
+.opt-btn:hover{border-color:#c0392b;color:#c0392b;background:#fde8e6}
+.opt-btn.selected{border-color:#c0392b;background:#fde8e6;color:#c0392b;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn{background:#c0392b;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;font-size:0.95rem;margin-right:8px;margin-top:8px;transition:background .15s}
+.btn:hover{background:#a93226}
+.score-bar{margin-top:16px;font-weight:700;font-size:1rem;color:#27ae60;text-align:center}
+.nav-buttons{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:20px}
+.nav-btn{display:inline-block;padding:10px 20px;background:#c0392b;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#a93226}
+.difficulty{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;margin-bottom:4px}
+.difficulty .star{color:#f39c12;font-size:0.9rem}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📖 P3 中文阅读理解</h1>
+<p class="subtitle">小三中文 · 5篇短文 · 20道理解题 · 点击选项作答</p>
+
+<div id="passageContainer"></div>
+
+<div class="nav-buttons">
+  <a href="index.html" class="nav-btn">← 返回主页</a>
+</div>
+
+</div>
+
+<script>
+const PASSAGES = [
+  {
+    title: '诚实的孩子',
+    difficulty: 3,
+    text: '古时候，有一个孩子叫小明。有一天，他在院子里玩，不小心把妈妈心爱的花瓶打碎了。小明心里很害怕，他想：如果告诉妈妈，妈妈一定会责备我。但是不说实话，我心里又不舒服。他想了很久，最后决定诚实地告诉妈妈。妈妈听了之后，并没有生气，反而摸着明明的头说："你是一个诚实的好孩子，花瓶碎了可以再买，但是诚实的心是无价的。"小明听了，开心地笑了。',
+    questions: [
+      { q: '这篇短文主要告诉我们什么道理？', opts: ['花瓶很容易碎', '做错事要诚实', '妈妈很严厉', '小明很顽皮'], ans: '做错事要诚实' },
+      { q: '小明打碎了什么？', opts: ['一个杯子', '妈妈的镜子', '妈妈心爱的花瓶', '一个碗'], ans: '妈妈心爱的花瓶' },
+      { q: '小明一开始为什么感到害怕？', opts: ['因为花瓶很贵', '因为妈妈很凶', '因为怕被责备', '因为院子很黑'], ans: '因为怕被责备' },
+      { q: '为什么妈妈没有生气？', opts: ['因为花瓶不值钱', '因为她早就知道了', '因为小明诚实地承认了错误', '因为小明哭了'], ans: '因为小明诚实地承认了错误' }
+    ]
+  },
+  {
+    title: '春天的田野',
+    difficulty: 3,
+    text: '春天来了，田野里一片生机勃勃的景象。金黄色的油菜花开满了整片田野，远远望去，像一块金色的地毯。麦苗也长高了，绿油油的，在春风中轻轻地摆动。小燕子从南方飞回来了，在田野上空自由自在地飞翔。农民伯伯在田间忙碌着，有的在播种，有的在施肥。田野边的小溪解冻了，溪水哗哗地流着，好像在唱着春天的歌。春天的田野真美啊！',
+    questions: [
+      { q: '这篇短文主要描写了什么？', opts: ['春天的小溪', '春天的田野景色', '农民伯伯的工作', '小燕子飞回来了'], ans: '春天的田野景色' },
+      { q: '作者把金黄色的油菜花比作什么？', opts: ['金色的阳光', '金色的地毯', '黄色的颜料', '金色的星星'], ans: '金色的地毯' },
+      { q: '小燕子从什么地方飞回来了？', opts: ['北方', '南方', '东方', '西方'], ans: '南方' },
+      { q: '小溪解冻后发出了什么声音？', opts: ['滴答滴答', '哗哗地流', '咕噜咕噜', '沙沙沙'], ans: '哗哗地流' }
+    ]
+  },
+  {
+    title: '助人为乐',
+    difficulty: 3,
+    text: '放学后，天空突然下起了大雨。小华没有带伞，只好在学校的门口躲雨。这时，高年级的张明同学走过来，对小华说："你把我的伞拿去用吧，我家很近，跑几步就到了。"小华接过伞，感激地说："谢谢你，张明哥哥！"第二天，小华把伞洗干净了，还给张明。张明笑着说："不用谢，谁都有需要帮助的时候。下次看到别人有困难，你也要主动帮助别人哦！"小华用力地点了点头。',
+    questions: [
+      { q: '这篇短文主要讲什么？', opts: ['下雨天的故事', '借伞还伞', '帮助别人是一种美德', '张明同学的家'], ans: '帮助别人是一种美德' },
+      { q: '小华为什么在学校门口躲雨？', opts: ['他在等朋友', '他没有带伞', '他在写作业', '他在等妈妈'], ans: '他没有带伞' },
+      { q: '张明是什么年级的学生？', opts: ['低年级', '高年级', '和同学年', '不清楚'], ans: '高年级' },
+      { q: '张明告诉小华下次应该怎么做？', opts: ['每天带伞', '跑快一点回家', '也主动帮助别人', '多准备一把伞'], ans: '也主动帮助别人' }
+    ]
+  },
+  {
+    title: '小猴子过河',
+    difficulty: 3,
+    text: '一天，一只小猴子想过河去看望生病的奶奶。可是河水很深，小猴子不会游泳。他站在河边，急得团团转。这时，一头大象走过来，问："小猴子，你怎么了？"小猴子说："我想过河去看奶奶，可是我不会游泳。"大象笑着说："别着急，我用长鼻子把你卷起来，送你过河吧！"小猴子高兴地跳了起来。大象用长长的鼻子轻轻地把小猴子卷起来，稳稳地走过了河。到了对岸，小猴子感激地说："谢谢你，大象伯伯！"大象摆摆鼻子说："不用客气！"',
+    questions: [
+      { q: '小猴子为什么想过河？', opts: ['去玩', '去找吃的', '看望生病的奶奶', '去找朋友'], ans: '看望生病的奶奶' },
+      { q: '小猴子遇到了什么困难？', opts: ['找不到路', '河水很深不会游泳', '太累了', '天快黑了'], ans: '河水很深不会游泳' },
+      { q: '谁帮助了小猴子过河？', opts: ['河马', '长颈鹿', '大象', '乌龟'], ans: '大象' },
+      { q: '小猴子最终是怎样过河的？', opts: ['坐船过去', '游泳过去', '被大象用鼻子卷着过河', '绕路过去'], ans: '被大象用鼻子卷着过河' }
+    ]
+  },
+  {
+    title: '美丽的大自然',
+    difficulty: 3,
+    text: '大自然就像一幅美丽的画卷。清晨，太阳从东方冉冉升起，温暖的阳光洒在大地上。高山上，树木郁郁葱葱，各种鸟儿在枝头唱着动听的歌。小河里，鱼儿欢快地游来游去，河水清澈见底，可以看到河底的鹅卵石。草地上，五颜六色的花朵竞相开放，散发出阵阵清香。可是，如果我们乱扔垃圾、乱砍树木，大自然就会受到伤害。保护大自然，就是保护我们自己的家园。让我们行动起来，爱护每一片绿叶、每一朵鲜花吧！',
+    questions: [
+      { q: '这篇短文的主旨是什么？', opts: ['大自然的美丽', '人们应该保护大自然', '各种小动物', '清晨的景色'], ans: '人们应该保护大自然' },
+      { q: '清晨，太阳从哪个方向升起？', opts: ['西方', '南方', '北方', '东方'], ans: '东方' },
+      { q: '河水有什么特点？', opts: ['很深很急', '清澈见底', '很浑浊', '很冰冷'], ans: '清澈见底' },
+      { q: '作者认为如果乱扔垃圾会怎样？', opts: ['大自然会更美', '没有关系', '大自然会受到伤害', '有人会打扫'], ans: '大自然会受到伤害' }
+    ]
+  }
+];
+
+function renderStars(n) {
+  let s = '';
+  for (let i = 0; i < n; i++) s += '★';
+  for (let i = n; i < 3; i++) s += '☆';
+  return s;
+}
+
+function getDifficultyColor(d) {
+  if (d <= 1) return { bg: '#e6f7ed', color: '#1e8449', label: '简单' };
+  if (d === 2) return { bg: '#fef3c7', color: '#92400e', label: '中等' };
+  return { bg: '#fdedec', color: '#c0392b', label: '较难' };
+}
+
+function renderAll() {
+  const container = document.getElementById('passageContainer');
+  container.innerHTML = '';
+
+  PASSAGES.forEach((passage, pi) => {
+    const dc = getDifficultyColor(passage.difficulty);
+
+    // Passage card
+    const passageCard = document.createElement('div');
+    passageCard.className = 'card';
+    passageCard.innerHTML = `
+      <div class="card-title">📖 第${pi+1}篇 · ${passage.title}</div>
+      <span class="tag" style="background:${dc.bg};color:${dc.color};">${dc.label} <span class="star">${renderStars(passage.difficulty)}</span></span>
+      <div class="passage">
+        <p>${passage.text}</p>
+      </div>
+    `;
+    container.appendChild(passageCard);
+
+    // Questions card
+    const qCard = document.createElement('div');
+    qCard.className = 'card';
+    qCard.innerHTML = '<div class="card-title">📝 理解题</div><div id="exerciseArea-'+pi+'"></div><div id="scoreBar-'+pi+'" class="score-bar"></div>';
+
+    const btnDiv = document.createElement('div');
+    const checkBtn = document.createElement('button');
+    checkBtn.className = 'btn';
+    checkBtn.textContent = '✅ 检查答案';
+    checkBtn.onclick = function() { checkAnswers(pi); };
+    const resetBtn = document.createElement('button');
+    resetBtn.className = 'btn';
+    resetBtn.textContent = '🔄 重新作答';
+    resetBtn.style.background = '#e67e22';
+    resetBtn.onclick = function() { resetQuestions(pi); };
+    btnDiv.appendChild(checkBtn);
+    btnDiv.appendChild(resetBtn);
+    qCard.appendChild(btnDiv);
+    container.appendChild(qCard);
+
+    // Render questions
+    renderQuestions(pi);
+  });
+}
+
+function renderQuestions(pi) {
+  const area = document.getElementById('exerciseArea-' + pi);
+  const passage = PASSAGES[pi];
+  area.innerHTML = '';
+  passage.questions.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-item';
+    div.innerHTML = '<div class="q-text">' + (i+1) + '. ' + item.q + '</div><div class="opts">' +
+      item.opts.map(o => '<button class="opt-btn" data-p="'+pi+'" data-i="'+i+'" data-v="'+o.replace(/'/g,"\\'")+'" onclick="selectOpt(this)">'+o+'</button>').join('') +
+      '<span class="result-icon" id="ri-'+pi+'-'+i+'"></span></div>';
+    area.appendChild(div);
+  });
+}
+
+function selectOpt(el) {
+  const p = el.dataset.p;
+  const i = el.dataset.i;
+  document.querySelectorAll('.opt-btn[data-p="'+p+'"][data-i="'+i+'"]').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function checkAnswers(pi) {
+  const passage = PASSAGES[pi];
+  let cr = 0;
+  passage.questions.forEach((item, i) => {
+    const ic = document.getElementById('ri-'+pi+'-'+i);
+    const sel = document.querySelector('.opt-btn[data-p="'+pi+'"][data-i="'+i+'"].selected');
+    if (sel && sel.dataset.v === item.ans) {
+      ic.textContent = '✅';
+      sel.classList.add('correct');
+      cr++;
+    } else {
+      ic.textContent = '❌';
+      if (sel) sel.classList.add('wrong');
+      document.querySelectorAll('.opt-btn[data-p="'+pi+'"][data-i="'+i+'"]').forEach(b => {
+        if (b.dataset.v === item.ans) b.classList.add('correct');
+      });
+    }
+  });
+  const bar = document.getElementById('scoreBar-'+pi);
+  const t = passage.questions.length;
+  const pct = Math.round(cr / t * 100);
+  let emoji = '😔';
+  if (pct === 100) emoji = '🎉';
+  else if (pct >= 80) emoji = '👍';
+  else if (pct >= 60) emoji = '💪';
+  bar.textContent = emoji + ' ' + cr + ' / ' + t + ' 正确 (' + pct + '%)';
+  bar.style.color = pct === 100 ? '#27ae60' : pct >= 80 ? '#e67e22' : '#e74c3c';
+  document.querySelectorAll('.opt-btn[data-p="'+pi+'"].selected').forEach(b => b.disabled = true);
+}
+
+function resetQuestions(pi) {
+  document.querySelectorAll('.opt-btn[data-p="'+pi+'"]').forEach(b => {
+    b.classList.remove('selected', 'correct', 'wrong');
+    b.disabled = false;
+  });
+  document.querySelectorAll('#exerciseArea-' + pi + ' .result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar-'+pi).textContent = '';
+}
+
+renderAll();
+</script>
+</body>
+</html>
