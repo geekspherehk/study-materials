@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧩 P3 数学思维拓展 | 小书虫乐园</title>
+<meta name="description" content="P3 数学思维拓展练习。涵盖复杂数列、数独、逻辑推理、鸡兔同笼、年龄问题、植树问题、盈亏问题、枚举法、和差问题、周期问题等10个思维专题。">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.q-item{padding:14px 16px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;background:#fafbfc}
+.q-item .q-text{font-weight:600;margin-bottom:10px;font-size:0.95rem}
+.q-item .q-label{font-size:0.75rem;color:#64748b;margin-bottom:4px;font-weight:600}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:44px;min-height:40px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500}
+.opt-btn:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.opt-btn.selected{border-color:#2563eb;background:#eff6ff;color:#2563eb;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.opt-btn:disabled{opacity:0.7;cursor:default}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem;margin-right:8px;margin-top:8px}
+.btn:hover{background:#34495e}
+.btn.primary{background:#2563eb}
+.btn.primary:hover{background:#1d4ed8}
+.score-bar{margin-top:16px;font-weight:700;font-size:1rem;text-align:center}
+.nav-buttons{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:20px}
+.nav-btn{display:inline-block;padding:10px 20px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#1d4ed8}
+.section-header{background:#eff6ff;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-weight:600;font-size:0.9rem;color:#1e40af}
+.explanation{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 16px;margin-bottom:12px;font-size:0.88rem;color:#166534;line-height:1.7}
+.diff-easy{background:#e6f7ed;color:#1e8449}
+.diff-mid{background:#fef3c7;color:#92400e}
+.diff-hard{background:#fdedec;color:#c0392b}</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🧩 P3 数学思维拓展</h1>
+<p class="subtitle">10大思维专题 · 共15题 · 锻炼逻辑与思考能力</p>
+
+<div class="card">
+  <div class="card-title">📋 专题说明</div>
+  <div class="tag" style="background:#fef3c7;color:#92400e;">🎯 思维拓展训练</div>
+  <div style="font-size:0.9rem;color:#475569;line-height:1.7">
+    本练习涵盖 P3 数学思维拓展的 10 个专题。每个专题先学习思考方法，再做练习题。每题选择一个正确答案。<br>
+    <strong>专题列表：</strong> 找规律(复杂数列) · 数独(6×6) · 逻辑推理(表格法) · 鸡兔同笼 · 年龄问题 · 植树问题 · 盈亏问题 · 枚举法 · 和差问题 · 周期问题
+  </div>
+</div>
+
+<!-- 专题 1: 找规律（复杂数列） -->
+<div class="card">
+  <div class="card-title">🔢 专题一：找规律（复杂数列）</div>
+  <div class="tag diff-mid">⭐⭐ 进阶</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>观察数列的<strong>相邻差</strong>或<strong>倍数关系</strong>。有时两个数之间的差也在变化（等差数列的差也在变化），有时是乘或除同一个数。试试先求相邻两个数的差，看看差的规律！
+  </div>
+  <div id="q0" class="q-item">
+    <div class="q-label">专题一 · 复杂数列</div>
+    <div class="q-text">1. 观察数列：2, 4, 8, 16, ? —— 问号处应该填什么？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="0" data-v="18" onclick="selectOpt(this)">18</button>
+      <button class="opt-btn" data-i="0" data-v="20" onclick="selectOpt(this)">20</button>
+      <button class="opt-btn" data-i="0" data-v="24" onclick="selectOpt(this)">24</button>
+      <button class="opt-btn" data-i="0" data-v="32" onclick="selectOpt(this)">32</button>
+      <span class="result-icon" id="ri-0"></span>
+    </div>
+  </div>
+  <div id="q1" class="q-item">
+    <div class="q-label">专题一 · 复杂数列</div>
+    <div class="q-text">2. 观察数列：1, 2, 4, 7, 11, ? —— 问号处应该填什么？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="1" data-v="14" onclick="selectOpt(this)">14</button>
+      <button class="opt-btn" data-i="1" data-v="15" onclick="selectOpt(this)">15</button>
+      <button class="opt-btn" data-i="1" data-v="16" onclick="selectOpt(this)">16</button>
+      <button class="opt-btn" data-i="1" data-v="22" onclick="selectOpt(this)">22</button>
+      <span class="result-icon" id="ri-1"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 2: 数独（6×6） -->
+<div class="card">
+  <div class="card-title">🧩 专题二：数独（6×6）</div>
+  <div class="tag diff-mid">⭐⭐ 进阶</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>6×6 数独每行、每列、每个 2×3 的粗线区域都要填入 1~6，<strong>不能重复</strong>。先找数字最多的行、列或宫，用<strong>排除法</strong>把答案确定下来。比 4×4 数独多了一倍的格数，需要更细心！
+  </div>
+  <div id="q2" class="q-item">
+    <div class="q-label">专题二 · 6×6数独</div>
+    <div class="q-text">3. 在 6×6 数独中，第一行已经有 1、2、3、4、6，缺少哪个数字？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="2" data-v="3" onclick="selectOpt(this)">3</button>
+      <button class="opt-btn" data-i="2" data-v="4" onclick="selectOpt(this)">4</button>
+      <button class="opt-btn" data-i="2" data-v="5" onclick="selectOpt(this)">5</button>
+      <button class="opt-btn" data-i="2" data-v="6" onclick="selectOpt(this)">6</button>
+      <span class="result-icon" id="ri-2"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 3: 逻辑推理（表格法） -->
+<div class="card">
+  <div class="card-title">🔍 专题三：逻辑推理（表格法）</div>
+  <div class="tag diff-hard">⭐⭐⭐ 挑战</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>当信息比较多的时候，可以画一个<strong>表格</strong>。把人物（或事物）作为行，把属性作为列。满足条件的打"✓"，不满足的打"✗"。通过逐步排除，找到一一对应的关系。
+  </div>
+  <div id="q3" class="q-item">
+    <div class="q-label">专题三 · 表格推理</div>
+    <div class="q-text">4. 甲、乙、丙三人分别拿着红、蓝、绿三把伞。<br>
+    ① 甲拿的不是红伞。<br>
+    ② 拿绿伞的不是乙。<br>
+    ③ 丙拿的是蓝伞。<br>
+    请问甲拿的是什么颜色的伞？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="3" data-v="红色" onclick="selectOpt(this)">红色</button>
+      <button class="opt-btn" data-i="3" data-v="蓝色" onclick="selectOpt(this)">蓝色</button>
+      <button class="opt-btn" data-i="3" data-v="绿色" onclick="selectOpt(this)">绿色</button>
+      <button class="opt-btn" data-i="3" data-v="不确定" onclick="selectOpt(this)">不确定</button>
+      <span class="result-icon" id="ri-3"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 4: 鸡兔同笼 -->
+<div class="card">
+  <div class="card-title">🐔🐰 专题四：鸡兔同笼</div>
+  <div class="tag diff-hard">⭐⭐⭐ 挑战</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>鸡有 2 条腿，兔有 4 条腿。假设笼子里<strong>全是鸡</strong>，算出腿数，再与实际腿数比较，差几条腿就把几只鸡换成兔（每换一只多 2 条腿）。这就是<strong>假设法</strong>。
+  </div>
+  <div id="q4" class="q-item">
+    <div class="q-label">专题四 · 鸡兔同笼</div>
+    <div class="q-text">5. 笼子里有鸡和兔子，一共 8 个头，22 条腿。请问兔子有几只？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="4" data-v="2" onclick="selectOpt(this)">2只</button>
+      <button class="opt-btn" data-i="4" data-v="3" onclick="selectOpt(this)">3只</button>
+      <button class="opt-btn" data-i="4" data-v="4" onclick="selectOpt(this)">4只</button>
+      <button class="opt-btn" data-i="4" data-v="5" onclick="selectOpt(this)">5只</button>
+      <span class="result-icon" id="ri-4"></span>
+    </div>
+  </div>
+  <div id="q5" class="q-item">
+    <div class="q-label">专题四 · 鸡兔同笼</div>
+    <div class="q-text">6. 笼子里有鸡和兔子，一共 10 个头，28 条腿。请问鸡有几只？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="5" data-v="4" onclick="selectOpt(this)">4只</button>
+      <button class="opt-btn" data-i="5" data-v="5" onclick="selectOpt(this)">5只</button>
+      <button class="opt-btn" data-i="5" data-v="6" onclick="selectOpt(this)">6只</button>
+      <button class="opt-btn" data-i="5" data-v="7" onclick="selectOpt(this)">7只</button>
+      <span class="result-icon" id="ri-5"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 5: 年龄问题 -->
+<div class="card">
+  <div class="card-title">👨‍👩‍👧‍👦 专题五：年龄问题</div>
+  <div class="tag diff-mid">⭐⭐ 进阶</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>两个人的年龄差是<strong>永远不变的</strong>！不管过了多少年，年龄差始终一样。所以可以用年龄差来列算式。同时要记住：过了 n 年，每个人的年龄都增加 n 岁。
+  </div>
+  <div id="q6" class="q-item">
+    <div class="q-label">专题五 · 年龄问题</div>
+    <div class="q-text">7. 爸爸今年 36 岁，小明今年 8 岁。几年后爸爸的年龄是小明的 3 倍？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="6" data-v="4" onclick="selectOpt(this)">4年</button>
+      <button class="opt-btn" data-i="6" data-v="5" onclick="selectOpt(this)">5年</button>
+      <button class="opt-btn" data-i="6" data-v="6" onclick="selectOpt(this)">6年</button>
+      <button class="opt-btn" data-i="6" data-v="8" onclick="selectOpt(this)">8年</button>
+      <span class="result-icon" id="ri-6"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 6: 植树问题 -->
+<div class="card">
+  <div class="card-title">🌳 专题六：植树问题</div>
+  <div class="tag diff-mid">⭐⭐ 进阶</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>在一条路上植树：<br>
+    ① <strong>两端都栽：</strong>棵数 = 段数 + 1<br>
+    ② <strong>一端栽一端不栽：</strong>棵数 = 段数<br>
+    ③ <strong>两端都不栽：</strong>棵数 = 段数 - 1<br>
+    段数 = 总长 ÷ 间隔距离。
+  </div>
+  <div id="q7" class="q-item">
+    <div class="q-label">专题六 · 植树问题</div>
+    <div class="q-text">8. 一条 30 米长的小路，从头到尾每隔 5 米栽一棵树，一共要栽多少棵树？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="7" data-v="5" onclick="selectOpt(this)">5棵</button>
+      <button class="opt-btn" data-i="7" data-v="6" onclick="selectOpt(this)">6棵</button>
+      <button class="opt-btn" data-i="7" data-v="7" onclick="selectOpt(this)">7棵</button>
+      <button class="opt-btn" data-i="7" data-v="8" onclick="selectOpt(this)">8棵</button>
+      <span class="result-icon" id="ri-7"></span>
+    </div>
+  </div>
+  <div id="q8" class="q-item">
+    <div class="q-label">专题六 · 植树问题</div>
+    <div class="q-text">9. 在一条 20 米长的走廊一边，每隔 4 米放一盆花，两头都不放花，需要几盆花？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="8" data-v="3" onclick="selectOpt(this)">3盆</button>
+      <button class="opt-btn" data-i="8" data-v="4" onclick="selectOpt(this)">4盆</button>
+      <button class="opt-btn" data-i="8" data-v="5" onclick="selectOpt(this)">5盆</button>
+      <button class="opt-btn" data-i="8" data-v="6" onclick="selectOpt(this)">6盆</button>
+      <span class="result-icon" id="ri-8"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 7: 盈亏问题 -->
+<div class="card">
+  <div class="card-title">📦 专题七：盈亏问题</div>
+  <div class="tag diff-hard">⭐⭐⭐ 挑战</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>把若干物品分给若干人，两种分法，一种<strong>多（盈）</strong>一种<strong>少（亏）</strong>。公式：人数 = (盈 + 亏) ÷ (两次每人分得的差)。或者先算出两种分法的差距，再除以每人分得的差额。
+  </div>
+  <div id="q9" class="q-item">
+    <div class="q-label">专题七 · 盈亏问题</div>
+    <div class="q-text">10. 老师给小朋友分糖果，每人分 4 颗剩 6 颗，每人分 6 颗少 4 颗。请问有几个小朋友？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="9" data-v="3" onclick="selectOpt(this)">3个</button>
+      <button class="opt-btn" data-i="9" data-v="4" onclick="selectOpt(this)">4个</button>
+      <button class="opt-btn" data-i="9" data-v="5" onclick="selectOpt(this)">5个</button>
+      <button class="opt-btn" data-i="9" data-v="6" onclick="selectOpt(this)">6个</button>
+      <span class="result-icon" id="ri-9"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 8: 枚举法 -->
+<div class="card">
+  <div class="card-title">📝 专题八：枚举法</div>
+  <div class="tag diff-mid">⭐⭐ 进阶</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>把所有可能的答案<strong>一个一个列出来</strong>，<strong>按顺序枚举</strong>，做到不遗漏不重复。例如把 3 枚硬币的所有组合都写出来，可以从小到大或从大到小排列。
+  </div>
+  <div id="q10" class="q-item">
+    <div class="q-label">专题八 · 枚举法</div>
+    <div class="q-text">11. 用 1 元、5 元、10 元三种纸币各一张，可以组成多少种不同的金额？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="10" data-v="3" onclick="selectOpt(this)">3种</button>
+      <button class="opt-btn" data-i="10" data-v="4" onclick="selectOpt(this)">4种</button>
+      <button class="opt-btn" data-i="10" data-v="6" onclick="selectOpt(this)">6种</button>
+      <button class="opt-btn" data-i="10" data-v="7" onclick="selectOpt(this)">7种</button>
+      <span class="result-icon" id="ri-10"></span>
+    </div>
+  </div>
+  <div id="q11" class="q-item">
+    <div class="q-label">专题八 · 枚举法</div>
+    <div class="q-text">12. 用 2、5、7 三张数字卡片，可以组成多少个不同的三位数？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="11" data-v="3" onclick="selectOpt(this)">3个</button>
+      <button class="opt-btn" data-i="11" data-v="4" onclick="selectOpt(this)">4个</button>
+      <button class="opt-btn" data-i="11" data-v="5" onclick="selectOpt(this)">5个</button>
+      <button class="opt-btn" data-i="11" data-v="6" onclick="selectOpt(this)">6个</button>
+      <span class="result-icon" id="ri-11"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 9: 和差问题 -->
+<div class="card">
+  <div class="card-title">🔢 专题九：和差问题</div>
+  <div class="tag diff-hard">⭐⭐⭐ 挑战</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>已知两个数的<strong>和</strong>与<strong>差</strong>，求这两个数。<br>
+    大数 = (和 + 差) ÷ 2<br>
+    小数 = (和 - 差) ÷ 2<br>
+    用线段图来帮助理解：大数比小数多出来的一段就是"差"。
+  </div>
+  <div id="q12" class="q-item">
+    <div class="q-label">专题九 · 和差问题</div>
+    <div class="q-text">13. 甲乙两数之和是 48，甲比乙多 8。请问甲是多少？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="12" data-v="20" onclick="selectOpt(this)">20</button>
+      <button class="opt-btn" data-i="12" data-v="24" onclick="selectOpt(this)">24</button>
+      <button class="opt-btn" data-i="12" data-v="28" onclick="selectOpt(this)">28</button>
+      <button class="opt-btn" data-i="12" data-v="30" onclick="selectOpt(this)">30</button>
+      <span class="result-icon" id="ri-12"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 10: 周期问题 -->
+<div class="card">
+  <div class="card-title">🔁 专题十：周期问题</div>
+  <div class="tag diff-mid">⭐⭐ 进阶</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>事物按照一定的<strong>周期</strong>重复出现。先找出一个周期里有几个元素（周期长度），然后用<strong>总数量 ÷ 周期长度</strong>，看余数：余数是几，就是周期里的第几个。没有余数就是周期里的最后一个。
+  </div>
+  <div id="q13" class="q-item">
+    <div class="q-label">专题十 · 周期问题</div>
+    <div class="q-text">14. 按照红、黄、蓝、红、黄、蓝……的顺序排列彩灯，第 20 盏灯是什么颜色？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="13" data-v="红" onclick="selectOpt(this)">红色</button>
+      <button class="opt-btn" data-i="13" data-v="黄" onclick="selectOpt(this)">黄色</button>
+      <button class="opt-btn" data-i="13" data-v="蓝" onclick="selectOpt(this)">蓝色</button>
+      <button class="opt-btn" data-i="13" data-v="不确定" onclick="selectOpt(this)">不确定</button>
+      <span class="result-icon" id="ri-13"></span>
+    </div>
+  </div>
+  <div id="q14" class="q-item">
+    <div class="q-label">专题十 · 周期问题</div>
+    <div class="q-text">15. 一串珠子按 2 颗白、3 颗黑的顺序重复串起来。请问第 18 颗珠子是什么颜色？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="14" data-v="白" onclick="selectOpt(this)">白色</button>
+      <button class="opt-btn" data-i="14" data-v="黑" onclick="selectOpt(this)">黑色</button>
+      <button class="opt-btn" data-i="14" data-v="不确定" onclick="selectOpt(this)">不确定</button>
+      <span class="result-icon" id="ri-14"></span>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div id="scoreBar" class="score-bar"></div>
+  <button class="btn primary" onclick="checkAnswers()">✅ 检查全部答案</button>
+  <button class="btn" onclick="resetQuestions()">🔄 重新作答</button>
+</div>
+
+<div class="nav-buttons">
+  <div class="nav-left"><a href="p3-math-word-problems.html" class="nav-btn">← 应用题专练</a></div>
+  <div class="nav-right"><a href="index.html" class="nav-btn">返回主页 →</a></div>
+</div>
+
+</div>
+
+<script>
+const ANSWERS = {
+  0: '32', 1: '16', 2: '5', 3: '绿色',
+  4: '3', 5: '6', 6: '6', 7: '7',
+  8: '4', 9: '5', 10: '7', 11: '6',
+  12: '28', 13: '黄', 14: '黑'
+};
+
+function selectOpt(el) {
+  const i = el.dataset.i;
+  document.querySelectorAll('.opt-btn[data-i="'+i+'"]').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function checkAnswers() {
+  let cr = 0;
+  const total = Object.keys(ANSWERS).length;
+  Object.keys(ANSWERS).forEach(i => {
+    const ic = document.getElementById('ri-'+i);
+    const sel = document.querySelector('.opt-btn[data-i="'+i+'"].selected');
+    if (sel && sel.dataset.v === ANSWERS[i]) {
+      ic.textContent = '✅';
+      sel.classList.add('correct');
+      cr++;
+    } else {
+      ic.textContent = '❌';
+      if (sel) sel.classList.add('wrong');
+      document.querySelectorAll('.opt-btn[data-i="'+i+'"]').forEach(b => {
+        if (b.dataset.v === ANSWERS[i]) b.classList.add('correct');
+      });
+    }
+  });
+  const bar = document.getElementById('scoreBar');
+  const pct = Math.round(cr / total * 100);
+  let e = '😔';
+  if (pct === 100) e = '🎉';
+  else if (pct >= 80) e = '👍';
+  else if (pct >= 60) e = '💪';
+  bar.textContent = e + ' ' + cr + ' / ' + total + ' 正确 (' + pct + '%)';
+  bar.style.color = pct === 100 ? '#27ae60' : pct >= 80 ? '#e67e22' : '#e74c3c';
+  document.querySelectorAll('.opt-btn.selected').forEach(b => b.disabled = true);
+}
+
+function resetQuestions() {
+  document.querySelectorAll('.opt-btn').forEach(b => {
+    b.classList.remove('selected','correct','wrong');
+    b.disabled = false;
+  });
+  document.querySelectorAll('.result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar').textContent = '';
+}
+</script>
+</body>
+</html>
