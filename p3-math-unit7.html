@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P3 Maths Unit 7 - 平面圖形與周界 - 小书虫乐园</title>
+<link rel="canonical" href="https://geekspherehk.github.io/study-materials/p3-math-unit7.html">
+<meta name="description" content="香港小學三年級數學單元7 — 平面圖形與周界，包括正方形、長方形、三角形等圖形和周界計算。">
+<meta name="keywords" content="P3數學,香港小學三年級數學,平面圖形,周界,正方形,長方形,三角形,香港小學數學">
+<meta property="og:title" content="P3 Maths Unit 7 - 平面圖形與周界 | 小書蟲乐园">
+<meta property="og:description" content="P3數學 平面圖形與周界｜香港小學三年級數學｜圖形分類、周界計算">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "LearningResource", "name": "P3 Maths Unit 7 - 平面圖形與周界 - 小书虫乐园", "description": "香港小學三年級數學單元7 — 平面圖形與周界。", "url": "https://geekspherehk.github.io/study-materials/p3-math-unit7.html", "inLanguage": "zh-HK", "educationalLevel": "Primary 3 (香港小學三年級)", "learningResourceType": ["Study Guide", "Interactive Exercise"], "educationalSubject": "P3 數學", "audience": {"@type": "EducationalAudience", "educationalRole": "student"}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.example{background:#f8fafc;border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.example:last-child{margin-bottom:0}
+.example .en{color:#2563eb;font-weight:600;margin-bottom:2px}
+.example .zh{color:#64748b;font-size:0.82rem}
+.rule{font-size:0.85rem;margin-bottom:10px;padding-left:10px;border-left:3px solid #2563eb}
+.ex-item{padding:12px 0;border-bottom:1px solid #f1f5f9;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ex-item:last-child{border-bottom:none}
+.ex-item p{font-weight:600;margin-right:8px;min-width:180px}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+.opt-btn{padding:6px 18px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.85rem;transition:all 0.15s}
+.opt-btn:hover{border-color:#2563eb}
+.opt-btn.selected{border-color:#2563eb;background:#2563eb;color:#fff}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem}
+.btn-green{background:#27ae60}
+.score-bar{margin-top:12px;text-align:center;font-weight:600;display:none}
+.result-icon{margin-left:6px;font-size:1rem}
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+@media (max-width:480px){body{padding:12px}.card{padding:14px 16px}h1{font-size:1.2rem}}
+.related-links a{color:#2563eb;text-decoration:none;font-weight:600;font-size:0.9rem;padding:4px 10px;border-radius:6px;transition:background .15s}
+.related-links a:hover{background:#eff6ff;text-decoration:underline}
+.related-links .card-title{margin-bottom:8px}
+.share-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .15s}
+.share-wa{background:#25D366;color:#fff}.share-wa:hover{background:#128C7E}
+.share-fb{background:#1877F2;color:#fff}.share-fb:hover{background:#166FE5}
+.share-copy{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;cursor:pointer}
+.share-copy:hover{background:#e2e8f0}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9VYY1QD34J"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-9VYY1QD34J');</script>
+</head>
+<body>
+<div class="container">
+<h1>📐 平面圖形與周界</h1>
+<p class="subtitle">P3 數學 · 認識平面圖形與計算周界（香港小學三年級）</p>
+
+<div class="card">
+<span class="tag" style="background:#ffe4b5;color:#92400e">圖形認識</span>
+<div class="card-title">📌 常見平面圖形</div>
+<div class="rule">平面圖形是按<strong>邊和角</strong>來分類的。小三需要認識：</div>
+<div class="example"><div class="en">📝 正方形：4條邊相等，4個直角</div><div class="zh">例：邊長 5cm 的正方形</div></div>
+<div class="example"><div class="en">📝 長方形：對邊相等，4個直角</div><div class="zh">例：長 8cm、闊 3cm 的長方形</div></div>
+<div class="example"><div class="en">📝 三角形：3條邊，3個角</div><div class="zh">可分為等腰、等邊、直角三角形等</div></div>
+</div>
+
+<div class="card">
+<span class="tag" style="background:#c7d2fe;color:#3730a3">周界</span>
+<div class="card-title">📌 周界的計算</div>
+<div class="rule"><strong>周界</strong>就是圖形外圍一周的總長度。</div>
+<div class="example"><div class="en">📝 正方形周界 = 邊長 × 4</div><div class="zh">邊長 6cm → 周界 = 6×4 = 24cm</div></div>
+<div class="example"><div class="en">📝 長方形周界 = (長 + 闊) × 2</div><div class="zh">長 10cm、闊 4cm → 周界 = (10+4)×2 = 28cm</div></div>
+<div class="example"><div class="en">📝 三角形周界 = 三條邊相加</div><div class="zh">三邊 5cm+6cm+7cm = 18cm</div></div>
+</div>
+
+<div class="card">
+<span class="tag" style="background:#bbf7d0;color:#166534">綜合應用</span>
+<div class="card-title">📌 判斷與應用</div>
+<div class="example"><div class="en">📝 長方形的長是 12cm，闊是 5cm，周界是多少？</div><div class="zh">(12+5)×2 = 34cm</div></div>
+<div class="example"><div class="en">📝 正方形的周界是 36cm，邊長是多少？</div><div class="zh">36÷4 = 9cm</div></div>
+</div>
+
+<div class="card">
+<span class="tag" style="background:#fecaca;color:#991b1b">✏️ 練習</span>
+<div class="card-title">📌 試一試！（點擊選項作答）</div>
+<div id="ex-area"></div>
+<div style="margin-top:12px"><button class="btn btn-green" onclick="checkAnswers()">✅ 核對答案</button></div>
+<div class="score-bar" id="score"></div>
+</div>
+
+<div class="nav-buttons">
+<div class="nav-left"><a href="p3-math-unit6.html" class="nav-btn">&larr; <span class="nav-text">上一單元</span></a></div>
+<div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主頁</a></div>
+<div class="nav-right"><a href="p3-math-unit8.html" class="nav-btn"><span class="nav-text">下一單元</span> &rarr;</a></div>
+</div>
+</div>
+
+<script>
+const EXERCISES = [
+  { q: '以下哪個是正方形？', opts: ['四邊相等', '對邊相等', '三條邊', '六條邊'], ans: '四邊相等' },
+  { q: '正方形的邊長是 7cm，周界是？', opts: ['14cm', '28cm', '49cm', '21cm'], ans: '28cm' },
+  { q: '長方形的長 10cm，闊 3cm，周界是？', opts: ['13cm', '26cm', '30cm', '20cm'], ans: '26cm' },
+  { q: '三角形的三邊分別是 8cm、5cm、6cm，周界是？', opts: ['19cm', '18cm', '20cm', '15cm'], ans: '19cm' },
+  { q: '正方形的周界是 40cm，邊長是？', opts: ['4cm', '10cm', '20cm', '8cm'], ans: '10cm' },
+  { q: '長方形的周界是 30cm，長是 9cm，闊是？', opts: ['21cm', '10cm', '6cm', '9cm'], ans: '6cm' },
+  { q: '以下圖形中，哪個有 3 個角？', opts: ['三角形', '正方形', '長方形', '圓形'], ans: '三角形' },
+  { q: '長方形有幾個直角？', opts: ['2個', '3個', '4個', '1個'], ans: '4個' },
+];
+let answered = false;
+function renderExercises() {
+  const a = document.getElementById('ex-area');
+  EXERCISES.forEach((item, i) => {
+    const d = document.createElement('div'); d.className = 'ex-item';
+    let h = '<p>' + (i + 1) + '. ' + item.q + '</p><div class="opts">';
+    item.opts.forEach(o => { h += '<button class="opt-btn" data-i="' + i + '" data-v="' + o + '" onclick="selectOpt(this)">' + o + '</button>'; });
+    h += '<span class="result-icon" id="ri-' + i + '"></span></div>';
+    d.innerHTML = h; a.appendChild(d);
+  });
+}
+function selectOpt(btn) { if (answered) return; const i = btn.dataset.i; document.querySelectorAll('.opt-btn[data-i="' + i + '"]').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); }
+function checkAnswers() { if (answered) return; answered = true; let cr = 0; EXERCISES.forEach((item, i) => { const ss = document.querySelector('.opt-btn.selected[data-i="' + i + '"]'); const ic = document.getElementById('ri-' + i); if (ss && ss.dataset.v === item.ans) { ic.textContent = '✅'; cr++; } else { ic.textContent = '❌'; } }); const t = EXERCISES.length; const bar = document.getElementById('score'); bar.style.display = 'block'; bar.textContent = cr + ' / ' + t + ' 正確 (' + Math.round(cr / t * 100) + '%)'; bar.style.color = cr === t ? '#27ae60' : cr / t >= 0.8 ? '#e67e22' : '#e74c3c'; }
+renderExercises();
+</script>
+
+<div class="card related-links">
+<div class="card-title">📚 相關學習</div>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px;justify-content:space-between;align-items:center">
+<span style="flex:1;text-align:center;font-weight:600;color:#64748b">數學單元</span><a href="p3-math-unit6.html">小數（初步）→</a>
+</div>
+<div style="margin-top:8px;font-size:0.85rem;color:#64748b;text-align:center">
+🧮 <a href="p2-mental-math.html" style="color:#2563eb;text-decoration:none">口算題卡</a>&nbsp;·&nbsp;📖 <a href="index.html" style="color:#2563eb;text-decoration:none">返回首頁</a>
+</div>
+</div>
+
+<div class="card share-links">
+<div class="card-title" style="margin-bottom:10px">📤 分享此頁</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+<a href="https://api.whatsapp.com/send?text=小书虫乐园 - 香港小學三年級數學 平面圖形與周界：https://geekspherehk.github.io/study-materials/p3-math-unit7.html" target="_blank" rel="noopener" class="share-btn share-wa">💬 WhatsApp</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=https://geekspherehk.github.io/study-materials/p3-math-unit7.html" target="_blank" rel="noopener" class="share-btn share-fb">📘 Facebook</a>
+<a href="#" onclick="copyShareLink()" class="share-btn share-copy">📋 複製鏈接</a>
+</div>
+</div>
+<script>
+function copyShareLink() { var url = window.location.href; if (navigator.clipboard) { navigator.clipboard.writeText(url).then(function() { var btn = document.querySelector('.share-copy'); var orig = btn.textContent; btn.textContent = '✅ 已複製!'; setTimeout(function() { btn.textContent = orig; }, 2000); }); } }
+</script>
+<script async defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div style="text-align:center;font-size:0.75rem;color:#94a3b8;padding:8px 0">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 · 访客数 <span id="busuanzi_value_site_uv"></span> 人 · 当前页面浏览量 <span id="busuanzi_value_page_pv"></span> 次</div>
+</body>
+</html>
