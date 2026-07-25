@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>🏮 P3 古诗欣赏 - 小书虫乐园</title>
+<meta name="description" content="香港小學三年級古詩欣賞：望廬山瀑布、絕句、遊子吟、憶江南、題西林壁。含全詩原文、拼音、白話翻譯、詩意解釋及互動問答練習。">
+<meta property="og:title" content="🏮 P3 古诗欣赏 - 小书虫乐园">
+<meta property="og:description" content="香港小學三年級古詩欣賞：望廬山瀑布、絕句、遊子吟、憶江南、題西林壁。含拼音、翻譯、詩意解說及互動問答。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_HK">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🏮 P3 古诗欣赏 - 小书虫乐园">
+<meta name="twitter:description" content="香港小學三年級古詩欣賞，五首經典詩詞，拼音+翻譯+問答。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;background:#fdf2f2;color:#1e293b;line-height:1.8;padding:24px}
+.container{max-width:780px;margin:0 auto}
+h1{font-size:1.5rem;color:#c0392b;margin-bottom:4px;text-align:center}
+.subtitle{color:#a67373;font-size:0.85rem;margin-bottom:24px;text-align:center}
+.hero-poem{background:linear-gradient(135deg,#fdf2f2,#f5e6e6);border:2px solid #f5c6c6;border-radius:16px;padding:28px 24px;margin-bottom:24px;text-align:center}
+.hero-poem .hero-icon{font-size:2.5rem;margin-bottom:8px}
+.hero-poem h1{font-size:1.6rem;color:#c0392b;margin-bottom:8px}
+.hero-poem p{color:#7f5c5c;font-size:0.9rem}
+.poem-card{background:#fff;border-radius:14px;padding:24px;border:2px solid #f5c6c6;box-shadow:0 2px 8px rgba(192,57,43,0.08);margin-bottom:20px;transition:all .15s}
+.poem-card:hover{border-color:#e74c3c;box-shadow:0 4px 16px rgba(192,57,43,0.12)}
+.poem-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.poem-number{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#c0392b;color:#fff;font-weight:700;font-size:0.9rem;flex-shrink:0}
+.poem-title{font-size:1.2rem;font-weight:700;color:#c0392b}
+.poem-author{font-size:0.85rem;color:#a67373;background:#fdf2f2;padding:2px 12px;border-radius:12px;font-weight:500}
+.poem-text{padding:18px;background:#fef9f9;border-radius:10px;border-left:4px solid #c0392b;margin-bottom:14px;font-size:1.15rem;line-height:2.2;text-align:center;letter-spacing:2px}
+.poem-text .pinyin{font-size:0.75rem;color:#a67373;letter-spacing:0;line-height:1.4;margin-bottom:2px}
+.poem-text .chars{font-size:1.2rem;font-weight:600;color:#2c3e50}
+.trans-box{background:#f0f8ff;border-radius:8px;padding:12px 16px;margin-bottom:10px;border:1px solid #d4e6f5}
+.trans-box .label{font-size:0.75rem;font-weight:600;color:#2980b9;margin-bottom:4px}
+.trans-box .content{font-size:0.92rem;color:#2c3e50;line-height:1.7}
+.meaning-box{background:#fef9ef;border-radius:8px;padding:12px 16px;margin-bottom:12px;border:1px solid #fce5c4}
+.meaning-box .label{font-size:0.75rem;font-weight:600;color:#d4a017;margin-bottom:4px}
+.meaning-box .content{font-size:0.9rem;color:#2c3e50;line-height:1.7}
+.q-item{padding:12px 16px;border:1px solid #f5c6c6;border-radius:10px;margin-bottom:10px;background:#fefafa}
+.q-item .q-text{font-weight:600;margin-bottom:8px;font-size:0.95rem;color:#2c3e50}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:48px;min-height:40px;border:2px solid #f5c6c6;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500}
+.opt-btn:hover{border-color:#c0392b;color:#c0392b;background:#fdf2f2}
+.opt-btn.selected{border-color:#c0392b;background:#fdf2f2;color:#c0392b;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+.btn-poem{background:#c0392b;color:#fff;border:none;padding:10px 30px;border-radius:8px;cursor:pointer;font-size:0.95rem;font-weight:600;transition:background .15s}
+.btn-poem:hover{background:#e74c3c}
+.btn-poem.secondary{background:#7f8c8d}
+.btn-poem.secondary:hover{background:#95a5a6}
+.score-bar{margin-bottom:16px;font-weight:700;font-size:1rem;color:#27ae60;text-align:center}
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px;padding-top:16px;border-top:1px solid #f5c6c6}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:#c0392b;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#e74c3c}
+.nav-btn.outline{background:transparent;color:#c0392b;border:2px solid #c0392b}
+.nav-btn.outline:hover{background:#c0392b;color:#fff}
+.poem-stats{font-size:0.82rem;color:#a67373;display:flex;gap:16px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.poem-stats span{display:inline-flex;align-items:center;gap:4px}
+@media (max-width:480px){
+  .poem-text{font-size:1rem;padding:14px}
+  .poem-text .chars{font-size:1.05rem}
+  .opt-btn{padding:8px 18px;font-size:0.85rem}
+  .container{padding:0}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero-poem">
+  <div class="hero-icon">🏮🎋</div>
+  <h1>P3 古诗欣赏</h1>
+  <p>香港小学三年级 · 五首进阶经典 · 拼音注释 · 互动问答</p>
+</div>
+
+<div id="poemsContainer"></div>
+
+<div class="btn-group">
+  <button class="btn-poem" onclick="checkAllAnswers()">✅ 检查全部答案</button>
+  <button class="btn-poem secondary" onclick="resetAll()">🔄 重新作答</button>
+</div>
+<div id="scoreBar" class="score-bar"></div>
+
+<div class="nav-buttons">
+  <a href="p2-chinese-poetry.html" class="nav-btn">← P2 古诗欣赏</a>
+  <a href="index.html" class="nav-btn outline">返回主页</a>
+</div>
+
+</div>
+
+<script>
+const POEMS = [
+  {
+    id: 0,
+    title: '望庐山瀑布',
+    author: '李白（唐代）',
+    lines: [
+      { chars: '日照香炉生紫烟', pinyin: 'rì zhào xiāng lú shēng zǐ yān' },
+      { chars: '遥看瀑布挂前川', pinyin: 'yáo kàn pù bù guà qián chuān' },
+      { chars: '飞流直下三千尺', pinyin: 'fēi liú zhí xià sān qiān chǐ' },
+      { chars: '疑是银河落九天', pinyin: 'yí shì yín hé luò jiǔ tiān' }
+    ],
+    translation: '太阳照在香炉峰上，升起了紫色的烟雾。远远看去，瀑布像一条白布掛在山前。水流从高处飞泻而下，好像有三千尺那么长，讓人怀疑是银河从天上落了下来。',
+    meaning: '這首詩用極度誇張的手法描寫廬山瀑布的壯觀。詩人把瀑布比作「銀河落九天」，想像力豐富，氣勢磅礴。全詩充滿浪漫主義色彩，展現了李白對大自然雄奇景觀的讚美。',
+    questions: [
+      { q: '《望庐山瀑布》中，诗人把瀑布比作什么？', opts: ['白雲', '銀河', '長龍', '白布'], ans: '銀河' },
+      { q: '「三千尺」运用了什么修辞手法？', opts: ['比喻', '誇張', '擬人', '排比'], ans: '誇張' }
+    ]
+  },
+  {
+    id: 1,
+    title: '绝句',
+    author: '杜甫（唐代）',
+    lines: [
+      { chars: '两个黄鹂鸣翠柳', pinyin: 'liǎng gè huáng lí míng cuì liǔ' },
+      { chars: '一行白鹭上青天', pinyin: 'yī háng bái lù shàng qīng tiān' },
+      { chars: '窗含西岭千秋雪', pinyin: 'chuāng hán xī lǐng qiān qiū xuě' },
+      { chars: '门泊东吴万里船', pinyin: 'mén bó dōng wú wàn lǐ chuán' }
+    ],
+    translation: '两只黄鹂鸟在翠绿的柳枝上欢唱，一行白鹭飞上了蓝蓝的天空。从窗口望去，可以看到西岭山上堆积了千年的白雪；门前停泊着從遙遠東吳駛來的船隻。',
+    meaning: '這首詩描寫了春天的美麗景色。詩人從近處寫到遠處，從天上寫到地上，展現了一幅生機勃勃的畫面。黃鸝、白鷺、雪山、船隻，色彩鮮明，動靜結合，表達了詩人愉悅的心情。',
+    questions: [
+      { q: '《绝句》中，什么鸟儿在翠柳上鸣叫？', opts: ['白鷺', '黃鸝', '麻雀', '燕子'], ans: '黃鸝' },
+      { q: '「窗含西岭千秋雪」中的「千秋」是什么意思？', opts: ['一千年', '很多年', '秋天', '秋天和冬天'], ans: '很多年' }
+    ]
+  },
+  {
+    id: 2,
+    title: '游子吟',
+    author: '孟郊（唐代）',
+    lines: [
+      { chars: '慈母手中线', pinyin: 'cí mǔ shǒu zhōng xiàn' },
+      { chars: '游子身上衣', pinyin: 'yóu zǐ shēn shàng yī' },
+      { chars: '临行密密缝', pinyin: 'lín xíng mì mì féng' },
+      { chars: '意恐迟迟归', pinyin: 'yì kǒng chí chí guī' },
+      { chars: '谁言寸草心', pinyin: 'shuí yán cùn cǎo xīn' },
+      { chars: '报得三春晖', pinyin: 'bào dé sān chūn huī' }
+    ],
+    translation: '慈祥的母親手中拿著針線，為即將遠行的孩子縫補衣服。臨走前一針一線密密地縫，心裡擔心孩子很久才能回來。誰能說小草那樣微弱的孝心，能報答春天陽光般偉大的母愛呢？',
+    meaning: '這首詩歌頌了偉大的母愛。詩人用「慈母手中線」和「遊子身上衣」這兩個具體的事物，表現了母親對子女無微不至的關懷。最後兩句以「寸草心」比喻子女的孝心，以「三春暉」比喻母愛，成為歌頌母愛的千古名句。',
+    questions: [
+      { q: '《游子吟》中，母亲在为谁缝衣服？', opts: ['自己', '父親', '即將遠行的孩子', '鄰居'], ans: '即將遠行的孩子' },
+      { q: '「谁言寸草心，报得三春晖」中的「三春晖」比喻什么？', opts: ['春天的陽光', '偉大的母愛', '溫暖的春風', '美麗的花朵'], ans: '偉大的母愛' }
+    ]
+  },
+  {
+    id: 3,
+    title: '忆江南',
+    author: '白居易（唐代）',
+    lines: [
+      { chars: '江南好', pinyin: 'jiāng nán hǎo' },
+      { chars: '风景旧曾谙', pinyin: 'fēng jǐng jiù céng ān' },
+      { chars: '日出江花红胜火', pinyin: 'rì chū jiāng huā hóng shèng huǒ' },
+      { chars: '春来江水绿如蓝', pinyin: 'chūn lái jiāng shuǐ lǜ rú lán' },
+      { chars: '能不忆江南', pinyin: 'néng bù yì jiāng nán' }
+    ],
+    translation: '江南真好，那裡的風景我過去非常熟悉。太陽出來的時候，江邊的花兒紅得像火一樣；春天到來的時候，江水綠得像靛藍一樣。這樣的景色，怎能讓人不回憶江南呢？',
+    meaning: '這是一首詞，回憶江南春天美景。詩人用「紅勝火」和「綠如藍」兩個鮮明的對比，描繪出江南春天色彩斑斕、生機盎然的景象。全詞充滿了對江南深深的喜愛和懷念之情。',
+    questions: [
+      { q: '《忆江南》中，日出时江花是什么颜色？', opts: ['綠色', '蓝色', '紅色', '黃色'], ans: '紅色' },
+      { q: '「春来江水绿如蓝」中的「蓝」指什么？', opts: ['藍色', '一種植物染料（靛藍）', '藍天', '藍寶石'], ans: '一種植物染料（靛藍）' }
+    ]
+  },
+  {
+    id: 4,
+    title: '题西林壁',
+    author: '苏轼（宋代）',
+    lines: [
+      { chars: '横看成岭侧成峰', pinyin: 'héng kàn chéng lǐng cè chéng fēng' },
+      { chars: '远近高低各不同', pinyin: 'yuǎn jìn gāo dī gè bù tóng' },
+      { chars: '不识庐山真面目', pinyin: 'bù shí lú shān zhēn miàn mù' },
+      { chars: '只缘身在此山中', pinyin: 'zhǐ yuán shēn zài cǐ shān zhōng' }
+    ],
+    translation: '從正面看，廬山是連綿的山嶺；從側面看，廬山是陡峭的山峰。從遠處、近處、高處、低處看，廬山的樣子都不一樣。為什麼看不清廬山的真正面貌呢？只因為自己就身在這座山之中。',
+    meaning: '這首詩借廬山說明了「當局者迷，旁觀者清」的道理。從不同角度看同一事物，會得到不同的認識。只有跳出局部、站在全局的高度，才能看清事物的真相和全貌。這是一首富有哲理的詩。',
+    questions: [
+      { q: '《题西林壁》中，为什么看不清庐山的真面目？', opts: ['因為山太高', '因為身在廬山之中', '因為霧太大', '因為天黑了'], ans: '因為身在廬山之中' },
+      { q: '这首诗告诉我们什么道理？', opts: ['廬山很美麗', '從不同角度看事物會有不同認識', '爬山很辛苦', '要保護自然環境'], ans: '從不同角度看事物會有不同認識' }
+    ]
+  }
+];
+
+function renderPoems() {
+  const container = document.getElementById('poemsContainer');
+  container.innerHTML = POEMS.map((poem, pi) => {
+    const linesHtml = poem.lines.map(l =>
+      `<div class="pinyin">${l.pinyin}</div><div class="chars">${l.chars}</div>`
+    ).join('');
+
+    const questionsHtml = poem.questions.map((q, qi) =>
+      `<div class="q-item">
+        <div class="q-text">${qi+1}. ${q.q}</div>
+        <div class="opts">
+          ${q.opts.map(o => `<button class="opt-btn" data-p="${pi}" data-q="${qi}" data-v="${o.replace(/'/g,"\\'")}" data-ans="${q.ans === o ? '1' : '0'}" onclick="selectOpt(this)">${o}</button>`).join('')}
+          <span class="result-icon" id="ri-${pi}-${qi}"></span>
+        </div>
+      </div>`
+    ).join('');
+
+    return `
+      <div class="poem-card">
+        <div class="poem-header">
+          <span class="poem-number">${pi+1}</span>
+          <span class="poem-title">${poem.title}</span>
+          <span class="poem-author">${poem.author}</span>
+        </div>
+        <div class="poem-text">${linesHtml}</div>
+        <div class="trans-box">
+          <div class="label">📖 白话翻译</div>
+          <div class="content">${poem.translation}</div>
+        </div>
+        <div class="meaning-box">
+          <div class="label">🎋 诗意解说</div>
+          <div class="content">${poem.meaning}</div>
+        </div>
+        <div style="margin-top:12px;">
+          <div style="font-size:0.85rem;font-weight:600;color:#c0392b;margin-bottom:8px;">📝 理解问答</div>
+          ${questionsHtml}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function selectOpt(btn) {
+  const siblings = btn.parentElement.querySelectorAll('.opt-btn');
+  siblings.forEach(b => {
+    b.classList.remove('selected', 'correct', 'wrong');
+  });
+  btn.classList.add('selected');
+  const pi = btn.dataset.p;
+  const qi = btn.dataset.q;
+  const ri = document.getElementById(`ri-${pi}-${qi}`);
+  if (ri) ri.textContent = '';
+}
+
+function checkAllAnswers() {
+  let correct = 0;
+  let total = 0;
+  const allBtns = document.querySelectorAll('.opt-btn.selected');
+  allBtns.forEach(btn => {
+    const pi = btn.dataset.p;
+    const qi = btn.dataset.q;
+    const isCorrect = btn.dataset.ans === '1';
+    const ri = document.getElementById(`ri-${pi}-${qi}`);
+    if (isCorrect) {
+      btn.classList.add('correct');
+      if (ri) ri.textContent = '✓';
+      correct++;
+    } else {
+      btn.classList.add('wrong');
+      if (ri) ri.textContent = '✗';
+      const siblings = btn.parentElement.querySelectorAll('.opt-btn');
+      siblings.forEach(b => {
+        if (b.dataset.ans === '1') b.classList.add('show-correct');
+      });
+    }
+    total++;
+  });
+  document.getElementById('scoreBar').textContent = `✅ 得分：${correct} / ${total}`;
+}
+
+function resetAll() {
+  document.querySelectorAll('.opt-btn').forEach(b => {
+    b.classList.remove('selected', 'correct', 'wrong', 'show-correct');
+  });
+  document.querySelectorAll('.result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar').textContent = '';
+}
+
+renderPoems();
+</script>
+</body>
+</html>
