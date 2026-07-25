@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P3 Maths Unit 4 - 除法（整除）- 小书虫乐园</title>
+<link rel="canonical" href="https://geekspherehk.github.io/study-materials/p3-math-unit4.html">
+<meta name="description" content="香港小學三年級數學單元4 — 除法（整除），包括除法概念、直式除法、乘除互逆等互動練習。">
+<meta name="keywords" content="P3數學,香港小學三年級數學,除法,整除,直式除法,乘除互逆,香港小學數學">
+<meta property="og:title" content="P3 Maths Unit 4 - 除法（整除）| 小書蟲乐园">
+<meta property="og:description" content="P3數學 除法（整除）｜香港小學三年級數學｜整除與直式除法入門">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "LearningResource", "name": "P3 Maths Unit 4 - 除法（整除）- 小书虫乐园", "description": "香港小學三年級數學單元4 — 除法（整除），包括除法概念、直式除法、乘除互逆等互動練習。", "url": "https://geekspherehk.github.io/study-materials/p3-math-unit4.html", "inLanguage": "zh-HK", "educationalLevel": "Primary 3 (香港小學三年級)", "learningResourceType": ["Study Guide", "Interactive Exercise"], "educationalSubject": "P3 數學", "audience": {"@type": "EducationalAudience", "educationalRole": "student"}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.example{background:#f8fafc;border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.example:last-child{margin-bottom:0}
+.example .en{color:#2563eb;font-weight:600;margin-bottom:2px}
+.example .zh{color:#64748b;font-size:0.82rem}
+.rule{font-size:0.85rem;margin-bottom:10px;padding-left:10px;border-left:3px solid #2563eb}
+.video-link{margin:12px 0 16px}
+.video-link a{display:inline-block;background:#fb7299;color:#fff;padding:8px 16px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:background .2s}
+.video-link a:hover{background:#f56c8a}
+.ex-item{padding:12px 0;border-bottom:1px solid #f1f5f9}
+.ex-item:last-child{border-bottom:none}
+.ex-item p{font-weight:600;margin-bottom:8px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt-btn{padding:8px 24px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.9rem;transition:all 0.15s}
+.opt-btn:hover{border-color:#2563eb}
+.opt-btn.selected{border-color:#2563eb;background:#2563eb;color:#fff}
+.opt-btn.correct{border-color:#27ae60;background:#27ae60;color:#fff}
+.opt-btn.wrong{border-color:#e74c3c;background:#e74c3c;color:#fff}
+.opt-btn.show-correct{border-color:#27ae60;background:#d4edda;color:#27ae60}
+.result-icon{margin-left:8px;font-size:1.1rem}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem}
+.btn:hover{background:#34495e}
+.btn-green{background:#27ae60}
+.btn-green:hover{background:#1e8449}
+.score-bar{margin-top:12px;text-align:center;font-weight:600;color:#2c3e50}
+.back-link{display:inline-block;margin-top:16px;color:#2563eb;text-decoration:none;font-size:0.9rem}
+.back-link:hover{text-decoration:underline}
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-left,.nav-right{flex:1;min-width:0}.nav-center{flex-shrink:0}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap;max-width:100%}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb;box-shadow:0 2px 8px rgba(37,99,235,0.2)}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+@media (max-width:480px){body{padding:12px}.card{padding:14px 16px}h1{font-size:1.2rem}}
+
+.related-links a{color:#2563eb;text-decoration:none;font-weight:600;font-size:0.9rem;padding:4px 10px;border-radius:6px;transition:background .15s}
+.related-links a:hover{background:#eff6ff;text-decoration:underline}
+.related-links .card-title{margin-bottom:8px}
+
+.share-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .15s}
+.share-wa{background:#25D366;color:#fff}
+.share-wa:hover{background:#128C7E}
+.share-fb{background:#1877F2;color:#fff}
+.share-fb:hover{background:#166FE5}
+.share-copy{background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;cursor:pointer}
+.share-copy:hover{background:#e2e8f0}
+</style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9VYY1QD34J"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9VYY1QD34J');
+</script>
+</head>
+<body>
+<div class="container">
+  <h1>➗ 除法（整除）</h1>
+  <p class="subtitle">P3 數學 · 整除與直式除法入門（香港小學三年級）</p>
+
+  <!-- 第1個知識點：除法概念 -->
+  <div class="card">
+    <span class="tag" style="background:#ffe4b5;color:#92400e">除法概念</span>
+    <div class="card-title">📌 什麼是除法？</div>
+    <div class="rule">除法是將一個數平均分成若干份，表示「分東西」的運算。</div>
+    <div class="example">
+      <div class="en">📝 12 ÷ 3 = 4</div>
+      <div class="zh">把12個蘋果平均分給3個人，每人得4個</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 20 ÷ 5 = 4</div>
+      <div class="zh">把20粒糖平均分成5份，每份有4粒</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 24 ÷ 6 = 4</div>
+      <div class="zh">24是除數6的4倍，6×4=24</div>
+    </div>
+    <div class="video-link"><a href="https://www.youtube.com/results?search_query=%E9%99%A4%E6%B3%95+%E6%95%B4%E9%99%A4+%E5%B0%8F%E5%AD%A6%E4%B8%89%E5%B9%B4%E7%BA%A7" target="_blank" rel="noopener">▶ YouTube 搜尋：除法入門</a></div>
+  </div>
+
+  <!-- 第2個知識點：直式除法 -->
+  <div class="card">
+    <span class="tag" style="background:#c7d2fe;color:#3730a3">直式除法</span>
+    <div class="card-title">📌 用直式來計算除法</div>
+    <div class="rule">被除數寫在裡面，除數寫在外面。商寫在上面，乘積寫在下面相減。</div>
+    <div class="example">
+      <div class="en">📝 84 ÷ 4 = ?</div>
+      <div class="zh">4)84 → 十位8÷4=2，個位4÷4=1，答案：21</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 96 ÷ 3 = ?</div>
+      <div class="zh">3)96 → 十位9÷3=3，個位6÷3=2，答案：32</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 75 ÷ 5 = ?</div>
+      <div class="zh">5)75 → 十位7÷5=1餘2，合併個位成25，25÷5=5，答案：15</div>
+    </div>
+  </div>
+
+  <!-- 第3個知識點：乘除互逆 -->
+  <div class="card">
+    <span class="tag" style="background:#bbf7d0;color:#166534">乘除互逆</span>
+    <div class="card-title">📌 乘法和除法互為逆運算</div>
+    <div class="rule">如果 A × B = C，那麼 C ÷ A = B；如果 C ÷ B = A，那麼 A × B = C。</div>
+    <div class="example">
+      <div class="en">📝 7 × 8 = 56 → 56 ÷ 7 = 8, 56 ÷ 8 = 7</div>
+      <div class="zh">知道乘法結果可以反過來求除法</div>
+    </div>
+    <div class="example">
+      <div class="en">📝 72 ÷ 9 = 8 → 9 × 8 = 72</div>
+      <div class="zh">用乘法驗算除法</div>
+    </div>
+  </div>
+
+  <!-- 練習題 -->
+  <div class="card">
+    <span class="tag" style="background:#fecaca;color:#991b1b">✏️ 練習</span>
+    <div class="card-title">📌 試一試！（點擊選項作答）</div>
+    <div id="ex-area"></div>
+    <div style="margin-top:12px"><button class="btn btn-green" onclick="checkAnswers()">✅ 核對答案</button></div>
+    <div class="score-bar" id="score" style="display:none"></div>
+  </div>
+
+  <!-- 導航按鈕 -->
+  <div class="nav-buttons">
+    <div class="nav-left"><a href="p3-math-unit3.html" class="nav-btn">&larr; <span class="nav-text">上一個單元</span></a></div>
+    <div class="nav-center"><a href="index.html" class="nav-btn nav-home">&#8962; 主頁</a></div>
+    <div class="nav-right"><a href="p3-math-unit5.html" class="nav-btn"><span class="nav-text">下一單元</span> &rarr;</a></div>
+  </div>
+</div>
+
+<script>
+const EXERCISES = [
+  { q: '36 ÷ 6 = ?', opts: ['5', '6', '7', '8'], ans: '6' },
+  { q: '48 ÷ 4 = ?', opts: ['10', '11', '12', '13'], ans: '12' },
+  { q: '把 56 粒糖平均分給 7 個小朋友，每人得幾粒？', opts: ['6粒', '7粒', '8粒', '9粒'], ans: '8粒' },
+  { q: '72 ÷ 8 = ?', opts: ['8', '9', '10', '7'], ans: '9' },
+  { q: '8 × 5 = 40，那麼 40 ÷ 5 = ？', opts: ['5', '6', '7', '8'], ans: '8' },
+  { q: '84 ÷ 7 = ?', opts: ['10', '11', '12', '13'], ans: '12' },
+  { q: '63 ÷ 9 = ?，可以用哪個乘法算式驗算？', opts: ['6×9=54', '7×9=63', '8×9=72', '9×9=81'], ans: '7×9=63' },
+  { q: '90 ÷ 6 = ?', opts: ['13', '14', '15', '16'], ans: '15' },
+];
+
+let answered = false;
+
+function renderExercises() {
+  const a = document.getElementById('ex-area');
+  EXERCISES.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.className = 'ex-item';
+    let h = '<p>' + (i + 1) + '. ' + item.q + '</p><div class="opts">';
+    item.opts.forEach(o => {
+      h += '<button class="opt-btn" data-i="' + i + '" data-v="' + o + '" onclick="selectOpt(this)">' + o + '</button>';
+    });
+    h += '<span class="result-icon" id="ri-' + i + '"></span>  </div></div>';
+    d.innerHTML = h;
+    a.appendChild(d);
+  });
+}
+
+function selectOpt(btn) {
+  if (answered) return;
+  const i = btn.dataset.i;
+  document.querySelectorAll('.opt-btn[data-i="' + i + '"]').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function checkAnswers() {
+  if (answered) return;
+  answered = true;
+  let cr = 0;
+  EXERCISES.forEach((item, i) => {
+    const ss = document.querySelector('.opt-btn.selected[data-i="' + i + '"]');
+    const ic = document.getElementById('ri-' + i);
+    if (ss && ss.dataset.v === item.ans) { ic.textContent = '✅'; cr++; } else { ic.textContent = '❌'; }
+  });
+  const t = EXERCISES.length;
+  const bar = document.getElementById('score');
+  bar.style.display = 'block';
+  bar.textContent = cr + ' / ' + t + ' 正確 (' + Math.round(cr / t * 100) + '%)';
+  bar.style.color = cr === t ? '#27ae60' : cr / t >= 0.8 ? '#e67e22' : '#e74c3c';
+}
+
+renderExercises();
+</script>
+
+<div class="card related-links">
+  <div class="card-title">📚 相關學習</div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px;justify-content:space-between;align-items:center">
+    <span style="flex:1;text-align:center;font-weight:600;color:#64748b">P3 數學</span> <a href="p3-math-unit5.html">分數（初步概念）→</a>
+  </div>
+  <div style="margin-top:8px;font-size:0.85rem;color:#64748b;text-align:center">
+    🧮 <a href="p3-math-unit3.html" style="color:#2563eb;text-decoration:none">上一個單元</a>
+    &nbsp;·&nbsp;
+    📖 <a href="p3-math-unit5.html" style="color:#2563eb;text-decoration:none">下一單元</a>
+    &nbsp;·&nbsp;
+    📋 <a href="index.html" style="color:#2563eb;text-decoration:none">返回首頁</a>
+  </div>
+</div>
+
+
+<div class="card share-links">
+  <div class="card-title" style="margin-bottom:10px">📤 分享此頁</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+    <a href="https://api.whatsapp.com/send?text=小书虫乐园 - 香港小學三年級學習資源：https://geekspherehk.github.io/study-materials/p3-math-unit4.html" target="_blank" rel="noopener" class="share-btn share-wa" title="Share to WhatsApp">💬 WhatsApp</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://geekspherehk.github.io/study-materials/p3-math-unit4.html" target="_blank" rel="noopener" class="share-btn share-fb" title="Share to Facebook">📘 Facebook</a>
+    <a href="#" onclick="copyShareLink()" class="share-btn share-copy" title="複製鏈接">📋 複製鏈接</a>
+  </div>
+</div>
+<script>
+function copyShareLink() {
+  var url = window.location.href;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(function() {
+      var btn = document.querySelector('.share-copy');
+      var orig = btn.textContent;
+      btn.textContent = '✅ 已複製!';
+      setTimeout(function() { btn.textContent = orig; }, 2000);
+    });
+  }
+}
+</script><!-- 不蒜子访问统计 -->
+<script async defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div style="text-align:center;font-size:0.75rem;color:#94a3b8;padding:8px 0">
+  本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 ·
+  访客数 <span id="busuanzi_value_site_uv"></span> 人 ·
+  当前页面浏览量 <span id="busuanzi_value_page_pv"></span> 次
+</div>
+</body>
+</html>
