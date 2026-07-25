@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📐 P3 数学应用题专练 | 小书虫乐园</title>
+<meta name="description" content="P3 数学应用题专练。涵盖10000以内加减法、乘法、除法、分数、小数、周长、容量重量等应用题。TSA题型。">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.q-item{padding:14px 16px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;background:#fafbfc}
+.q-item .q-text{font-weight:600;margin-bottom:10px;font-size:0.95rem}
+.q-item .q-label{font-size:0.75rem;color:#64748b;margin-bottom:4px;font-weight:600}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:44px;min-height:40px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500}
+.opt-btn:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.opt-btn.selected{border-color:#2563eb;background:#eff6ff;color:#2563eb;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.opt-btn:disabled{opacity:0.7;cursor:default}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem;margin-right:8px;margin-top:8px}
+.btn:hover{background:#34495e}
+.btn.primary{background:#2563eb}
+.btn.primary:hover{background:#1d4ed8}
+.score-bar{margin-top:16px;font-weight:700;font-size:1rem;text-align:center}
+.nav-buttons{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:20px}
+.nav-btn{display:inline-block;padding:10px 20px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#1d4ed8}
+.section-header{background:#eff6ff;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-weight:600;font-size:0.9rem;color:#1e40af}
+.diff-easy{background:#e6f7ed;color:#1e8449}
+.diff-mid{background:#fef3c7;color:#92400e}
+.diff-hard{background:#fdedec;color:#c0392b}</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📐 P3 数学应用题专练</h1>
+<p class="subtitle">进阶应用題 · 共20题 · 10000以内 · 乘除法 · 分数小数 · 周长 · 容量重量</p>
+
+<div class="card">
+  <div class="card-title">📋 考试说明</div>
+  <div class="tag" style="background:#fef3c7;color:#92400e;">🎯 TSA 综合题型</div>
+  <div style="font-size:0.9rem;color:#475569;line-height:1.7">
+    本试卷涵盖 P3 数学20道进阶应用题。每题选择一个正确答案。<br>
+    <strong>知识点分布：</strong> 10000以内加減法 · 乘法 · 除法 · 分數 · 小數 · 周長 · 容量重量
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">📝 应用题 (20题)</div>
+  <div id="sectionHeader" class="section-header">📐 数学应用题</div>
+  <div id="exerciseArea"></div>
+  <div id="scoreBar" class="score-bar"></div>
+  <button class="btn primary" onclick="checkAnswers()">✅ 检查全部答案</button>
+  <button class="btn" onclick="resetQuestions()">🔄 重新作答</button>
+</div>
+
+<div class="nav-buttons">
+  <div class="nav-left">
+    <a href="index.html" class="nav-btn">← 返回主页</a>
+  </div>
+  <div class="nav-right"><a href="p3-math-thinking.html" class="nav-btn">→ P3 数学思维</a></div>
+</div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  { q: '一個長方形花園長 24 米，闊 15 米，圍欄每米 $12，圍欄總共需要多少元？', opts: ['936', '468', '720', '840'], ans: '936', label: '周長×單價', diff: '中等' },
+  { q: '書店有 3456 本書，借出了 1879 本，還剩多少本？', opts: ['1577', '1677', '1477', '1587'], ans: '1577', label: '万以内减法', diff: '中等' },
+  { q: '一箱汽水有 24 瓶，學校買了 15 箱，共有多少瓶？', opts: ['360', '340', '380', '300'], ans: '360', label: '兩位數乘一位數', diff: '中等' },
+  { q: '一個蛋糕分成 8 份，小明吃了 3 份，吃了多少個蛋糕？（用分數表示）', opts: ['3/8', '3/5', '5/8', '1/3'], ans: '3/8', label: '分數', diff: '容易' },
+  { q: '一條絲帶長 2.5 米，用了 0.8 米，還剩多少米？', opts: ['1.7', '1.3', '1.7', '0.7'], ans: '1.7', label: '小數減法', diff: '容易' },
+  { q: '一桶水有 5 升，倒出 3 杯水，每杯 250 毫升，桶裡還剩多少毫升？', opts: ['4250', '3750', '4750', '3500'], ans: '4250', label: '容量進階', diff: '挑战' },
+  { q: '6 個蘋果共重 720 克，每個蘋果重多少克？', opts: ['120', '130', '100', '110'], ans: '120', label: '除法', diff: '中等' },
+  { q: '一張長方形紙長 18 厘米，闊 12 厘米，周界是多少厘米？', opts: ['60', '30', '48', '72'], ans: '60', label: '周長', diff: '中等' },
+  { q: '哥哥有 350 元，弟弟的錢是哥哥的一半，兩人共有多少元？', opts: ['525', '700', '500', '600'], ans: '525', label: '除法加法', diff: '中等' },
+  { q: '一輛巴士可載 42 人，7 輛同樣的巴士共可載多少人？', opts: ['294', '284', '304', '274'], ans: '294', label: '兩位數乘一位數', diff: '中等' },
+  { q: '一個長方形操場長 60 米，闊 40 米，小明跑了 2 圈，共跑了多少米？', opts: ['400', '200', '300', '500'], ans: '400', label: '周長×圈數', diff: '中等' },
+  { q: '一包糖果有 36 粒，平均分給 4 個小朋友，每人分到多少粒？', opts: ['9', '8', '6', '10'], ans: '9', label: '除法', diff: '容易' },
+  { q: '0.75 元等於多少角？', opts: ['7角5分', '7角', '8角', '75角'], ans: '7角5分', label: '小數錢幣', diff: '容易' },
+  { q: '一個農場有 2345 棵蘋果樹和 1568 棵梨樹，共有果樹多少棵？', opts: ['3913', '3813', '4013', '3923'], ans: '3913', label: '万以内加法', diff: '中等' },
+  { q: '一盒巧克力有 48 粒，吃了 5 粒後，剩下的平均分給 7 個小朋友，每人得多少粒？', opts: ['6', '7', '5', '8'], ans: '6', label: '減法除法綜合', diff: '挑战' },
+  { q: '1/4 米等於多少厘米？', opts: ['25', '40', '75', '50'], ans: '25', label: '分數長度', diff: '中等' },
+  { q: '水桶可裝 8 升水，已裝了 3.5 升，還可以裝多少毫升？', opts: ['4500', '3500', '5500', '4000'], ans: '4500', label: '小數容量進階', diff: '挑战' },
+  { q: '一打雞蛋有 12 隻，買 3 打共多少隻？', opts: ['36', '24', '48', '30'], ans: '36', label: '乘法', diff: '容易' },
+  { q: '正方形花圃邊長 15 米，圍欄每米 $8，圍欄總共需要多少元？', opts: ['480', '240', '360', '420'], ans: '480', label: '周長×單價', diff: '挑战' },
+  { q: '媽媽買了 3.8 公斤蘋果，1.6 公斤橙，水果共重多少公斤？', opts: ['5.4', '5.0', '4.4', '5.5'], ans: '5.4', label: '小數加法', diff: '容易' },
+];
+
+function renderQuestions() {
+  const area = document.getElementById('exerciseArea');
+  area.innerHTML = '';
+  QUESTIONS.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-item';
+    const diffClass = item.diff === '容易' ? 'diff-easy' : item.diff === '中等' ? 'diff-mid' : 'diff-hard';
+    div.innerHTML = '<div class="q-label">' + item.label +
+      ' <span class="tag ' + diffClass + '" style="font-size:0.68rem;padding:1px 7px;margin-left:4px">' + item.diff + '</span>' +
+      '</div><div class="q-text">' + (i+1) + '. ' + item.q + '</div><div class="opts">' +
+      item.opts.map(o => '<button class="opt-btn" data-i="'+i+'" data-v="'+o.replace(/'/g,"\\'")+'" onclick="selectOpt(this)">'+o+'</button>').join('') +
+      '<span class="result-icon" id="ri-'+i+'"></span></div>';
+    area.appendChild(div);
+  });
+}
+
+function selectOpt(el) {
+  const i = el.dataset.i;
+  document.querySelectorAll('.opt-btn[data-i="'+i+'"]').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function checkAnswers() {
+  let cr = 0;
+  QUESTIONS.forEach((item, i) => {
+    const ic = document.getElementById('ri-'+i);
+    const sel = document.querySelector('.opt-btn[data-i="'+i+'"].selected');
+    if (sel && sel.dataset.v === item.ans) { ic.textContent = '✅'; sel.classList.add('correct'); cr++; }
+    else { ic.textContent = '❌'; if (sel) sel.classList.add('wrong');
+      document.querySelectorAll('.opt-btn[data-i="'+i+'"]').forEach(b => { if (b.dataset.v === item.ans) b.classList.add('correct'); }); }
+  });
+  const bar = document.getElementById('scoreBar');
+  const t = QUESTIONS.length;
+  const pct = Math.round(cr / t * 100);
+  let e = '😔'; if (pct === 100) e = '🎉'; else if (pct >= 80) e = '👍'; else if (pct >= 60) e = '💪';
+  bar.textContent = e + ' ' + cr + ' / ' + t + ' 正确 (' + pct + '%)';
+  bar.style.color = pct === 100 ? '#27ae60' : pct >= 80 ? '#e67e22' : '#e74c3c';
+  document.querySelectorAll('.opt-btn.selected').forEach(b => b.disabled = true);
+}
+
+function resetQuestions() {
+  document.querySelectorAll('.opt-btn').forEach(b => { b.classList.remove('selected','correct','wrong'); b.disabled = false; });
+  document.querySelectorAll('.result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar').textContent = '';
+}
+
+renderQuestions();
+</script>
+</body>
+</html>
