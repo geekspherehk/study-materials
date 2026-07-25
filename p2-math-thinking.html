@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧩 P2 数学思维拓展 | 小书虫乐园</title>
+<meta name="description" content="P2 数学思维拓展练习。涵盖找规律、数独、逻辑推理、分类计数、图形拼搭、比较推理、奇偶数、排列、等量替换、蜗牛爬井等10个思维专题。">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.q-item{padding:14px 16px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;background:#fafbfc}
+.q-item .q-text{font-weight:600;margin-bottom:10px;font-size:0.95rem}
+.q-item .q-label{font-size:0.75rem;color:#64748b;margin-bottom:4px;font-weight:600}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:44px;min-height:40px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500}
+.opt-btn:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.opt-btn.selected{border-color:#2563eb;background:#eff6ff;color:#2563eb;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.opt-btn:disabled{opacity:0.7;cursor:default}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem;margin-right:8px;margin-top:8px}
+.btn:hover{background:#34495e}
+.btn.primary{background:#2563eb}
+.btn.primary:hover{background:#1d4ed8}
+.score-bar{margin-top:16px;font-weight:700;font-size:1rem;text-align:center}
+.nav-buttons{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:20px}
+.nav-btn{display:inline-block;padding:10px 20px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#1d4ed8}
+.section-header{background:#eff6ff;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-weight:600;font-size:0.9rem;color:#1e40af}
+.explanation{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px 16px;margin-bottom:12px;font-size:0.88rem;color:#166534;line-height:1.7}
+.diff-easy{background:#e6f7ed;color:#1e8449}
+.diff-mid{background:#fef3c7;color:#92400e}
+.diff-hard{background:#fdedec;color:#c0392b}</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🧩 P2 数学思维拓展</h1>
+<p class="subtitle">10大思维专题 · 共15题 · 锻炼逻辑与思考能力</p>
+
+<div class="card">
+  <div class="card-title">📋 专题说明</div>
+  <div class="tag" style="background:#fef3c7;color:#92400e;">🎯 思维拓展训练</div>
+  <div style="font-size:0.9rem;color:#475569;line-height:1.7">
+    本练习涵盖 P2 数学思维拓展的 10 个专题。每个专题先学习思考方法，再做练习题。每题选择一个正确答案。<br>
+    <strong>专题列表：</strong> 找规律 · 简单数独 · 逻辑推理 · 分类计数 · 图形拼搭 · 比较推理 · 奇偶数 · 简单排列 · 等量替换 · 蜗牛爬井
+  </div>
+</div>
+
+<!-- 专题 1: 找规律（数列/图形） -->
+<div class="card">
+  <div class="card-title">🔢 专题一：找规律（数列/图形）</div>
+  <div class="tag diff-easy">⭐ 基础</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>观察数字或图形的排列，找出它们之间的<strong>变化规律</strong>。常见的规律包括：每次加同一个数、每次减同一个数、重复出现相同图形等。找到规律后，就能猜出下一个是什么！
+  </div>
+  <div id="q0" class="q-item">
+    <div class="q-label">专题一 · 找规律</div>
+    <div class="q-text">1. 观察数列：2, 4, 6, 8, ? —— 问号处应该填什么？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="0" data-v="9" onclick="selectOpt(this)">9</button>
+      <button class="opt-btn" data-i="0" data-v="10" onclick="selectOpt(this)">10</button>
+      <button class="opt-btn" data-i="0" data-v="11" onclick="selectOpt(this)">11</button>
+      <button class="opt-btn" data-i="0" data-v="12" onclick="selectOpt(this)">12</button>
+      <span class="result-icon" id="ri-0"></span>
+    </div>
+  </div>
+  <div id="q1" class="q-item">
+    <div class="q-label">专题一 · 找规律</div>
+    <div class="q-text">2. 观察图形规律：△□△□△□ —— 下一个图形是什么？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="1" data-v="△" onclick="selectOpt(this)">△</button>
+      <button class="opt-btn" data-i="1" data-v="□" onclick="selectOpt(this)">□</button>
+      <button class="opt-btn" data-i="1" data-v="○" onclick="selectOpt(this)">○</button>
+      <button class="opt-btn" data-i="1" data-v="☆" onclick="selectOpt(this)">☆</button>
+      <span class="result-icon" id="ri-1"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 2: 简单数独（4×4） -->
+<div class="card">
+  <div class="card-title">🧩 专题二：简单数独（4×4）</div>
+  <div class="tag diff-easy">⭐ 基础</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>4×4 数独的规则是：每一行、每一列、每个 2×2 的粗线格子里，都要填入数字 1、2、3、4，<strong>不能重复</strong>。用排除法——先找数字最多的行或列，把缺少的数字填进去。
+  </div>
+  <div id="q2" class="q-item">
+    <div class="q-label">专题二 · 简单数独</div>
+    <div class="q-text">3. 在下面的 4×4 数独中，A 处应该填什么？<br><br>1 2 3 4<br>3 4 ? 2<br>2 1 4 3<br>4 3 2 1</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="2" data-v="1" onclick="selectOpt(this)">1</button>
+      <button class="opt-btn" data-i="2" data-v="2" onclick="selectOpt(this)">2</button>
+      <button class="opt-btn" data-i="2" data-v="3" onclick="selectOpt(this)">3</button>
+      <button class="opt-btn" data-i="2" data-v="4" onclick="selectOpt(this)">4</button>
+      <span class="result-icon" id="ri-2"></span>
+    </div>
+  </div>
+  <div id="q3" class="q-item">
+    <div class="q-label">专题二 · 简单数独</div>
+    <div class="q-text">4. 在 4×4 数独中，第二行已有 2、4、1，缺少哪个数字？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="3" data-v="1" onclick="selectOpt(this)">1</button>
+      <button class="opt-btn" data-i="3" data-v="2" onclick="selectOpt(this)">2</button>
+      <button class="opt-btn" data-i="3" data-v="3" onclick="selectOpt(this)">3</button>
+      <button class="opt-btn" data-i="3" data-v="4" onclick="selectOpt(this)">4</button>
+      <span class="result-icon" id="ri-3"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 3: 逻辑推理（谁是谁） -->
+<div class="card">
+  <div class="card-title">🔍 专题三：逻辑推理（谁是谁）</div>
+  <div class="tag diff-mid">⭐⭐ 进阶</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>根据给出的条件，一步一步推理。可以用<strong>列表法</strong>，把可能的情况写下来，不符合条件的就划掉。关键是：每个条件都要用上！
+  </div>
+  <div id="q4" class="q-item">
+    <div class="q-label">专题三 · 逻辑推理</div>
+    <div class="q-text">5. 小红、小明和小丽三个人，一个喜欢红色、一个喜欢蓝色、一个喜欢黄色。<br>
+    ① 小红说她不喜欢蓝色。<br>
+    ② 小明说他喜欢的不是红色也不是蓝色。<br>
+    请问小明喜欢什么颜色？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="4" data-v="红色" onclick="selectOpt(this)">红色</button>
+      <button class="opt-btn" data-i="4" data-v="蓝色" onclick="selectOpt(this)">蓝色</button>
+      <button class="opt-btn" data-i="4" data-v="黄色" onclick="selectOpt(this)">黄色</button>
+      <button class="opt-btn" data-i="4" data-v="不知道" onclick="selectOpt(this)">不知道</button>
+      <span class="result-icon" id="ri-4"></span>
+    </div>
+  </div>
+  <div id="q5" class="q-item">
+    <div class="q-label">专题三 · 逻辑推理</div>
+    <div class="q-text">6. 小华比小东大2岁，小东比小美大1岁。请问谁的年龄最大？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="5" data-v="小华" onclick="selectOpt(this)">小华</button>
+      <button class="opt-btn" data-i="5" data-v="小东" onclick="selectOpt(this)">小东</button>
+      <button class="opt-btn" data-i="5" data-v="小美" onclick="selectOpt(this)">小美</button>
+      <button class="opt-btn" data-i="5" data-v="一样大" onclick="selectOpt(this)">一样大</button>
+      <span class="result-icon" id="ri-5"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 4: 分类计数 -->
+<div class="card">
+  <div class="card-title">📊 专题四：分类计数</div>
+  <div class="tag diff-easy">⭐ 基础</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>把事物按照不同的<strong>类别</strong>分组，然后再分别数出每个类别有多少个。分类时可以按照形状、颜色、大小等不同的标准。最后把各类的数量加起来就是总数。
+  </div>
+  <div id="q6" class="q-item">
+    <div class="q-label">专题四 · 分类计数</div>
+    <div class="q-text">7. 文具盒里有：3支铅笔、2支钢笔、4块橡皮、1把尺子。文具里一共有多少件文具？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="6" data-v="8" onclick="selectOpt(this)">8</button>
+      <button class="opt-btn" data-i="6" data-v="9" onclick="selectOpt(this)">9</button>
+      <button class="opt-btn" data-i="6" data-v="10" onclick="selectOpt(this)">10</button>
+      <button class="opt-btn" data-i="6" data-v="11" onclick="selectOpt(this)">11</button>
+      <span class="result-icon" id="ri-6"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 5: 图形拼搭 -->
+<div class="card">
+  <div class="card-title">🧊 专题五：图形拼搭</div>
+  <div class="tag diff-mid">⭐⭐ 进阶</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>用几个小的图形（如小正方形、小三角形）拼成一个大的图形。拼的时候要注意：<strong>边要对齐，角要吻合</strong>。有时还需要把图形<strong>翻转或旋转</strong>来看是否能拼上。
+  </div>
+  <div id="q7" class="q-item">
+    <div class="q-label">专题五 · 图形拼搭</div>
+    <div class="q-text">8. 用4个同样大的小正方形可以拼成下面哪个图形？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="7" data-v="大正方形" onclick="selectOpt(this)">大正方形</button>
+      <button class="opt-btn" data-i="7" data-v="三角形" onclick="selectOpt(this)">三角形</button>
+      <button class="opt-btn" data-i="7" data-v="圆形" onclick="selectOpt(this)">圆形</button>
+      <button class="opt-btn" data-i="7" data-v="以上都可以" onclick="selectOpt(this)">以上都可以</button>
+      <span class="result-icon" id="ri-7"></span>
+    </div>
+  </div>
+  <div id="q8" class="q-item">
+    <div class="q-label">专题五 · 图形拼搭</div>
+    <div class="q-text">9. 用2个同样的三角形（直角三角形）可以拼成一个什么图形？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="8" data-v="圆形" onclick="selectOpt(this)">圆形</button>
+      <button class="opt-btn" data-i="8" data-v="长方形" onclick="selectOpt(this)">长方形</button>
+      <button class="opt-btn" data-i="8" data-v="六边形" onclick="selectOpt(this)">六边形</button>
+      <button class="opt-btn" data-i="8" data-v="梯形" onclick="selectOpt(this)">梯形</button>
+      <span class="result-icon" id="ri-8"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 6: 比较推理 -->
+<div class="card">
+  <div class="card-title">⚖️ 专题六：比较推理</div>
+  <div class="tag diff-mid">⭐⭐ 进阶</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>通过比较两个或几个事物之间的<strong>轻重、长短、多少</strong>等关系，推算出它们的大小顺序。可以用"＞""＜""＝"来表示比较的结果。
+  </div>
+  <div id="q9" class="q-item">
+    <div class="q-label">专题六 · 比较推理</div>
+    <div class="q-text">10. 苹果比梨重，梨比桃子重。请问哪种水果最重？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="9" data-v="苹果" onclick="selectOpt(this)">苹果</button>
+      <button class="opt-btn" data-i="9" data-v="梨" onclick="selectOpt(this)">梨</button>
+      <button class="opt-btn" data-i="9" data-v="桃子" onclick="selectOpt(this)">桃子</button>
+      <button class="opt-btn" data-i="9" data-v="一样重" onclick="selectOpt(this)">一样重</button>
+      <span class="result-icon" id="ri-9"></span>
+    </div>
+  </div>
+  <div id="q10" class="q-item">
+    <div class="q-label">专题六 · 比较推理</div>
+    <div class="q-text">11. 小明的铅笔比小红的铅笔长，小红的铅笔比小刚的铅笔短。谁的铅笔最短？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="10" data-v="小明" onclick="selectOpt(this)">小明</button>
+      <button class="opt-btn" data-i="10" data-v="小红" onclick="selectOpt(this)">小红</button>
+      <button class="opt-btn" data-i="10" data-v="小刚" onclick="selectOpt(this)">小刚</button>
+      <button class="opt-btn" data-i="10" data-v="一样长" onclick="selectOpt(this)">一样长</button>
+      <span class="result-icon" id="ri-10"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 7: 奇偶数 -->
+<div class="card">
+  <div class="card-title">🔢 专题七：奇偶数</div>
+  <div class="tag diff-easy">⭐ 基础</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong><strong>奇数</strong>是不能被 2 整除的数（个位是 1、3、5、7、9），<strong>偶数</strong>是能被 2 整除的数（个位是 0、2、4、6、8）。奇数+奇数=偶数，偶数+偶数=偶数，奇数+偶数=奇数。
+  </div>
+  <div id="q11" class="q-item">
+    <div class="q-label">专题七 · 奇偶数</div>
+    <div class="q-text">12. 下面哪个数是奇数？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="11" data-v="12" onclick="selectOpt(this)">12</button>
+      <button class="opt-btn" data-i="11" data-v="24" onclick="selectOpt(this)">24</button>
+      <button class="opt-btn" data-i="11" data-v="35" onclick="selectOpt(this)">35</button>
+      <button class="opt-btn" data-i="11" data-v="50" onclick="selectOpt(this)">50</button>
+      <span class="result-icon" id="ri-11"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 8: 简单排列 -->
+<div class="card">
+  <div class="card-title">🔄 专题八：简单排列</div>
+  <div class="tag diff-mid">⭐⭐ 进阶</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>把几个不同的东西按<strong>不同的顺序</strong>排成一排，每个排列就是一种新的顺序。要想不重复不遗漏，可以<strong>固定第一个</strong>，然后交换后面的。小朋友可以用画图的方法来帮助思考。
+  </div>
+  <div id="q12" class="q-item">
+    <div class="q-label">专题八 · 简单排列</div>
+    <div class="q-text">13. 用数字 1、2、3 组成不同的两位数，每个数字只用一次，一共可以组成几个不同的两位数？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="12" data-v="3" onclick="selectOpt(this)">3个</button>
+      <button class="opt-btn" data-i="12" data-v="4" onclick="selectOpt(this)">4个</button>
+      <button class="opt-btn" data-i="12" data-v="5" onclick="selectOpt(this)">5个</button>
+      <button class="opt-btn" data-i="12" data-v="6" onclick="selectOpt(this)">6个</button>
+      <span class="result-icon" id="ri-12"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 9: 等量替换 -->
+<div class="card">
+  <div class="card-title">🔄 专题九：等量替换</div>
+  <div class="tag diff-hard">⭐⭐⭐ 挑战</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>如果 1 个🍎等于 2 个🍊，那么 2 个🍎就等于 4 个🍊。这就是<strong>等量替换</strong>——用等价的物品替换，从而推算出未知数量。
+  </div>
+  <div id="q13" class="q-item">
+    <div class="q-label">专题九 · 等量替换</div>
+    <div class="q-text">14. 1 个⚽ = 2 个🏀，1 个🏀 = 3 个🎾。请问 1 个⚽ 等于几个🎾？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="13" data-v="3" onclick="selectOpt(this)">3个</button>
+      <button class="opt-btn" data-i="13" data-v="4" onclick="selectOpt(this)">4个</button>
+      <button class="opt-btn" data-i="13" data-v="5" onclick="selectOpt(this)">5个</button>
+      <button class="opt-btn" data-i="13" data-v="6" onclick="selectOpt(this)">6个</button>
+      <span class="result-icon" id="ri-13"></span>
+    </div>
+  </div>
+</div>
+
+<!-- 专题 10: 蜗牛爬井 -->
+<div class="card">
+  <div class="card-title">🐌 专题十：蜗牛爬井</div>
+  <div class="tag diff-hard">⭐⭐⭐ 挑战</div>
+  <div class="explanation">
+    <strong>💡 方法：</strong>蜗牛爬井问题的关键是：<strong>最后一天爬上去后就不再滑下来了</strong>！所以先去掉最后一天爬的高度，用剩下的高度除以每天实际爬的高度（向上爬-向下滑），再加上最后一天。
+  </div>
+  <div id="q14" class="q-item">
+    <div class="q-label">专题十 · 蜗牛爬井</div>
+    <div class="q-text">15. 一只蜗牛掉进 10 米深的井里。它每天白天向上爬 4 米，晚上滑下 3 米。请问蜗牛需要几天才能爬出井口？</div>
+    <div class="opts">
+      <button class="opt-btn" data-i="14" data-v="6" onclick="selectOpt(this)">6天</button>
+      <button class="opt-btn" data-i="14" data-v="7" onclick="selectOpt(this)">7天</button>
+      <button class="opt-btn" data-i="14" data-v="8" onclick="selectOpt(this)">8天</button>
+      <button class="opt-btn" data-i="14" data-v="10" onclick="selectOpt(this)">10天</button>
+      <span class="result-icon" id="ri-14"></span>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div id="scoreBar" class="score-bar"></div>
+  <button class="btn primary" onclick="checkAnswers()">✅ 检查全部答案</button>
+  <button class="btn" onclick="resetQuestions()">🔄 重新作答</button>
+</div>
+
+<div class="nav-buttons">
+  <div class="nav-left"><a href="p2-math-word-problems.html" class="nav-btn">← 应用题专练</a></div>
+  <div class="nav-right"><a href="index.html" class="nav-btn">返回主页 →</a></div>
+</div>
+
+</div>
+
+<script>
+const ANSWERS = {
+  0: '10', 1: '△', 2: '1', 3: '3',
+  4: '黄色', 5: '小华', 6: '10', 7: '大正方形',
+  8: '长方形', 9: '苹果', 10: '小刚', 11: '35',
+  12: '6', 13: '6', 14: '7'
+};
+
+function selectOpt(el) {
+  const i = el.dataset.i;
+  document.querySelectorAll('.opt-btn[data-i="'+i+'"]').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function checkAnswers() {
+  let cr = 0;
+  const total = Object.keys(ANSWERS).length;
+  Object.keys(ANSWERS).forEach(i => {
+    const ic = document.getElementById('ri-'+i);
+    const sel = document.querySelector('.opt-btn[data-i="'+i+'"].selected');
+    if (sel && sel.dataset.v === ANSWERS[i]) {
+      ic.textContent = '✅';
+      sel.classList.add('correct');
+      cr++;
+    } else {
+      ic.textContent = '❌';
+      if (sel) sel.classList.add('wrong');
+      document.querySelectorAll('.opt-btn[data-i="'+i+'"]').forEach(b => {
+        if (b.dataset.v === ANSWERS[i]) b.classList.add('correct');
+      });
+    }
+  });
+  const bar = document.getElementById('scoreBar');
+  const pct = Math.round(cr / total * 100);
+  let e = '😔';
+  if (pct === 100) e = '🎉';
+  else if (pct >= 80) e = '👍';
+  else if (pct >= 60) e = '💪';
+  bar.textContent = e + ' ' + cr + ' / ' + total + ' 正确 (' + pct + '%)';
+  bar.style.color = pct === 100 ? '#27ae60' : pct >= 80 ? '#e67e22' : '#e74c3c';
+  document.querySelectorAll('.opt-btn.selected').forEach(b => b.disabled = true);
+}
+
+function resetQuestions() {
+  document.querySelectorAll('.opt-btn').forEach(b => {
+    b.classList.remove('selected','correct','wrong');
+    b.disabled = false;
+  });
+  document.querySelectorAll('.result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar').textContent = '';
+}
+</script>
+</body>
+</html>
