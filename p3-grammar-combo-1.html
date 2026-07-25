@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P3 英文综合语法卷 (卷一) 📝 | 小书虫乐园</title>
+<meta name="description" content="P3 英文跨单元语法综合练习卷。涵盖现在进行时、过去式、比较级、最高级、连接词、must/mustn't、can/can't、频率副词、可数/不可数名词等知识。TSA题型。">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.q-item{padding:14px 16px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;background:#fafbfc}
+.q-item .q-text{font-weight:600;margin-bottom:10px;font-size:0.95rem}
+.q-item .q-label{font-size:0.75rem;color:#64748b;margin-bottom:4px;font-weight:600}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:44px;min-height:40px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500}
+.opt-btn:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.opt-btn.selected{border-color:#2563eb;background:#eff6ff;color:#2563eb;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem;margin-right:8px;margin-top:8px}
+.btn:hover{background:#34495e}
+.btn.primary{background:#2563eb}
+.btn.primary:hover{background:#1d4ed8}
+.score-bar{margin-top:16px;font-weight:700;font-size:1rem;text-align:center}
+.nav-buttons{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:20px}
+.nav-btn{display:inline-block;padding:10px 20px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#1d4ed8}
+.section-header{background:#eff6ff;border-radius:8px;padding:10px 16px;margin-bottom:14px;font-weight:600;font-size:0.9rem;color:#1e40af}</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📝 P3 英文综合语法卷 (卷一)</h1>
+<p class="subtitle">跨单元语法综合练习 · 共20题 · 涵盖P3全部知识点</p>
+
+<div class="card">
+  <div class="card-title">📋 考试说明</div>
+  <div class="tag" style="background:#fef3c7;color:#92400e;">🎯 TSA 综合题型</div>
+  <div style="font-size:0.9rem;color:#475569;line-height:1.7">
+    本试卷涵盖 P3 英文全部 12 个单元的语法知识点。每题选择一个正确答案。<br>
+    <strong>题型分布：</strong> 现在进行时 · 过去式 · 比较级 · 最高级 · 连接词 · must/mustn't · can/can't · 频率副词 · 可数/不可数名词等
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">📝 选择题 (20题)</div>
+  <div id="sectionHeader" class="section-header">Part 1: 语法选择</div>
+  <div id="exerciseArea"></div>
+  <div id="scoreBar" class="score-bar"></div>
+  <button class="btn primary" onclick="checkAnswers()">✅ 检查全部答案</button>
+  <button class="btn" onclick="resetQuestions()">🔄 重新作答</button>
+</div>
+
+<div class="nav-buttons">
+  <div class="nav-left">
+    <a href="index.html" class="nav-btn">← 返回主页</a>
+  </div>
+  <div class="nav-right"><a href="p3-grammar-combo-2.html" class="nav-btn">→ 卷二</a></div>
+</div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  { q: 'The boy _____ a book now. (read)', opts: ['reads', 'is reading', 'are reading', 'read'], ans: 'is reading', label: 'U1: 现在进行时' },
+  { q: 'They _____ to the park. (go - past tense)', opts: ['go', 'goes', 'going', 'went'], ans: 'went', label: 'U7: 过去时(不规则动词)' },
+  { q: 'My father _____ in a hospital last year. (work)', opts: ['works', 'worked', 'working', 'work'], ans: 'worked', label: 'U6: 过去时(规则动词)' },
+  { q: 'The girls _____ happy yesterday.', opts: ['was', 'were', 'is', 'are'], ans: 'were', label: 'U5: 过去时(be动词)' },
+  { q: 'I _____ swim fast.', opts: ['can', 'must', 'am', 'was'], ans: 'can', label: 'U3: can/can\'t' },
+  { q: 'You _____ run in the library.', opts: ['can', 'must', "mustn't", "can't"], ans: "mustn't", label: 'U4: must/mustn\'t' },
+  { q: 'This book is _____ than that one.', opts: ['big', 'bigger', 'biggest', 'more big'], ans: 'bigger', label: 'U9: 比较级' },
+  { q: 'She is the _____ student in her class.', opts: ['good', 'better', 'best', 'goodest'], ans: 'best', label: 'U10: 最高级' },
+  { q: 'He _____ gets up at seven o\'clock.', opts: ['usually', 'usual', 'always', 'never'], ans: 'usually', label: 'U11: 频率副词' },
+  { q: 'Please pass me _____ water.', opts: ['a', 'an', 'some', 'many'], ans: 'some', label: 'U8: 可数/不可数名词' },
+  { q: 'There are _____ apples on the table.', opts: ['some', 'any', 'a', 'much'], ans: 'some', label: 'U8: 可数/不可数名词' },
+  { q: 'I stayed at home _____ it was raining.', opts: ['because', 'so', 'but', 'when'], ans: 'because', label: 'U12: 连接词' },
+  { q: 'We _____ do our homework every day.', opts: ['must', "mustn't", 'can', 'are'], ans: 'must', label: 'U4: must/mustn\'t' },
+  { q: 'The cat _____ sleeping on the bed now.', opts: ['is', 'are', 'am', 'was'], ans: 'is', label: 'U1: 现在进行时' },
+  { q: 'He _____ his homework last night.', opts: ['do', 'does', 'did', 'doing'], ans: 'did', label: 'U7: 过去时(不规则动词)' },
+  { q: 'She walks _____ than her little brother.', opts: ['fast', 'faster', 'fastest', 'more fast'], ans: 'faster', label: 'U9: 比较级' },
+  { q: 'This is the _____ cake I have ever eaten.', opts: ['delicious', 'more delicious', 'most delicious', 'deliciouser'], ans: 'most delicious', label: 'U10: 最高级' },
+  { q: 'I _____ eat vegetables. (frequency: 100%)', opts: ['sometimes', 'never', 'always', 'usually'], ans: 'always', label: 'U11: 频率副词' },
+  { q: '_____ I was young, I liked to play outside.', opts: ['Because', 'So', 'When', 'But'], ans: 'When', label: 'U12: 连接词' },
+  { q: 'They _____ to the beach last Sunday.', opts: ['go', 'goes', 'going', 'went'], ans: 'went', label: 'U7: 过去时(不规则动词)' },
+];
+
+function renderQuestions() {
+  const area = document.getElementById('exerciseArea');
+  area.innerHTML = '';
+  QUESTIONS.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-item';
+    div.innerHTML = '<div class="q-label">' + item.label + '</div><div class="q-text">' + (i+1) + '. ' + item.q + '</div><div class="opts">' +
+      item.opts.map(o => '<button class="opt-btn" data-i="'+i+'" data-v="'+o.replace(/'/g,"\\'")+'" onclick="selectOpt(this)">'+o+'</button>').join('') +
+      '<span class="result-icon" id="ri-'+i+'"></span></div>';
+    area.appendChild(div);
+  });
+}
+
+function selectOpt(el) {
+  const i = el.dataset.i;
+  document.querySelectorAll('.opt-btn[data-i="'+i+'"]').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function checkAnswers() {
+  let cr = 0;
+  QUESTIONS.forEach((item, i) => {
+    const ic = document.getElementById('ri-'+i);
+    const sel = document.querySelector('.opt-btn[data-i="'+i+'"].selected');
+    if (sel && sel.dataset.v === item.ans) { ic.textContent = '✅'; sel.classList.add('correct'); cr++; }
+    else { ic.textContent = '❌'; if (sel) sel.classList.add('wrong');
+      document.querySelectorAll('.opt-btn[data-i="'+i+'"]').forEach(b => { if (b.dataset.v === item.ans) b.classList.add('correct'); }); }
+  });
+  const bar = document.getElementById('scoreBar');
+  const t = QUESTIONS.length;
+  const pct = Math.round(cr / t * 100);
+  let e = '😔'; if (pct === 100) e = '🎉'; else if (pct >= 80) e = '👍'; else if (pct >= 60) e = '💪';
+  bar.textContent = e + ' ' + cr + ' / ' + t + ' 正确 (' + pct + '%)';
+  bar.style.color = pct === 100 ? '#27ae60' : pct >= 80 ? '#e67e22' : '#e74c3c';
+  document.querySelectorAll('.opt-btn.selected').forEach(b => b.disabled = true);
+}
+
+function resetQuestions() {
+  document.querySelectorAll('.opt-btn').forEach(b => { b.classList.remove('selected','correct','wrong'); b.disabled = false; });
+  document.querySelectorAll('.result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar').textContent = '';
+}
+
+renderQuestions();
+</script>
+</body>
+</html>
