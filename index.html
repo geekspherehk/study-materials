@@ -163,7 +163,15 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9VYY1QD34J"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || [  { name: 'P2 中文看图写作入门', url: 'p2-chinese-writing.html', grade: 'P2', subject: '中文', type: '写作入门' },
+  { name: 'P3 中文看图写作入门', url: 'p3-chinese-writing.html', grade: 'P3', subject: '中文', type: '写作入门' },
+  { name: 'P2 中文阅读理解', url: 'p2-chinese-reading.html', grade: 'P2', subject: '中文', type: '阅读理解' },
+  { name: 'P3 中文阅读理解', url: 'p3-chinese-reading.html', grade: 'P3', subject: '中文', type: '阅读理解' },
+  { name: 'P2 中文句式扩写训练', url: 'p2-chinese-sentences.html', grade: 'P2', subject: '中文', type: '句式扩写' },
+  { name: 'P3 中文句式扩写训练', url: 'p3-chinese-sentences.html', grade: 'P3', subject: '中文', type: '句式扩写' },
+  { name: 'P2 古诗欣赏', url: 'p2-chinese-poetry.html', grade: 'P2', subject: '中文', type: '古诗' },
+  { name: 'P3 古诗欣赏', url: 'p3-chinese-poetry.html', grade: 'P3', subject: '中文', type: '古诗' },
+];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-9VYY1QD34J');
@@ -452,8 +460,24 @@ function show(id) {
 }
 
 // ── 口算 ──────────────────────────────────────────
-const questions = [];
-let answers = [];
+const questions = [  { name: 'P2 中文看图写作入门', url: 'p2-chinese-writing.html', grade: 'P2', subject: '中文', type: '写作入门' },
+  { name: 'P3 中文看图写作入门', url: 'p3-chinese-writing.html', grade: 'P3', subject: '中文', type: '写作入门' },
+  { name: 'P2 中文阅读理解', url: 'p2-chinese-reading.html', grade: 'P2', subject: '中文', type: '阅读理解' },
+  { name: 'P3 中文阅读理解', url: 'p3-chinese-reading.html', grade: 'P3', subject: '中文', type: '阅读理解' },
+  { name: 'P2 中文句式扩写训练', url: 'p2-chinese-sentences.html', grade: 'P2', subject: '中文', type: '句式扩写' },
+  { name: 'P3 中文句式扩写训练', url: 'p3-chinese-sentences.html', grade: 'P3', subject: '中文', type: '句式扩写' },
+  { name: 'P2 古诗欣赏', url: 'p2-chinese-poetry.html', grade: 'P2', subject: '中文', type: '古诗' },
+  { name: 'P3 古诗欣赏', url: 'p3-chinese-poetry.html', grade: 'P3', subject: '中文', type: '古诗' },
+];
+let answers = [  { name: 'P2 中文看图写作入门', url: 'p2-chinese-writing.html', grade: 'P2', subject: '中文', type: '写作入门' },
+  { name: 'P3 中文看图写作入门', url: 'p3-chinese-writing.html', grade: 'P3', subject: '中文', type: '写作入门' },
+  { name: 'P2 中文阅读理解', url: 'p2-chinese-reading.html', grade: 'P2', subject: '中文', type: '阅读理解' },
+  { name: 'P3 中文阅读理解', url: 'p3-chinese-reading.html', grade: 'P3', subject: '中文', type: '阅读理解' },
+  { name: 'P2 中文句式扩写训练', url: 'p2-chinese-sentences.html', grade: 'P2', subject: '中文', type: '句式扩写' },
+  { name: 'P3 中文句式扩写训练', url: 'p3-chinese-sentences.html', grade: 'P3', subject: '中文', type: '句式扩写' },
+  { name: 'P2 古诗欣赏', url: 'p2-chinese-poetry.html', grade: 'P2', subject: '中文', type: '古诗' },
+  { name: 'P3 古诗欣赏', url: 'p3-chinese-poetry.html', grade: 'P3', subject: '中文', type: '古诗' },
+];
 
 function randInt(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
 
@@ -521,12 +545,28 @@ const vocab = [
   { en: 'xylophone', zh: '木琴' },
   { en: 'yogurt', zh: '酸奶' },
   { en: 'zebra', zh: '斑马' }
+  { name: 'P2 中文看图写作入门', url: 'p2-chinese-writing.html', grade: 'P2', subject: '中文', type: '写作入门' },
+  { name: 'P3 中文看图写作入门', url: 'p3-chinese-writing.html', grade: 'P3', subject: '中文', type: '写作入门' },
+  { name: 'P2 中文阅读理解', url: 'p2-chinese-reading.html', grade: 'P2', subject: '中文', type: '阅读理解' },
+  { name: 'P3 中文阅读理解', url: 'p3-chinese-reading.html', grade: 'P3', subject: '中文', type: '阅读理解' },
+  { name: 'P2 中文句式扩写训练', url: 'p2-chinese-sentences.html', grade: 'P2', subject: '中文', type: '句式扩写' },
+  { name: 'P3 中文句式扩写训练', url: 'p3-chinese-sentences.html', grade: 'P3', subject: '中文', type: '句式扩写' },
+  { name: 'P2 古诗欣赏', url: 'p2-chinese-poetry.html', grade: 'P2', subject: '中文', type: '古诗' },
+  { name: 'P3 古诗欣赏', url: 'p3-chinese-poetry.html', grade: 'P3', subject: '中文', type: '古诗' },
 ];
 let currentVocab = -1;
 
 function renderCard() {
   currentVocab = randInt(0, vocab.length - 1);
-  const v = vocab[currentVocab];
+  const v = vocab[currentVocab  { name: 'P2 中文看图写作入门', url: 'p2-chinese-writing.html', grade: 'P2', subject: '中文', type: '写作入门' },
+  { name: 'P3 中文看图写作入门', url: 'p3-chinese-writing.html', grade: 'P3', subject: '中文', type: '写作入门' },
+  { name: 'P2 中文阅读理解', url: 'p2-chinese-reading.html', grade: 'P2', subject: '中文', type: '阅读理解' },
+  { name: 'P3 中文阅读理解', url: 'p3-chinese-reading.html', grade: 'P3', subject: '中文', type: '阅读理解' },
+  { name: 'P2 中文句式扩写训练', url: 'p2-chinese-sentences.html', grade: 'P2', subject: '中文', type: '句式扩写' },
+  { name: 'P3 中文句式扩写训练', url: 'p3-chinese-sentences.html', grade: 'P3', subject: '中文', type: '句式扩写' },
+  { name: 'P2 古诗欣赏', url: 'p2-chinese-poetry.html', grade: 'P2', subject: '中文', type: '古诗' },
+  { name: 'P3 古诗欣赏', url: 'p3-chinese-poetry.html', grade: 'P3', subject: '中文', type: '古诗' },
+];
   document.getElementById('word-en').textContent = v.en;
   document.getElementById('word-zh').textContent = v.zh;
   document.getElementById('word-input').value = '';
@@ -669,6 +709,14 @@ const searchData = [
   /* ── P3 中文 ── */
   { name: 'P3 中文语文总览', url: 'p3-chinese.html', grade: 'P3', subject: '中文', type: '知识点' },
   { name: 'P3 中文综合练习随机出题', url: 'p3-chinese-exam.html', grade: 'P3', subject: '中文', type: '试卷' },
+  { name: 'P2 中文看图写作入门', url: 'p2-chinese-writing.html', grade: 'P2', subject: '中文', type: '写作入门' },
+  { name: 'P3 中文看图写作入门', url: 'p3-chinese-writing.html', grade: 'P3', subject: '中文', type: '写作入门' },
+  { name: 'P2 中文阅读理解', url: 'p2-chinese-reading.html', grade: 'P2', subject: '中文', type: '阅读理解' },
+  { name: 'P3 中文阅读理解', url: 'p3-chinese-reading.html', grade: 'P3', subject: '中文', type: '阅读理解' },
+  { name: 'P2 中文句式扩写训练', url: 'p2-chinese-sentences.html', grade: 'P2', subject: '中文', type: '句式扩写' },
+  { name: 'P3 中文句式扩写训练', url: 'p3-chinese-sentences.html', grade: 'P3', subject: '中文', type: '句式扩写' },
+  { name: 'P2 古诗欣赏', url: 'p2-chinese-poetry.html', grade: 'P2', subject: '中文', type: '古诗' },
+  { name: 'P3 古诗欣赏', url: 'p3-chinese-poetry.html', grade: 'P3', subject: '中文', type: '古诗' },
 ];
 
 function doSearch(query) {
