@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>🏮 P2 古诗欣赏 - 小书虫乐园</title>
+<meta name="description" content="香港小學二年級古詩欣賞：靜夜思、詠鵝、春曉、登鸛雀樓、憫農。含全詩原文、拼音、白話翻譯、詩意解釋及互動問答練習。">
+<meta property="og:title" content="🏮 P2 古诗欣赏 - 小书虫乐园">
+<meta property="og:description" content="香港小學二年級古詩欣賞：靜夜思、詠鵝、春曉、登鸛雀樓、憫農。含全詩原文、拼音、白話翻譯、詩意解釋及互動問答。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_HK">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="🏮 P2 古诗欣赏 - 小书虫乐园">
+<meta name="twitter:description" content="香港小學二年級古詩欣賞，五首經典詩詞，拼音+翻譯+問答。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;background:#fdf2f2;color:#1e293b;line-height:1.8;padding:24px}
+.container{max-width:780px;margin:0 auto}
+h1{font-size:1.5rem;color:#c0392b;margin-bottom:4px;text-align:center}
+.subtitle{color:#a67373;font-size:0.85rem;margin-bottom:24px;text-align:center}
+.hero-poem{background:linear-gradient(135deg,#fdf2f2,#f5e6e6);border:2px solid #f5c6c6;border-radius:16px;padding:28px 24px;margin-bottom:24px;text-align:center}
+.hero-poem .hero-icon{font-size:2.5rem;margin-bottom:8px}
+.hero-poem h1{font-size:1.6rem;color:#c0392b;margin-bottom:8px}
+.hero-poem p{color:#7f5c5c;font-size:0.9rem}
+.poem-card{background:#fff;border-radius:14px;padding:24px;border:2px solid #f5c6c6;box-shadow:0 2px 8px rgba(192,57,43,0.08);margin-bottom:20px;transition:all .15s}
+.poem-card:hover{border-color:#e74c3c;box-shadow:0 4px 16px rgba(192,57,43,0.12)}
+.poem-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.poem-number{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#c0392b;color:#fff;font-weight:700;font-size:0.9rem;flex-shrink:0}
+.poem-title{font-size:1.2rem;font-weight:700;color:#c0392b}
+.poem-author{font-size:0.85rem;color:#a67373;background:#fdf2f2;padding:2px 12px;border-radius:12px;font-weight:500}
+.poem-text{padding:18px;background:#fef9f9;border-radius:10px;border-left:4px solid #c0392b;margin-bottom:14px;font-size:1.15rem;line-height:2.2;text-align:center;letter-spacing:2px}
+.poem-text .pinyin{font-size:0.75rem;color:#a67373;letter-spacing:0;line-height:1.4;margin-bottom:2px}
+.poem-text .chars{font-size:1.2rem;font-weight:600;color:#2c3e50}
+.trans-box{background:#f0f8ff;border-radius:8px;padding:12px 16px;margin-bottom:10px;border:1px solid #d4e6f5}
+.trans-box .label{font-size:0.75rem;font-weight:600;color:#2980b9;margin-bottom:4px}
+.trans-box .content{font-size:0.92rem;color:#2c3e50;line-height:1.7}
+.meaning-box{background:#fef9ef;border-radius:8px;padding:12px 16px;margin-bottom:12px;border:1px solid #fce5c4}
+.meaning-box .label{font-size:0.75rem;font-weight:600;color:#d4a017;margin-bottom:4px}
+.meaning-box .content{font-size:0.9rem;color:#2c3e50;line-height:1.7}
+.q-item{padding:12px 16px;border:1px solid #f5c6c6;border-radius:10px;margin-bottom:10px;background:#fefafa}
+.q-item .q-text{font-weight:600;margin-bottom:8px;font-size:0.95rem;color:#2c3e50}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:48px;min-height:40px;border:2px solid #f5c6c6;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500}
+.opt-btn:hover{border-color:#c0392b;color:#c0392b;background:#fdf2f2}
+.opt-btn.selected{border-color:#c0392b;background:#fdf2f2;color:#c0392b;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:16px}
+.btn-poem{background:#c0392b;color:#fff;border:none;padding:10px 30px;border-radius:8px;cursor:pointer;font-size:0.95rem;font-weight:600;transition:background .15s}
+.btn-poem:hover{background:#e74c3c}
+.btn-poem.secondary{background:#7f8c8d}
+.btn-poem.secondary:hover{background:#95a5a6}
+.score-bar{margin-bottom:16px;font-weight:700;font-size:1rem;color:#27ae60;text-align:center}
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px;padding-top:16px;border-top:1px solid #f5c6c6}
+.nav-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:#c0392b;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#e74c3c}
+.nav-btn.outline{background:transparent;color:#c0392b;border:2px solid #c0392b}
+.nav-btn.outline:hover{background:#c0392b;color:#fff}
+.poem-stats{font-size:0.82rem;color:#a67373;display:flex;gap:16px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.poem-stats span{display:inline-flex;align-items:center;gap:4px}
+@media (max-width:480px){
+  .poem-text{font-size:1rem;padding:14px}
+  .poem-text .chars{font-size:1.05rem}
+  .opt-btn{padding:8px 18px;font-size:0.85rem}
+  .container{padding:0}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero-poem">
+  <div class="hero-icon">🏮🎋</div>
+  <h1>P2 古诗欣赏</h1>
+  <p>香港小学二年级 · 五首经典唐诗 · 拼音注释 · 互动问答</p>
+</div>
+
+<div id="poemsContainer"></div>
+
+<div class="btn-group">
+  <button class="btn-poem" onclick="checkAllAnswers()">✅ 检查全部答案</button>
+  <button class="btn-poem secondary" onclick="resetAll()">🔄 重新作答</button>
+</div>
+<div id="scoreBar" class="score-bar"></div>
+
+<div class="nav-buttons">
+  <a href="index.html" class="nav-btn">← 返回主页</a>
+  <a href="p3-chinese-poetry.html" class="nav-btn outline">P3 古诗欣赏 →</a>
+</div>
+
+</div>
+
+<script>
+const POEMS = [
+  {
+    id: 0,
+    title: '静夜思',
+    author: '李白（唐代）',
+    lines: [
+      { chars: '床前明月光', pinyin: 'chuáng qián míng yuè guāng' },
+      { chars: '疑是地上霜', pinyin: 'yí shì dì shàng shuāng' },
+      { chars: '举头望明月', pinyin: 'jǔ tóu wàng míng yuè' },
+      { chars: '低头思故乡', pinyin: 'dī tóu sī gù xiāng' }
+    ],
+    translation: '明亮的月光洒在床前的地上，好像是一层白白的霜。我抬起头望着天边的明月，低下头不禁思念起远方的家乡。',
+    meaning: '這首詩寫的是詩人在寂静的夜晚，看到月光思念家鄉的心情。詩人用「明月」來表達對故鄉的深深思念，語言簡潔，感情真摯。',
+    questions: [
+      { q: '《静夜思》中，诗人把月光比作什么？', opts: ['白霜', '白雲', '白雪', '白布'], ans: '白霜' },
+      { q: '诗人「低头」的时候在做什么？', opts: ['看書', '思念故鄉', '睡覺', '寫字'], ans: '思念故鄉' }
+    ]
+  },
+  {
+    id: 1,
+    title: '咏鹅',
+    author: '骆宾王（唐代）',
+    lines: [
+      { chars: '鹅，鹅，鹅', pinyin: 'é, é, é' },
+      { chars: '曲项向天歌', pinyin: 'qū xiàng xiàng tiān gē' },
+      { chars: '白毛浮绿水', pinyin: 'bái máo fú lǜ shuǐ' },
+      { chars: '红掌拨清波', pinyin: 'hóng zhǎng bō qīng bō' }
+    ],
+    translation: '鹅啊鹅，弯着脖子向着天空唱歌。白色的羽毛浮在绿水上，红色的脚掌划动着清澈的水波。',
+    meaning: '這是一首描寫鵝的形貌和動作的詩。詩人用簡單的詞語，生動地描繪出鵝的可愛姿態和色彩之美。白毛、綠水、紅掌、清波，構成了一幅美麗的畫面。',
+    questions: [
+      { q: '《咏鹅》中，鹅的毛是什么颜色？', opts: ['红色', '白色', '绿色', '黑色'], ans: '白色' },
+      { q: '鹅用什么拨水？', opts: ['翅膀', '頭', '腳掌', '尾巴'], ans: '腳掌' }
+    ]
+  },
+  {
+    id: 2,
+    title: '春晓',
+    author: '孟浩然（唐代）',
+    lines: [
+      { chars: '春眠不觉晓', pinyin: 'chūn mián bù jué xiǎo' },
+      { chars: '处处闻啼鸟', pinyin: 'chù chù wén tí niǎo' },
+      { chars: '夜来风雨声', pinyin: 'yè lái fēng yǔ shēng' },
+      { chars: '花落知多少', pinyin: 'huā luò zhī duō shǎo' }
+    ],
+    translation: '春天睡觉不知不觉天就亮了，到处都能听见鸟儿的叫声。回想夜里听到的风雨声，不知道花儿被吹落了多少。',
+    meaning: '這首詩描寫春天早晨的美好景象。詩人在春睡中被鳥鳴喚醒，聯想到昨夜風雨，擔心花兒飄落。表現了詩人對春天的喜愛和對大自然變化的細膩感受。',
+    questions: [
+      { q: '《春晓》中，诗人早上听到了什么声音？', opts: ['風聲', '雨聲', '鳥叫聲', '雷聲'], ans: '鳥叫聲' },
+      { q: '诗人担心什么被风雨打落了？', opts: ['樹葉', '果子', '花兒', '草'], ans: '花兒' }
+    ]
+  },
+  {
+    id: 3,
+    title: '登鹳雀楼',
+    author: '王之涣（唐代）',
+    lines: [
+      { chars: '白日依山尽', pinyin: 'bái rì yī shān jìn' },
+      { chars: '黄河入海流', pinyin: 'huáng hé rù hǎi liú' },
+      { chars: '欲穷千里目', pinyin: 'yù qióng qiān lǐ mù' },
+      { chars: '更上一层楼', pinyin: 'gèng shàng yī céng lóu' }
+    ],
+    translation: '夕阳沿着山慢慢落下，黃河滔滔向大海流去。想要看遍千里远的风景，就要再登上更高的一层楼。',
+    meaning: '這首詩描寫了登高望遠的壯闊景象。前兩句寫太陽落山、黃河流入大海的宏大場面；後兩句告訴我們：站得高才能看得遠，鼓勵人們不斷努力，追求更高的目標。',
+    questions: [
+      { q: '《登鹳雀楼》中，黄河最终流向哪里？', opts: ['長江', '大海', '湖泊', '山腳'], ans: '大海' },
+      { q: '「欲穷千里目，更上一层楼」告诉我们什么道理？', opts: ['要多喝水', '要站得高看得遠', '要早睡早起', '要多吃飯'], ans: '要站得高看得遠' }
+    ]
+  },
+  {
+    id: 4,
+    title: '悯农',
+    author: '李绅（唐代）',
+    lines: [
+      { chars: '锄禾日当午', pinyin: 'chú hé rì dāng wǔ' },
+      { chars: '汗滴禾下土', pinyin: 'hàn dī hé xià tǔ' },
+      { chars: '谁知盘中餐', pinyin: 'shuí zhī pán zhōng cān' },
+      { chars: '粒粒皆辛苦', pinyin: 'lì lì jiē xīn kǔ' }
+    ],
+    translation: '農民在正午太陽最毒的時候鋤草，汗水滴落在禾苗下的泥土裡。有誰知道碗裡的飯，每一粒都來之不易啊！',
+    meaning: '這首詩告訴我們糧食來之不易，農民種田非常辛苦。詩人通過描寫農民在烈日下勞作的場景，教育我們要珍惜糧食，尊重勞動人民。',
+    questions: [
+      { q: '《悯农》中，农民在什么时候锄草？', opts: ['早晨', '中午', '傍晚', '晚上'], ans: '中午' },
+      { q: '这首诗主要告诉我们什么？', opts: ['要努力學習', '要珍惜糧食', '要多喝水', '要愛護動物'], ans: '要珍惜糧食' }
+    ]
+  }
+];
+
+function renderPoems() {
+  const container = document.getElementById('poemsContainer');
+  container.innerHTML = POEMS.map((poem, pi) => {
+    const linesHtml = poem.lines.map(l =>
+      `<div class="pinyin">${l.pinyin}</div><div class="chars">${l.chars}</div>`
+    ).join('');
+
+    const questionsHtml = poem.questions.map((q, qi) =>
+      `<div class="q-item">
+        <div class="q-text">${qi+1}. ${q.q}</div>
+        <div class="opts">
+          ${q.opts.map(o => `<button class="opt-btn" data-p="${pi}" data-q="${qi}" data-v="${o.replace(/'/g,"\\'")}" data-ans="${q.ans === o ? '1' : '0'}" onclick="selectOpt(this)">${o}</button>`).join('')}
+          <span class="result-icon" id="ri-${pi}-${qi}"></span>
+        </div>
+      </div>`
+    ).join('');
+
+    return `
+      <div class="poem-card">
+        <div class="poem-header">
+          <span class="poem-number">${pi+1}</span>
+          <span class="poem-title">${poem.title}</span>
+          <span class="poem-author">${poem.author}</span>
+        </div>
+        <div class="poem-text">${linesHtml}</div>
+        <div class="trans-box">
+          <div class="label">📖 白话翻译</div>
+          <div class="content">${poem.translation}</div>
+        </div>
+        <div class="meaning-box">
+          <div class="label">🎋 诗意解说</div>
+          <div class="content">${poem.meaning}</div>
+        </div>
+        <div style="margin-top:12px;">
+          <div style="font-size:0.85rem;font-weight:600;color:#c0392b;margin-bottom:8px;">📝 理解问答</div>
+          ${questionsHtml}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function selectOpt(btn) {
+  // Deselect siblings
+  const siblings = btn.parentElement.querySelectorAll('.opt-btn');
+  siblings.forEach(b => {
+    b.classList.remove('selected', 'correct', 'wrong');
+  });
+  btn.classList.add('selected');
+  // Clear result icon
+  const pi = btn.dataset.p;
+  const qi = btn.dataset.q;
+  const ri = document.getElementById(`ri-${pi}-${qi}`);
+  if (ri) ri.textContent = '';
+}
+
+function checkAllAnswers() {
+  let correct = 0;
+  let total = 0;
+  const allBtns = document.querySelectorAll('.opt-btn.selected');
+  allBtns.forEach(btn => {
+    const pi = btn.dataset.p;
+    const qi = btn.dataset.q;
+    const isCorrect = btn.dataset.ans === '1';
+    const ri = document.getElementById(`ri-${pi}-${qi}`);
+    if (isCorrect) {
+      btn.classList.add('correct');
+      if (ri) ri.textContent = '✓';
+      correct++;
+    } else {
+      btn.classList.add('wrong');
+      if (ri) ri.textContent = '✗';
+      // Show correct answer
+      const siblings = btn.parentElement.querySelectorAll('.opt-btn');
+      siblings.forEach(b => {
+        if (b.dataset.ans === '1') b.classList.add('show-correct');
+      });
+    }
+    total++;
+  });
+  document.getElementById('scoreBar').textContent = `✅ 得分：${correct} / ${total}`;
+}
+
+function resetAll() {
+  document.querySelectorAll('.opt-btn').forEach(b => {
+    b.classList.remove('selected', 'correct', 'wrong', 'show-correct');
+  });
+  document.querySelectorAll('.result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar').textContent = '';
+}
+
+renderPoems();
+</script>
+</body>
+</html>
