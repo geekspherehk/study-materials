@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P2 Reading R3 - A Day at the Beach 🏖️ | 小书虫乐园</title>
+<meta name="description" content="P2 英文阅读理解 - A Day at the Beach。适合小二学生的短篇故事阅读，附理解题和答案。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#2563eb;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.tag{display:inline-block;font-size:0.72rem;font-weight:600;padding:2px 9px;border-radius:99px;margin-bottom:10px}
+.passage{padding:16px;background:#f8fafc;border-radius:10px;border-left:4px solid #2563eb;margin-bottom:16px}
+.passage p{margin-bottom:10px;font-size:1rem;line-height:1.8}
+.passage p:last-child{margin-bottom:0}
+.q-item{padding:14px 16px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;background:#fafbfc}
+.q-item .q-text{font-weight:600;margin-bottom:10px;font-size:0.95rem}
+.opts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.opt-btn{padding:8px 24px;font-size:0.9rem;min-width:44px;min-height:40px;border:2px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;transition:all .15s;font-weight:500}
+.opt-btn:hover{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.opt-btn.selected{border-color:#2563eb;background:#eff6ff;color:#2563eb;font-weight:700}
+.opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
+.opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
+.result-icon{font-size:1.3rem;margin-left:10px}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem;margin-right:8px;margin-top:8px}
+.btn:hover{background:#34495e}
+.score-bar{margin-top:16px;font-weight:700;font-size:1rem;color:#27ae60;text-align:center}
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:20px}
+.nav-btn{display:inline-block;padding:10px 20px;background:#2563eb;color:#fff;border-radius:8px;text-decoration:none;font-size:0.9rem;font-weight:600;transition:background .15s}
+.nav-btn:hover{background:#1d4ed8}
+.vocab-item{display:inline-flex;align-items:center;gap:4px;background:#fef3c7;padding:3px 10px;border-radius:6px;font-size:0.82rem;margin:2px;color:#92400e}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🏖️ A Day at the Beach</h1>
+<p class="subtitle">P2 英文阅读理解 · R3 · 故事类</p>
+
+<div class="card">
+  <div class="card-title">📖 阅读短文</div>
+  <div class="tag" style="background:#dbeafe;color:#1e40af;">📚 故事 Fiction</div>
+  <div class="passage">
+    <p>It was a sunny Saturday. Lily and her family went to the beach. Lily wore her yellow swimsuit and carried a big bucket and a small spade.</p>
+    <p>"Let's build a sandcastle!" said Lily. She and her brother Ben worked together. They filled the bucket with sand and turned it upside down. Plop! A tower! They used shells for windows. They put a tiny flag on top. It was a beautiful castle.</p>
+    <p>After that, Lily went to collect shells. She found a pink shell, a striped shell, and a tiny white one. She put them in her pocket. Mum and Dad sat on a towel and watched the waves. The waves went swoosh, swoosh.</p>
+    <p>Lily saw a little crab scuttling sideways. She laughed. "Look, Ben! A crab!" Ben came running. The crab hid under a rock.</p>
+    <p>At lunchtime, they ate sandwiches and drank cold juice. Lily was tired but happy. "This is the best day ever!" she said.</p>
+  </div>
+  <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">
+    <span class="vocab-item">🏖️ beach 沙滩</span>
+    <span class="vocab-item">🏰 sandcastle 沙堡</span>
+    <span class="vocab-item">🪣 bucket 水桶</span>
+    <span class="vocab-item">🫳 spade 铲子</span>
+    <span class="vocab-item">🐚 shell 贝壳</span>
+    <span class="vocab-item">🦀 crab 螃蟹</span>
+    <span class="vocab-item">🏃 scuttling 匆匆跑</span>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">📝 理解题</div>
+  <div id="exerciseArea"></div>
+  <div id="scoreBar" class="score-bar"></div>
+  <button class="btn" onclick="checkAnswers()">✅ 检查答案</button>
+  <button class="btn" onclick="resetQuestions()">🔄 重新作答</button>
+</div>
+
+<div class="nav-buttons">
+  <div class="nav-left"><a href="p2-reading-2.html" class="nav-btn">← R2 The Lost Kite</a></div>
+  <div class="nav-right"><a href="p2-reading-4.html" class="nav-btn">下一篇 R4 →</a></div>
+</div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  { q: 'What did Lily wear to the beach?', opts: ['A blue dress', 'A yellow swimsuit', 'A red hat', 'Green shorts'], ans: 'A yellow swimsuit' },
+  { q: 'Who went to the beach with Lily?', opts: ['Just her mum', 'Her family', 'Her friend', 'Her teacher'], ans: 'Her family' },
+  { q: 'What did Lily and Ben build?', opts: ['A treehouse', 'A sandcastle', 'A boat', 'A tower of rocks'], ans: 'A sandcastle' },
+  { q: 'What did they use for the windows of the sandcastle?', opts: ['Stones', 'Shells', 'Sticks', 'Leaves'], ans: 'Shells' },
+  { q: 'What did Lily find at the beach?', opts: ['A starfish', 'A pink shell', 'A coin', 'A toy boat'], ans: 'A pink shell' },
+  { q: 'What did Lily see scuttling sideways?', opts: ['A fish', 'A crab', 'A bird', 'A snail'], ans: 'A crab' },
+  { q: 'What did the family eat for lunch?', opts: ['Pizza', 'Sandwiches', 'Noodles', 'Rice'], ans: 'Sandwiches' },
+  { q: 'How did Lily feel at the end of the day?', opts: ['Sad', 'Angry', 'Tired but happy', 'Scared'], ans: 'Tired but happy' },
+];
+
+function renderQuestions() {
+  const area = document.getElementById('exerciseArea');
+  area.innerHTML = '';
+  QUESTIONS.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-item';
+    div.innerHTML = '<div class="q-text">' + (i+1) + '. ' + item.q + '</div><div class="opts">' +
+      item.opts.map(o => '<button class="opt-btn" data-i="'+i+'" data-v="'+o.replace(/'/g,"\\'")+'" onclick="selectOpt(this)">'+o+'</button>').join('') +
+      '<span class="result-icon" id="ri-'+i+'"></span></div>';
+    area.appendChild(div);
+  });
+}
+
+function selectOpt(el) {
+  const i = el.dataset.i;
+  document.querySelectorAll('.opt-btn[data-i="'+i+'"]').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function checkAnswers() {
+  let cr = 0;
+  QUESTIONS.forEach((item, i) => {
+    const ic = document.getElementById('ri-'+i);
+    const sel = document.querySelector('.opt-btn[data-i="'+i+'"].selected');
+    if (sel && sel.dataset.v === item.ans) { ic.textContent = '✅'; sel.classList.add('correct'); cr++; }
+    else { ic.textContent = '❌'; if (sel) sel.classList.add('wrong');
+      document.querySelectorAll('.opt-btn[data-i="'+i+'"]').forEach(b => { if (b.dataset.v === item.ans) b.classList.add('correct'); }); }
+  });
+  const bar = document.getElementById('scoreBar');
+  const t = QUESTIONS.length;
+  const pct = Math.round(cr / t * 100);
+  let emoji = '😔';
+  if (pct === 100) emoji = '🎉'; else if (pct >= 80) emoji = '👍'; else if (pct >= 60) emoji = '💪';
+  bar.textContent = emoji + ' ' + cr + ' / ' + t + ' 正确 (' + pct + '%)';
+  bar.style.color = pct === 100 ? '#27ae60' : pct >= 80 ? '#e67e22' : '#e74c3c';
+  document.querySelectorAll('.opt-btn.selected').forEach(b => b.disabled = true);
+}
+
+function resetQuestions() {
+  document.querySelectorAll('.opt-btn').forEach(b => { b.classList.remove('selected','correct','wrong'); b.disabled = false; });
+  document.querySelectorAll('.result-icon').forEach(el => el.textContent = '');
+  document.getElementById('scoreBar').textContent = '';
+}
+
+renderQuestions();
+</script>
+</body>
+</html>
