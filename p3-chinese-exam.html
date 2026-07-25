@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>P3 中文综合练习 (随机出题) - 小书虫乐园</title>
+<meta name="description" content="香港小學三年級中文綜合練習（隨機出題），涵蓋字詞、句式、閱讀、成語等，每次題目不同。">
+<meta property="og:title" content="P3 中文综合练习（随机出题）- 小书虫乐园">
+<meta property="og:description" content="小三中文綜合練習隨機出題，每次練習題目不同。">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://geekspherehk.github.io/study-materials/p3-chinese-exam.html">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei","KaiTi",serif,sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6;padding:24px}
+.container{max-width:720px;margin:0 auto}
+h1{font-size:1.4rem;color:#c0392b;margin-bottom:4px}
+.subtitle{color:#64748b;font-size:0.85rem;margin-bottom:24px}
+.card{background:#fff;border-radius:12px;padding:20px 24px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,0.06);margin-bottom:16px}
+.card-title{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#64748b;margin-bottom:14px}
+.ex-item{padding:12px 0;border-bottom:1px solid #f1f5f9;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.ex-item:last-child{border-bottom:none}
+.ex-item p{font-weight:600;margin-right:8px;min-width:180px}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+.opt-btn{padding:6px 18px;border:1.5px solid #ccc;border-radius:20px;background:#fff;cursor:pointer;font-size:0.85rem;transition:all 0.15s}
+.opt-btn:hover{border-color:#c0392b;color:#c0392b}
+.opt-btn.selected{border-color:#c0392b;background:#c0392b;color:#fff}
+.btn{background:#2c3e50;color:#fff;border:none;padding:10px 24px;border-radius:6px;cursor:pointer;font-size:0.95rem;margin-right:6px}
+.btn-red{background:#c0392b}
+.btn-gray{background:#94a3b8}
+.score-bar{margin-top:12px;text-align:center;font-weight:600;display:none}
+.result-icon{margin-left:6px;font-size:1rem}
+.nav-buttons{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:8px;flex-wrap:wrap}
+.nav-btn{display:inline-flex;align-items:center;gap:4px;padding:8px 14px;border-radius:8px;text-decoration:none;font-size:0.85rem;font-weight:600;transition:all .2s;border:1px solid #e2e8f0;background:#fff;color:#2563eb;white-space:nowrap}
+.nav-btn:hover{background:#2563eb;color:#fff;border-color:#2563eb}
+.nav-home{background:#1e293b;color:#fff;border-color:#1e293b}
+.nav-home:hover{background:#2563eb;border-color:#2563eb}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🀄 P3 中文综合练习（随机出题）</h1>
+<p class="subtitle">每次練習隨機選取題目，涵蓋字詞、句式、成語、閱讀理解</p>
+
+<div class="card">
+<div class="card-title">📝 題目（每題選擇正確答案）</div>
+<div id="ex-area"></div>
+<div style="margin-top:12px">
+<button class="btn btn-red" onclick="checkAnswers()">✅ 核對答案</button>
+<button class="btn btn-gray" onclick="resetQuiz()">🔄 重新出題</button>
+</div>
+<div class="score-bar" id="score"></div>
+</div>
+
+<div class="nav-buttons">
+<div><a href="p3-chinese.html" class="nav-btn">&larr; <span>中文總覽</span></a></div>
+<div><a href="index.html" class="nav-btn nav-home">&#8962; 主頁</a></div>
+</div>
+</div>
+
+<script>
+const POOL = [
+  { q: '"音樂"的"樂"讀什麼？', opts: ['lè', 'yuè', 'luò', 'lào'], ans: 'yuè' },
+  { q: '"未"和"末"，哪個讀作 wèi？', opts: ['未（上橫短）', '末（上橫長）', '兩個都對', '兩個都不對'], ans: '未（上橫短）' },
+  { q: '以下哪句是「把」字句？', opts: ['書包被我收拾好', '我把書包收拾好', '我收拾書包', '書包收拾好了'], ans: '我把書包收拾好' },
+  { q: '「被」字句的結構是？', opts: ['主+把+賓+動', '賓+被+主+動', '主+被+賓+動', '被+主+動+賓'], ans: '賓+被+主+動' },
+  { q: '"守株待兔"比喻甚麼？', opts: ['努力工作', '僥倖心理', '團結合作', '愛護動物'], ans: '僥倖心理' },
+  { q: '"狐假虎威"中誰在欺壓别人？', opts: ['老虎', '狐狸', '兔子', '獅子'], ans: '狐狸' },
+  { q: '"畫蛇添足"比喻甚麼？', opts: ['事情很完美', '多此一舉', '蛇很長', '畫功很好'], ans: '多此一舉' },
+  { q: '"長大"的"長"讀什麼？', opts: ['cháng', 'zhǎng', 'chàng', 'zhàng'], ans: 'zhǎng' },
+  { q: '"美麗"和"漂亮"是甚麼關係？', opts: ['反義詞', '近義詞', '同音詞', '形近詞'], ans: '近義詞' },
+  { q: '句子擴張的作用是？', opts: ['讓句子更短', '讓句子更有趣', '改寫成錯句', '刪除詞語'], ans: '讓句子更有趣' },
+  { q: '"一百"的"百"是甚麼詞性？', opts: ['名詞', '動詞', '數詞', '形容詞'], ans: '數詞' },
+  { q: '「秋天到了，落葉像蝴蝶一樣飛舞。」用了甚麼修辭？', opts: ['排比', '擬人', '比喻', '誇張'], ans: '比喻' },
+  { q: '「風兒輕輕地撫摸着我的臉。」用了甚麼修辭？', opts: ['比喻', '擬人', '排比', '設問'], ans: '擬人' },
+  { q: '「不翼而飛」中的「翼」是甚麼意思？', opts: ['翅膀', '翅膀的翼', '飛', '離開'], ans: '翅膀' },
+  { q: '"發"有幾個讀音？', opts: ['1個', '2個', '3個', '4個'], ans: '2個' },
+  { q: '"發出"和"頭髮"的"發"讀音是否相同？', opts: ['相同', '不相同', '有時相同', '不確定'], ans: '不相同' },
+  { q: '以下哪個是成語？', opts: ['快樂上學', '守株待兔', '今天天氣好', '小鳥在唱歌'], ans: '守株待兔' },
+  { q: '"溫暖"的反義詞是？', opts: ['炎熱', '寒冷', '涼爽', '酷熱'], ans: '寒冷' },
+  { q: '「我______完成了作業。」填什麼詞最恰當？', opts: ['快樂地', '快樂的', '快樂', '快樂得'], ans: '快樂地' },
+  { q: '「快……快……」例如「太陽快下山了。」這個「快」表示？', opts: ['速度快', '快要/將近', '輕輕地', '努力地'], ans: '快要/將近' },
+];
+
+let EX = [];
+let answered = false;
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function renderEx() {
+  EX = shuffle([...POOL]).slice(0, 10);
+  answered = false;
+  const a = document.getElementById('ex-area');
+  a.innerHTML = '';
+  EX.forEach((item, i) => {
+    const d = document.createElement('div'); d.className = 'ex-item';
+    let h = '<p>' + (i + 1) + '. ' + item.q + '</p><div class="opts">';
+    item.opts.forEach(o => { h += '<button class="opt-btn" data-i="' + i + '" data-v="' + o + '" onclick="selectOpt(this)">' + o + '</button>'; });
+    h += '<span class="result-icon" id="ri-' + i + '"></span></div>';
+    d.innerHTML = h; a.appendChild(d);
+  });
+  document.getElementById('score').style.display = 'none';
+}
+
+function selectOpt(btn) { if (answered) return; const i = btn.dataset.i; document.querySelectorAll('.opt-btn[data-i="' + i + '"]').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); }
+
+function checkAnswers() { if (answered) return; answered = true; let cr = 0; EX.forEach((item, i) => { const ss = document.querySelector('.opt-btn.selected[data-i="' + i + '"]'); const ic = document.getElementById('ri-' + i); if (ss && ss.dataset.v === item.ans) { ic.textContent = '✅'; cr++; } else { ic.textContent = '❌'; } }); const t = EX.length; const bar = document.getElementById('score'); bar.style.display = 'block'; bar.textContent = cr + ' / ' + t + ' 正確 (' + Math.round(cr / t * 100) + '%)'; bar.style.color = cr === t ? '#27ae60' : cr / t >= 0.8 ? '#e67e22' : '#e74c3c'; }
+
+function resetQuiz() { renderEx(); }
+
+renderEx();
+</script>
+</body>
+</html>
