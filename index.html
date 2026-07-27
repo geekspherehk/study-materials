@@ -54,6 +54,14 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .sidebar-details[open] summary.side-summary::before{content:"▼"}
 .sidebar .nav-gap{height:1px;background:#3d5166;margin:6px 16px}
 
+/* ── 年级切换标签 ── */
+.grade-tabs{display:flex;border-bottom:1px solid #3d5166;padding:0;margin:0}
+.grade-tab{flex:1;padding:10px 8px;text-align:center;font-size:0.85rem;font-weight:600;cursor:pointer;background:transparent;color:#7f8c8d;border:none;border-bottom:3px solid transparent;transition:all .2s}
+.grade-tab:hover{color:#bdc3c7;background:#34495e}
+.grade-tab.active{color:#fff;border-bottom-color:var(--sidebar-highlight);background:#34495e}
+.grade-content{display:none}
+.grade-content.active{display:block}
+
 .section{display:none}
 .section.active{display:block}
 /* ── 顶部导航栏 (移动端) ── */
@@ -98,68 +106,45 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .search-results .result-item:last-child{border-bottom:none}
 .search-results .result-item a{color:var(--primary);text-decoration:none;font-size:0.95rem;font-weight:600}
 .search-results .result-item a:hover{text-decoration:underline}
-.search-results .result-item .result-meta{font-size:0.8rem;color:var(--text-mute);margin-top:2px}
 
-/* 快速入口卡片 */
-.quick-cards{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
-.quick-card{display:flex;align-items:center;gap:10px;background:var(--card-bg);border:2px solid var(--border);border-radius:12px;padding:14px 24px;text-decoration:none;color:var(--text);font-size:1rem;font-weight:600;transition:all .15s;flex:1;min-width:130px;justify-content:center}
-.quick-card:hover{border-color:var(--primary);box-shadow:0 4px 12px rgba(37,99,235,0.1);transform:translateY(-2px)}
-.quick-card.active{border-color:var(--primary);background:#eff6ff;color:var(--primary)}
-.quick-card .qc-icon{font-size:1.5rem}
-.quick-card .qc-label{font-size:0.95rem}
+/* ── 快速入口卡片 ── */
+.quick-cards{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.quick-card{display:flex;align-items:center;gap:6px;padding:10px 18px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);font-size:0.88rem;font-weight:600;transition:all .15s}
+.quick-card:hover{border-color:var(--primary);color:var(--primary);background:#eff6ff;transform:translateY(-1px)}
+.quick-card.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 2px 8px rgba(37,99,235,0.25)}
+.quick-card .qc-icon{font-size:1.1rem}
+.quick-card .qc-label{white-space:nowrap}
 
-/* 分类标题 */
-.section-title{font-size:1.1rem;margin-bottom:16px;color:var(--text);border-bottom:2px solid var(--border);padding-bottom:8px}
-
-/* 全部资料卡片网格 */
+/* 卡片列表 */
 .cards-grid{background:var(--card-bg);border-radius:12px;padding:20px 24px;border:1px solid var(--border)}
-.cards-grid .section-title{margin-top:0;margin-bottom:16px}
-.card-item{display:flex;align-items:center;gap:16px;padding:14px 12px;border-radius:8px;transition:all .15s;cursor:pointer;border-bottom:1px solid var(--border)}
+.section-title{font-size:1.1rem;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);color:var(--text)}
+.card-item{display:flex;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);gap:12px}
 .card-item:last-child{border-bottom:none}
-.card-item:hover{background:#f8fafc;box-shadow:0 2px 8px rgba(0,0,0,0.06);transform:translateX(2px)}
-.card-item .card-icon{font-size:1.5rem;width:48px;text-align:center;flex-shrink:0}
-.card-item .card-info{flex:1;min-width:0}
-.card-item .card-title{font-weight:600;color:var(--primary);text-decoration:none;font-size:0.95rem}
-.card-item .card-title:hover{text-decoration:underline}
-.card-item .card-meta{font-size:0.8rem;color:var(--text-mute);margin-top:2px}
-.card-item .card-action{flex-shrink:0}
-.card-item .card-btn{display:inline-block;padding:6px 14px;background:var(--primary);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:0.82rem;text-decoration:none;transition:background .15s}
-.card-item .card-btn:hover{background:var(--primary-hover)}
+.card-icon{font-size:1.4rem;width:40px;text-align:center;flex-shrink:0}
+.card-info{flex:1;min-width:0}
+.card-title{color:var(--primary);text-decoration:none;font-weight:600;font-size:0.95rem}
+.card-title:hover{text-decoration:underline}
+.card-meta{font-size:0.8rem;color:var(--text-mute);margin-top:2px}
+.card-action{flex-shrink:0}
+.card-btn{display:inline-block;padding:6px 16px;background:var(--primary);color:#fff;border-radius:6px;text-decoration:none;font-size:0.82rem;font-weight:600;transition:background .15s}
+.card-btn:hover{background:var(--primary-hover)}
+.search-results .result-meta{font-size:0.8rem;color:var(--text-mute);margin-top:2px}
 
-/* 首页介绍 Banner */
-.hero-section{background:#fff;border-radius:16px;padding:36px 28px 32px;margin-bottom:24px;color:#1e293b;text-align:center;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04),0 4px 20px rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.04)}
-.hero-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 15%,#e0e7ff 0%,transparent 60%),radial-gradient(ellipse at 75% 85%,#dbeafe 0%,transparent 60%);border-radius:16px;pointer-events:none}
-.hero-title{font-size:1.8rem;font-weight:800;margin-bottom:6px;position:relative;z-index:1;letter-spacing:0.5px;color:#1e293b}
-.hero-icon{font-size:2.8rem;display:flex;justify-content:center;gap:6px;margin-bottom:10px;position:relative;z-index:1}
-.hero-icon span{display:inline-block;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.1))}
-.hero-bookworm{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1;margin-bottom:6px;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.06))}
-.hero-bookworm pre{font-family:"Courier New",monospace;font-size:0.75rem;line-height:1.3;letter-spacing:1px;color:#64748b;margin:0;padding:10px 20px;background:rgba(241,245,249,0.6);border-radius:12px;text-shadow:none}
-.hero-bookworm .worm-label{font-size:1rem;font-weight:700;color:#475569;display:block;margin-top:4px}
-.hero-subtitle{font-size:1.05rem;margin-bottom:4px;position:relative;z-index:1;color:#475569}
-.hero-desc{font-size:0.85rem;position:relative;z-index:1;color:#94a3b8}
+/* ── Hero ── */
+.hero-section{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;border-radius:16px;padding:32px;text-align:center;margin-bottom:24px}
+.hero-icon{font-size:3rem;margin-bottom:8px}
+.hero-title{font-size:1.6rem;font-weight:800;margin-bottom:8px}
+.hero-subtitle{font-size:1rem;font-weight:500;margin-bottom:12px;opacity:0.95}
+.hero-desc{font-size:0.88rem;opacity:0.85;line-height:1.6}
 
-/* 响应式调整 */
-@media(max-width:768px){
-  .hero-section{padding:24px 20px}
-  .hero-title{font-size:1.3rem}
-  .hero-icon{font-size:2.2rem}
-  .hero-bookworm{font-size:1.1rem}
-}
-/* ── 语法练习样式 ── */
-.gram-item{padding:16px;border:1px solid var(--border);border-radius:10px;margin-bottom:12px;background:#fafbfc;transition:all .15s}
-.gram-item:hover{border-color:#cbd5e1;background:#f1f5f9}
-.gram-item .sentence{font-size:1.1rem;margin-bottom:12px;color:var(--text);font-weight:500}
-.gram-item .options{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.gram-item .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px;border:2px solid var(--border);border-radius:8px;background:#fff;color:var(--text);cursor:pointer;transition:all .15s;font-weight:500}
-.gram-item .opt-btn:hover{border-color:var(--primary);color:var(--primary);background:#eff6ff}
-.gram-item .opt-btn.selected{border-color:var(--primary);background:#eff6ff;color:var(--primary);font-weight:700}
-.gram-item .opt-btn.correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449}
-.gram-item .opt-btn.wrong{border-color:#e74c3c;background:#fdedec;color:#c0392b}
-.gram-item .opt-btn.show-correct{border-color:#27ae60;background:#e6f7ed;color:#1e8449;opacity:0.7}
-.gram-item .result-icon{font-size:1.5rem;margin-left:12px}
-@media (max-width:480px){.gram-item .opt-btn{padding:8px 24px;font-size:0.95rem;min-width:48px;min-height:44px}}
-/* ── 语法练习样式 ── */
-</style>
+/* ── 口算 ── */
+.qa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:16px}
+.qa-item{background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;transition:all .2s}
+.qa-item.correct{background:#e6f7ed;border-color:#27ae60}
+.qa-item.wrong{background:#fdedec;border-color:#e74c3c}
+.qa-item span{display:block;font-size:1.1rem;font-weight:600;margin-bottom:6px}
+.qa-item input{width:72px;padding:6px;border:1.5px solid var(--border);border-radius:6px;font-size:1rem;text-align:center;outline:none}
+.qa-item input:focus{border-color:var(--primary)}</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9VYY1QD34J"></script>
 <script>
@@ -190,178 +175,192 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 <div class="mobile-overlay" id="mobileOverlay" onclick="closeMenu()"></div>
 
 <!-- ── 左侧边栏 ── -->
-<!-- ── 左侧边栏 ── -->
 <div class="sidebar" id="sidebar">
   <h1>🐛 小书虫乐园</h1>
-  <div class="nav-gap"></div>
-  <div class="category">👶 小二 · 📖 英文</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">🔤 P2 英文知识点 (20个)</summary>
-  <a href="p2-unit-1.html" class="side-btn sub-btn">Unit 1 - is/am/are</a>
-    <a href="p2-unit-2.html" class="side-btn sub-btn">Unit 2 - a/an/the</a>
-    <a href="p2-unit-3.html" class="side-btn sub-btn">Unit 3 - can</a>
-    <a href="p2-unit-4.html" class="side-btn sub-btn">Unit 4 - and/but</a>
-    <a href="p2-unit-5.html" class="side-btn sub-btn">Unit 5 - this/that/these/those</a>
-    <a href="p2-unit-6.html" class="side-btn sub-btn">Unit 6 - in/on/under</a>
-    <a href="p2-unit-7.html" class="side-btn sub-btn">Unit 7 - Prepositions of place</a>
-    <a href="p2-unit-8.html" class="side-btn sub-btn">Unit 8 - Simple present tense</a>
-    <a href="p2-unit-9.html" class="side-btn sub-btn">Unit 9 - do/does</a>
-    <a href="p2-unit-10.html" class="side-btn sub-btn">Unit 10 - Common expressions</a>
-    <a href="p2-unit-11.html" class="side-btn sub-btn">Unit 11 - I/me/my...</a>
-    <a href="p2-unit-12.html" class="side-btn sub-btn">Unit 12 - Nouns</a>
-    <a href="p2-unit-13.html" class="side-btn sub-btn">Unit 13 - Ordinal numbers</a>
-    <a href="p2-unit-14.html" class="side-btn sub-btn">Unit 14 - Adjectives</a>
-    <a href="p2-unit-15.html" class="side-btn sub-btn">Unit 15 - Opposites</a>
-    <a href="p2-unit-16.html" class="side-btn sub-btn">Unit 16 - Question words: Wh-</a>
-    <a href="p2-unit-17.html" class="side-btn sub-btn">Unit 17 - Question words: How</a>
-    <a href="p2-unit-18.html" class="side-btn sub-btn">Unit 18 - Imperatives</a>
-    <a href="p2-unit-19.html" class="side-btn sub-btn">Unit 19 - Comprehension(1): Rules</a>
-    <a href="p2-unit-20.html" class="side-btn sub-btn">Unit 20 - Comprehension(2): Letters</a>
-    <a href="p2-english-comprehensive.html" class="side-btn sub-btn">📝 英文综合练习 (固定卷)</a>
-    <a href="p2-english-random-exam.html" class="side-btn sub-btn">🎲 英文综合练习 (随机出题+打印)</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">👶 小二 · 🀄 中文</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">📖 P2 中文语文 (新!)</summary>
-    <a href="p2-chinese.html" class="side-btn sub-btn">📖 中文语文总览</a>
-    <a href="p2-chinese-exam.html" class="side-btn sub-btn">📝 中文综合练习 (随机出题)</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">👶 小二 · 🛠️ 学习工具</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">📚 学习工具</summary>
-    <a href="p2-vocab.html" class="side-btn sub-btn">📚 词汇闪卡 Flashcards</a>
-    <a href="p2-mental-math.html" class="side-btn sub-btn">🧮 口算题卡</a>
-    <a href="p2-ocr-vocab.html" class="side-btn sub-btn">📷 拍照识字闪卡 OCR</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">👶 小二 · 📋 评估试卷</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">📋 评估试卷下载 (新!)</summary>
-    <a href="p2-assessment-papers.html" class="side-btn sub-btn">📋 评估试卷下载大厅</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">👶 小二 · 🧮 數學</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">🔢 P2 數學單元 (7個)</summary>
-    <a href="p2-math-unit1.html" class="side-btn sub-btn">Unit 1 - 1000以內的數</a>
-    <a href="p2-math-unit2.html" class="side-btn sub-btn">Unit 2 - 加法和減法</a>
-    <a href="p2-math-unit3.html" class="side-btn sub-btn">Unit 3 - 乘法</a>
-    <a href="p2-math-unit4.html" class="side-btn sub-btn">Unit 4 - 時間與日曆</a>
-    <a href="p2-math-unit5.html" class="side-btn sub-btn">Unit 5 - 長度和距離</a>
-    <a href="p2-math-unit6.html" class="side-btn sub-btn">Unit 6 - 立體圖形</a>
-    <a href="p2-math-unit7.html" class="side-btn sub-btn">Unit 7 - 統計圖表</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">👦 小三 · 📖 英文</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">🔤 P3 英文知识点 (12个)</summary>
-    <a href="p3-unit-1.html" class="side-btn sub-btn">Unit 1 - Present continuous tense</a>
-    <a href="p3-unit-2.html" class="side-btn sub-btn">Unit 2 - Prepositions of movement</a>
-    <a href="p3-unit-3.html" class="side-btn sub-btn">Unit 3 - can / can't (ability)</a>
-    <a href="p3-unit-4.html" class="side-btn sub-btn">Unit 4 - must / mustn't</a>
-    <a href="p3-unit-5.html" class="side-btn sub-btn">Unit 5 - Simple past tense (be)</a>
-    <a href="p3-unit-6.html" class="side-btn sub-btn">Unit 6 - Simple past tense (regular)</a>
-    <a href="p3-unit-7.html" class="side-btn sub-btn">Unit 7 - Simple past tense (irregular)</a>
-    <a href="p3-unit-8.html" class="side-btn sub-btn">Unit 8 - Countable / Uncountable nouns</a>
-    <a href="p3-unit-9.html" class="side-btn sub-btn">Unit 9 - Comparatives</a>
-    <a href="p3-unit-10.html" class="side-btn sub-btn">Unit 10 - Superlatives</a>
-    <a href="p3-unit-11.html" class="side-btn sub-btn">Unit 11 - Adverbs of frequency</a>
-    <a href="p3-unit-12.html" class="side-btn sub-btn">Unit 12 - Conjunctions (because, so, when)</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">👦 小三 · 🧮 數學</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">🔢 P3 數學單元 (8個)</summary>
-    <a href="p3-math-unit1.html" class="side-btn sub-btn">Unit 1 - 10000以內的數</a>
-    <a href="p3-math-unit2.html" class="side-btn sub-btn">Unit 2 - 加法和減法（進階）</a>
-    <a href="p3-math-unit3.html" class="side-btn sub-btn">Unit 3 - 乘法（兩位數×一位數）</a>
-    <a href="p3-math-unit4.html" class="side-btn sub-btn">Unit 4 - 除法（整除）</a>
-    <a href="p3-math-unit5.html" class="side-btn sub-btn">Unit 5 - 分數（初步概念）</a>
-    <a href="p3-math-unit6.html" class="side-btn sub-btn">Unit 6 - 小數（初步）</a>
-    <a href="p3-math-unit7.html" class="side-btn sub-btn">Unit 7 - 平面圖形與周界</a>
-    <a href="p3-math-unit8.html" class="side-btn sub-btn">Unit 8 - 容量與重量</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">👦 小三 · 🀄 中文</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">📖 P3 中文语文</summary>
-    <a href="p3-chinese.html" class="side-btn sub-btn">📖 中文语文总览</a>
-    <a href="p3-chinese-exam.html" class="side-btn sub-btn">📝 中文综合练习 (随机出题)</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">🚀 技巧培养 · 📖 英文</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">📖 P2 英文阅读理解 (10篇)</summary>
-    <a href="p2-reading-1.html" class="side-btn sub-btn">R1 - My Pet Dog 🐶</a>
-    <a href="p2-reading-2.html" class="side-btn sub-btn">R2 - The Lost Kite 🪁</a>
-    <a href="p2-reading-3.html" class="side-btn sub-btn">R3 - A Day at the Beach 🏖️</a>
-    <a href="p2-reading-4.html" class="side-btn sub-btn">R4 - My Friend Lily 👧</a>
-    <a href="p2-reading-5.html" class="side-btn sub-btn">R5 - The Big Red Bus 🚌</a>
-    <a href="p2-reading-6.html" class="side-btn sub-btn">R6 - A Rainy Day ☔</a>
-    <a href="p2-reading-7.html" class="side-btn sub-btn">R7 - Tom's Breakfast 🥞</a>
-    <a href="p2-reading-8.html" class="side-btn sub-btn">R8 - The Park 🌳</a>
-    <a href="p2-reading-9.html" class="side-btn sub-btn">R9 - My School Bag 🎒</a>
-    <a href="p2-reading-10.html" class="side-btn sub-btn">R10 - A Trip to the Zoo 🦁</a>
-  </details>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">✍️ P2 英文写作入门 (6个)</summary>
-    <a href="p2-writing-1.html" class="side-btn sub-btn">W1 - 我的生日🎂</a>
-    <a href="p2-writing-2.html" class="side-btn sub-btn">W2 - 公园玩耍🌳</a>
-    <a href="p2-writing-3.html" class="side-btn sub-btn">W3 - 我的家人👨‍👩‍👧</a>
-    <a href="p2-writing-4.html" class="side-btn sub-btn">W4 - 购物日記🛒</a>
-    <a href="p2-writing-5.html" class="side-btn sub-btn">W5 - 動物園之旅🦒</a>
-    <a href="p2-writing-6.html" class="side-btn sub-btn">W6 - 下雨天☔</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">🚀 技巧培养 · 🇬🇧 英文</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">📖 P3 英文阅读理解 (10篇)</summary>
-    <a href="p3-reading-1.html" class="side-btn sub-btn">R1 - The Brave Little Fox 🦊</a>
-    <a href="p3-reading-2.html" class="side-btn sub-btn">R2 - A Letter from Grandma 💌</a>
-    <a href="p3-reading-3.html" class="side-btn sub-btn">R3 - The Museum Trip 🏛️</a>
-    <a href="p3-reading-4.html" class="side-btn sub-btn">R4 - Healthy Eating 🥗</a>
-    <a href="p3-reading-5.html" class="side-btn sub-btn">R5 - The Magic Paintbrush 🖌️</a>
-    <a href="p3-reading-6.html" class="side-btn sub-btn">R6 - Our Class Pet 🐹</a>
-    <a href="p3-reading-7.html" class="side-btn sub-btn">R7 - The Sports Day 🏃</a>
-    <a href="p3-reading-8.html" class="side-btn sub-btn">R8 - Helping at Home 🏠</a>
-    <a href="p3-reading-9.html" class="side-btn sub-btn">R9 - The Four Seasons 🌸</a>
-    <a href="p3-reading-10.html" class="side-btn sub-btn">R10 - Under the Sea 🌊</a>
-  </details>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">✍️ P3 英文写作入门 (6个)</summary>
-    <a href="p3-writing-1.html" class="side-btn sub-btn">W1 - 露營之旅⛺</a>
-    <a href="p3-writing-2.html" class="side-btn sub-btn">W2 - 海上冒險🚢</a>
-    <a href="p3-writing-3.html" class="side-btn sub-btn">W3 - 生日派對🎉</a>
-    <a href="p3-writing-4.html" class="side-btn sub-btn">W4 - 圖書館📚</a>
-    <a href="p3-writing-5.html" class="side-btn sub-btn">W5 - 農場之旅🐄</a>
-    <a href="p3-writing-6.html" class="side-btn sub-btn">W6 - 我的夢想💭</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">🚀 技巧培养 · 🧮 數學</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">📐 P2+P3 数学应用题</summary>
-    <a href="p2-math-word-problems.html" class="side-btn sub-btn">📐 P2 应用题专练</a>
-    <a href="p3-math-word-problems.html" class="side-btn sub-btn">📐 P3 应用题专练</a>
-  </details>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">🧩 P2+P3 数学思维拓展</summary>
-    <a href="p2-math-thinking.html" class="side-btn sub-btn">🧩 P2 思维拓展</a>
-    <a href="p3-math-thinking.html" class="side-btn sub-btn">🧩 P3 思维拓展</a>
-  </details>
-  <div class="nav-gap"></div>
-  <div class="category">🚀 技巧培养 · 🀄 中文</div>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">✍️ P2+P3 中文写作入门</summary>
-    <a href="p2-chinese-writing.html" class="side-btn sub-btn">✏️ P2 看图写作</a>
-    <a href="p3-chinese-writing.html" class="side-btn sub-btn">✏️ P3 看图写作</a>
-  </details>
-  <details class="sidebar-details" open>
-    <summary class="side-summary">📖 P2+P3 中文阅读理解</summary>
-    <a href="p2-chinese-reading.html" class="side-btn sub-btn">📖 P2 阅读理解</a>
-    <a href="p3-chinese-reading.html" class="side-btn sub-btn">📖 P3 阅读理解</a>
-  </details>
+  <!-- 年级切换标签 -->
+  <div class="grade-tabs">
+    <button class="grade-tab active" data-grade="p2" onclick="switchGrade('p2')">👶 小二</button>
+    <button class="grade-tab" data-grade="p3" onclick="switchGrade('p3')">👦 小三</button>
+  </div>
+
+  <!-- ── 小二 内容 ── -->
+  <div class="grade-content active" id="grade-p2">
+    <div class="category">👶 小二 · 📖 英文</div>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">🔤 P2 英文知识点 (20个)</summary>
+    <a href="p2-unit-1.html" class="side-btn sub-btn">Unit 1 - is/am/are</a>
+      <a href="p2-unit-2.html" class="side-btn sub-btn">Unit 2 - a/an/the</a>
+      <a href="p2-unit-3.html" class="side-btn sub-btn">Unit 3 - can</a>
+      <a href="p2-unit-4.html" class="side-btn sub-btn">Unit 4 - and/but</a>
+      <a href="p2-unit-5.html" class="side-btn sub-btn">Unit 5 - this/that/these/those</a>
+      <a href="p2-unit-6.html" class="side-btn sub-btn">Unit 6 - in/on/under</a>
+      <a href="p2-unit-7.html" class="side-btn sub-btn">Unit 7 - Prepositions of place</a>
+      <a href="p2-unit-8.html" class="side-btn sub-btn">Unit 8 - Simple present tense</a>
+      <a href="p2-unit-9.html" class="side-btn sub-btn">Unit 9 - do/does</a>
+      <a href="p2-unit-10.html" class="side-btn sub-btn">Unit 10 - Common expressions</a>
+      <a href="p2-unit-11.html" class="side-btn sub-btn">Unit 11 - I/me/my...</a>
+      <a href="p2-unit-12.html" class="side-btn sub-btn">Unit 12 - Nouns</a>
+      <a href="p2-unit-13.html" class="side-btn sub-btn">Unit 13 - Ordinal numbers</a>
+      <a href="p2-unit-14.html" class="side-btn sub-btn">Unit 14 - Adjectives</a>
+      <a href="p2-unit-15.html" class="side-btn sub-btn">Unit 15 - Opposites</a>
+      <a href="p2-unit-16.html" class="side-btn sub-btn">Unit 16 - Question words: Wh-</a>
+      <a href="p2-unit-17.html" class="side-btn sub-btn">Unit 17 - Question words: How</a>
+      <a href="p2-unit-18.html" class="side-btn sub-btn">Unit 18 - Imperatives</a>
+      <a href="p2-unit-19.html" class="side-btn sub-btn">Unit 19 - Comprehension(1): Rules</a>
+      <a href="p2-unit-20.html" class="side-btn sub-btn">Unit 20 - Comprehension(2): Letters</a>
+      <a href="p2-english-comprehensive.html" class="side-btn sub-btn">📝 英文综合练习 (固定卷)</a>
+      <a href="p2-english-random-exam.html" class="side-btn sub-btn">🎲 英文综合练习 (随机出题+打印)</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">📖 P2 英文阅读理解 (10篇)</summary>
+      <a href="p2-reading-1.html" class="side-btn sub-btn">R1 - My Pet Dog 🐶</a>
+      <a href="p2-reading-2.html" class="side-btn sub-btn">R2 - The Lost Kite 🪁</a>
+      <a href="p2-reading-3.html" class="side-btn sub-btn">R3 - A Day at the Beach 🏖️</a>
+      <a href="p2-reading-4.html" class="side-btn sub-btn">R4 - My Friend Lily 👧</a>
+      <a href="p2-reading-5.html" class="side-btn sub-btn">R5 - The Big Red Bus 🚌</a>
+      <a href="p2-reading-6.html" class="side-btn sub-btn">R6 - A Rainy Day ☔</a>
+      <a href="p2-reading-7.html" class="side-btn sub-btn">R7 - Tom's Breakfast 🥞</a>
+      <a href="p2-reading-8.html" class="side-btn sub-btn">R8 - The Park 🌳</a>
+      <a href="p2-reading-9.html" class="side-btn sub-btn">R9 - My School Bag 🎒</a>
+      <a href="p2-reading-10.html" class="side-btn sub-btn">R10 - A Trip to the Zoo 🦁</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">✍️ P2 英文写作入门 (6个)</summary>
+      <a href="p2-writing-1.html" class="side-btn sub-btn">W1 - 我的生日🎂</a>
+      <a href="p2-writing-2.html" class="side-btn sub-btn">W2 - 公园玩耍🌳</a>
+      <a href="p2-writing-3.html" class="side-btn sub-btn">W3 - 我的家人👨‍👩‍👧</a>
+      <a href="p2-writing-4.html" class="side-btn sub-btn">W4 - 购物日記🛒</a>
+      <a href="p2-writing-5.html" class="side-btn sub-btn">W5 - 動物園之旅🦒</a>
+      <a href="p2-writing-6.html" class="side-btn sub-btn">W6 - 下雨天☔</a>
+    </details>
+    <div class="nav-gap"></div>
+    <div class="category">👶 小二 · 🧮 數學</div>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">🔢 P2 數學單元 (7個)</summary>
+      <a href="p2-math-unit1.html" class="side-btn sub-btn">Unit 1 - 1000以內的數</a>
+      <a href="p2-math-unit2.html" class="side-btn sub-btn">Unit 2 - 加法和減法</a>
+      <a href="p2-math-unit3.html" class="side-btn sub-btn">Unit 3 - 乘法</a>
+      <a href="p2-math-unit4.html" class="side-btn sub-btn">Unit 4 - 時間與日曆</a>
+      <a href="p2-math-unit5.html" class="side-btn sub-btn">Unit 5 - 長度和距離</a>
+      <a href="p2-math-unit6.html" class="side-btn sub-btn">Unit 6 - 立體圖形</a>
+      <a href="p2-math-unit7.html" class="side-btn sub-btn">Unit 7 - 統計圖表</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">📐 P2 数学应用题专练</summary>
+      <a href="p2-math-word-problems.html" class="side-btn sub-btn">📐 P2 应用题专练</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">🧩 P2 数学思维拓展</summary>
+      <a href="p2-math-thinking.html" class="side-btn sub-btn">🧩 P2 思维拓展</a>
+    </details>
+    <div class="nav-gap"></div>
+    <div class="category">👶 小二 · 🀄 中文</div>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">📖 P2 中文语文</summary>
+      <a href="p2-chinese.html" class="side-btn sub-btn">📖 中文语文总览</a>
+      <a href="p2-chinese-exam.html" class="side-btn sub-btn">📝 中文综合练习 (随机出题)</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">✍️ P2 中文写作入门</summary>
+      <a href="p2-chinese-writing.html" class="side-btn sub-btn">✏️ P2 看图写作</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">📖 P2 中文阅读理解</summary>
+      <a href="p2-chinese-reading.html" class="side-btn sub-btn">📖 P2 阅读理解</a>
+    </details>
+    <div class="nav-gap"></div>
+    <div class="category">👶 小二 · 🛠️ 学习工具</div>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">📚 学习工具</summary>
+      <a href="p2-vocab.html" class="side-btn sub-btn">📚 词汇闪卡 Flashcards</a>
+      <a href="p2-mental-math.html" class="side-btn sub-btn">🧮 口算题卡</a>
+      <a href="p2-ocr-vocab.html" class="side-btn sub-btn">📷 拍照识字闪卡 OCR</a>
+    </details>
+    <div class="nav-gap"></div>
+    <div class="category">👶 小二 · 📋 评估试卷</div>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">📋 评估试卷下载 (新!)</summary>
+      <a href="p2-assessment-papers.html" class="side-btn sub-btn">📋 评估试卷下载大厅</a>
+    </details>
+  </div>
+
+  <!-- ── 小三 内容 ── -->
+  <div class="grade-content" id="grade-p3">
+    <div class="category">👦 小三 · 📖 英文</div>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">🔤 P3 英文知识点 (12个)</summary>
+      <a href="p3-unit-1.html" class="side-btn sub-btn">Unit 1 - Present continuous tense</a>
+      <a href="p3-unit-2.html" class="side-btn sub-btn">Unit 2 - Prepositions of movement</a>
+      <a href="p3-unit-3.html" class="side-btn sub-btn">Unit 3 - can / can't (ability)</a>
+      <a href="p3-unit-4.html" class="side-btn sub-btn">Unit 4 - must / mustn't</a>
+      <a href="p3-unit-5.html" class="side-btn sub-btn">Unit 5 - Simple past tense (be)</a>
+      <a href="p3-unit-6.html" class="side-btn sub-btn">Unit 6 - Simple past tense (regular)</a>
+      <a href="p3-unit-7.html" class="side-btn sub-btn">Unit 7 - Simple past tense (irregular)</a>
+      <a href="p3-unit-8.html" class="side-btn sub-btn">Unit 8 - Countable / Uncountable nouns</a>
+      <a href="p3-unit-9.html" class="side-btn sub-btn">Unit 9 - Comparatives</a>
+      <a href="p3-unit-10.html" class="side-btn sub-btn">Unit 10 - Superlatives</a>
+      <a href="p3-unit-11.html" class="side-btn sub-btn">Unit 11 - Adverbs of frequency</a>
+      <a href="p3-unit-12.html" class="side-btn sub-btn">Unit 12 - Conjunctions (because, so, when)</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">📖 P3 英文阅读理解 (10篇)</summary>
+      <a href="p3-reading-1.html" class="side-btn sub-btn">R1 - The Brave Little Fox 🦊</a>
+      <a href="p3-reading-2.html" class="side-btn sub-btn">R2 - A Letter from Grandma 💌</a>
+      <a href="p3-reading-3.html" class="side-btn sub-btn">R3 - The Museum Trip 🏛️</a>
+      <a href="p3-reading-4.html" class="side-btn sub-btn">R4 - Healthy Eating 🥗</a>
+      <a href="p3-reading-5.html" class="side-btn sub-btn">R5 - The Magic Paintbrush 🖌️</a>
+      <a href="p3-reading-6.html" class="side-btn sub-btn">R6 - Our Class Pet 🐹</a>
+      <a href="p3-reading-7.html" class="side-btn sub-btn">R7 - The Sports Day 🏃</a>
+      <a href="p3-reading-8.html" class="side-btn sub-btn">R8 - Helping at Home 🏠</a>
+      <a href="p3-reading-9.html" class="side-btn sub-btn">R9 - The Four Seasons 🌸</a>
+      <a href="p3-reading-10.html" class="side-btn sub-btn">R10 - Under the Sea 🌊</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">✍️ P3 英文写作入门 (6个)</summary>
+      <a href="p3-writing-1.html" class="side-btn sub-btn">W1 - 露營之旅⛺</a>
+      <a href="p3-writing-2.html" class="side-btn sub-btn">W2 - 海上冒險🚢</a>
+      <a href="p3-writing-3.html" class="side-btn sub-btn">W3 - 生日派對🎉</a>
+      <a href="p3-writing-4.html" class="side-btn sub-btn">W4 - 圖書館📚</a>
+      <a href="p3-writing-5.html" class="side-btn sub-btn">W5 - 農場之旅🐄</a>
+      <a href="p3-writing-6.html" class="side-btn sub-btn">W6 - 我的夢想💭</a>
+    </details>
+    <div class="nav-gap"></div>
+    <div class="category">👦 小三 · 🧮 數學</div>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">🔢 P3 數學單元 (8個)</summary>
+      <a href="p3-math-unit1.html" class="side-btn sub-btn">Unit 1 - 10000以內的數</a>
+      <a href="p3-math-unit2.html" class="side-btn sub-btn">Unit 2 - 加法和減法（進階）</a>
+      <a href="p3-math-unit3.html" class="side-btn sub-btn">Unit 3 - 乘法（兩位數×一位數）</a>
+      <a href="p3-math-unit4.html" class="side-btn sub-btn">Unit 4 - 除法（整除）</a>
+      <a href="p3-math-unit5.html" class="side-btn sub-btn">Unit 5 - 分數（初步概念）</a>
+      <a href="p3-math-unit6.html" class="side-btn sub-btn">Unit 6 - 小數（初步）</a>
+      <a href="p3-math-unit7.html" class="side-btn sub-btn">Unit 7 - 平面圖形與周界</a>
+      <a href="p3-math-unit8.html" class="side-btn sub-btn">Unit 8 - 容量與重量</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">📐 P3 数学应用题专练</summary>
+      <a href="p3-math-word-problems.html" class="side-btn sub-btn">📐 P3 应用题专练</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">🧩 P3 数学思维拓展</summary>
+      <a href="p3-math-thinking.html" class="side-btn sub-btn">🧩 P3 思维拓展</a>
+    </details>
+    <div class="nav-gap"></div>
+    <div class="category">👦 小三 · 🀄 中文</div>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">📖 P3 中文语文</summary>
+      <a href="p3-chinese.html" class="side-btn sub-btn">📖 中文语文总览</a>
+      <a href="p3-chinese-exam.html" class="side-btn sub-btn">📝 中文综合练习 (随机出题)</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">✍️ P3 中文写作入门</summary>
+      <a href="p3-chinese-writing.html" class="side-btn sub-btn">✏️ P3 看图写作</a>
+    </details>
+    <details class="sidebar-details" open>
+      <summary class="side-summary">📖 P3 中文阅读理解</summary>
+      <a href="p3-chinese-reading.html" class="side-btn sub-btn">📖 P3 阅读理解</a>
+    </details>
+  </div>
 </div>
 
 <!-- ── 右侧主内容 ── -->
@@ -392,23 +391,23 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 
     <!-- 快速入口：学科卡片 -->
     <div class="quick-cards">
-      <a href="#" onclick="filterBySubject('all')" class="quick-card active" data-subject="all">
+      <a href="#" class="quick-card active" data-subject="all" onclick="filterBySubject('all');return false">
         <span class="qc-icon">📌</span>
         <span class="qc-label">全部</span>
       </a>
-      <a href="#" onclick="filterBySubject('p2-english')" class="quick-card">
+      <a href="#" class="quick-card" data-subject="p2-english" onclick="filterBySubject('p2-english');return false">
         <span class="qc-icon">📖</span>
         <span class="qc-label">小二英文</span>
       </a>
-      <a href="#" onclick="filterBySubject('p3-english')" class="quick-card">
+      <a href="#" class="quick-card" data-subject="p3-english" onclick="filterBySubject('p3-english');return false">
         <span class="qc-icon">🇬🇧</span>
         <span class="qc-label">小三英文</span>
       </a>
-      <a href="#" onclick="filterBySubject('p2-math')" class="quick-card">
+      <a href="#" class="quick-card" data-subject="p2-math" onclick="filterBySubject('p2-math');return false">
         <span class="qc-icon">🧮</span>
         <span class="qc-label">小二數學</span>
       </a>
-      <a href="#" onclick="filterBySubject('p3-math')" class="quick-card">
+      <a href="#" class="quick-card" data-subject="p3-math" onclick="filterBySubject('p3-math');return false">
         <span class="qc-icon">🔢</span>
         <span class="qc-label">小三數學</span>
       </a>
@@ -447,7 +446,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
   </div>
 
 </main>
-</div> <!-- /main-content -->
+</div>
 
 <script>
 // ── 切换页面 ──────────────────────────────────────
@@ -457,6 +456,14 @@ function show(id) {
   if (target) target.classList.add('active');
   document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll(`.side-btn[onclick*="'${id}'"], .side-btn[href*="${id}"]`).forEach(b => b.classList.add('active'));
+}
+
+// ── 年级切换 ──────────────────────────────────────
+function switchGrade(grade) {
+  document.querySelectorAll('.grade-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.grade-tab[data-grade="${grade}"]`).classList.add('active');
+  document.querySelectorAll('.grade-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('grade-' + grade).classList.add('active');
 }
 
 // ── 口算 ──────────────────────────────────────────
@@ -769,7 +776,7 @@ function renderAllCards(filter) {
 // ── 快速筛选 ──────────────────────────────────
 function filterBySubject(subject) {
   document.querySelectorAll('.quick-card').forEach(c => c.classList.remove('active'));
-  const btn = document.querySelector(`.quick-card[onclick*="'${subject}'"]`);
+  const btn = document.querySelector(`.quick-card[data-subject="${subject}"]`);
   if (btn) btn.classList.add('active');
   renderAllCards(subject);
 }
